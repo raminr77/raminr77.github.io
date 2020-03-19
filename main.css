@@ -1,5 +1,6 @@
 body {
-    background: #0b7edb;
+    background-color: #000;
+    /* background-color: #393c3f; */
 }
 
 .code-editor:before,
@@ -20,6 +21,7 @@ body {
 }
 
 .code-editor {
+    z-index: 999 !important;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
@@ -27,7 +29,7 @@ body {
     margin: 40px auto 0 auto;
     width: 750px;
     text-align: left;
-    background-color: #473431;
+    /* background-color: #473431; */
     border-radius: 0 0 5px 5px;
     overflow: auto;
     -webkit-transition: all 0.5s ease-in-out;
@@ -70,7 +72,7 @@ body {
 
 .code-editor span.control:nth-child(2):before {
     margin-left: 35px;
-    background-color: #FDD835;
+    background-color: #dfbb1a;
 }
 
 .code-editor span.control:nth-child(3):before {
@@ -87,12 +89,20 @@ body {
     .code-editor:before {
         width: 500px;
     }
+
+    .dl-btn-box {
+        flex-direction: column;
+    }
 }
 
 /* -- iPhone Screen -- */
 @media only screen and (max-width: 479px) {
     .code-editor {
         width: 300px;
+    }
+
+    .dl-btn-box {
+        flex-direction: column;
     }
 
     .code-editor:before {
@@ -128,7 +138,7 @@ pre[class*="language-"] {
 
 :not(pre)>code[class*="language-"],
 pre[class*="language-"] {
-    background: #282c34;
+    background: rgba(40, 44, 52, 0.9);
 }
 
 /* Inline code */
@@ -206,11 +216,11 @@ pre[class*="language-"] {
 
 pre.line-numbers {
     position: relative;
-    padding-left: 3.8em;
+    /* padding-left: 3.8em; */
     counter-reset: linenumber;
     padding-bottom: 1px;
-font-size: 14px;
-    line-height: 30px;
+    font-size: 14px;
+    /* line-height: 30px; */
 }
 
 pre.line-numbers>code {
@@ -246,6 +256,32 @@ pre.line-numbers>code {
     text-align: right;
 }
 
-code span{
-    line-height: 30px;
+code span {
+    line-height: 20px;
+}
+
+.dl-btn-box {
+    width: 90%;
+    display: flex;
+    margin: 16px auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.dl-btn {
+    margin: 4px;
+    color: #21252b;
+    font-size: 14px;
+    padding: 6px 20px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-family: 'Consolas';
+    background-color: #fff;
+}
+.Ramin {
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    position: absolute;
 }
