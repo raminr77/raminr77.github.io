@@ -1,6 +1,5 @@
 body {
-    background-color: #000;
-    /* background-color: #393c3f; */
+    background-color: #111;
 }
 
 .code-editor:before,
@@ -190,14 +189,14 @@ pre[class*="language-"] {
 .token.atrule,
 .token.keyword,
 .token.builtin {
-    color: #cc99cd;
+    color: #dd7edf;
 }
 
 .token.string,
 .token.attr-value,
 .token.regex,
 .token.variable {
-    color: #7ec699;
+    color: #21cc6e;
 }
 
 .token.operator,
