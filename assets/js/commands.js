@@ -226,7 +226,7 @@ COMMANDS = [
                 <div class="terminal-gallery">
                     <img class="js-zoom-image" src="./assets/images/gallery/1.jpg" alt="Ramin Rezaei" />
                     <img class="js-zoom-image" src="./assets/images/gallery/2.jpg" alt="Ramin Rezaei" />
-                    <img class="js-zoom-image" src="./assets/images/gallery/3.jpg" alt="Ramin Rezaei" />
+                    <img class="js-zoom-image" src="./assets/images/gallery/3.JPG" alt="Ramin Rezaei" />
                 </div>
             `)
         }
