@@ -20,12 +20,12 @@ COMMANDS = [
                 '\n\n MINIMIZE  =>  minimize the terminal [ none ]' +
                 '\n\n CLEAR | CLS | C  =>  clean terminal [ none ]' +
                 '\n\n ------------ Ramin Rezaei ------------' +
-                '\n\n RAMIN   .    =>  I ...' +
-                '\n\n ABOUT   .    =>  read more about Ramin' +
-                '\n\n SKILLS  .    =>  show Ramin`s skills' +
+                '\n\n RAMIN       =>  I ...' +
+                '\n\n ABOUT       =>  read more about Ramin' +
+                '\n\n SKILLS      =>  show Ramin`s skills' +
                 '\n\n CONTACT     =>  show a way for connect Ramin' +
-                '\n\n YOUTUBE .    =>  open YouTube Channel [ none ]' +
-                '\n\n DOWNLOAD  .  =>  download Ramin CV in the new tab - English [ none ]' +
+                '\n\n YOUTUBE     =>  open YouTube Channel [ none ]' +
+                '\n\n DOWNLOAD    =>  download Ramin CV in the new tab - English [ none ]' +
                 '\n\n EDUCATION   =>  show education info [ none ]' +
                 '\n\n EXPERIENCE  =>  show work expreience info [ none ]' +
                 '\n\n ------------ Shortcuts ------------' +
@@ -313,7 +313,9 @@ COMMANDS = [
         validator: null,
         help: 'show Ramin`s work expreience info [ none ]',
         action: (value = '') => {
-            
+            insertCommand(`🔥 Front-End Developer - Digikala (NOW)
+            🔥 Head Of Front-End Team - Motosel ( Snapp Car Fix )
+            `, 'info')
         }
     },
 ]
