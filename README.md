@@ -1,4 +1,3 @@
-
-## Personal Page
-- Ramin Rezaei
+## Terminal
 - [Demo](http://raminrezaei.ir)
+- Ramin Rezaei
