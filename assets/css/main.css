@@ -422,4 +422,50 @@ body {
 .command--pre {
   white-space: pre;
 }
+
+.terminal-pro-image {
+  width: 120px;
+  margin: 16px;
+  opacity: 0.6;
+  height: 120px;
+  border-radius: 10px;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.terminal-pro-image:hover {
+  opacity: 1;
+}
+
+.terminal-gallery {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 6px 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.terminal-gallery img {
+  width: 160px;
+  opacity: 0.6;
+  height: 160px;
+  margin: 8px;
+  border-radius: 10px;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.terminal-gallery img.is-zoom {
+  -webkit-transform: scale(1.6);
+          transform: scale(1.6);
+}
+
+.terminal-gallery img:hover {
+  opacity: 1;
+}
 /*# sourceMappingURL=main.css.map */
