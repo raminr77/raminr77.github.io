@@ -387,3 +387,14 @@ body {
         }
     }
 }
+
+.terminal-link {
+    color: #29B6F6;
+    &:active {
+        color: #29B6F6;
+    }
+    &:hover {
+        color: #73d3ff;
+    }
+    text-decoration: none;
+}
