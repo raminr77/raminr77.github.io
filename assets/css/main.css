@@ -468,4 +468,17 @@ body {
 .terminal-gallery img:hover {
   opacity: 1;
 }
+
+.terminal-link {
+  color: #29B6F6;
+  text-decoration: none;
+}
+
+.terminal-link:active {
+  color: #29B6F6;
+}
+
+.terminal-link:hover {
+  color: #73d3ff;
+}
 /*# sourceMappingURL=main.css.map */

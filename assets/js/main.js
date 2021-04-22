@@ -78,7 +78,23 @@ function insertCommand(value = '~ ', className = '') {
     scrollToEnd()
 }
 
-function submitCommand(value = '') {
+function convertHTMLToText(value = ''){
+    let html = value
+    html = html.replace(/<style([\s\S]*?)<\/style>/gi, '')
+    html = html.replace(/<script([\s\S]*?)<\/script>/gi, '')
+    html = html.replace(/<\/div>/ig, '\n')
+    html = html.replace(/<\/li>/ig, '\n')
+    html = html.replace(/<li>/ig, '  *  ')
+    html = html.replace(/<\/ul>/ig, '\n')
+    html = html.replace(/<\/p>/ig, '\n')
+    html = html.replace(/<br\s*[\/]?>/gi, "\n")
+    html = html.replace(/<[^>]+>/ig, '')
+    html = html.replace(/\&nbsp;/g, '')
+    return html
+}
+
+function submitCommand(text = '') {
+    let value = convertHTMLToText(text)
     if (!value) {
         index = COMMAND_HISTORY.length
         insertCommand()
@@ -95,7 +111,7 @@ function scrollToEnd(){
     terminalContent.scrollTop = commandsList.offsetHeight - input.offsetHeight
 }
 
-function SetCommandHistory(command){
+function SetCommandHistory(command = ''){
     COMMAND_HISTORY.push(command)
     localStorage.setItem('command-history', JSON.stringify(COMMAND_HISTORY))
 }

@@ -12,7 +12,7 @@ COMMANDS = [
                 '\n\n COLOR     =>  change text color  [ hex | color name ]' +
                 '\n-- Example: color red OR color #ff0033' +
                 '\n\n TITLE     =>  Sets the window title for the terminal [ string ]' +
-                '\n\n OPACITY   =>  change terminal opacity  [ number ] (0 - 100)' +
+                '\n\n OPACITY   =>  change terminal opacity  [ number ] (1 - 100)' +
                 '\n-- Example: opacity 40' +
                 '\n\n BGCOLOR   =>  change background color  [ hex | color name ]' +
                 '\n-- Example: bgcolor red OR bgcolor #ff0033' +
@@ -101,14 +101,14 @@ COMMANDS = [
         command: 'opacity',
         color: 'success',
         validator: null,
-        help: 'change terminal opacity  [ number ] (0 - 100) \n-- Example: opacity 40',
+        help: 'change terminal opacity  [ number ] (1 - 100) \n-- Example: opacity 40',
         action: (value = '') => {
             let number = parseFloat(value.split(' ')[1])
             if(!number){
                 insertCommand(`😑 Syntax Error: opacity should be a number between 0 and 100`, 'danger')
                 return
             }
-            terminal.alpha(number)
+            terminal.alpha(`${number}%`)
         }
     },
     {
@@ -162,7 +162,7 @@ COMMANDS = [
         color: 'success',
         validator: null,
         help: 'terminal GitHub Repository [ none ]',
-        action: 'https://github.com/raminr77/raminr77.github.io'
+        action: '<a class="terminal-link" href="https://github.com/raminr77/raminr77.github.io">GitHub</a>'
     },
     {
         command: 'ls',
@@ -180,8 +180,14 @@ COMMANDS = [
         help: 'change directory [ none ]',
         action: (value = '') => {
             let dir = value.split(' ')[1]
-            if(!dir || dir !== 'Resume' || dir !== 'resume'){
-                insertCommand(`😑 Not Found.`, 'danger')
+
+            if(value === 'cd'){
+                insertCommand()
+                return
+            }
+            
+            if(!dir || dir.toLowerCase() !== 'resume'){
+                insertCommand(`😑 Directory Not Found.`, 'danger')
                 return
             }
             window.open('https://raminrezaei.ir/resume/')
@@ -289,11 +295,11 @@ COMMANDS = [
         action: (value = '') => {
             insertCommand('<img class="terminal-pro-image" alt="Ramin Rezaei" src="./assets/images/Ramin.jpg" />')
             insertCommand(`📞 Ramin Rezaei
-                -- Telegram: RaminR77
-                -- Instagram: RaminR77
-                -- Whatsapp: +989930600012
-                -- PhoneNumber: +989136266179
-                -- Email: Ramin.Rezaei77 [At] Gmail.com
+                -- <a class="terminal-link" href="https://www.telegram.me/raminr77/">Telegram: RaminR77</a>
+                -- <a class="terminal-link" href="https://www.instagram.com/raminr77/">Instagram: RaminR77</a>
+                -- <a class="terminal-link" href="tel:+989930600012">Whatsapp: +989930600012
+                -- <a class="terminal-link" href="tel:+989136266179">PhoneNumber: +989136266179</a>
+                -- <a class="terminal-link" href="mailto:ramin.rezaei77@gmail.com">Email: Ramin.Rezaei77 [At] Gmail.com</a>
                 -- Address: Isfahan Or Tehran ( IRAN )
             `, 'info')
         }
