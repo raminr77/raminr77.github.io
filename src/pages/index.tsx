@@ -1,3 +1,3 @@
-export default function Home() {
-  return <main></main>;
-}
+import { Index } from '@/domains/index';
+
+export default Index;

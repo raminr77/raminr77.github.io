@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+
+.Index {
+    top: 50px;
+    left: 50px;
+
+    &__title {
+        font-size: 100px;
+        line-height: 84px;
+        font-family: 'Russo One', sans-serif;
+        @media (max-width: 960px) {
+            font-size: 60px;
+        }
+    }
+
+    &__description {
+        font-size: 30px;
+        font-family: 'Bad Script', cursive;
+    }
+}
