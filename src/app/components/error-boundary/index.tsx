@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Component } from 'react';
-import { ServerError } from '@/shared/components/server-error-page';
+import { ServerError } from '@/app/components/server-error-page';
 
 class ErrorBoundary extends Component {
   constructor(props) {

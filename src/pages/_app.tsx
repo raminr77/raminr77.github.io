@@ -2,7 +2,8 @@ import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import NextNprogress from 'nextjs-progressbar';
-import ErrorBoundary from '@/shared/components/error-boundary';
+import ErrorBoundary from '@/app/components/error-boundary';
+import { PageContainer } from '@/app/layout/page-container';
 import { store } from '@/shared/store';
 import { PersistWrapper } from '@/shared/store/PersistWrapper';
 import '@/styles/globals.scss';
@@ -66,7 +67,9 @@ export default function App({ Component, pageProps }: AppProps) {
           options={{ easing: 'ease', speed: 500, showSpinner: false }}
         />
         <ErrorBoundary>
-          <Component {...pageProps} />
+          <PageContainer>
+            <Component {...pageProps} />
+          </PageContainer>
         </ErrorBoundary>
       </PersistWrapper>
     </Provider>
