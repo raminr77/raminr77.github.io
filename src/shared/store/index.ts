@@ -8,7 +8,7 @@ import useReducer from '@/shared/store/user/user-slice';
 const persistConfig = {
   storage,
   blacklist: [REDUCER_NAMES.USER],
-  key: process.env.NEXT_PUBLIC_APP_NAME || 'RO'
+  key: process.env.NEXT_PUBLIC_APP_NAME || 'Ramin'
 };
 
 const persistedReducer = persistReducer(
