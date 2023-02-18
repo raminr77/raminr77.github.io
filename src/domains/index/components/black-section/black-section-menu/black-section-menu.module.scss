@@ -1,0 +1,36 @@
+@import '@/styles/breakpoints.scss';
+
+.BlackSectionMenu {
+    &__itemsContainer {
+        top: 20%;
+        right: 20%;
+        @include breakpoint-lg(1350px) {
+            display: none;
+        }
+    }
+
+    &__menuIcon {
+        @include breakpoint-lg(1350px) {
+            display: block;
+        }
+    }
+
+    &__menuItem {
+        &::before {
+            left: 0;
+            bottom: 0;
+            width: 20px;
+            height: 2px;
+            content: '';
+            position: absolute;
+            background-color: white;
+            transition-duration: 400ms;
+        }
+
+        &:hover {
+            &::before {
+                width: 200px;
+            }
+        }
+    }
+}
