@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta http-equiv='X-UA-Compatible' content='IE=edge' />
           <link rel='icon' type='image/png' href='/favicon.png' />
           {/* Personal */}
-          <title>Ramin Rezaei</title>
+          <title>Ramin Rezaei | Front-end Engineer</title>
           <meta name='copyright' content='2023' />
           <meta name='theme-color' content='#1e283c' />
           <meta name='application-name' content='Ramin Rezaei' />
