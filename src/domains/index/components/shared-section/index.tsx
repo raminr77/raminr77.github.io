@@ -3,6 +3,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import { MAIN_DATA } from '@/data';
+import { RESUME_FILE_DATA } from '@/data/resume-file';
 import styles from './shared-section.module.scss';
 
 export function IndexSharedSection() {
@@ -63,7 +64,7 @@ export function IndexSharedSection() {
       </h1>
       <h3 className='font-title ml-3 mb-5'>{MAIN_DATA.TITLE}</h3>
 
-      <Link href='/'>
+      <Link download={RESUME_FILE_DATA.NAME} href={RESUME_FILE_DATA.URL} target='_blank'>
         <div
           className={classNames(
             'w-52 h-12 overflow-hidden duration-300 relative flex items-center justify-center',
@@ -74,7 +75,7 @@ export function IndexSharedSection() {
           <span className='absolute h-full right-0 bottom-0' />
           <span className='absolute h-full top-0 left-0' />
           <span className='absolute w-full bottom-0 left-0' />
-          Download CV
+          {RESUME_FILE_DATA.ACTION_TEXT}
         </div>
       </Link>
     </div>
