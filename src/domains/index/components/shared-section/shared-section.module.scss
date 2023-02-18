@@ -1,0 +1,108 @@
+@import '@/styles/breakpoints.scss';
+
+.SharedSection {
+    &__container {
+        top: 20%;
+        left: 10%;
+        h1 {
+            font-size: 150px;
+            overflow-y: hidden;
+            line-height: 130px;
+            visibility: hidden;
+            span {
+                min-height: 130px;                
+            }
+            span::before {
+                top: 0;
+                left: 0;
+                font-weight: 700;
+                position: absolute;
+                content: attr(data-text);
+                transform: translateY(-110%);
+                color: rgba(255, 255, 255, 0.1);
+                font-family: 'Syncopate', sans-serif;
+            }
+            span[data-text='a']::before {
+                transform: translate(-80px, -110%);
+            }
+        }
+        h3 {
+            font-size: 40px;
+            line-height: 40px;
+            letter-spacing: 3px;
+        }
+
+        @include breakpoint-lg {
+            top: 5%;
+            h1 {
+                font-size: 60px;
+                line-height: 60px;
+                span {
+                    min-height: 60px;
+                }
+                span[data-text='a']::before {
+                    transform: translate(-30px, -110%);
+                }
+            }
+            h3 {
+                font-size: 20px;
+                margin-left: 5px;
+                letter-spacing: 0;
+                line-height: 30px;
+            }
+        }
+    }
+
+    &__downloadBtn {
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        span {
+            &:nth-child(1) {
+                height: 2px;
+                transform: translateX(-100%);
+                animation: animate-line-1 1s ease-out 1.6s infinite;
+                background-image: linear-gradient(to right , #fff , transparent);
+            }
+            &:nth-child(2) {
+                width: 1px;
+                transform: translateY(-100%);
+                animation: animate-line-2 1s ease-out 1.3s infinite;
+                background-image: linear-gradient(#fff , transparent);
+            }
+            &:nth-child(3) {
+                width: 1px;
+                transform: translateY(100%);
+                animation: animate-line-3 1s ease-out 0.4s infinite;
+                background-image: linear-gradient(0deg, #fff , transparent);
+            }
+            &:nth-child(4) {
+                height: 2px;
+                transform: translateX(100%);
+                animation: animate-line-4 1s ease-out 0.8s infinite;
+                background-image: linear-gradient(to left , #fff , transparent);
+            }
+        }
+
+        @keyframes animate-line-1 {
+            from { transform: translateX(100%); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+
+        @keyframes animate-line-4 {
+            from { transform: translateX(-100%); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        @keyframes animate-line-3 {
+            from { transform: translateY(-100%); opacity: 1; }
+            to { transform: translateY(100%); opacity: 0; }
+        }
+
+        @keyframes animate-line-2 {
+            from { transform: translateY(100%); opacity: 1; }
+            to { transform: translateY(-100%); opacity: 0; }
+        }
+    }
+}

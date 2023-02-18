@@ -122,9 +122,9 @@ type AnimationNames =
 
 interface Props {
   name: AnimationNames;
-  repeat: 1 | 2 | 3 | 'infinite';
-  delay: '1s' | '2s' | '3s' | '4s' | '5s';
-  speed: 'slow' | 'slower' | 'fast' | 'faster';
+  repeat?: 1 | 2 | 3 | 'infinite';
+  delay?: '1s' | '2s' | '3s' | '4s' | '5s';
+  speed?: 'slow' | 'slower' | 'fast' | 'faster';
 }
 
 export const animator = ({ name, speed, repeat, delay }: Props): string => {
@@ -133,5 +133,5 @@ export const animator = ({ name, speed, repeat, delay }: Props): string => {
   const animationDelay = delay ? `animate__delay-${delay}` : '';
   const animationRepeat = repeat ? `animate__repeat-${repeat}` : '';
 
-  return `animate__animated animate__${name} ${animationSpeed} ${animationRepeat} ${animationDelay}`;
+  return `animate__animated animate__${name} ${animationSpeed} ${animationRepeat} ${animationDelay}`.trim();
 };
