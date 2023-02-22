@@ -105,4 +105,8 @@
             to { transform: translateY(-100%); opacity: 0; }
         }
     }
+
+    &__description:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 }

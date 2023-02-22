@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { animator } from '@/shared/utils/animator';
 import { IndexBlackSectionMenu } from './black-section-menu';
+import { BlackSectionParticles } from './black-section-particles';
 import styles from './black-section.module.scss';
 
 export function IndexBlackSection() {
@@ -12,9 +13,10 @@ export function IndexBlackSection() {
         styles.BlackSection__container
       )}
     >
-      <div className='w-full min-h-screen overflow-y-auto relative flex flex-col items-end'>
+      <div className='w-full z-10 min-h-screen overflow-y-auto relative flex flex-col items-end'>
         <IndexBlackSectionMenu />
       </div>
+      <BlackSectionParticles />
     </div>
   );
 }

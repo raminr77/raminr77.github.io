@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import gsap from 'gsap';
 import { MAIN_DATA } from '@/data';
 import { RESUME_FILE_DATA } from '@/data/resume-file';
+import { ROUTES } from '@/shared/routes';
 import { animator } from '@/shared/utils/animator';
 import styles from './shared-section.module.scss';
 
@@ -88,11 +89,18 @@ export function IndexSharedSection() {
 
       <section
         className={classNames(
-          'border border-solid border-white p-5 mt-10 mr-10 max-w-3xl text-justify leading-7',
-          animator({ name: 'fadeInUp', delay: '2s' })
+          'border border-solid border-white p-5 mt-10 mr-10 max-w-3xl text-justify leading-7 mb-3 duration-700',
+          animator({ name: 'fadeInUp', delay: '2s' }),
+          styles.SharedSection__description
         )}
         dangerouslySetInnerHTML={{ __html: MAIN_DATA.SUMMERY }}
       />
+      <Link
+        className={classNames('text-sm', animator({ name: 'fadeIn', delay: '3s' }))}
+        href={ROUTES.ABOUT_ME}
+      >
+        Read More ...
+      </Link>
     </div>
   );
 }

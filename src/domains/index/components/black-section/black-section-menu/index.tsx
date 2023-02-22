@@ -8,7 +8,7 @@ export function IndexBlackSectionMenu() {
   return (
     <div
       className={classNames(
-        'fixed duration-300',
+        'fixed duration-300 bg-black',
         animator({ name: 'fadeInRight' }),
         styles.BlackSectionMenu__container
       )}
