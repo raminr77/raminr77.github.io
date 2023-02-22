@@ -2,19 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 import { REDUCER_NAMES } from '@/shared/constants/reducer-names';
 
 const initialState: GUser = {
-  isAuthenticated: false
+  showBurgerMenu: false
 };
 
 const userSlice = createSlice({
   name: REDUCER_NAMES.USER,
   initialState,
   reducers: {
-    userLogoutAction: (state) => {
-      state.isAuthenticated = false;
+    toggleBurgerMenu: (state) => {
+      state.showBurgerMenu = !state.showBurgerMenu;
     }
   }
 });
 
-export const { userLogoutAction } = userSlice.actions;
+export const { toggleBurgerMenu } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import gsap from 'gsap';
 import { MAIN_DATA } from '@/data';
 import { RESUME_FILE_DATA } from '@/data/resume-file';
+import { animator } from '@/shared/utils/animator';
 import styles from './shared-section.module.scss';
 
 export function IndexSharedSection() {
@@ -34,6 +35,7 @@ export function IndexSharedSection() {
         ease: 'expo.inOut'
       });
       t1.to(replaceCharacters, {
+        delay: 3,
         yoyo: true,
         repeat: -1,
         duration: 1,
@@ -64,7 +66,12 @@ export function IndexSharedSection() {
       </h1>
       <h3 className='font-title ml-3 mb-5'>{MAIN_DATA.TITLE}</h3>
 
-      <Link download={RESUME_FILE_DATA.NAME} href={RESUME_FILE_DATA.URL} target='_blank'>
+      <Link
+        download={RESUME_FILE_DATA.NAME}
+        href={RESUME_FILE_DATA.URL}
+        className='inline-block'
+        target='_blank'
+      >
         <div
           className={classNames(
             'w-52 h-12 overflow-hidden duration-300 relative flex items-center justify-center',
@@ -78,6 +85,14 @@ export function IndexSharedSection() {
           {RESUME_FILE_DATA.ACTION_TEXT}
         </div>
       </Link>
+
+      <section
+        className={classNames(
+          'border border-solid border-white p-5 mt-10 mr-10 max-w-3xl text-justify leading-7',
+          animator({ name: 'fadeInUp', delay: '2s' })
+        )}
+        dangerouslySetInnerHTML={{ __html: MAIN_DATA.SUMMERY }}
+      />
     </div>
   );
 }

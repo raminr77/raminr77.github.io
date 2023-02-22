@@ -1,21 +1,15 @@
 @import '@/styles/breakpoints.scss';
 
 .BlackSectionMenu {
-    &__itemsContainer {
+    &__container {
         top: 20%;
-        right: 20%;
-        @include breakpoint-lg(1350px) {
+        right: 10%;
+        @include breakpoint-lg(1280px) {
             display: none;
         }
     }
 
-    &__menuIcon {
-        @include breakpoint-lg(1350px) {
-            display: block;
-        }
-    }
-
-    &__menuItem {
+    &__item {
         &::before {
             left: 0;
             bottom: 0;

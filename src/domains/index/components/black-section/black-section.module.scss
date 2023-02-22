@@ -5,22 +5,11 @@
         &::before {
             top: 0;
             bottom: 0;
-            left: -299px;
             content: '';
+            left: -299px;
             position: absolute;
             border-bottom: 100vh solid black;
             border-left: 300px solid transparent;
-        }
-    }
-
-    &__description {
-        left: 10%;
-        top: calc(10% + 400px);
-        @include breakpoint-lg {
-            top: calc(10% + 160px);
-        }
-        strong {
-            font-weight: bold;
         }
     }
 }
