@@ -1,14 +1,26 @@
 import Link from 'next/link';
+import classNames from 'classnames';
 import { MAIN_DATA } from '@/data';
+import { Image } from '@/shared/components/Image';
 import { MENU } from '@/shared/constants/menu';
 import { ROUTES } from '@/shared/routes';
+import { animator } from '@/shared/utils/animator';
 
 export function PageHeader() {
   return (
-    <header className='w-full select-none flex items-center justify-between py-3 px-5 text-white border-b border-solid border-gray-600 lg:border-white'>
-      <Link href={ROUTES.HOME} className='flex flex-col mr-10'>
-        <h1 className='text-xl font-title-bold font-bold'>{`${MAIN_DATA.FIRST_NAME} ${MAIN_DATA.LAST_NAME}`}</h1>
-        <h3 className='font-title text-sm'>{MAIN_DATA.TITLE}</h3>
+    <header className='w-full h-20 select-none flex items-center justify-between py-3 px-5 text-white border-b border-solid border-gray-600 lg:border-white'>
+      <Link href={ROUTES.HOME} className='flex items-center mr-10'>
+        <Image
+          width={46}
+          height={46}
+          src='./icons/logo.png'
+          alt={`${MAIN_DATA.FIRST_NAME} ${MAIN_DATA.LAST_NAME}`}
+          className={classNames('mr-4', animator({ name: 'bounceIn' }))}
+        />
+        <div className='flex flex-col'>
+          <h1 className='text-xl font-title-bold font-bold'>{`${MAIN_DATA.FIRST_NAME} ${MAIN_DATA.LAST_NAME}`}</h1>
+          <h3 className='font-title text-sm'>{MAIN_DATA.TITLE}</h3>
+        </div>
       </Link>
 
       <nav className='xl:flex items-center justify-end hidden'>

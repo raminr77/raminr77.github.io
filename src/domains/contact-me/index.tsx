@@ -2,7 +2,7 @@ import { PageContainer } from '@/app/layout/page-container';
 
 export function ContactMePage() {
   return (
-    <PageContainer>
+    <PageContainer title='Contact'>
       <h3>Contact Page</h3>
     </PageContainer>
   );

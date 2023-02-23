@@ -1,24 +1,24 @@
 .PageContainer {
     &__container {
+        min-height: calc(100vh - 80px);
         &::after {
             top: 0;
             bottom: 0;
-            left: -1px;
+            left: 1px;
             width: 1px;
             content: '';
             height: 100vh;
             position: absolute;
             background-color: white;
         }
-        &::before {
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            right: -1px;
-            content: '';
-            height: 100vh;
-            position: absolute;
-            background-color: white;
-        }
+    }
+
+    &__exteraElement {
+        border-bottom: 100vh solid white;
+        border-right: 40vw solid transparent;
+    }
+
+    &__exteraTitle {
+        font-size: 50px;
     }
 }
