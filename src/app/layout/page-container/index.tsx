@@ -13,13 +13,13 @@ export function PageContainer({
       <PageHeader />
       <div
         className={classNames(
-          'min-h-screen bg-black relative',
+          'min-h-screen bg-black relative text-white flex justify-center pt-5',
           animator({ name: 'slideInLeft' }),
           styles.PageContainer__container,
           className
         )}
       >
-        {children}
+        <div className='max-w-screen-2xl'>{children}</div>
       </div>
     </React.Fragment>
   );

@@ -1,9 +1,9 @@
 import { PageContainer } from '@/app/layout/page-container';
 
-export function ContactMePage() {
+export function EducationsPage() {
   return (
     <PageContainer>
-      <h3>Contact Page</h3>
+      <h3>Educations Page</h3>
     </PageContainer>
   );
 }

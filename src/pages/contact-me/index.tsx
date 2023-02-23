@@ -1,3 +1,3 @@
-import { AboutMePage } from '@/domains/about-me';
+import { ContactMePage } from '@/domains/contact-me';
 
-export default AboutMePage;
+export default ContactMePage;
