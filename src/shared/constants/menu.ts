@@ -6,6 +6,6 @@ export const MENU = [
   { id: 5, title: 'Projects', url: ROUTES.HOME },
   { id: 4, title: 'Educations', url: ROUTES.HOME },
   { id: 3, title: 'Experiences', url: ROUTES.HOME },
-  { id: 3, title: 'About Me', url: ROUTES.HOME },
-  { id: 3, title: 'Contact Me', url: ROUTES.HOME }
+  { id: 3, title: 'About Me', url: ROUTES.ABOUT_ME },
+  { id: 3, title: 'Contact Me', url: ROUTES.CONTACT_ME }
 ];

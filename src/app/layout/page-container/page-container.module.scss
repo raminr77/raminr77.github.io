@@ -1,0 +1,24 @@
+.PageContainer {
+    &__container {
+        &::after {
+            top: 0;
+            bottom: 0;
+            left: -4px;
+            width: 4px;
+            content: '';
+            height: 100vh;
+            position: absolute;
+            background-color: white;
+        }
+        &::before {
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            right: -4px;
+            content: '';
+            height: 100vh;
+            position: absolute;
+            background-color: white;
+        }
+    }
+}

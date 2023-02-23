@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import NextNprogress from 'nextjs-progressbar';
 import ErrorBoundary from '@/app/components/error-boundary';
-import { PageContainer } from '@/app/layout/page-container';
+import { BaseContainer } from '@/app/layout/base-container';
 import { store } from '@/shared/store';
 import { PersistWrapper } from '@/shared/store/PersistWrapper';
 import '@/styles/globals.scss';
@@ -29,11 +29,11 @@ export default function App({ Component, pageProps }: AppProps) {
           {/* Personal */}
           <title>Ramin Rezaei | Front-end Engineer</title>
           <meta name='copyright' content='2023' />
-          <meta name='theme-color' content='#1e283c' />
+          <meta name='theme-color' content='#000' />
           <meta name='application-name' content='Ramin Rezaei' />
-          <meta name='msapplication-TileColor' content='#1e283c' />
+          <meta name='msapplication-TileColor' content='#000000' />
           <link rel='canonical' href='https://www.raminrezaei.ir' />
-          <meta name='msapplication-navbutton-color' content='#1e283c' />
+          <meta name='msapplication-navbutton-color' content='#000000' />
           <meta content='Ramin Rezaei' name='apple-mobile-web-app-title' />
           <meta name='description' content='Ramin Rezaei Personal Page.' />
           <meta
@@ -61,15 +61,15 @@ export default function App({ Component, pageProps }: AppProps) {
         <NextNprogress
           height={2}
           showOnShallow
-          color='#1e283c'
+          color='#29B6F6'
           stopDelayMs={200}
           startPosition={0.3}
           options={{ easing: 'ease', speed: 500, showSpinner: false }}
         />
         <ErrorBoundary>
-          <PageContainer>
+          <BaseContainer>
             <Component {...pageProps} />
-          </PageContainer>
+          </BaseContainer>
         </ErrorBoundary>
       </PersistWrapper>
     </Provider>

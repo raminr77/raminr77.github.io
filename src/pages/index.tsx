@@ -1,3 +1,3 @@
-import { Index } from '@/domains/index';
+import { IndexPage } from '@/domains/index';
 
-export default Index;
+export default IndexPage;

@@ -36,8 +36,8 @@
   "dir": "ltr",
   "lang": "en-US",
   "start_url": "/",
+  "theme_color": "#000",
   "display": "standalone",
-  "theme_color": "#1e283c",
   "orientation": "portrait",
   "background_color": "#fff",
   "description": "Ramin Rezaei Personal Page."

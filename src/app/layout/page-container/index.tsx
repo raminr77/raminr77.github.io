@@ -1,14 +1,26 @@
+import React from 'react';
 import classNames from 'classnames';
-import { BurgerMenu } from '@/app/layout/burger-menu';
+import { PageHeader } from '@/app/layout/page-header';
+import { animator } from '@/shared/utils/animator';
+import styles from './page-container.module.scss';
 
 export function PageContainer({
   children,
   className
 }: GCommonCompnentPropertiesWithChildren) {
   return (
-    <div className={classNames('min-h-screen', className)}>
-      <BurgerMenu />
-      {children}
-    </div>
+    <React.Fragment>
+      <PageHeader />
+      <div
+        className={classNames(
+          'min-h-screen bg-black relative',
+          animator({ name: 'slideInLeft' }),
+          styles.PageContainer__container,
+          className
+        )}
+      >
+        {children}
+      </div>
+    </React.Fragment>
   );
 }
