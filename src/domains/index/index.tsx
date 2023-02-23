@@ -9,7 +9,7 @@ export function IndexPage() {
     <main
       className={classNames(
         'w-full select-none h-screen overflow-hidden',
-        animator({ name: 'fadeIn' })
+        animator({ name: 'slideInLeft' })
       )}
     >
       {/* Shared */}

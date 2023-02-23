@@ -3,8 +3,8 @@
         &::after {
             top: 0;
             bottom: 0;
-            left: -4px;
-            width: 4px;
+            left: -1px;
+            width: 1px;
             content: '';
             height: 100vh;
             position: absolute;
@@ -13,8 +13,8 @@
         &::before {
             top: 0;
             bottom: 0;
-            width: 4px;
-            right: -4px;
+            width: 1px;
+            right: -1px;
             content: '';
             height: 100vh;
             position: absolute;

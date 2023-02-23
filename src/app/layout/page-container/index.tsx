@@ -14,7 +14,7 @@ export function PageContainer({
       <div
         className={classNames(
           'min-h-screen bg-black relative text-white flex justify-center pt-5',
-          animator({ name: 'slideInLeft' }),
+          animator({ name: 'slideInRight' }),
           styles.PageContainer__container,
           className
         )}

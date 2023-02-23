@@ -14,9 +14,7 @@ export function BurgerMenu() {
     <div>
       <button
         onClick={toggleMenu}
-        className={classNames(
-          'fixed top-5 lg:top-10 right-5 lg:right-10 xl:hidden z-30 invert cursor-pointer'
-        )}
+        className={classNames('fixed top-5 right-5 xl:hidden z-30 invert cursor-pointer')}
       >
         <Image
           alt='MENU'
