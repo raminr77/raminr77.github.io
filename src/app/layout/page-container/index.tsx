@@ -3,14 +3,20 @@ import Head from 'next/head';
 import classNames from 'classnames';
 import { PageHeader } from '@/app/layout/page-header';
 import { MAIN_DATA } from '@/data';
-import { animator } from '@/shared/utils/animator';
+import { AnimationNames, animator } from '@/shared/utils/animator';
 import styles from './page-container.module.scss';
 
 interface Props extends GCommonCompnentPropertiesWithChildren {
   title: string;
+  animationName?: AnimationNames;
 }
 
-export function PageContainer({ children, className, title }: Props) {
+export function PageContainer({
+  title,
+  children,
+  className,
+  animationName = 'slideInRight'
+}: Props) {
   return (
     <React.Fragment>
       <Head>
@@ -19,30 +25,13 @@ export function PageContainer({ children, className, title }: Props) {
       <PageHeader />
       <div
         className={classNames(
-          'overflow-hidden bg-black relative text-white flex justify-center pt-5',
-          animator({ name: 'slideInRight' }),
+          'bg-zinc-900 relative text-white flex justify-center py-5',
+          animator({ name: animationName }),
           styles.PageContainer__container,
           className
         )}
       >
-        <div className='w-full max-w-screen-2xl flex justify-end px-5'>{children}</div>
-
-        {/* Extera */}
-        <h3
-          className={classNames(
-            'mix-blend-difference select-none font-title-bold absolute left-0 bottom-0 z-10 -rotate-90 origin-bottom-left mb-6 lg:mb-10 ml-20 lg:ml-28 text-white',
-            styles.PageContainer__exteraTitle
-          )}
-        >
-          {title.toUpperCase()}
-        </h3>
-        <div
-          className={classNames(
-            'absolute left-0 bottom-0',
-            animator({ name: 'slideInLeft', delay: '1s' }),
-            styles.PageContainer__exteraElement
-          )}
-        />
+        <div className='w-full z-10 max-w-screen-2xl px-5'>{children}</div>
       </div>
     </React.Fragment>
   );

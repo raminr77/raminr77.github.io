@@ -107,7 +107,7 @@ type OtherAnimations =
   | 'rubberBand'
   | 'jackInTheBox';
 
-type AnimationNames =
+export type AnimationNames =
   | OtherAnimations
   | FadeAnimationNames
   | ZoomAnimationNames
