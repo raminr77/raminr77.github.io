@@ -2,6 +2,7 @@ import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import NextNprogress from 'nextjs-progressbar';
+import 'sweetalert2/src/sweetalert2.scss';
 import ErrorBoundary from '@/app/components/error-boundary';
 import { BaseContainer } from '@/app/layout/base-container';
 import { store } from '@/shared/store';

@@ -2,6 +2,46 @@ export const MAIN_DATA = {
   FIRST_NAME: 'Ramin',
   LAST_NAME: 'Rezaei',
   TITLE: 'Front-End Engineer',
+  CONTACT_ME_TEXT:
+    'If you want to keep in touch with each other, you can contact me through the communication channels on this page or send me an email. If you have an interesting or funny topic, you can send it to me and make me happy. I will try to answer you as soon as possible',
+  LINKS: [
+    {
+      title: 'GitHub',
+      actionText: 'RaminR77',
+      url: 'https://github.com/raminr77'
+    },
+    {
+      title: 'LinkedIn',
+      actionText: 'RaminR77',
+      url: 'https://www.linkedin.com/in/raminr77/'
+    },
+    {
+      title: 'Telegram',
+      actionText: 'RaminR77',
+      url: 'https://t.me/raminr77'
+    },
+
+    {
+      title: 'Skype',
+      actionText: 'live:ramin.rezaei77',
+      url: 'https://join.skype.com/invite/EE4Q889tNSSZ'
+    },
+    {
+      title: 'Email',
+      url: 'mailto:info@raminrezaei.ir',
+      actionText: 'info@RaminRezaei.ir'
+    },
+    {
+      title: 'Phone Number',
+      url: 'tell:+989136266179',
+      actionText: '+989136266179'
+    },
+    {
+      url: '',
+      title: 'Location',
+      actionText: 'Tehran, Iran (GMT+3:30)'
+    }
+  ],
   SUMMERY: `I am a <strong>front-end engineer</strong> with <strong>+5 years</strong> of experience and I am familiar with <strong>back-end</strong> technologies.
   <br />I love <strong>solving bugs and problems</strong>. Nothing is more important and exciting to me than learning and teaching web-based technologies.
   <br />I have contributed to the development of <strong>3 very large projects</strong> and worked in large technical teams with more than <strong>50 people</strong>

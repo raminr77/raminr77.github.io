@@ -3,6 +3,7 @@ import classNames from 'classnames';
 interface Props extends GCommonCompnentProperties {
   name: string;
   rows?: number;
+  value: string;
   label?: string;
   readOnly?: boolean;
   required?: boolean;
@@ -16,6 +17,7 @@ interface Props extends GCommonCompnentProperties {
 export function Input({
   name,
   label,
+  value,
   required,
   onChange,
   rows = 4,
@@ -51,6 +53,7 @@ export function Input({
         <textarea
           rows={rows}
           name={name}
+          value={value}
           readOnly={readOnly}
           required={required}
           onChange={changeValue}
@@ -68,6 +71,7 @@ export function Input({
       <input
         name={name}
         type={type}
+        value={value}
         readOnly={readOnly}
         required={required}
         onChange={changeValue}
