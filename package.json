@@ -39,6 +39,7 @@
     "redux-thunk": "^2.4.2",
     "sass": "^1.58.0",
     "sweetalert2": "^11.7.3",
+    "swiper": "^9.2.2",
     "tsparticles": "^2.9.3",
     "typescript": "4.9.5"
   },

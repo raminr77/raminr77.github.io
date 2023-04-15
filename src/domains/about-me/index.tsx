@@ -1,5 +1,8 @@
+import classNames from 'classnames';
 import { PageContainer } from '@/app/layout/page-container';
 import { MAIN_DATA } from '@/data';
+import { animator } from '@/shared/utils/animator';
+import Slider from './components/slider';
 
 export function AboutMePage() {
   return (
@@ -10,6 +13,14 @@ export function AboutMePage() {
           className='leading-7 text-justify'
           dangerouslySetInnerHTML={{ __html: MAIN_DATA.ABOUT_ME }}
         />
+        <div
+          className={classNames(
+            'mx-auto my-10 flex items-center justify-center max-w-3xl w-full',
+            animator({ name: 'fadeIn', delay: '1s' })
+          )}
+        >
+          <Slider />
+        </div>
       </div>
     </PageContainer>
   );

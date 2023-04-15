@@ -99,8 +99,10 @@ export function ContactMePage() {
       >
         <h3 className='font-title-bold text-2xl mb-3'>Contact Me</h3>
         <div className='w-full mb-4 flex lg:gap-x-6 gap-y-6 lg:justify-between lg:flex-row flex-col'>
-          <div className='leading-7'>{MAIN_DATA.CONTACT_ME_TEXT}</div>
-
+          <div
+            className='leading-7'
+            dangerouslySetInnerHTML={{ __html: MAIN_DATA.CONTACT_ME_TEXT }}
+          />
           <ul
             className={classNames(
               animator({ name: 'fadeIn' }),

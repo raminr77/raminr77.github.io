@@ -25,7 +25,7 @@ export function PageContainer({
       <PageHeader />
       <div
         className={classNames(
-          'bg-zinc-900 relative text-white flex justify-center py-5',
+          'relative text-white flex justify-center py-5',
           animator({ name: animationName }),
           styles.PageContainer__container,
           className

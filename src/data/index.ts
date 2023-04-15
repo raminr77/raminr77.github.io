@@ -3,7 +3,7 @@ export const MAIN_DATA = {
   LAST_NAME: 'Rezaei',
   TITLE: 'Front-End Engineer',
   CONTACT_ME_TEXT:
-    'If you want to keep in touch with each other, you can contact me through the communication channels on this page or send me an email. If you have an interesting or funny topic, you can send it to me and make me happy. I will try to answer you as soon as possible',
+    'Do you want to keep in touch with each other ? <br /> You can contact me through the communication channels on this page or send me an email. <br /> If you have an interesting or funny topic, you can send it to me and make me happy. <br /> I will try to answer you as soon as possible ...',
   LINKS: [
     {
       title: 'GitHub',
@@ -50,116 +50,145 @@ export const MAIN_DATA = {
   <br />I love <strong>solving bugs and problems</strong>. Nothing is more important and exciting to me than learning and teaching web-based technologies.
   <br />I have contributed to the development of <strong>3 very large projects</strong> and worked in large technical teams with more than <strong>50 people</strong>
   I am incredibly patient and <strong>friendly</strong> with my colleagues and teammates and I get along well with people.`,
-  SOFT_SKILLS: [
-    {
-      id: 0,
-      percent: 90,
-      color: '#fff',
-      title: 'Teamwork',
-      description: ''
-    },
+  EDUCATION: [
     {
       id: 1,
-      percent: 70,
-      color: '#fff',
-      title: 'Documentation',
-      description: ''
-    },
-    {
-      id: 2,
-      percent: 90,
-      color: '#fff',
-      title: 'Agile',
-      description: ''
-    },
-    {
-      id: 3,
-      percent: 90,
-      color: '#fff',
-      title: 'Scrum',
-      description: ''
-    },
-    {
-      id: 4,
-      percent: 96,
-      color: '#fff',
-      title: 'Time Management',
-      description: ''
+      location: 'Esfahan, Iran',
+      date: 'Sep 2016 - Sep 2021',
+      title: 'Islamic Azad University, Najaf Abad Branch',
+      description: "Bachelor's degree, Computer Software Engineering"
     }
   ],
-  GRAPHIC_SKILLS: [
-    {
-      id: 0,
-      percent: 96,
-      color: '#35A8FF',
-      title: 'Adobe Photoshop',
-      description: 'Creating Image, Image Editing, ...'
-    },
-    {
-      id: 1,
-      percent: 90,
-      color: '#9999FF',
-      title: 'Adobe After Effects',
-      description:
-        '2D Animations, Motion Graphics, VFX, GFX, Element 3D, Red Giant Effects - With More Than 20 Projects'
-    },
-    {
-      id: 2,
-      percent: 80,
-      color: '#9999FF',
-      title: 'Adobe Premiere Pro',
-      description: 'Video Editing, Color Editing, ...'
-    }
-  ],
-  PROGRAMMING_SKILLS: [
-    {
-      id: 0,
-      percent: 96,
-      color: '#4398D2',
-      title: 'Web Styling',
-      description: 'CSS3, Tailwind CSS, SASS, LESS, Atomic Class System'
-    },
-    {
-      id: 1,
-      percent: 96,
-      color: '#E65628',
-      title: 'Web Layout & Template',
-      description: 'HTML5, Twig, EJS, SEO Tags'
-    },
-    {
-      id: 2,
-      percent: 90,
-      color: '#ECD41E',
-      title: 'JavaScript',
-      description: ''
-    },
-    {
-      id: 4,
-      percent: 70,
-      color: '#2F72BD',
-      title: 'Type Script',
-      description: ''
-    },
-    {
-      id: 3,
-      color: '#3CCFF4',
-      title: 'React',
-      percent: 80,
-      description: 'Redux, Redux Toolkit, React-Testing-Library'
-    },
-    {
-      id: 5,
-      percent: 40,
-      title: 'Vue',
-      color: '#41B883',
-      description: ''
-    },
-    {
-      id: 5,
-      percent: 40,
-      title: 'Node Js',
-      color: '#7FC727',
-      description: 'familiar With ExpressJs & NestJs &'
-    }
+  SKILLS: {
+    BACK_END: [
+      {
+        id: 1,
+        title: 'Python'
+      },
+      {
+        id: 2,
+        title: 'Django'
+      },
+      {
+        id: 3,
+        title: 'PHP'
+      },
+      {
+        id: 4,
+        title: 'Laravel'
+      },
+      {
+        id: 5,
+        title: 'SQL'
+      },
+      {
+        id: 6,
+        title: 'MySQL'
+      },
+      {
+        id: 7,
+        title: 'Docker'
+      }
+    ],
+    FRONT_END: [
+      {
+        id: 1,
+        title: 'JavaScript'
+      },
+      {
+        id: 2,
+        title: 'TypeScript'
+      },
+      {
+        id: 3,
+        title: 'React'
+      },
+      {
+        id: 4,
+        title: 'Next'
+      },
+      {
+        id: 5,
+        title: 'HTML'
+      },
+      {
+        id: 6,
+        title: 'CSS'
+      },
+      {
+        id: 7,
+        title: 'SASS'
+      },
+      {
+        id: 8,
+        title: 'Tailwind CSS'
+      },
+      {
+        id: 9,
+        title: 'Jest'
+      },
+      {
+        id: 10,
+        title: 'Cypress'
+      },
+      {
+        id: 10,
+        title: 'StoryBook'
+      },
+      {
+        id: 11,
+        title: 'Vue (Familiar)'
+      }
+    ],
+    GRAPHICS: [
+      {
+        id: 1,
+        title: 'Adobe Photoshop'
+      },
+      {
+        id: 2,
+        title: 'Adobe AfterEffects'
+      },
+      {
+        id: 3,
+        title: 'Adobe Premiere Pro'
+      }
+    ],
+    SOFT: [
+      {
+        id: 1,
+        title: 'Agile'
+      },
+      {
+        id: 2,
+        title: 'Teamwork'
+      },
+      {
+        id: 3,
+        title: 'Documentation'
+      },
+      {
+        id: 4,
+        title: 'Time Management'
+      },
+      {
+        id: 5,
+        title: 'Teaching Web Development'
+      }
+    ],
+    LEARNING: [
+      {
+        id: 1,
+        title: 'Data Science'
+      },
+      {
+        id: 2,
+        title: 'Machine Learning'
+      }
+    ]
+  },
+  ABOUT_SLIDERS: [
+    { id: 1, title: '', url: '', image: './images/ramin/1.JPG' },
+    { id: 1, title: '', url: '', image: './images/ramin/2.JPG' }
   ]
 };
