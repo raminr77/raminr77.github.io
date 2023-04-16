@@ -64,7 +64,7 @@ export function ProjectItem({ data, className }: Props) {
           </a>
         )}
 
-        <p className='text-sm leading-8'>{description}</p>
+        <p className='text-sm leading-6 mt-2'>{description}</p>
       </div>
 
       <div className='flex flex-wrap gap-2 mt-4'>
