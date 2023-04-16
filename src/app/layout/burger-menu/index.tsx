@@ -14,7 +14,9 @@ export function BurgerMenu() {
     <div>
       <button
         onClick={toggleMenu}
-        className={classNames('fixed top-5 right-5 xl:hidden z-30 invert cursor-pointer')}
+        className={classNames(
+          'absolute top-5 right-5 xl:hidden z-30 invert cursor-pointer'
+        )}
       >
         <Image
           alt='MENU'
@@ -28,7 +30,7 @@ export function BurgerMenu() {
       {showBurgerMenu && (
         <div
           className={classNames(
-            'absolute w-full h-screen top-0 left-0 right-0 bottom-0 z-20 flex items-center justify-center flex-col',
+            'fixed w-full h-screen top-0 left-0 right-0 bottom-0 z-20 flex items-center justify-center flex-col',
             animator({ name: 'fadeInRight', speed: 'fast' }),
             styles.BurgerMenu__contentContainer
           )}

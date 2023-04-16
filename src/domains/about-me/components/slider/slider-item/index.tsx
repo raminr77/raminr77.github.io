@@ -10,7 +10,7 @@ export function SliderItem({ slide, className }: Props) {
     <div
       style={{ height: 480 }}
       className={classNames(
-        'bg-slate-900 flex items-center duration-500 justify-center overflow-hidden grayscale hover:grayscale-0',
+        'flex items-center duration-500 justify-center overflow-hidden grayscale hover:grayscale-0',
         className
       )}
     >

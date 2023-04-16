@@ -1,5 +1,5 @@
 import { PageContainer } from '@/app/layout/page-container';
-import { MAIN_DATA } from '@/data';
+import { EDUCATIONS_DATA } from '@/data/educations';
 import { EducationItemRow } from '@/domains/educations/components/education-item-row';
 import { animator } from '@/shared/utils/animator';
 
@@ -7,7 +7,7 @@ export function EducationsPage() {
   return (
     <PageContainer title='Educations' className='select-none' animationName='fadeInUp'>
       <h3 className='font-title-bold text-2xl mb-4'>Educations</h3>
-      {MAIN_DATA.EDUCATION.map((item) => (
+      {EDUCATIONS_DATA.map((item) => (
         <EducationItemRow
           data={item}
           key={item.id}

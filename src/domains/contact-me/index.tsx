@@ -3,7 +3,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import Swal from 'sweetalert2';
 import { PageContainer } from '@/app/layout/page-container';
-import { MAIN_DATA } from '@/data';
+import { CONTACT_ME_DATA } from '@/data/contact-me';
 import { Input } from '@/shared/components/input';
 import { EMAIL_CONFIG, EMAIL_SERVER } from '@/shared/constants/email';
 import { animator } from '@/shared/utils/animator';
@@ -101,7 +101,7 @@ export function ContactMePage() {
         <div className='w-full mb-4 flex lg:gap-x-6 gap-y-6 lg:justify-between lg:flex-row flex-col'>
           <div
             className='leading-7'
-            dangerouslySetInnerHTML={{ __html: MAIN_DATA.CONTACT_ME_TEXT }}
+            dangerouslySetInnerHTML={{ __html: CONTACT_ME_DATA.TEXT }}
           />
           <ul
             className={classNames(
@@ -109,7 +109,7 @@ export function ContactMePage() {
               'border border-solid border-white p-5 min-w-fit'
             )}
           >
-            {MAIN_DATA.LINKS.map((item, index) => (
+            {CONTACT_ME_DATA.LINKS.map((item, index) => (
               <li key={index} className='flex items-center text-sm leading-7'>
                 <p>{item.title}</p>
                 <p className='ml-1 mr-2'>:</p>

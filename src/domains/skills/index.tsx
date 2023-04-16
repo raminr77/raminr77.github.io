@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { PageContainer } from '@/app/layout/page-container';
-import { MAIN_DATA } from '@/data';
+import { SKILLS_DATA } from '@/data/skills';
 import { SkillItemRow } from '@/domains/skills/components/skill-item-row';
 import { animator } from '@/shared/utils/animator';
 
 export function SkillsPage() {
-  const { BACK_END, FRONT_END, GRAPHICS, SOFT, LEARNING } = MAIN_DATA.SKILLS;
+  const { BACK_END, FRONT_END, GRAPHICS, SOFT, LEARNING } = SKILLS_DATA;
   const titleClasses = classNames(
     'font-title mb-4 mt-6 border-l-2 border-solid border-white p-3',
     animator({ name: 'fadeIn', delay: '1s' })
