@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { PageContainer } from '@/app/layout/page-container';
 import { MAIN_DATA } from '@/data';
 import { animator } from '@/shared/utils/animator';
-import Slider from './components/slider';
+import { AboutMeImageSlider } from './components/about-me-image-slider';
 
 export function AboutMePage() {
   return (
@@ -19,7 +19,7 @@ export function AboutMePage() {
             animator({ name: 'fadeIn', delay: '1s' })
           )}
         >
-          <Slider />
+          <AboutMeImageSlider />
         </div>
       </div>
     </PageContainer>

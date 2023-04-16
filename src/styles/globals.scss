@@ -48,3 +48,12 @@ a {
   border: none !important;
   outline: none !important;
 }
+// 
+.swiper-button-next, .swiper-button-prev {
+  &::after {
+    color: #fff;
+    padding: 16px 20px;
+    transform: scale(0.5);
+    background-color: rgba(0,0,0,0.3);
+  }
+}

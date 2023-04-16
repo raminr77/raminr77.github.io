@@ -1,12 +1,9 @@
 import { Autoplay, EffectCreative, Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/effect-creative';
-import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { MAIN_DATA } from '@/data';
 import { SliderItem } from './slider-item';
 
-export default () => {
+export function AboutMeImageSlider() {
   return (
     <Swiper
       loop
@@ -36,4 +33,4 @@ export default () => {
       ))}
     </Swiper>
   );
-};
+}

@@ -1,1 +1,1 @@
-export const EXPERIENCES = [];
+export const EXPERIENCES_DATA = [];
