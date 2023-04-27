@@ -9,7 +9,7 @@ export function EducationItemRow({ data, className }: Props) {
   return (
     <div
       className={classNames(
-        'flex lg:flex-row flex-col justify-between bg-slate-900 border-l-4 border-solid border-white p-4 mb-4 lg:items-center',
+        'flex lg:flex-row flex-col justify-between border-l-8 border border-solid border-white p-4 mb-4 lg:items-center',
         className
       )}
     >
