@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -9,11 +10,21 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import ErrorBoundary from '@/app/components/error-boundary';
 import { BaseContainer } from '@/app/layout/base-container';
+import { SplashScreen } from '@/shared/components/splash-screen';
 import { store } from '@/shared/store';
 import { PersistWrapper } from '@/shared/store/PersistWrapper';
 import '@/styles/globals.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [showSplashScreen, setShowSplashScreen] = useState(true);
+
+  useEffect(() => {
+    let timeRef = setTimeout(() => {
+      setShowSplashScreen(false);
+    }, 2000);
+    return () => clearTimeout(timeRef);
+  });
+
   return (
     <Provider store={store}>
       <PersistWrapper>
@@ -72,9 +83,13 @@ export default function App({ Component, pageProps }: AppProps) {
           options={{ easing: 'ease', speed: 500, showSpinner: false }}
         />
         <ErrorBoundary>
-          <BaseContainer>
-            <Component {...pageProps} />
-          </BaseContainer>
+          {showSplashScreen ? (
+            <SplashScreen />
+          ) : (
+            <BaseContainer>
+              <Component {...pageProps} />
+            </BaseContainer>
+          )}
         </ErrorBoundary>
       </PersistWrapper>
     </Provider>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
+import { RESUME_FILE_DATA } from '@/data/resume-file';
 import { Image } from '@/shared/components/Image';
 import { MENU } from '@/shared/constants/menu';
 import { animator } from '@/shared/utils/animator';
@@ -42,6 +43,17 @@ export function BurgerMenu() {
               </div>
             </Link>
           ))}
+
+          <Link
+            download={RESUME_FILE_DATA.NAME}
+            href={RESUME_FILE_DATA.URL}
+            className='inline-block'
+            target='_blank'
+          >
+            <div className='text-white duration-300 p-3 mb-2 font-title text-xl border-b-2 border-solid border-transparent hover:border-white'>
+              {RESUME_FILE_DATA.ACTION_TEXT}
+            </div>
+          </Link>
         </div>
       )}
     </div>

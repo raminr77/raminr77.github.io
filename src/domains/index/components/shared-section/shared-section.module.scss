@@ -54,59 +54,6 @@
         }
     }
 
-    &__downloadBtn {
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        span {
-            &:nth-child(1) {
-                height: 2px;
-                transform: translateX(-100%);
-                animation: animate-line-1 1s ease-out 1.6s infinite;
-                background-image: linear-gradient(to right , #fff , transparent);
-            }
-            &:nth-child(2) {
-                width: 1px;
-                transform: translateY(-100%);
-                animation: animate-line-2 1s ease-out 1.3s infinite;
-                background-image: linear-gradient(#fff , transparent);
-            }
-            &:nth-child(3) {
-                width: 1px;
-                transform: translateY(100%);
-                animation: animate-line-3 1s ease-out 0.4s infinite;
-                background-image: linear-gradient(0deg, #fff , transparent);
-            }
-            &:nth-child(4) {
-                height: 2px;
-                transform: translateX(100%);
-                animation: animate-line-4 1s ease-out 0.8s infinite;
-                background-image: linear-gradient(to left , #fff , transparent);
-            }
-        }
-
-        @keyframes animate-line-1 {
-            from { transform: translateX(100%); opacity: 1; }
-            to { transform: translateX(-100%); opacity: 0; }
-        }
-
-        @keyframes animate-line-4 {
-            from { transform: translateX(-100%); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-
-        @keyframes animate-line-3 {
-            from { transform: translateY(-100%); opacity: 1; }
-            to { transform: translateY(100%); opacity: 0; }
-        }
-
-        @keyframes animate-line-2 {
-            from { transform: translateY(100%); opacity: 1; }
-            to { transform: translateY(-100%); opacity: 0; }
-        }
-    }
-
     &__description:hover {
         background-color: rgba(255, 255, 255, 0.1);
     }
