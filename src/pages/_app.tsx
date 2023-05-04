@@ -13,6 +13,7 @@ import { BaseContainer } from '@/app/layout/base-container';
 import { SplashScreen } from '@/shared/components/splash-screen';
 import { store } from '@/shared/store';
 import { PersistWrapper } from '@/shared/store/PersistWrapper';
+import { animator } from '@/shared/utils/animator';
 import '@/styles/globals.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -86,7 +87,7 @@ export default function App({ Component, pageProps }: AppProps) {
           {showSplashScreen ? (
             <SplashScreen />
           ) : (
-            <BaseContainer>
+            <BaseContainer className={animator({ name: 'fadeIn' })}>
               <Component {...pageProps} />
             </BaseContainer>
           )}

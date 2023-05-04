@@ -27,11 +27,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    "src/pages/404.tsxx",
-    "src/pages/404.tsxx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "src/pages/404.tsx"]
 }
