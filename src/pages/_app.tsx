@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
       setShowSplashScreen(false);
     }, 2000);
     return () => clearTimeout(timeRef);
-  });
+  }, []);
 
   return (
     <Provider store={store}>
