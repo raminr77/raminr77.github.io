@@ -13,4 +13,8 @@ declare global {
     PropsWithChildren<GCommonCompnentProperties>;
 
   type GVoidFunction = () => void;
+
+  interface Window {
+    dataLayer: Record<string, any>[];
+  }
 }
