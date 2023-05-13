@@ -6,6 +6,8 @@ import { PageContainer } from '@/app/layout/page-container';
 import { CONTACT_ME_DATA } from '@/data/contact-me';
 import { Input } from '@/shared/components/input';
 import { EMAIL_CONFIG, EMAIL_SERVER } from '@/shared/constants/email';
+import { GA_EVENT_NAMES } from '@/shared/constants/ga';
+import { gaEvent } from '@/shared/services/ga';
 import { animator } from '@/shared/utils/animator';
 
 export function ContactMePage() {
@@ -52,8 +54,10 @@ export function ContactMePage() {
       });
       return;
     }
-
     setLoading(true);
+
+    gaEvent({ action: GA_EVENT_NAMES.SUBMIT_CONTACT_ME_FORM, params: { ...formData } });
+
     fetch(EMAIL_SERVER, {
       method: 'POST',
       headers: {

@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import classNames from 'classnames';
 import { RESUME_FILE_DATA } from '@/data/resume-file';
+import { GA_EVENT_NAMES } from '@/shared/constants/ga';
+import { gaEvent } from '@/shared/services/ga';
 import styles from './resume-download-btn.module.scss';
 
 export function ResumeDownloadBtn() {
   return (
     <Link
+      onClick={() =>
+        gaEvent({ action: GA_EVENT_NAMES.RESUME_DOWNLOAD, params: { file: 'resume' } })
+      }
       download={RESUME_FILE_DATA.NAME}
       href={RESUME_FILE_DATA.URL}
       className='inline-block'

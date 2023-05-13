@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
 import NextNprogress from 'nextjs-progressbar';
 import 'sweetalert2/src/sweetalert2.scss';
 import 'swiper/css';
@@ -11,13 +13,26 @@ import 'swiper/css/pagination';
 import ErrorBoundary from '@/app/components/error-boundary';
 import { BaseContainer } from '@/app/layout/base-container';
 import { SplashScreen } from '@/shared/components/splash-screen';
+import { GA_ID } from '@/shared/constants/ga';
+import { gaPageView } from '@/shared/services/ga';
 import { store } from '@/shared/store';
 import { PersistWrapper } from '@/shared/store/PersistWrapper';
 import { animator } from '@/shared/utils/animator';
 import '@/styles/globals.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const [showSplashScreen, setShowSplashScreen] = useState(true);
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gaPageView(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   useEffect(() => {
     let timeRef = setTimeout(() => {
@@ -75,17 +90,17 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta content='/icons/logo192.png' name='msapplication-TileImage' />
           <meta name='msapplication-config' content='browserconfig.xml' />
           {/* <!-- Google tag (gtag.js) --> */}
-          <script
+          <Script
             async
-            src='https://www.googletagmanager.com/gtag/js?id=G-3Z7J68PEJJ'
-          ></script>
-          <script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          ></Script>
+          <Script
             dangerouslySetInnerHTML={{
               __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-3Z7J68PEJJ');
+            gtag('config', ${GA_ID});
             `
             }}
           />

@@ -3,13 +3,23 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { RESUME_FILE_DATA } from '@/data/resume-file';
 import { Image } from '@/shared/components/Image';
+import { GA_EVENT_NAMES } from '@/shared/constants/ga';
 import { MENU } from '@/shared/constants/menu';
+import { gaEvent } from '@/shared/services/ga';
 import { animator } from '@/shared/utils/animator';
 import styles from './burger-menu.module.scss';
 
 export function BurgerMenu() {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const toggleMenu = () => setShowBurgerMenu(!showBurgerMenu);
+
+  const click = (title: string) => () => {
+    gaEvent({
+      action: GA_EVENT_NAMES.BURGER_MENU_ITEM,
+      params: { name: title }
+    });
+    toggleMenu();
+  };
 
   return (
     <div>
@@ -37,7 +47,7 @@ export function BurgerMenu() {
           )}
         >
           {MENU.map(({ id, title, url }) => (
-            <Link onClick={toggleMenu} key={id} href={url}>
+            <Link onClick={click(title)} key={id} href={url}>
               <div className='text-white duration-300 p-3 mb-2 font-title text-xl border-b-2 border-solid border-transparent hover:border-white'>
                 {title}
               </div>
@@ -49,6 +59,12 @@ export function BurgerMenu() {
             href={RESUME_FILE_DATA.URL}
             className='inline-block'
             target='_blank'
+            onClick={() =>
+              gaEvent({
+                action: GA_EVENT_NAMES.RESUME_DOWNLOAD,
+                params: { device: 'mobile', file: 'resume' }
+              })
+            }
           >
             <div className='text-white duration-300 p-3 mb-2 font-title text-xl border-b-2 border-solid border-transparent hover:border-white'>
               {RESUME_FILE_DATA.ACTION_TEXT}

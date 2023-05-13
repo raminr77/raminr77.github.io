@@ -4,7 +4,9 @@ import classNames from 'classnames';
 import gsap from 'gsap';
 import { MAIN_DATA } from '@/data';
 import { ResumeDownloadBtn } from '@/shared/components/resume-download-btn';
+import { GA_EVENT_NAMES } from '@/shared/constants/ga';
 import { ROUTES } from '@/shared/routes';
+import { gaEvent } from '@/shared/services/ga';
 import { animator } from '@/shared/utils/animator';
 import styles from './shared-section.module.scss';
 
@@ -78,6 +80,9 @@ export function IndexSharedSection() {
         dangerouslySetInnerHTML={{ __html: MAIN_DATA.SUMMERY }}
       />
       <Link
+        onClick={() =>
+          gaEvent({ action: GA_EVENT_NAMES.SHOW_MORE_TEXT, params: { text: 'about-me' } })
+        }
         className={classNames('text-sm', animator({ name: 'fadeIn', delay: '3s' }))}
         href={ROUTES.ABOUT_ME}
       >

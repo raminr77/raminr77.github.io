@@ -2,14 +2,22 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { MAIN_DATA } from '@/data';
 import { Image } from '@/shared/components/Image';
+import { GA_EVENT_NAMES } from '@/shared/constants/ga';
 import { MENU } from '@/shared/constants/menu';
 import { ROUTES } from '@/shared/routes';
+import { gaEvent } from '@/shared/services/ga';
 import { animator } from '@/shared/utils/animator';
 
 export function PageHeader() {
   return (
     <header className='w-full h-20 select-none flex items-center justify-between py-3 px-5 text-white border-b border-solid border-gray-600 lg:border-white'>
-      <Link href={ROUTES.HOME} className='flex items-center mr-10'>
+      <Link
+        href={ROUTES.HOME}
+        className='flex items-center mr-10'
+        onClick={() =>
+          gaEvent({ action: GA_EVENT_NAMES.HEADER_LOGO, params: { device: 'desktop' } })
+        }
+      >
         <Image
           width={46}
           height={46}
@@ -25,7 +33,16 @@ export function PageHeader() {
 
       <nav className='xl:flex items-center justify-end hidden'>
         {MENU.map(({ id, title, url }) => (
-          <Link key={id} href={url}>
+          <Link
+            key={id}
+            href={url}
+            onClick={() =>
+              gaEvent({
+                action: GA_EVENT_NAMES.HEADER_MENU_ITEM,
+                params: { name: title }
+              })
+            }
+          >
             <div className='text-white p-3 hover:bg-white hover:text-black'>{title}</div>
           </Link>
         ))}
