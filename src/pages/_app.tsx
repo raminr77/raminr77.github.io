@@ -13,7 +13,6 @@ import 'swiper/css/pagination';
 import ErrorBoundary from '@/app/components/error-boundary';
 import { BaseContainer } from '@/app/layout/base-container';
 import { SplashScreen } from '@/shared/components/splash-screen';
-import { GA_ID } from '@/shared/constants/ga';
 import { gaPageView } from '@/shared/services/ga';
 import { store } from '@/shared/store';
 import { PersistWrapper } from '@/shared/store/PersistWrapper';
@@ -92,15 +91,15 @@ export default function App({ Component, pageProps }: AppProps) {
           {/* <!-- Google tag (gtag.js) --> */}
           <Script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            src='https://www.googletagmanager.com/gtag/js?id=G-3Z7J68PEJJ'
           ></Script>
-          <Script
+          <script
             dangerouslySetInnerHTML={{
               __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', ${GA_ID});
+            gtag('config', 'G-3Z7J68PEJJ');
             `
             }}
           />
