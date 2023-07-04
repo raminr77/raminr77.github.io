@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { CRO_DATA } from '@/shared/constants/cro';
 import { ProjectImageSlider } from '../project-image-slider';
 
 interface Props extends GCommonCompnentProperties {
@@ -48,6 +49,7 @@ export function ProjectItem({ data, className }: Props) {
           <a
             href={demoUrl}
             target='_blank'
+            data-cro-id={CRO_DATA.PROJECT_ITEM_DEMO_LINK}
             className='text-sky-400 border-l-2 border-solid border-sky-400 pl-2'
           >
             Show Demo Or Project
@@ -58,6 +60,7 @@ export function ProjectItem({ data, className }: Props) {
           <a
             href={repoUrl}
             target='_blank'
+            data-cro-id={CRO_DATA.PROJECT_ITEM_CODE_LINK}
             className='text-sky-400 border-l-2 border-solid border-sky-400 pl-2'
           >
             Show Code Or Repository
