@@ -89,10 +89,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta content='/icons/logo192.png' name='msapplication-TileImage' />
           <meta name='msapplication-config' content='browserconfig.xml' />
           {/* <!-- Google tag (gtag.js) --> */}
-          <Script
+          <script
             async
             src='https://www.googletagmanager.com/gtag/js?id=G-3Z7J68PEJJ'
-          ></Script>
+          ></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `
