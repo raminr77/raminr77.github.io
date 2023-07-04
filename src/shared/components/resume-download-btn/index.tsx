@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import classNames from 'classnames';
 import { RESUME_FILE_DATA } from '@/data/resume-file';
+import { CRO_DATA } from '@/shared/constants/cro';
 import { GA_EVENT_NAMES } from '@/shared/constants/ga';
 import { gaEvent } from '@/shared/services/ga';
 import styles from './resume-download-btn.module.scss';
@@ -8,6 +9,7 @@ import styles from './resume-download-btn.module.scss';
 export function ResumeDownloadBtn() {
   return (
     <Link
+      data-cro-id={CRO_DATA.DOWNLOAD_CV}
       onClick={() =>
         gaEvent({ action: GA_EVENT_NAMES.RESUME_DOWNLOAD, params: { file: 'resume' } })
       }

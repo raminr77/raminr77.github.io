@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { PageContainer } from '@/app/layout/page-container';
 import { CONTACT_ME_DATA } from '@/data/contact-me';
 import { Input } from '@/shared/components/input';
+import { CRO_DATA } from '@/shared/constants/cro';
 import { EMAIL_CONFIG, EMAIL_SERVER } from '@/shared/constants/email';
 import { GA_EVENT_NAMES } from '@/shared/constants/ga';
 import { gaEvent } from '@/shared/services/ga';
@@ -117,7 +118,12 @@ export function ContactMePage() {
               <li key={index} className='flex items-center text-sm leading-7'>
                 <p>{item.title}</p>
                 <p className='ml-1 mr-2'>:</p>
-                <Link href={item.url} target='_blank' className='text-sky-500'>
+                <Link
+                  data-cro-id={CRO_DATA.CONTACT_US_LINKS}
+                  href={item.url}
+                  target='_blank'
+                  className='text-sky-500'
+                >
                   {item.actionText}
                 </Link>
               </li>
@@ -158,6 +164,7 @@ export function ContactMePage() {
             type='button'
             onClick={submit}
             disabled={loading}
+            data-cro-id={CRO_DATA.CONTACT_US_SUBMIT}
             className={classNames(
               'bg-white leading-10 hover:bg-black hover:text-white text-black w-full lg:max-w-xs border border-solid border-white',
               {

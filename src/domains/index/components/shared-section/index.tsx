@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import gsap from 'gsap';
 import { MAIN_DATA } from '@/data';
 import { ResumeDownloadBtn } from '@/shared/components/resume-download-btn';
+import { CRO_DATA } from '@/shared/constants/cro';
 import { GA_EVENT_NAMES } from '@/shared/constants/ga';
 import { ROUTES } from '@/shared/routes';
 import { gaEvent } from '@/shared/services/ga';
@@ -83,6 +84,7 @@ export function IndexSharedSection() {
         onClick={() =>
           gaEvent({ action: GA_EVENT_NAMES.SHOW_MORE_TEXT, params: { text: 'about-me' } })
         }
+        data-cro-id={CRO_DATA.ABOUT_US_READ_MORE}
         className={classNames('text-sm', animator({ name: 'fadeIn', delay: '3s' }))}
         href={ROUTES.ABOUT_ME}
       >

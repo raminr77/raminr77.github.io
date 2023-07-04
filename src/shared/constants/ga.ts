@@ -1,4 +1,5 @@
 export const GA_ID = 'G-3Z7J68PEJJ';
+export const TAG_MANAGER_ID = 'GTM-K5SZXFS';
 
 export const GA_EVENT_NAMES = {
   HEADER_LOGO: 'header_logo',

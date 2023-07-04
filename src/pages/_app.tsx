@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
 import NextNprogress from 'nextjs-progressbar';
 import 'sweetalert2/src/sweetalert2.scss';
 import 'swiper/css';
@@ -13,6 +12,7 @@ import 'swiper/css/pagination';
 import ErrorBoundary from '@/app/components/error-boundary';
 import { BaseContainer } from '@/app/layout/base-container';
 import { SplashScreen } from '@/shared/components/splash-screen';
+import { GA_ID, TAG_MANAGER_ID } from '@/shared/constants/ga';
 import { gaPageView } from '@/shared/services/ga';
 import { store } from '@/shared/store';
 import { PersistWrapper } from '@/shared/store/PersistWrapper';
@@ -88,10 +88,11 @@ export default function App({ Component, pageProps }: AppProps) {
           {/* Windows */}
           <meta content='/icons/logo192.png' name='msapplication-TileImage' />
           <meta name='msapplication-config' content='browserconfig.xml' />
-          {/* <!-- Google tag (gtag.js) --> */}
+
+          {/* <!-- Tag Manager & GA --> */}
           <script
             async
-            src='https://www.googletagmanager.com/gtag/js?id=G-3Z7J68PEJJ'
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           ></script>
           <script
             dangerouslySetInnerHTML={{
@@ -99,26 +100,28 @@ export default function App({ Component, pageProps }: AppProps) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-3Z7J68PEJJ');
+            gtag('config', '${GA_ID}');
             `
             }}
           />
           <script
             dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K5SZXFS');`
+              __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+              var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+              j.async=true;
+              j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+              f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${TAG_MANAGER_ID}');
+              `
             }}
           />
-
           <noscript>
             <iframe
-              src='https://www.googletagmanager.com/ns.html?id=GTM-K5SZXFS'
-              height='0'
               width='0'
+              height='0'
               className='hidden opacity-0'
+              src={`https://www.googletagmanager.com/ns.html?id=${TAG_MANAGER_ID}`}
             ></iframe>
           </noscript>
         </Head>
