@@ -49,7 +49,7 @@ export function ProjectItem({ data, className }: Props) {
           <a
             href={demoUrl}
             target='_blank'
-            data-cro-id={CRO_DATA.PROJECT_ITEM_DEMO_LINK}
+            data-cro-id={CRO_DATA.CLICK_PROJECT_ITEM_DEMO_LINK}
             className='text-sky-400 border-l-2 border-solid border-sky-400 pl-2'
           >
             Show Demo Or Project
@@ -60,7 +60,7 @@ export function ProjectItem({ data, className }: Props) {
           <a
             href={repoUrl}
             target='_blank'
-            data-cro-id={CRO_DATA.PROJECT_ITEM_CODE_LINK}
+            data-cro-id={CRO_DATA.CLICK_PROJECT_ITEM_CODE_LINK}
             className='text-sky-400 border-l-2 border-solid border-sky-400 pl-2'
           >
             Show Code Or Repository

@@ -17,7 +17,7 @@ export function IndexBlackSectionMenu() {
       {MENU.map(({ id, title, url }) => (
         <Link key={id} href={url}>
           <div
-            data-cro-id={CRO_DATA.HOME_PAGE_MENU}
+            data-cro-id={CRO_DATA.CLICK_MAIN_MENU}
             className={classNames(
               'relative pb-3 mb-5 font-title text-xl',
               styles.BlackSectionMenu__item

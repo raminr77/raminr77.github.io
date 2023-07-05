@@ -26,7 +26,7 @@ export function BurgerMenu() {
     <div>
       <button
         onClick={toggleMenu}
-        data-cro-id={CRO_DATA.TOGGLE_BURGER_MENU}
+        data-cro-id={CRO_DATA.CLICK_TOGGLE_BURGER_MENU}
         className={classNames(
           'absolute top-5 right-5 xl:hidden z-30 invert cursor-pointer'
         )}
@@ -53,7 +53,7 @@ export function BurgerMenu() {
               onClick={click(title)}
               key={id}
               href={url}
-              data-cro-id={CRO_DATA.BURGER_MENU}
+              data-cro-id={CRO_DATA.CLICK_BURGER_MENU}
             >
               <div className='text-white duration-300 p-3 mb-2 font-title text-xl border-b-2 border-solid border-transparent hover:border-white'>
                 {title}
@@ -66,7 +66,7 @@ export function BurgerMenu() {
             href={RESUME_FILE_DATA.URL}
             className='inline-block'
             target='_blank'
-            data-cro-id={CRO_DATA.DOWNLOAD_CV_MOBILE}
+            data-cro-id={CRO_DATA.CLICK_BURGER_MENU_DOWNLOAD_CV}
             onClick={() =>
               gaEvent({
                 action: GA_EVENT_NAMES.RESUME_DOWNLOAD,

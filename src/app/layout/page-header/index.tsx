@@ -13,7 +13,7 @@ export function PageHeader() {
   return (
     <header className='w-full h-20 select-none flex items-center justify-between py-3 px-5 text-white border-b border-solid border-gray-600 lg:border-white'>
       <Link
-        data-cro-id={CRO_DATA.HOME_PAGE}
+        data-cro-id={CRO_DATA.CLICK_LOGO}
         href={ROUTES.HOME}
         className='flex items-center mr-10'
         onClick={() =>
@@ -38,7 +38,7 @@ export function PageHeader() {
           <Link
             key={id}
             href={url}
-            data-cro-id={CRO_DATA.HEADER_MENU}
+            data-cro-id={CRO_DATA.CLICK_HEADER_MENU}
             onClick={() =>
               gaEvent({
                 action: GA_EVENT_NAMES.HEADER_MENU_ITEM,

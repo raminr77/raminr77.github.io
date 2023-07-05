@@ -119,7 +119,7 @@ export function ContactMePage() {
                 <p>{item.title}</p>
                 <p className='ml-1 mr-2'>:</p>
                 <Link
-                  data-cro-id={CRO_DATA.CONTACT_US_LINKS}
+                  data-cro-id={CRO_DATA.CLICK_CONTACT_US_LINKS}
                   href={item.url}
                   target='_blank'
                   className='text-sky-500'
@@ -164,7 +164,7 @@ export function ContactMePage() {
             type='button'
             onClick={submit}
             disabled={loading}
-            data-cro-id={CRO_DATA.CONTACT_US_SUBMIT}
+            data-cro-id={CRO_DATA.CLICK_CONTACT_US_SUBMIT}
             className={classNames(
               'bg-white leading-10 hover:bg-black hover:text-white text-black w-full lg:max-w-xs border border-solid border-white',
               {

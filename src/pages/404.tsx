@@ -8,7 +8,7 @@ const NotFoundPage = () => {
     <div className='w-full select-none h-screen flex items-center text-white justify-center flex-col'>
       <LottieAnimation data={NOT_FOUND_ANIMATION} clickable={false} />
       <h3 className='leading-10 mb-4 text-xl font-bold'>404 - Not Found</h3>
-      <Link data-cro-id={CRO_DATA.NOT_FOUND_LINK} href='/'>
+      <Link data-cro-id={CRO_DATA.CLICK_NOT_FOUND_BACK_LINK} href='/'>
         [ Home Page ]
       </Link>
     </div>

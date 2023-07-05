@@ -9,7 +9,7 @@ import styles from './resume-download-btn.module.scss';
 export function ResumeDownloadBtn() {
   return (
     <Link
-      data-cro-id={CRO_DATA.DOWNLOAD_CV}
+      data-cro-id={CRO_DATA.CLICK_DOWNLOAD_CV}
       onClick={() =>
         gaEvent({ action: GA_EVENT_NAMES.RESUME_DOWNLOAD, params: { file: 'resume' } })
       }

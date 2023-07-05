@@ -84,7 +84,7 @@ export function IndexSharedSection() {
         onClick={() =>
           gaEvent({ action: GA_EVENT_NAMES.SHOW_MORE_TEXT, params: { text: 'about-me' } })
         }
-        data-cro-id={CRO_DATA.ABOUT_US_READ_MORE}
+        data-cro-id={CRO_DATA.CLICK_ABOUT_US_READ_MORE}
         className={classNames('text-sm', animator({ name: 'fadeIn', delay: '3s' }))}
         href={ROUTES.ABOUT_ME}
       >
