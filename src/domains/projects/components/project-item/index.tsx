@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import classNames from 'classnames';
 import { CRO_DATA } from '@/shared/constants/cro';
 import { ProjectImageSlider } from '../project-image-slider';
@@ -46,25 +47,25 @@ export function ProjectItem({ data, className }: Props) {
         )}
 
         {demoUrl && (
-          <a
+          <Link
             href={demoUrl}
             target='_blank'
             data-cro-id={CRO_DATA.CLICK_PROJECT_ITEM_DEMO_LINK}
             className='text-sky-400 border-l-2 border-solid border-sky-400 pl-2'
           >
             Show Demo Or Project
-          </a>
+          </Link>
         )}
 
         {repoUrl && (
-          <a
+          <Link
             href={repoUrl}
             target='_blank'
             data-cro-id={CRO_DATA.CLICK_PROJECT_ITEM_CODE_LINK}
             className='text-sky-400 border-l-2 border-solid border-sky-400 pl-2'
           >
             Show Code Or Repository
-          </a>
+          </Link>
         )}
 
         <p className='text-sm leading-6 mt-2'>{description}</p>
