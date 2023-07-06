@@ -74,7 +74,7 @@ export function IndexSharedSection() {
 
       <section
         className={classNames(
-          'border border-solid border-white p-5 mt-10 mr-10 max-w-3xl text-justify leading-7 mb-3 duration-700',
+          'border border-solid border-white p-5 mt-10 mr-10 max-w-3xl text-justify leading-7 mb-3 duration-700 max-lg:max-h-80 max-lg:overflow-y-auto',
           animator({ name: 'fadeInUp', delay: '2s' }),
           styles.SharedSection__description
         )}
