@@ -5,10 +5,9 @@ export const MAIN_DATA = {
   SUMMERY: `You meet Ramin, a <strong>software engineer</strong> with <strong>over 6 years</strong> of experience in web development. <br />With a strong focus on front-end and familiarity with back-end technologies. <br />
   Proudly I contributed to large-scale projects within the <strong>Digikala Group</strong>. These projects have <strong>over 10 million</strong> daily visits and <strong>over 40 million</strong> users. <br />
   The story of these exciting projects continues and now I am working at <strong>Boozt</strong> company.<br />
-  I really believe that nothing is more important and exciting than learning and teaching web-based technologies and there is still so much for me to learn. <br />
-  I am incredibly patient and friendly with my co-workers and teammates and socialize well with people.`,
+  I really believe that nothing is more important and exciting than learning and teaching web-based technologies and there is still so much for me to learn.`,
   ABOUT_ME: `Hello, My name is Ramin and I am a software engineer with over 6 years of experience in front-end development. 
-  Currently, I work at Digikala, a large e-commerce company in Iran, 
+  Currently, I work at Boozt Company and, before that I worked at Digikala, a large e-commerce company in Iran, 
   where I collaborate with teams of over 50 people on various projects. 
   For the past 2 years, I have been a part of the refactor team at Digikala, 
   where I have had the opportunity to redesign and refactor two of the largest e-commerce websites in Iran using React and Next. 
