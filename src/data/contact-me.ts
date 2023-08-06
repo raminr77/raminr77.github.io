@@ -38,13 +38,13 @@ export const CONTACT_ME_DATA = {
     },
     {
       title: 'Phone Number',
-      url: 'tell:+989136266179',
-      actionText: '+989136266179'
+      url: 'tell:+46762433001',
+      actionText: '+46762433001'
     },
     {
       url: '',
       title: 'Location',
-      actionText: 'Tehran, Iran (GMT+3:30)'
+      actionText: 'Malmö, Sweden (GMT+2)'
     }
   ]
 };
