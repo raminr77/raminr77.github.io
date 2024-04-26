@@ -39,3 +39,5 @@ package-lock.json
 
 .env
 .env.local
+
+.history
