@@ -28,7 +28,7 @@
     "@types/react-dom": "18.0.10",
     "classnames": "^2.3.2",
     "gsap": "^3.11.4",
-    "next": "13.1.6",
+    "next": "13.5.0",
     "nextjs-progressbar": "^0.0.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
