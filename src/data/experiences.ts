@@ -1,9 +1,30 @@
 export const EXPERIENCES_DATA = [
   {
+    id: 0,
+    title: 'Boozt',
+    role: 'Senior Front-end Engineer',
+    date: 'Aug 2023 - Present',
+    achievement: [
+      'Refactoring and maintaining legacy frontend versions',
+      'Developing an integrated system (CMS) for building website pages and landing pages.'
+    ],
+    skills: [
+      'PHP',
+      'SASS',
+      'HTML5',
+      'React.js',
+      'JavaScript',
+      'TypeScript',
+      'E-commerce CMS',
+      'Landing & Promotions',
+      'Cascading Style Sheets (CSS)'
+    ]
+  },
+  {
     id: 1,
     title: 'Digikala',
-    role: 'Front-end Engineer',
-    date: 'Aug 2020 - Present',
+    role: 'Senior Front-end Engineer',
+    date: 'Aug 2020 - Aug 2023',
     achievement: [
       'Complete rewriting of 2 E-commerce sites with JavaScript, ReactJS, NextJS, and TypeScript with large teams and agile methodology. Also experience working with Spotify Squad Framework.',
       'Development of GA services including Datalayer to collect and analyze user behavior and implement more than 20 A/B tests. I also worked with tools like In-Sider, In-Track, Big-Data Tracker, and Google Tag Manager.',
