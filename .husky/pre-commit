@@ -11,8 +11,8 @@ npm run check-format ||
 
 npm run check-lint ||
 (
-        echo '❌ ESLint Check Failed.'
-        false; 
+    echo '❌ ESLint Check Failed.'
+    false; 
 )
 
 npm run check-types ||

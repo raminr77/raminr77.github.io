@@ -1,15 +1,5 @@
-# RaminRezaei.ir
+# RaminRezaei.se
 
-Ramin Rezaei Personal Page.
+### [See Project](https://raminrezaei.se)
 
 ### [LinkedIn Page](https://www.linkedin.com/in/raminr77/)
-
-### Technologies:
-
--   Next JS
--   React JS
--   TypeScript
--   Tailwind CSS
--   SASS Modules
-
-#### [Show Project](https://raminrezaei.ir)
