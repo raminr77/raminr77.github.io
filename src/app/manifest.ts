@@ -15,8 +15,8 @@ export default function manifest(): MetadataRoute.Manifest {
     display_override: ['fullscreen', 'minimal-ui'],
     protocol_handlers: [
       {
-        protocol: 'open',
-        url: '/'
+        protocol: 'web+open',
+        url: '/presentations?id=%s'
       }
     ],
     screenshots: [
