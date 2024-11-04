@@ -45,3 +45,5 @@ package-lock.json
 .env.local
 
 .history
+
+certificates

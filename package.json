@@ -5,6 +5,7 @@
   "scripts": {
     "check-all": "npm run check-format && npm run check-lint && npm run check-types",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "dev-https": "next dev --experimental-https",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier . --check",
     "format": "prettier --write .",

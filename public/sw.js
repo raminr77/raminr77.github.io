@@ -3,8 +3,8 @@ self.addEventListener('push', function (event) {
     const data = event.data.json();
     const options = {
       body: data.body,
-      badge: '/images/logo-black.png',
       vibrate: [100, 50, 100],
+      badge: '/images/logo-black.png',
       icon: data.icon || 'images/logo-black.png',
       data: {
         primaryKey: '2',
@@ -17,6 +17,5 @@ self.addEventListener('push', function (event) {
 
 self.addEventListener('notificationclick', function (event) {
   event.notification.close();
-  console.log('Notification click received.');
   event.waitUntil(clients.openWindow('https://raminrezaei.se'));
 });
