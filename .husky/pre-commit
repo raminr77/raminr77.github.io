@@ -1,6 +1,10 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo '- formating your code ...'
+
+npm run format
+
 echo '- checking your code ...'
 
 npm run check-format ||
