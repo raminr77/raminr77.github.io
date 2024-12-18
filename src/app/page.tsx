@@ -1,7 +1,2 @@
-export default function Home() {
-  return (
-    <div>
-      <h3>Ramin Rezaei</h3>
-    </div>
-  );
-}
+import { HomePage } from "@/domains/home";
+export default HomePage;

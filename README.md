@@ -1,5 +1,7 @@
-# RaminRezaei.se
+# Rsmin Rezaei - Personal Website
 
-### [See Project](https://raminrezaei.se)
-
-### [LinkedIn Page](https://www.linkedin.com/in/raminr77/)
+Welcome to the repository for my personal website.
+<br />
+This project introduces me, **Rsmin Rezaei**, as a **Software Engineer** and showcases my work, skills, and experiences.
+<br />
+URL: [RaminRezaei.se](https://raminrezaei.ir)

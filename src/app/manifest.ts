@@ -16,7 +16,7 @@ export default function manifest(): MetadataRoute.Manifest {
     protocol_handlers: [
       {
         protocol: 'web+open',
-        url: '/presentations?id=%s'
+        url: '/presentation?id=%s'
       }
     ],
     screenshots: [
