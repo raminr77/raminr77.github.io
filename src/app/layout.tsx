@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from "next/script";
 
 import './globals.scss';
 
@@ -14,6 +15,8 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         {children}
+
+        <Script src="/service-worker.js" />
       </body>
     </html>
   );
