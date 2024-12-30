@@ -1,5 +1,6 @@
 "use client"
 import React, { useRef, useEffect } from 'react';
+import { CURSOR_EFFECT_CLASSNAME } from '@/shared/constants';
 
 export function CustomCursor() {
   const dotCursorRef = useRef<HTMLDivElement | null>(null);
@@ -11,6 +12,10 @@ export function CustomCursor() {
       const circleCursorElement: HTMLDivElement = circleCursorRef.current;
       const handleMouseMove = (event: MouseEvent) => {
         if (!event.target) return;
+        const interactable = event.target instanceof HTMLElement ? event.target.closest(
+          `.${CURSOR_EFFECT_CLASSNAME}`
+        ) : null;
+        const interacting = interactable !== null;
         const positions = {
           dotX: event.clientX - dotCursorElement.offsetWidth / 2,
           dotY: event.clientY - dotCursorElement.offsetHeight / 2,
@@ -18,10 +23,10 @@ export function CustomCursor() {
           circleY: event.clientY - circleCursorElement.offsetHeight / 2,
         };
         const circleKeyframes = {
-          transform: `translate(${positions.circleX}px, ${positions.circleY}px) scale(1.2)`
+          transform: `translate(${positions.circleX}px, ${positions.circleY}px) ${interacting ? 'scale(0.5)' : ''}`
         };
         const dotKeyframes = {
-          transform: `translate(${positions.dotX}px, ${positions.dotY}px) scale(1.2)`
+          transform: `translate(${positions.dotX}px, ${positions.dotY}px)`
         };
         circleCursorElement.animate(circleKeyframes, {
           duration: 2000,
