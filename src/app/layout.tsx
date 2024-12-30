@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from "next/script";
+import { CustomCursor } from '@/shared/components/custom-cursor';
 
 import './globals.scss';
 
@@ -15,7 +16,7 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         {children}
-
+        <CustomCursor />
         <Script src="/service-worker.js" />
       </body>
     </html>

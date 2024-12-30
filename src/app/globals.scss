@@ -15,7 +15,14 @@
 }
 
 body {
+  overflow-x: hidden;
+  min-height: 100dvh;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+
+  cursor: none;
+  &:hover > .custom-cursor {
+    opacity: 1;
+  }
 }
