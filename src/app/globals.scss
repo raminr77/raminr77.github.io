@@ -21,8 +21,8 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 
-  cursor: none;
-  &:hover > .custom-cursor {
-    opacity: 1;
-  }
+  // Background Shine
+  background-image: url('/images/background.png');
+  background-position: top left;
+  background-repeat: no-repeat;
 }

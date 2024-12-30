@@ -1,6 +1,6 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import Script from "next/script";
-import { CustomCursor } from '@/shared/components/custom-cursor';
 
 import './globals.scss';
 
@@ -14,11 +14,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang='en'>
-      <body>
-        {children}
-        <CustomCursor />
-        <Script src="/service-worker.js" />
-      </body>
+    <body>
+      {children}
+
+      <Script src="/service-worker.js" />
+    </body>
     </html>
   );
 }
