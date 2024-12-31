@@ -2,11 +2,16 @@ export const EXPERIENCES_DATA = [
   {
     id: 0,
     title: 'Boozt',
-    role: 'Senior Front-end Engineer',
+    role: 'Software Engineer - Senior Frontend Engineer',
     date: 'Aug 2023 - Present',
     achievement: [
-      'Refactoring and maintaining legacy frontend versions',
-      'Developing an integrated system (CMS) for building website pages and landing pages.'
+      'Continuous Integration/Deployment Pipeline Integration, pull requests, code reviews, unit/integration/e2e testing',
+      'Developed and Optimized CMS: Built a CMS for generating dynamic web pages, promotions, and campaign pages for 17 countries, enabling seamless integration with the mobile app and eliminating the need for updates by supporting all web elements.',
+      'Enhanced Data Efficiency: Optimized CMS data structure using efficient algorithms and data structures to improve speed, updates, and storage. Eliminated redundant loops by implementing hash maps, reducing unnecessary computation',
+      'Brand Asset Management: Designed an internal system with Google Cloud Functions and Google Storage to store brand assets and logos, reducing costs by eliminating external services.',
+      'Google Cloud Project (GCP): Developed serverless functions using GCP Cloud Functions to automate background tasks, reducing operational overhead by 20%.',
+      'React and TypeScript Migration: Migrated and redesigned website features from the legacy platform, adapting them to meet evolving business requirements while improving performance.',
+      'Performance Optimization: Refactored state management and component architecture to minimize unnecessary re-renders, achieving faster load times and smoother user experience.'
     ],
     skills: [
       'PHP',
@@ -23,14 +28,16 @@ export const EXPERIENCES_DATA = [
   {
     id: 1,
     title: 'Digikala',
-    role: 'Senior Front-end Engineer',
+    role: 'Software Engineer - Senior Frontend Engineer',
     date: 'Aug 2020 - Aug 2023',
     achievement: [
-      'Complete rewriting of 2 E-commerce sites with JavaScript, ReactJS, NextJS, and TypeScript with large teams and agile methodology. Also experience working with Spotify Squad Framework.',
-      'Development of GA services including Datalayer to collect and analyze user behavior and implement more than 20 A/B tests. I also worked with tools like In-Sider, In-Track, Big-Data Tracker, and Google Tag Manager.',
-      'Creating Dynamic-Landing for faster creation of landing pages on the site with more than 30 different types of modules and components for use on the pages.',
-      'Writing unit tests and E2E tests for different parts of the project with Jest and React-Testing-Library and Cypress. Also, using Storybook to have a demo of core components and use them more easily in other projects.',
-      'The experience of using mono-repository with NX along with micro front-end, and creating optimal code style and integrated project structure. 80% preservation of code style guide and project structure by customizing ES-Lint, Perttier, and Code Review.'
+      'E-commerce Platform Development: Rebuilt two e-commerce platforms with JavaScript, ReactJS, Next.js, and TypeScript in agile teams using the Spotify Squad Framework.',
+      'Data and Analytics Integration: Implemented Google Analytics services, including DataLayer and over 20 A/B tests. Leveraged tools like Big-Data Tracker and Google Tag Manager to collect and analyze user behavior.',
+      'Dynamic Landing Pages: Designed and implemented dynamic landing pages with over 30 reusable modules, reducing development time for promotional pages.',
+      'Testing and QA: Wrote unit and E2E tests using Jest, React Testing Library, and Cypress, ensuring high-quality code. Utilized Storybook to streamline component reuse.',
+      'Monorepository Expertise: Worked on a PHP monorepository using the Symfony framework, while integrating micro-frontend architecture with NX, enhancing code quality and structure adherence by 80%. Also developed and maintained backend services, improving API response times by 10% and reducing database query load by 20% through efficient caching strategies.',
+      'Automated and optimized business logic for the core marketing experiments, including A/B, Auto-Targeting, and Multivariate Testing.',
+      "Completely automated the marketing platforms' user-experience testing process by integrating Nightwatch Selenium."
     ],
     skills: [
       'PHP',
@@ -47,15 +54,13 @@ export const EXPERIENCES_DATA = [
   {
     id: 2,
     title: 'SnappCarFix',
-    role: 'Front-end Team Lead',
+    role: 'Software Engineer - Frontend Team Lead',
     date: 'Oct 2019 - Aug 2020',
     achievement: [
-      'Mentored and guided more than 5 new engineers, helped them to grow their soft skills, and worked on 3 individual project types with the same technology for different parts of the company.',
-      'Rebuilt the platform from WordPress to JavaScript, and ReactJs and made more requests with better UI/UX and fewer development hassles resulting in a 90% improvement in user experience.',
-      'Made high-performance and high-use timers for advertisements and discount banners on the site, which improved the site’s loading time by 2 seconds.',
-      'Development of a general layout and various components as a package that can be installed for all front-end projects.',
-      'Experience working with trunk-based development in projects.',
-      'Develop a dynamic theme for changing the appearance of the site when the campaigns or events.'
+      'Team Leadership and Mentorship: Mentored 5+ engineers, enhancing their technical and soft skills while managing cross-functional project delivery.',
+      'Platform Migration: Transitioned a WordPress platform to a modern JavaScript and React-based system, achieving a 90% improvement in user experience.',
+      'Reusable Components: Developed a general layout and component library as an installable package, reducing project setup time by 40%.',
+      'Performance Enhancements: Built high-performance timers for advertisements and discount banners, reducing page load times by 2 seconds.'
     ],
     skills: [
       'HTML5',
@@ -68,17 +73,12 @@ export const EXPERIENCES_DATA = [
   },
   {
     id: 3,
-    title: 'Web Developer',
+    title: 'Software Engineer',
     role: 'Self Employed · Freelance',
     date: 'Jan 2019 - Present',
     achievement: [
-      'Created more than 12 landing pages with React or pure JS for events and promotions.',
-      'Designed and implemented 2 web platforms with ReactJs, PWA, and Django for club management and product sales, which have been running for over 3 years.',
-      'Development of a product authenticity check system by Serial-Number with the possibility of confirming the authenticity for users and already it’s supporting more than 3K products.',
-      'Creating a store management system with capital and warehouse management capabilities.',
-      'Cooperation in the project of finding the nearest representative. In this project, we used different maps to help users find the nearest service center according to their needs.',
-      'Collaboration in a student project to investigate user behavior with hidden elements on web pages (for example mega and burger menus) and research to improve the appearance of the website.',
-      'Writing a pyramid automatic discount system with a lottery system for a collection of online games on a site that aimed to attract more customers for campaigns.'
+      'Led the development of several products E2E, from identifying system requirements and partner dependencies to workload balancing, software implementation, engineering, testing, and configuring metrics, alarms, monitors, and dashboards.',
+      'Designed and implemented scalable RESTful APIs using Python (Django) and PHP (Laravel) for managing proprietary licenses, handling peak loads of 500 requests per second and, ensuring 99.9% uptime.'
     ],
     skills: [
       'JavaScript',

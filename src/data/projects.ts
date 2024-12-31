@@ -1,7 +1,7 @@
 export const PROJECTS_DATA = [
   {
     id: 1,
-    role: 'Full Stack Developer',
+    role: 'Software Engineer | Full Stack',
     title: 'Raven System',
     stack: [
       'Python',
@@ -17,22 +17,22 @@ export const PROJECTS_DATA = [
     ],
     images: [],
     description:
-      'A complete accounting system for managing major purchases and sales with the ability to display graphs and calculate sales profit in different modes. Currently, I handle more than 1000 products in 2 stores.'
+      'A complete accounting system for managing major purchases and sales with the ability to display graphs and calculate sales profit in different modes. Currently, I handle more than 1000 products in 2 stores. In this project, I am using Python (Django) and Javascript/Typescript (React)'
   },
   {
     id: 2,
-    title: 'Setaregan',
-    role: 'Full Stack Developer',
+    title: 'Setaregan Club Management System',
+    role: 'Software Engineer | Full Stack',
     stack: ['PHP', 'Laravel', 'MySQL', 'REST API', 'React', 'HTML', 'CSS', 'SASS'],
     images: [],
     description:
-      'Sports club management project with online registration and support for three payment models and a smart reminder system.'
+      'Develop a large-scale club management system with features like: payment, insurance, monthly payments, user system, and marketing. In this project, I am using PHP (Laravel) and Javascript/Typescript (React)'
   },
   {
     id: 3,
     images: [],
     title: 'Digikala',
-    role: 'Front-end Engineer',
+    role: 'Senior Software Engineer - Front-end',
     stack: [
       'JavaScript',
       'TypeScript',
@@ -51,7 +51,7 @@ export const PROJECTS_DATA = [
     id: 4,
     images: [],
     title: 'Digistyle',
-    role: 'Front-end Engineer',
+    role: 'Senior Software Engineer - Front-end',
     stack: [
       'JavaScript',
       'TypeScript',
@@ -70,7 +70,7 @@ export const PROJECTS_DATA = [
     id: 5,
     images: [],
     title: 'Snapp Car Fix',
-    role: 'Front-end Team Lead',
+    role: 'Software Engineer- Front-end Team Lead',
     stack: ['React', 'HTML', 'CSS', 'SASS', 'Tailwind'],
     demoUrl: 'https://snappcarfix.com',
     description:
@@ -80,7 +80,7 @@ export const PROJECTS_DATA = [
     id: 6,
     images: [],
     title: 'Nano Sakhtar',
-    role: 'Full Stack Developer',
+    role: 'Software Engineer | Full Stack',
     stack: [
       'Python',
       'Django',
@@ -99,7 +99,7 @@ export const PROJECTS_DATA = [
     id: 7,
     images: [],
     title: 'Nano Alarm',
-    role: 'Front-end Developer',
+    role: 'Software Engineer | Full Stack',
     stack: ['React', 'HTML', 'CSS', 'SASS'],
     description:
       'Online store of security products with the possibility of special authentication for sales representatives in the country and with support for more than 4 different modes of selling goods to representatives and ordinary people.'
