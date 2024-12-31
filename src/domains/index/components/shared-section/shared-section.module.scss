@@ -1,60 +1,60 @@
-@import '@/styles/breakpoints.scss';
+@use '@/styles/breakpoints.scss' as *;
 
 .SharedSection {
-    &__container {
-        top: 20%;
-        left: 10%;
-        h1 {
-            font-size: 150px;
-            overflow-y: hidden;
-            line-height: 130px;
-            visibility: hidden;
-            span {
-                min-height: 130px;                
-            }
-            span::before {
-                top: 0;
-                left: 0;
-                font-weight: 700;
-                position: absolute;
-                content: attr(data-text);
-                color: rgba(0, 0, 0, 0.5);
-                transform: translateY(-110%);
-                font-family: 'Syncopate', sans-serif;
-                -webkit-text-stroke: 2px white;
-            }
-            span[data-text='a']::before {
-                transform: translate(-80px, -110%);
-            }
-        }
-        h3 {
-            font-size: 40px;
-            line-height: 40px;
-            letter-spacing: 3px;
-        }
-
-        @include breakpoint-lg {
-            top: 10%;
-            h1 {
-                font-size: 60px;
-                line-height: 60px;
-                span {
-                    min-height: 60px;
-                }
-                span[data-text='a']::before {
-                    transform: translate(-30px, -110%);
-                }
-            }
-            h3 {
-                font-size: 20px;
-                margin-left: 5px;
-                letter-spacing: 0;
-                line-height: 30px;
-            }
-        }
+  &__container {
+    top: 20%;
+    left: 10%;
+    h1 {
+      font-size: 150px;
+      overflow-y: hidden;
+      line-height: 130px;
+      visibility: hidden;
+      span {
+        min-height: 130px;
+      }
+      span::before {
+        top: 0;
+        left: 0;
+        font-weight: 700;
+        position: absolute;
+        content: attr(data-text);
+        color: rgba(0, 0, 0, 0.5);
+        transform: translateY(-110%);
+        font-family: 'Syncopate', sans-serif;
+        -webkit-text-stroke: 2px white;
+      }
+      span[data-text='a']::before {
+        transform: translate(-80px, -110%);
+      }
+    }
+    h3 {
+      font-size: 40px;
+      line-height: 40px;
+      letter-spacing: 3px;
     }
 
-    &__description:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+    @include breakpoint-lg {
+      top: 10%;
+      h1 {
+        font-size: 60px;
+        line-height: 60px;
+        span {
+          min-height: 60px;
+        }
+        span[data-text='a']::before {
+          transform: translate(-30px, -110%);
+        }
+      }
+      h3 {
+        font-size: 20px;
+        margin-left: 5px;
+        letter-spacing: 0;
+        line-height: 30px;
+      }
     }
+  }
+
+  &__description:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }

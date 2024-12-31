@@ -1,6 +1,8 @@
-@import './fonts.scss';
+@use './fonts.scss';
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -24,7 +26,7 @@ a {
 @tailwind components;
 @tailwind utilities;
 
-@import '../shared/static/animate.min.css';
+@use '../shared/static/animate.min.css';
 
 .font-title {
   font-weight: 400;
@@ -36,7 +38,7 @@ a {
   font-family: 'Syncopate', sans-serif;
 }
 
-// 
+//
 .swal2-popup {
   color: #fff !important;
   background-color: #000 !important;
@@ -48,12 +50,13 @@ a {
   border: none !important;
   outline: none !important;
 }
-// 
-.swiper-button-next, .swiper-button-prev {
+//
+.swiper-button-next,
+.swiper-button-prev {
   &::after {
     color: #fff;
     padding: 16px 20px;
     transform: scale(0.5);
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
