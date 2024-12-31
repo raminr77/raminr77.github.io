@@ -1,2 +1,2 @@
-import { AboutMePage } from "@/domains/about-me";
+import { AboutMePage } from '@/domains/about-me';
 export default AboutMePage;

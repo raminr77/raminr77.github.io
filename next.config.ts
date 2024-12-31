@@ -19,8 +19,8 @@ const nextConfig: NextConfig = {
         permanent: true,
         source: '/educations',
         destination: '/journey'
-      },
-    ]
+      }
+    ];
   },
   sassOptions: {
     silenceDeprecations: ['legacy-js-api']

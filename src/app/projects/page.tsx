@@ -1,2 +1,2 @@
-import { ProjectsPage } from "@/domains/projects";
+import { ProjectsPage } from '@/domains/projects';
 export default ProjectsPage;

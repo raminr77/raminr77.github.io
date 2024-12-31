@@ -1,2 +1,2 @@
-import { JourneyPage } from "@/domains/journey";
+import { JourneyPage } from '@/domains/journey';
 export default JourneyPage;

@@ -15,14 +15,25 @@
 }
 
 body {
+  position: relative;
   overflow-x: hidden;
   min-height: 100dvh;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
 
-  // Background Shine
-  background-image: url('/images/background.png');
-  background-position: top left;
-  background-repeat: no-repeat;
+.shine-animation {
+  animation: shine 4s infinite ease-in-out;
+}
+@keyframes shine {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
