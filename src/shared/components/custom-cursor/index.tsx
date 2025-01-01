@@ -41,6 +41,9 @@ export function CustomCursor() {
 
     const handleMouseMove = (event: MouseEvent) => {
       updateMousePosition(event.clientX, event.clientY);
+      if (event.target instanceof HTMLElement) {
+        canvas.style.display = event.target.closest('a, button, .no-custom-cursor') ? 'none' : 'block';
+      }
     };
 
     const updateMousePosition = (x: number, y: number) => {
@@ -70,7 +73,7 @@ export function CustomCursor() {
 
       ctx.lineWidth = 1;
       ctx.lineCap = 'round';
-      ctx.strokeStyle = '#fff';
+      ctx.strokeStyle = '#FF8F00';
       ctx.beginPath();
       ctx.moveTo(trail[0].x, trail[0].y);
 

@@ -3,6 +3,7 @@
 
   &:hover {
     &:after, &:before {
+      opacity: 1;
       animation-duration: 1s;
     }
   }
