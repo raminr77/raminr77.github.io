@@ -2,12 +2,12 @@
 import { useEffect, useRef } from 'react';
 import { clsx } from 'clsx';
 import { gsap } from 'gsap';
+import { PERSONAL_DATA } from '@/data';
 import { titleFont } from '@/app/fonts';
+import { animator } from '@/shared/helpers';
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
 
 import styles from './hero-text-animator.module.scss';
-import { PERSONAL_DATA } from '@/data';
-import { animator } from '@/shared/helpers';
 
 export function HeroTextAnimator() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
