@@ -1,7 +1,8 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { textFont } from '@/app/fonts';
 import Script from 'next/script';
+import { textFont } from '@/app/fonts';
+import { CustomCursor } from '@/shared/components/custom-cursor';
 
 import './globals.scss';
 
@@ -22,6 +23,7 @@ export default function RootLayout({
           src='/images/background.png'
           className='shine-animation pointer-events-none absolute -top-6 left-0 blur-md'
         />
+        <CustomCursor />
 
         {children}
 
