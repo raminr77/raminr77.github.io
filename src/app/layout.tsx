@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { textFont } from '@/app/fonts';
 import { CustomCursor } from '@/shared/components/custom-cursor';
 
+import 'animate.css';
 import './globals.scss';
 
 export const metadata: Metadata = {

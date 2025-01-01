@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useRef } from 'react';
 import { clsx } from 'clsx';
 import { gsap } from 'gsap';
@@ -7,6 +7,7 @@ import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
 
 import styles from './hero-text-animator.module.scss';
 import { PERSONAL_DATA } from '@/data';
+import { animator } from '@/shared/helpers';
 
 export function HeroTextAnimator() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -42,11 +43,11 @@ export function HeroTextAnimator() {
   }, []);
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='w-full flex flex-col items-center justify-center'>
       <h1
         ref={titleRef}
         className={clsx(
-          'select-none flex items-center text-8xl font-extrabold invisible overflow-hidden w-11/12 justify-center',
+          'invisible flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl font-extrabold',
           titleFont.className
         )}
       >
@@ -60,7 +61,17 @@ export function HeroTextAnimator() {
           </span>
         ))}
       </h1>
-      <h3 className='text-2xl'>{PERSONAL_DATA.title}</h3>
+      <h3
+        className={clsx(
+          'text-3xl',
+          animator({
+            delay: '1s',
+            name: 'fadeInDown'
+          })
+        )}
+      >
+        {PERSONAL_DATA.title}
+      </h3>
     </div>
   );
 }

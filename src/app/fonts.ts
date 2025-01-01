@@ -1,8 +1,7 @@
-import { Gantari, Playwrite_NZ } from 'next/font/google';
+import { Gantari, Hubballi } from 'next/font/google';
 
-export const textFont = Playwrite_NZ({
-  display: 'swap',
-  adjustFontFallback: false
+export const textFont = Hubballi({
+  weight: '400'
 });
 
 export const titleFont = Gantari({
