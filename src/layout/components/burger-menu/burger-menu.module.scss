@@ -1,10 +1,10 @@
 .burger-menu {
-
   &__button-content {
     direction: rtl;
 
-    &::after, &::before{
-      content: "";
+    &::after,
+    &::before {
+      content: '';
       height: 1px;
       display: block;
       position: relative;
@@ -12,24 +12,23 @@
       background-color: var(--foreground);
     }
 
-    &::after{
+    &::after {
       top: -5px;
       width: 12px;
     }
 
-    &::before{
+    &::before {
       top: 5px;
     }
 
     &--is-active {
-
-      &::after{
+      &::after {
         top: -1px;
         width: 100%;
         transform: rotate(45deg);
       }
 
-      &::before{
+      &::before {
         top: 0;
         transform: rotate(-45deg);
       }
@@ -51,12 +50,14 @@
 
   &__link {
     &:hover {
-      &:before, &:after {
+      &:before,
+      &:after {
         opacity: 1;
         animation: grow-line 0.2s ease-in forwards;
       }
     }
-    &:before, &:after {
+    &:before,
+    &:after {
       left: 0;
       opacity: 0;
       height: 4px;
@@ -64,20 +65,24 @@
       bottom: -10px;
       position: absolute;
       border-radius: 100px;
-      background-color: #FF8F00;
+      background-color: #ff8f00;
       transition-duration: 0.2s;
     }
     &:after {
       z-index: -1;
       opacity: 0.8;
       filter: blur(10px);
-      box-shadow: 0 0 30px #FF8F00;
+      box-shadow: 0 0 30px #ff8f00;
     }
   }
 }
 @keyframes grow-line {
-  from { width: 0; }
-  to { width: 120px; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
 }
 @keyframes morph {
   0% {

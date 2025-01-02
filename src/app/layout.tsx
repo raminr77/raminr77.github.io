@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={textFont.className}>
         <img
-          alt='shine'
+          alt='top-shine'
           draggable={false}
           src='/images/background.png'
           className='shine-animation-top pointer-events-none absolute -top-6 left-0 blur-md'

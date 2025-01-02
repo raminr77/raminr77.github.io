@@ -43,7 +43,7 @@ export function HeroTextAnimator() {
   }, []);
 
   return (
-    <div className='w-full flex flex-col items-center justify-center'>
+    <div className='flex w-full flex-col items-center justify-center'>
       <h1
         ref={titleRef}
         className={clsx(

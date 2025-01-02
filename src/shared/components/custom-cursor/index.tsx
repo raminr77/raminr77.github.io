@@ -42,7 +42,9 @@ export function CustomCursor() {
     const handleMouseMove = (event: MouseEvent) => {
       updateMousePosition(event.clientX, event.clientY);
       if (event.target instanceof HTMLElement) {
-        canvas.style.display = event.target.closest('a, button, .no-custom-cursor') ? 'none' : 'block';
+        canvas.style.display = event.target.closest('a, button, .no-custom-cursor')
+          ? 'none'
+          : 'block';
       }
     };
 

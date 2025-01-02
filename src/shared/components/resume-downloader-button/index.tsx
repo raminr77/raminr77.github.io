@@ -7,12 +7,15 @@ import styles from './resume-downloader-button.module.scss';
 export function ResumeDownloaderButton() {
   return (
     <Link
-      target="_blank"
+      target='_blank'
       href={RESUME_FILE.url}
       download={RESUME_FILE.fileName}
-      className={clsx('duration-500 relative leading-10 block text-xl px-4 rounded', styles['resume-downloader-button'])}
+      className={clsx(
+        'relative block rounded px-4 text-xl leading-10 duration-500',
+        styles['resume-downloader-button']
+      )}
     >
       Download Resume
     </Link>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import { animator } from '@/shared/helpers';
 
 export function HomePage() {
   return (
-    <main className='flex h-dvh w-full overflow-hidden select-none flex-col items-center justify-center gap-2'>
+    <main className='flex h-dvh w-full select-none flex-col items-center justify-center gap-2 overflow-hidden'>
       <HeroTextAnimator />
       <Summary />
       <div className={animator({ name: 'fadeIn', delay: '3s' })}>
@@ -16,7 +16,7 @@ export function HomePage() {
         draggable={false}
         alt='bottom-shine'
         src='/images/background.png'
-        className='rotate-180 absolute bottom-0 -right-2 shine-animation-bottom pointer-events-none blur-lg'
+        className='shine-animation-bottom pointer-events-none absolute bottom-0 right-0 rotate-180 blur-lg'
       />
     </main>
   );
