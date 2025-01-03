@@ -5,16 +5,9 @@ import { clsx } from 'clsx';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { usePathname } from 'next/navigation';
+import { MENU_ITEM_ROUTES } from '@/shared/constants';
+import { BurgerMenuToolsAnimation } from './burger-menu-tools-animation';
 import styles from './burger-menu.module.scss';
-
-const MENU_ITEMS = [
-  { id: 1, title: 'Home', url: '/' },
-  { id: 2, title: 'Posts', url: '/posts' },
-  { id: 3, title: 'Journey', url: '/journey' },
-  { id: 4, title: 'Projects', url: '/projects' },
-  { id: 5, title: 'About Me', url: '/about-me' },
-  { id: 6, title: 'Contact Me', url: '/contact-me' }
-] as const;
 
 const MENU_OUT_ANIMATION_CLASSES = animator({ name: 'fadeOutUp', speed: 'fast' }).split(
   ' '
@@ -56,7 +49,7 @@ export function BurgerMenu() {
   }, [pagePath]);
 
   return (
-    <>
+    <div className='md:hidden'>
       {isActive && (
         <div
           ref={menuRef}
@@ -67,7 +60,7 @@ export function BurgerMenu() {
           )}
         >
           <div className='flex w-full flex-grow flex-col items-center justify-center gap-10 lg:gap-16'>
-            {MENU_ITEMS.map(({ id, title, url }, index) => (
+            {MENU_ITEM_ROUTES.map(({ id, title, url }, index) => (
               <Link
                 key={id}
                 href={url}
@@ -77,22 +70,22 @@ export function BurgerMenu() {
                 className={clsx(
                   titleFont.className,
                   styles['burger-menu__link'],
-                  'relative w-4/5 text-left text-4xl font-bold duration-200 lg:text-6xl',
-                  animator({ name: 'fadeInLeft', speed: 'fast' })
+                  animator({ name: 'fadeInLeft', speed: 'fast' }),
+                  'relative w-4/5 text-left text-4xl font-bold tracking-widest duration-200 lg:text-6xl'
                 )}
               >
                 {title.toUpperCase()}
               </Link>
             ))}
           </div>
-          <div className='flex w-full justify-end overflow-hidden max-md:hidden'></div>
+          <BurgerMenuToolsAnimation />
         </div>
       )}
 
       <button
         onClick={handleToggle}
         className={clsx(
-          'relative mt-16 h-16 w-16 rounded-full p-5',
+          'relative mt-4 h-16 w-16 rounded-full p-5 md:mt-16',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
       >
@@ -114,6 +107,6 @@ export function BurgerMenu() {
           })}
         />
       </button>
-    </>
+    </div>
   );
 }

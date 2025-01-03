@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { animator, isSSR } from '@/shared/helpers';
 import { clsx } from 'clsx';
 
@@ -103,12 +103,16 @@ export function CustomCursor() {
   }, [pointer]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={clsx(
-        'pointer-events-none fixed z-30',
-        animator({ name: 'fadeIn', delay: '1s' })
-      )}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className={clsx(
+          'pointer-events-none fixed z-30',
+          animator({ name: 'fadeIn', delay: '1s' })
+        )}
+      />
+      {/* @ts-expect-error: Unreachable code error */}
+      <click-spark />
+    </>
   );
 }

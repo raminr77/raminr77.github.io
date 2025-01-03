@@ -30,6 +30,7 @@ export default function RootLayout({
 
         {children}
 
+        <Script src='/click-spark.js' />
         <Script src='/service-worker.js' />
       </body>
     </html>
