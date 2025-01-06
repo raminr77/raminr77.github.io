@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
-import { RESUME_FILE } from '@/data/resume-file';
+import { RESUME_FILE } from '@/data';
 
 import styles from './resume-downloader-button.module.scss';
 
@@ -15,7 +15,7 @@ export function ResumeDownloaderButton() {
         styles['resume-downloader-button']
       )}
     >
-      Download Resume
+      {RESUME_FILE.buttonLabel}
     </Link>
   );
 }

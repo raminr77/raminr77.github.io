@@ -15,7 +15,13 @@ export function ContentContainer({
 }: ContentContainerProps) {
   return (
     <main className='flex w-full justify-center overflow-hidden p-5 pt-32 md:pt-40'>
-      <div className={clsx('w-11/12', animator({ name: animationName }), className)}>
+      <div
+        className={clsx(
+          'w-11/12 max-w-screen-lg',
+          animator({ name: animationName }),
+          className
+        )}
+      >
         {children}
       </div>
     </main>
