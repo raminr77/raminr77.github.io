@@ -21,7 +21,13 @@ export function Header() {
             'max-md:hidden': pathname === ROUTES.HOME
           })}
         >
-          <h1 className={clsx('font-bold text-2xl', titleFont.className, animator({ name: 'fadeInLeft' }))}>
+          <h1
+            className={clsx(
+              'text-2xl font-bold',
+              titleFont.className,
+              animator({ name: 'fadeInLeft' })
+            )}
+          >
             {PERSONAL_DATA.fullName}
           </h1>
           <h3 className={clsx('text-lg', animator({ name: 'fadeIn', delay: '1s' }))}>
