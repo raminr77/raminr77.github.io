@@ -23,6 +23,23 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: var(--foreground);
+}
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: #ff8f00;
+}
+
 .shine-animation-top {
   animation: shine 4s infinite ease-in-out;
 }

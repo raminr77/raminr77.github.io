@@ -13,7 +13,7 @@ export function Header() {
   const pageTitle = pageTitleGenerator(pathname);
 
   return (
-    <header className='fixed top-5 z-50 flex w-full items-center justify-center md:mt-10 lg:mt-16'>
+    <header className='fixed top-0 z-50 flex w-full items-center justify-center pt-5 backdrop-blur-sm md:pt-10 lg:pt-16'>
       <nav className='flex w-11/12 flex-row-reverse items-center justify-between p-3'>
         <BurgerMenu />
         <div

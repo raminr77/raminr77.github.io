@@ -15,7 +15,7 @@ export function ResumeDownloaderButton() {
         styles['resume-downloader-button']
       )}
     >
-      {RESUME_FILE.buttonLabel}
+      {RESUME_FILE.actionLabel}
     </Link>
   );
 }
