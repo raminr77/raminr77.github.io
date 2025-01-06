@@ -21,10 +21,12 @@ export function Header() {
             'max-md:hidden': pathname === ROUTES.HOME
           })}
         >
-          <h1 className={clsx(titleFont.className, animator({ name: 'fadeInLeft' }))}>
+          <h1 className={clsx('font-bold text-2xl', titleFont.className, animator({ name: 'fadeInLeft' }))}>
             {PERSONAL_DATA.fullName}
           </h1>
-          <h3 className={animator({ name: 'fadeIn', delay: '1s' })}>{pageTitle}</h3>
+          <h3 className={clsx('text-lg', animator({ name: 'fadeIn', delay: '1s' }))}>
+            {pageTitle}
+          </h3>
         </div>
         <ul className='flex w-full items-center justify-center gap-2 text-xl max-md:hidden'>
           {MENU_ITEM_ROUTES.map(({ id, title, url }, index: number) => (
