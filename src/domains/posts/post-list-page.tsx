@@ -1,7 +1,9 @@
+import { ContentContainer } from '@/layout/components/content-container';
+
 export function PostListPage() {
   return (
-    <main>
+    <ContentContainer>
       <h1>Posts</h1>
-    </main>
+    </ContentContainer>
   );
 }

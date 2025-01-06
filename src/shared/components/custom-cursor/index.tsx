@@ -107,7 +107,7 @@ export function CustomCursor() {
       <canvas
         ref={canvasRef}
         className={clsx(
-          'pointer-events-none fixed z-30',
+          'pointer-events-none fixed left-0 top-0 z-30',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
       />

@@ -1,7 +1,7 @@
+import { animator } from '@/shared/helpers';
 import { Summary } from '@/domains/home/components/summary';
 import { HeroTextAnimator } from '@/domains/home/components/hero-text-animator';
 import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-button';
-import { animator } from '@/shared/helpers';
 
 export function HomePage() {
   return (
@@ -11,13 +11,6 @@ export function HomePage() {
       <div className={animator({ name: 'fadeIn', delay: '3s' })}>
         <ResumeDownloaderButton />
       </div>
-
-      <img
-        draggable={false}
-        alt='bottom-shine'
-        src='/images/background.png'
-        className='shine-animation-bottom pointer-events-none absolute bottom-0 right-0 rotate-180 blur-lg'
-      />
     </main>
   );
 }

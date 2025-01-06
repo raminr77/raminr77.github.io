@@ -1,7 +1,9 @@
+import { ContentContainer } from '@/layout/components/content-container';
+
 export function ProjectsPage() {
   return (
-    <main>
+    <ContentContainer>
       <h1>Projects</h1>
-    </main>
+    </ContentContainer>
   );
 }

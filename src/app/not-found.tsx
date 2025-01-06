@@ -1,11 +1,13 @@
 import Link from 'next/link';
+import { titleFont } from '@/app/fonts';
+import { clsx } from 'clsx';
 
 export default function NotFound() {
   return (
-    <div>
-      <h2>Not Found</h2>
+    <main className='w-full h-dvh flex flex-col items-center justify-center'>
+      <h1 className={clsx(titleFont.className, 'text-4xl font-extrabold')}>Not Found</h1>
       <p>Could not find requested resource</p>
-      <Link href='/'>Return Home</Link>
-    </div>
+      <Link href='/' className='mt-4 pb-1 border-b px-4 leading-10 duration-300 hover:px-8'>Return Home</Link>
+    </main>
   );
 }

@@ -1,8 +1,7 @@
 'use client';
-
-import { useEffect } from 'react';
-import { textFont, titleFont } from '@/app/fonts';
 import { clsx } from 'clsx';
+import { useEffect } from 'react';
+import { titleFont } from '@/app/fonts';
 
 export default function Error({
   error,
@@ -18,10 +17,10 @@ export default function Error({
 
   return (
     <div className='flex h-dvh w-full select-none flex-col items-center justify-center gap-10'>
-      <h2 className={clsx('text-2xl', textFont.className)}>Something went wrong!</h2>
+      <h2 className={clsx('text-4xl font-extrabold', titleFont.className)}>Something went wrong!</h2>
       <button
         className={clsx(
-          'cursor-pointer border-b px-5 leading-10 duration-300 hover:px-8',
+          'cursor-pointer border-b px-4 leading-10 duration-300 hover:px-8',
           titleFont.className
         )}
         onClick={() => reset()}

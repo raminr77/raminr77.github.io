@@ -1,7 +1,9 @@
+import { ContentContainer } from '@/layout/components/content-container';
+
 export function JourneyPage() {
   return (
-    <main>
+    <ContentContainer>
       <h1>Journey</h1>
-    </main>
+    </ContentContainer>
   );
 }

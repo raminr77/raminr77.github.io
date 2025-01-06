@@ -1,6 +1,8 @@
 import React from 'react';
-import type { Metadata } from 'next';
+import Image from 'next/image';
 import Script from 'next/script';
+import type { Metadata } from 'next';
+import { PERSONAL_DATA } from '@/data';
 import { textFont } from '@/app/fonts';
 import { Header } from '@/layout/components/header';
 import { CustomCursor } from '@/shared/components/custom-cursor';
@@ -9,8 +11,8 @@ import 'animate.css';
 import './globals.scss';
 
 export const metadata: Metadata = {
-  title: 'Ramin Rezaei | Software Engineer',
-  description: 'Ramin Rezaei - Software Engineer'
+  title: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`,
+  description: PERSONAL_DATA.pageDescription
 };
 
 export default function RootLayout({
@@ -19,15 +21,25 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={textFont.className}>
-        <img
+        <Image
+          width={830}
+          height={830}
           alt='top-shine'
           draggable={false}
           src='/images/background.png'
-          className='shine-animation-top pointer-events-none absolute -top-6 left-0 blur-md'
+          className='shine-animation-top pointer-events-none fixed left-0 top-0 blur-md'
+        />
+        <Image
+          width={830}
+          height={830}
+          draggable={false}
+          alt='bottom-shine'
+          src='/images/background.png'
+          className='shine-animation-bottom pointer-events-none fixed -bottom-6 right-0 rotate-180 blur-lg'
         />
         <CustomCursor />
-        <Header />
 
+        <Header />
         {children}
 
         <Script src='/click-spark.js' />

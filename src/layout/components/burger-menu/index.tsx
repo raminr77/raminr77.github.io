@@ -9,10 +9,11 @@ import { MENU_ITEM_ROUTES } from '@/shared/constants';
 import { BurgerMenuToolsAnimation } from './burger-menu-tools-animation';
 import styles from './burger-menu.module.scss';
 
-const MENU_OUT_ANIMATION_CLASSES = animator({ name: 'fadeOutUp', speed: 'fast' }).split(
-  ' '
-);
-const LINK_ITEM_OUT_ANIMATION_CLASSES = animator({
+const MENU_OUT_ANIMATION_CLASSES: string[] = animator({
+  name: 'fadeOutUp',
+  speed: 'fast'
+}).split(' ');
+const LINK_ITEM_OUT_ANIMATION_CLASSES: string[] = animator({
   name: 'fadeOutRight',
   speed: 'fast'
 }).split(' ');
@@ -85,7 +86,7 @@ export function BurgerMenu() {
       <button
         onClick={handleToggle}
         className={clsx(
-          'relative mt-4 h-16 w-16 rounded-full p-5 md:mt-16',
+          'relative h-16 w-16 rounded-full p-5',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
       >
