@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { PERSONAL_DATA } from '@/data';
@@ -24,9 +24,7 @@ export function Header() {
           <h1 className={clsx(titleFont.className, animator({ name: 'fadeInLeft' }))}>
             {PERSONAL_DATA.fullName}
           </h1>
-          <h3 className={animator({ name: 'fadeIn', delay: '1s' })}>
-            {pageTitle}
-          </h3>
+          <h3 className={animator({ name: 'fadeIn', delay: '1s' })}>{pageTitle}</h3>
         </div>
         <ul className='flex w-full items-center justify-center gap-2 text-xl max-md:hidden'>
           {MENU_ITEM_ROUTES.map(({ id, title, url }, index: number) => (

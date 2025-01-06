@@ -17,7 +17,9 @@ export default function Error({
 
   return (
     <div className='flex h-dvh w-full select-none flex-col items-center justify-center gap-10'>
-      <h2 className={clsx('text-4xl font-extrabold', titleFont.className)}>Something went wrong!</h2>
+      <h2 className={clsx('text-4xl font-extrabold', titleFont.className)}>
+        Something went wrong!
+      </h2>
       <button
         className={clsx(
           'cursor-pointer border-b px-4 leading-10 duration-300 hover:px-8',
