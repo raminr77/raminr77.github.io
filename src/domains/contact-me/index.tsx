@@ -16,7 +16,7 @@ export function ContactMePage() {
         <div
           className={clsx('w-full text-xl leading-7', animator({ name: 'fadeInLeft' }))}
         >
-          {CONTACT_ME_DATA.TEXTS.map((text: string, index: number) => (
+          {CONTACT_ME_DATA.texts.map((text: string, index: number) => (
             <p
               key={index}
               className={animator({ name: 'fadeInUp' })}
@@ -33,7 +33,7 @@ export function ContactMePage() {
             animator({ name: 'fadeInRight' })
           )}
         >
-          {CONTACT_ME_DATA.LINKS.map(({ title, actionLabel, url }, index: number) => (
+          {CONTACT_ME_DATA.links.map(({ title, actionLabel, url }, index: number) => (
             <div
               key={title}
               className={clsx('flex items-center gap-2', animator({ name: 'fadeInUp' }))}

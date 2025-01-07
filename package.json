@@ -15,12 +15,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
     "animate.css": "^4.1.1",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028"
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "swiper": "^11.2.0"
   },
   "lint-staged": {
     "**/*": [

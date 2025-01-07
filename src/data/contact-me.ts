@@ -1,11 +1,11 @@
 export const CONTACT_ME_DATA = {
-  TEXTS: [
+  texts: [
     'Do you want to keep in touch with each other ?',
     'You can contact me through the communication channels on this page or email me.',
     'If you have an interesting or funny topic, you can send it to me and make me happy.',
     'I will try to answer you as soon as possible ...'
   ],
-  LINKS: [
+  links: [
     {
       title: 'GitHub',
       actionLabel: 'RaminR77',
