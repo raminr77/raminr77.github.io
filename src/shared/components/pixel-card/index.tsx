@@ -36,7 +36,7 @@ export function PixelCard({
       )}
     >
       {children || (
-        <div className='flex w-full flex-col px-5 py-6 justify-center items-center pointer-events-none z-10 gap-1'>
+        <div className='pointer-events-none z-10 flex w-full flex-col items-center justify-center gap-1 px-5 py-6'>
           <h3
             className={clsx(
               'text-2xl font-bold leading-10',
@@ -47,16 +47,18 @@ export function PixelCard({
             {title}
           </h3>
           {description && (
-            <p className={clsx(
-              'text-lg leading-6',
-              animator({ name: 'fadeInUp', delay: '1s' })
-            )}>
+            <p
+              className={clsx(
+                'text-lg leading-6',
+                animator({ name: 'fadeInUp', delay: '1s' })
+              )}
+            >
               {description}
             </p>
           )}
         </div>
       )}
-      <PixelCanvas color={color} className='absolute left-0 top-0 h-full w-full z-0' />
+      <PixelCanvas color={color} className='absolute left-0 top-0 z-0 h-full w-full' />
     </div>
   );
 }

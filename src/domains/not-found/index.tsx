@@ -4,7 +4,7 @@ import { titleFont } from '@/app/fonts';
 
 export function NotFound() {
   return (
-    <main className='flex h-dvh w-full flex-col items-center justify-center relative'>
+    <main className='relative flex h-dvh w-full flex-col items-center justify-center'>
       <h1 className={clsx(titleFont.className, 'text-4xl font-extrabold')}>Not Found</h1>
       <p>Could not find requested resource</p>
       <Link
