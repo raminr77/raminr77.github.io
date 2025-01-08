@@ -1,6 +1,6 @@
 'use client';
 import { clsx } from 'clsx';
-import Link from "next/link";
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
@@ -12,7 +12,10 @@ const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
 
 import styles from './journey-card.module.scss';
 
-const TITLE_CLASSES = clsx('text-2xl font-bold tracking-wide pb-2 border-b mb-3', titleFont.className);
+const TITLE_CLASSES = clsx(
+  'text-2xl font-bold tracking-wide pb-2 border-b mb-3',
+  titleFont.className
+);
 export function JourneyCard({
   data,
   className,
@@ -28,7 +31,7 @@ export function JourneyCard({
   return (
     <div
       className={clsx(
-        'flex w-full max-md:items-center justify-center gap-4 max-md:flex-col max-md:gap-16',
+        'flex w-full justify-center gap-4 max-md:flex-col max-md:items-center max-md:gap-16',
         className
       )}
     >
@@ -80,7 +83,7 @@ export function JourneyCard({
         <div dangerouslySetInnerHTML={{ __html: description }} />
 
         {items && (
-          <ul className='list-disc ml-4 mt-2 leading-8'>
+          <ul className='ml-4 mt-2 list-disc leading-8'>
             {items.map((item: string, index: number) => (
               <li key={index}>{item}</li>
             ))}
