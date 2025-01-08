@@ -7,7 +7,6 @@ import { textFont } from '@/app/fonts';
 import { Header } from '@/layout/components/header';
 import { CustomCursor } from '@/shared/components/custom-cursor';
 
-import 'swiper/css';
 import 'animate.css';
 import './globals.scss';
 
