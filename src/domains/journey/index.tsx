@@ -8,21 +8,39 @@ import { ContentContainer } from '@/layout/components/content-container';
 export function JourneyPage() {
   return (
     <ContentContainer>
-      <h3
+      <h1
         className={clsx(
           'select-none text-center text-3xl',
           titleFont.className,
-          animator({ name: 'fadeInUp' })
+          animator({name: 'fadeInUp'})
         )}
       >
         The Adventure Started ...
+      </h1>
+      <h3
+        className={clsx(
+          titleFont.className,
+          'select-none text-center text-xl mt-4',
+          animator({name: 'fadeIn', delay: '1s' })
+        )}
+      >
+        On a journey to <span className='font-bold text-2xl'>Google</span>, driven by curiosity and a desire to learn more.
       </h3>
 
-      <div className='mt-20 flex flex-col gap-28 pb-40'>
+      <div className='mt-20 flex flex-col gap-28'>
         {JOURNEY_DATA.map((item: JourneyItem, index: number) => (
-          <JourneyCard key={index} order={index + 1} data={item} />
+          <JourneyCard key={index} order={index + 1} data={item}/>
         ))}
       </div>
+
+      <p
+        className={clsx(
+          'select-none text-center text-lg mt-28 mb-40',
+          animator({name: 'fadeIn'})
+        )}
+      >
+        Continuing my journey to Google...
+      </p>
     </ContentContainer>
   );
 }

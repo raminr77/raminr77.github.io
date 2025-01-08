@@ -1,5 +1,6 @@
 'use client';
 import { clsx } from 'clsx';
+import Link from "next/link";
 import dynamic from 'next/dynamic';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
@@ -11,6 +12,7 @@ const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
 
 import styles from './journey-card.module.scss';
 
+const TITLE_CLASSES = clsx('text-2xl font-bold tracking-wide pb-2 border-b mb-3', titleFont.className);
 export function JourneyCard({
   data,
   className,
@@ -21,19 +23,19 @@ export function JourneyCard({
   className?: string;
 }) {
   const animationDelay = `${order * 0.3}s`;
-  const { title, description, date, year } = data;
+  const { title, description, date, year, url, items, location } = data;
 
   return (
     <div
       className={clsx(
-        'flex w-full items-center justify-center gap-4 max-md:flex-col max-md:gap-16',
+        'flex w-full max-md:items-center justify-center gap-4 max-md:flex-col max-md:gap-16',
         className
       )}
     >
       <div
         className={clsx(
           'relative flex h-20 min-h-20 w-20 min-w-20 select-none items-center justify-center overflow-hidden border',
-          styles['journey-card__circle'],
+          styles['journey-card__circle']
         )}
       >
         <h5
@@ -41,7 +43,7 @@ export function JourneyCard({
           className={clsx(
             'pointer-events-none absolute text-xl font-extrabold tracking-wide',
             animator({ name: 'fadeInUp' }),
-            titleFont.className,
+            titleFont.className
           )}
         >
           {year}
@@ -52,17 +54,38 @@ export function JourneyCard({
       <div
         style={{ animationDelay }}
         className={clsx(
-          'relative flex w-full flex-col gap-2',
+          'relative flex w-full flex-col gap-3',
           animator({ name: 'fadeInUp' })
         )}
       >
         <div className='flex select-none flex-col'>
-          <h3 className={clsx('text-2xl font-bold tracking-wide', titleFont.className)}>
-            {title.toUpperCase()}
-          </h3>
-          <span>{date}</span>
+          {url ? (
+            <Link
+              href={url}
+              target='_blank'
+              className={clsx(TITLE_CLASSES, 'text-amber-500')}
+            >
+              {title.toUpperCase()}
+            </Link>
+          ) : (
+            <h3 className={TITLE_CLASSES}>{title.toUpperCase()}</h3>
+          )}
+
+          <div className='flex items-center justify-between'>
+            <span>{location}</span>
+            <span>{date}</span>
+          </div>
         </div>
+
         <div dangerouslySetInnerHTML={{ __html: description }} />
+
+        {items && (
+          <ul className='list-disc ml-4 mt-2 leading-8'>
+            {items.map((item: string, index: number) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
