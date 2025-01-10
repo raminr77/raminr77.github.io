@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
-import { JOURNEY_DATA, type JourneyItem } from '@/data/journey';
+import { JOURNEY_DATA, type JourneyItem } from '@/data';
 import { JourneyCard } from '@/domains/journey/components/journey-card';
 import { ContentContainer } from '@/layout/components/content-container';
 
