@@ -14,18 +14,16 @@ export function JourneyPage() {
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}
-      >
-        {JOURNEY_DATA.title}
-      </h1>
+        dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.title }}
+      />
       <h3
         className={clsx(
           titleFont.className,
           'mt-4 select-none text-center text-xl',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
-      >
-        {JOURNEY_DATA.description}
-      </h3>
+        dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.description }}
+      />
 
       <div className='mt-20 flex flex-col gap-28'>
         {JOURNEY_DATA.items.map((item: JourneyItem, index: number) => (
@@ -38,9 +36,8 @@ export function JourneyPage() {
           'mb-40 mt-28 select-none text-center text-lg',
           animator({ name: 'fadeIn' })
         )}
-      >
-        {JOURNEY_DATA.footer}
-      </p>
+        dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.footer }}
+      />
     </ContentContainer>
   );
 }

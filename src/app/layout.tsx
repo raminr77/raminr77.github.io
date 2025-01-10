@@ -25,6 +25,7 @@ export default function RootLayout({
           width={830}
           height={830}
           alt='top-shine'
+          priority={false}
           draggable={false}
           src='/images/background.png'
           className='shine-animation-top pointer-events-none fixed left-0 top-0 blur-md'
@@ -32,6 +33,7 @@ export default function RootLayout({
         <Image
           width={830}
           height={830}
+          priority={false}
           draggable={false}
           alt='bottom-shine'
           src='/images/background.png'

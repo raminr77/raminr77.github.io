@@ -3,7 +3,7 @@ import { ContentContainer } from '@/layout/components/content-container';
 export function PostListPage() {
   return (
     <ContentContainer>
-      <h1>Posts</h1>
+      <h1 className='text-center'>Coming Soon...</h1>
     </ContentContainer>
   );
 }

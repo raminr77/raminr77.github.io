@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import Link from 'next/link';
 import { titleFont } from '@/app/fonts';
 
-export function NotFound() {
+export function NotFoundPage() {
   return (
     <main className='relative flex h-dvh w-full flex-col items-center justify-center'>
       <h1 className={clsx(titleFont.className, 'text-4xl font-extrabold')}>Not Found</h1>

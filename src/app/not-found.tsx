@@ -1,2 +1,2 @@
-import { NotFound } from '@/domains/not-found';
-export default NotFound;
+import { NotFoundPage } from '@/domains/not-found';
+export default NotFoundPage;
