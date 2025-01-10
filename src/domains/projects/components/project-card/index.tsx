@@ -1,12 +1,25 @@
-import type { ProjectItem } from '@/data';
-import { titleFont } from '@/app/fonts';
+import Link from 'next/link';
 import { clsx } from 'clsx';
-import Link from "next/link";
+import { titleFont } from '@/app/fonts';
+import type { ProjectItem } from '@/data';
+import { animator } from '@/shared/helpers';
 
-export function ProjectCard({ data }: { data: ProjectItem }) {
+export function ProjectCard({
+  data,
+  animationDelay = 0
+}: {
+  data: ProjectItem;
+  animationDelay?: number;
+}) {
   const { role, title, stack, url, isPrivate, description } = data;
   return (
-    <div className='flex flex-col border p-4'>
+    <div
+      className={clsx(
+        'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5',
+        animator({ name: 'fadeIn' })
+      )}
+      style={{ animationDelay: `${animationDelay}s` }}
+    >
       <div className='mb-3 flex flex-col gap-2'>
         <h3 className={titleFont.className}>{title}</h3>
         <p>{role}</p>
@@ -28,7 +41,7 @@ export function ProjectCard({ data }: { data: ProjectItem }) {
           <Link
             href={url}
             target='_blank'
-            className='bg-sky-400/80 inline-block whitespace-nowrap rounded px-2 py-0 text-sm leading-6'
+            className='inline-block whitespace-nowrap rounded bg-sky-400/80 px-2 py-0 text-sm leading-6'
           >
             Demo
           </Link>

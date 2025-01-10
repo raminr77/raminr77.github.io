@@ -26,9 +26,9 @@ export function ProjectsPage() {
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}
       />
 
-      <div className='mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1'>
+      <div className='mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1 overflow-hidden'>
         {PROJECTS_DATA.items.map((item: ProjectItem, index: number) => (
-          <ProjectCard key={index} data={item} />
+          <ProjectCard key={index} data={item} animationDelay={(index + 1) * 0.3} />
         ))}
       </div>
 
