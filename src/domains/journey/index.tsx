@@ -10,7 +10,7 @@ export function JourneyPage() {
     <ContentContainer>
       <h1
         className={clsx(
-          'select-none text-center text-3xl',
+          'select-none text-center text-3xl font-bold',
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}
