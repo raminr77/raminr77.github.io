@@ -1,5 +1,6 @@
-import React, { type ReactNode } from 'react';
+import { clsx } from 'clsx';
 import Image from 'next/image';
+import React, { type ReactNode } from 'react';
 import { ABOUT_ME_CONTENT_TYPE, type AboutMeContentItem } from '@/data';
 
 export const renderContent = (index: number, content: AboutMeContentItem): ReactNode => {
@@ -16,21 +17,24 @@ export const renderContent = (index: number, content: AboutMeContentItem): React
         title={content.title}
         width={content.width}
         height={content.height}
-        className={content.className}
+        className={clsx('my-4', content.className)}
       />
     );
   }
 
   if (content.type === ABOUT_ME_CONTENT_TYPE.list) {
     return (
-      <>
+      <div key={index}>
         <h5>{content.title}</h5>
-        <ul>
+        <ul className='ml-5 mt-2'>
           {content.data.map((listItemContent: string, listItemIndex: number) => (
-            <li key={listItemIndex}>{listItemContent}</li>
+            <li
+              key={listItemIndex}
+              dangerouslySetInnerHTML={{ __html: listItemContent }}
+            />
           ))}
         </ul>
-      </>
+      </div>
     );
   }
 
