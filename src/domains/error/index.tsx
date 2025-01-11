@@ -1,7 +1,12 @@
 'use client';
 import { clsx } from 'clsx';
 import { useEffect } from 'react';
+import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
+
+export const metadata: Metadata = {
+  title: 'Error Page',
+};
 
 export function ErrorPage({
   error,

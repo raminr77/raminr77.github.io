@@ -1,10 +1,15 @@
 import Link from 'next/link';
 import { clsx } from 'clsx';
+import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
-import { PROJECTS_DATA, type ProjectItem } from '@/data';
+import { PROJECTS_DATA, type ProjectItem, PERSONAL_DATA } from '@/data';
 import { ContentContainer } from '@/layout/components/content-container';
 import { ProjectCard } from '@/domains/projects/components/project-card';
+
+export const metadata: Metadata = {
+  title: `${PERSONAL_DATA.fullName} | Projects`,
+};
 
 export function ProjectsPage() {
   return (

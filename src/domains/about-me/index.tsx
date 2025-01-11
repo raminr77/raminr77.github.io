@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { PERSONAL_DATA } from '@/data';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
@@ -10,6 +11,10 @@ import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-bu
 import { renderContent } from './helper';
 
 import styles from './about-me.module.scss';
+
+export const metadata: Metadata = {
+  title: `About ${PERSONAL_DATA.fullName}`,
+};
 
 export function AboutMePage() {
   return (

@@ -1,9 +1,9 @@
 'use client';
-import { useEffect, useRef } from 'react';
 import { clsx } from 'clsx';
 import { gsap } from 'gsap';
 import { PERSONAL_DATA } from '@/data';
 import { titleFont } from '@/app/fonts';
+import { useEffect, useRef } from 'react';
 import { animator } from '@/shared/helpers';
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
 

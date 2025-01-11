@@ -1,6 +1,11 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
+
+export const metadata: Metadata = {
+  title: 'Not Found Page',
+};
 
 export function NotFoundPage() {
   return (

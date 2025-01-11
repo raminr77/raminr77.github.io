@@ -1,9 +1,14 @@
 import { clsx } from 'clsx';
+import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
-import { JOURNEY_DATA, type JourneyItem } from '@/data';
+import { JOURNEY_DATA, type JourneyItem, PERSONAL_DATA } from '@/data';
 import { JourneyCard } from '@/domains/journey/components/journey-card';
 import { ContentContainer } from '@/layout/components/content-container';
+
+export const metadata: Metadata = {
+  title: `${PERSONAL_DATA.fullName} | Journey`,
+};
 
 export function JourneyPage() {
   return (

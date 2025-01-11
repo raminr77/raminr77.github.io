@@ -2,20 +2,25 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { useState } from 'react';
-import { CONTACT_ME_DATA } from '@/data';
+import type { Metadata } from 'next';
 import { useForm } from 'react-hook-form';
 import { animator, notify } from '@/shared/helpers';
 import { Button } from '@/shared/components/button';
+import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
 import { TextInput } from '@/shared/components/text-input';
 import { EMAIL_VALIDATION_REGEX } from '@/shared/constants';
-import { ContentContainer } from '@/layout/components/content-container';
 import { CONTACT_ME_ENDPOINTS } from '@/shared/api/constants';
+import { ContentContainer } from '@/layout/components/content-container';
 
 interface ContactMeForm {
   email: string;
   subject: string;
   message: string;
 }
+
+export const metadata: Metadata = {
+  title: `${PERSONAL_DATA.fullName} | Contact`,
+};
 
 export function ContactMePage() {
   const [loading, setLoading] = useState<boolean>(false);
