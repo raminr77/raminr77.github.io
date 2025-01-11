@@ -7,7 +7,7 @@ import { JourneyCard } from '@/domains/journey/components/journey-card';
 import { ContentContainer } from '@/layout/components/content-container';
 
 export const metadata: Metadata = {
-  title: `${PERSONAL_DATA.fullName} | Journey`,
+  title: `${PERSONAL_DATA.fullName} | Journey`
 };
 
 export function JourneyPage() {

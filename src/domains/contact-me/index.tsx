@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 import type { Metadata } from 'next';
 import { useForm } from 'react-hook-form';
-import { animator, notify } from '@/shared/helpers';
+import { animator } from '@/shared/helpers';
 import { Button } from '@/shared/components/button';
 import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
 import { TextInput } from '@/shared/components/text-input';
 import { EMAIL_VALIDATION_REGEX } from '@/shared/constants';
-import { CONTACT_ME_ENDPOINTS } from '@/shared/api/constants';
 import { ContentContainer } from '@/layout/components/content-container';
+import { sendEmail } from '@/shared/services';
 
 interface ContactMeForm {
   email: string;
@@ -19,16 +19,14 @@ interface ContactMeForm {
 }
 
 export const metadata: Metadata = {
-  title: `${PERSONAL_DATA.fullName} | Contact`,
+  title: `${PERSONAL_DATA.fullName} | Contact`
 };
 
 export function ContactMePage() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
-    formState: {
-      errors
-    },
+    formState: { errors },
     reset,
     register,
     getValues,
@@ -45,18 +43,8 @@ export function ContactMePage() {
 
   const onSubmit = () => {
     setLoading(true);
-    fetch(CONTACT_ME_ENDPOINTS.sendMessage, {
-      method: 'POST',
-      body: JSON.stringify(getValues())
-    })
-      .then((rawResponse: Response) => rawResponse.json())
-      .then(({ message }) => {
-        reset();
-        notify.success({ message });
-      })
-      .catch(({ message }) => {
-        notify.error({ message });
-      })
+    sendEmail(getValues())
+      .then(() => reset())
       .finally(() => setLoading(false));
   };
 
@@ -122,7 +110,7 @@ export function ContactMePage() {
           label='Subject'
           placeholder='Enter your subject'
           error={errors.subject?.message}
-          {...register("subject", {
+          {...register('subject', {
             required: {
               value: true,
               message: 'You must to enter a subject!'
@@ -130,7 +118,7 @@ export function ContactMePage() {
             minLength: {
               value: 10,
               message: 'Your subject should be more than 10 characters'
-            },
+            }
           })}
         />
         <TextInput
@@ -141,7 +129,7 @@ export function ContactMePage() {
           label='Email'
           error={errors.email?.message}
           placeholder='Enter your email address'
-          {...register("email", {
+          {...register('email', {
             pattern: {
               value: EMAIL_VALIDATION_REGEX,
               message: 'Your email address is invalid!'
@@ -160,7 +148,7 @@ export function ContactMePage() {
           label='Message'
           placeholder='Enter your message'
           error={errors.message?.message}
-          {...register("message", {
+          {...register('message', {
             minLength: {
               value: 30,
               message: 'Your message should be more than 30 characters'

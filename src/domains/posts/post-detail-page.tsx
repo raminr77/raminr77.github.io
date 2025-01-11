@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ContentContainer } from '@/layout/components/content-container';
 
 export const metadata: Metadata = {
-  title: 'Post | ',
+  title: 'Post | '
 };
 
 export async function PostDetailPage({ params }: { params: Promise<{ id: string }> }) {

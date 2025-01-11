@@ -8,7 +8,7 @@ import { ContentContainer } from '@/layout/components/content-container';
 import { ProjectCard } from '@/domains/projects/components/project-card';
 
 export const metadata: Metadata = {
-  title: `${PERSONAL_DATA.fullName} | Projects`,
+  title: `${PERSONAL_DATA.fullName} | Projects`
 };
 
 export function ProjectsPage() {
@@ -31,7 +31,7 @@ export function ProjectsPage() {
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}
       />
 
-      <div className='mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1 overflow-hidden'>
+      <div className='mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1'>
         {PROJECTS_DATA.items.map((item: ProjectItem, index: number) => (
           <ProjectCard key={index} data={item} animationDelay={(index + 1) * 0.3} />
         ))}
