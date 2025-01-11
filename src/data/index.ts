@@ -4,3 +4,4 @@ export * from './contact-me';
 export * from './about-me';
 export * from './projects';
 export * from './journey';
+export * from './posts';

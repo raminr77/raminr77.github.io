@@ -40,6 +40,14 @@ body {
   background: #ff8f00;
 }
 
+.Toastify__toast {
+  width: unset;
+  margin: 6px;
+  font-size: 14px;
+  min-height: unset;
+  padding: 12px 20px;
+}
+
 .shine-animation-top {
   animation: shine 4s infinite ease-in-out;
 }

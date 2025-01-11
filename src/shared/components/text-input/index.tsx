@@ -9,8 +9,9 @@ interface TextInputProps {
   tabIndex?: number;
   required?: boolean;
   placeholder?: string;
-  onChange?: (text: string) => void;
+  error?: string | null;
   type?: 'text' | 'password' | 'email' | 'textarea';
+  onChange?: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 const INPUT_CLASSES =
@@ -19,21 +20,19 @@ const INPUT_CLASSES =
 export function TextInput({
   label,
   value,
+  error,
   onChange,
   placeholder,
   tabIndex = 0,
   type = 'text',
   required = false,
-  id = 'text-input'
+  id = 'text-input',
+  ...rest
 }: TextInputProps) {
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    onChange?.(event.target.value);
-  };
-
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col'>
       {label && (
-        <label id={id} className='text-lg'>
+        <label id={id} className='mb-2 text-lg'>
           {label} {required && <span className='text-red-500'>*</span>}
         </label>
       )}
@@ -44,9 +43,12 @@ export function TextInput({
           value={value}
           tabIndex={tabIndex}
           required={required}
-          onChange={handleChange}
+          onChange={onChange}
           placeholder={placeholder}
-          className={INPUT_CLASSES}
+          className={clsx(INPUT_CLASSES, {
+            'border-red-500': !!error
+          })}
+          {...rest}
         />
       ) : (
         <textarea
@@ -54,13 +56,17 @@ export function TextInput({
           rows={4}
           tabIndex={tabIndex}
           required={required}
-          onChange={handleChange}
+          onChange={onChange}
           placeholder={placeholder}
-          className={clsx(INPUT_CLASSES, 'min-h-48 px-4 py-2')}
+          className={clsx(INPUT_CLASSES, 'min-h-48 px-4 py-2', {
+            'border-red-500': !!error
+          })}
+          {...rest}
         >
           {value}
         </textarea>
       )}
+      {error && <span className='text-md ml-1 mt-1 text-red-500'>{error}</span>}
     </div>
   );
 }

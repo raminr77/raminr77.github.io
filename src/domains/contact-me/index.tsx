@@ -1,14 +1,59 @@
 'use client';
 import { clsx } from 'clsx';
 import Link from 'next/link';
+import { useState } from 'react';
 import { CONTACT_ME_DATA } from '@/data';
-import { animator } from '@/shared/helpers';
+import { useForm } from 'react-hook-form';
+import { animator, notify } from '@/shared/helpers';
 import { Button } from '@/shared/components/button';
 import { TextInput } from '@/shared/components/text-input';
+import { EMAIL_VALIDATION_REGEX } from '@/shared/constants';
 import { ContentContainer } from '@/layout/components/content-container';
+import { CONTACT_ME_ENDPOINTS } from '@/shared/api/constants';
+
+interface ContactMeForm {
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export function ContactMePage() {
-  const handleSubmit = () => {};
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const {
+    formState: {
+      errors
+    },
+    reset,
+    register,
+    getValues,
+    handleSubmit
+  } = useForm<ContactMeForm>({
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+    values: {
+      email: '',
+      subject: '',
+      message: ''
+    }
+  });
+
+  const onSubmit = () => {
+    setLoading(true);
+    fetch(CONTACT_ME_ENDPOINTS.sendMessage, {
+      method: 'POST',
+      body: JSON.stringify(getValues())
+    })
+      .then((rawResponse: Response) => rawResponse.json())
+      .then(({ message }) => {
+        reset();
+        notify.success({ message });
+      })
+      .catch(({ message }) => {
+        notify.error({ message });
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
     <ContentContainer title='Contact Me' className='z-40'>
@@ -57,8 +102,12 @@ export function ContactMePage() {
       <form
         className={clsx(
           'mt-5 flex flex-col gap-4',
-          animator({ name: 'fadeIn', delay: '1s' })
+          animator({ name: 'fadeIn', delay: '1s' }),
+          {
+            'pointer-events-none': loading
+          }
         )}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <TextInput
           required
@@ -67,6 +116,17 @@ export function ContactMePage() {
           tabIndex={1}
           label='Subject'
           placeholder='Enter your subject'
+          error={errors.subject?.message}
+          {...register("subject", {
+            required: {
+              value: true,
+              message: 'You must to enter a subject!'
+            },
+            minLength: {
+              value: 10,
+              message: 'Your subject should be more than 10 characters'
+            },
+          })}
         />
         <TextInput
           required
@@ -74,7 +134,18 @@ export function ContactMePage() {
           type='email'
           tabIndex={2}
           label='Email'
+          error={errors.email?.message}
           placeholder='Enter your email address'
+          {...register("email", {
+            pattern: {
+              value: EMAIL_VALIDATION_REGEX,
+              message: 'Your email address is invalid!'
+            },
+            required: {
+              value: true,
+              message: 'You must to enter your email address!'
+            }
+          })}
         />
         <TextInput
           required
@@ -83,9 +154,20 @@ export function ContactMePage() {
           type='textarea'
           label='Message'
           placeholder='Enter your message'
+          error={errors.message?.message}
+          {...register("message", {
+            minLength: {
+              value: 30,
+              message: 'Your message should be more than 30 characters'
+            },
+            required: {
+              value: true,
+              message: 'You must to enter your message!'
+            }
+          })}
         />
         <div className='mt-2 flex w-full justify-end'>
-          <Button label='Submit' type='submit' onClick={handleSubmit} />
+          <Button label='Submit' type='submit' loading={loading} />
         </div>
       </form>
     </ContentContainer>
