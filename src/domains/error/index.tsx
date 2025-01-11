@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
 
 export const metadata: Metadata = {
-  title: 'Error Page',
+  title: 'Ohh Server Error :(',
 };
 
 export function ErrorPage({
