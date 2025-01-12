@@ -32,7 +32,10 @@ export async function PostDetailPage({ params }: { params: Promise<{ id: string 
 
       <p className='mb-5 text-xl'>{post.summary}</p>
 
-      <div className={clsx('text-xl leading-8', styles['post-detail-page__text'])} dangerouslySetInnerHTML={{ __html: post.text }} />
+      <div
+        className={clsx('text-xl leading-8', styles['post-detail-page__text'])}
+        dangerouslySetInnerHTML={{ __html: post.text }}
+      />
 
       <div
         className={clsx(
