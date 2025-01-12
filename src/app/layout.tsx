@@ -21,6 +21,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang='en'>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={textFont.className}>
         <Image
           width={830}
