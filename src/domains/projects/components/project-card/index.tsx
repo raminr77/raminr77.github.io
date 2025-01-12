@@ -24,7 +24,7 @@ export function ProjectCard({
         <h3 className={titleFont.className}>{title}</h3>
         <p>{role}</p>
       </div>
-      <div className='flex flex-wrap gap-3'>
+      <div className='flex select-none flex-wrap gap-3'>
         <span
           className={clsx(
             'inline-block whitespace-nowrap rounded px-2 py-0 text-sm leading-6',
@@ -48,10 +48,10 @@ export function ProjectCard({
         )}
       </div>
       <p className='my-3 grow'>{description}</p>
-      <div className='flex flex-wrap gap-2'>
+      <div className='flex select-none flex-wrap gap-2'>
         {stack.map((item: string, index: number) => (
           <span
-            key={index}
+            key={`${item}-${index}`}
             className='rounded bg-slate-600/50 px-2 py-0 text-xs leading-6'
           >
             {item}

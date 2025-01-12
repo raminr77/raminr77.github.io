@@ -103,7 +103,8 @@ export const PROJECTS_DATA: {
       title: 'CSV Row Printer',
       role: 'Personal Project - Developer',
       stack: ['JavaScript', 'HTML', 'CSS', 'SASS'],
-      description: 'CSV Row Printer is a small tool that helps you upload your CSV files to it and separate the information in each row and print it as a card or output it.'
+      description:
+        'CSV Row Printer is a small tool that helps you upload your CSV files to it and separate the information in each row and print it as a card or output it.'
     }
   ]
 } as const;
