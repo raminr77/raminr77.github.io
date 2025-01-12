@@ -1,0 +1,3 @@
+{
+  "extends": ["prettier", "next/typescript", "next/core-web-vitals"]
+}

@@ -1,0 +1,30 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '- formating your code ...'
+
+npm run format
+
+echo '- checking your code ...'
+
+npm run check-format ||
+(
+    echo '❌ Prettier Check Failed.';
+    false;
+)
+
+npm run check-lint ||
+(
+    echo '❌ ESLint Check Failed.'
+    false; 
+)
+
+npm run check-types ||
+(
+    echo '❌ Failed Type check.'
+    false;
+)
+
+echo '✅ Done.'
+
+yarn lint-staged

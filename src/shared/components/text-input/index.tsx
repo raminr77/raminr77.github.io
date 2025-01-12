@@ -1,0 +1,72 @@
+'use client';
+import { clsx } from 'clsx';
+import type { ChangeEvent } from 'react';
+
+interface TextInputProps {
+  id?: string;
+  value?: string;
+  label?: string;
+  tabIndex?: number;
+  required?: boolean;
+  placeholder?: string;
+  error?: string | null;
+  type?: 'text' | 'password' | 'email' | 'textarea';
+  onChange?: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
+
+const INPUT_CLASSES =
+  'border dark:bg-gray-950/20 bg-gray-50/20 outline-0 indent-2 leading-8 duration-100 focus:border-amber-500 text-lg backdrop-blur-sm';
+
+export function TextInput({
+  label,
+  value,
+  error,
+  onChange,
+  placeholder,
+  tabIndex = 0,
+  type = 'text',
+  required = false,
+  id = 'text-input',
+  ...rest
+}: TextInputProps) {
+  return (
+    <div className='flex flex-col'>
+      {label && (
+        <label id={id} className='mb-2 text-lg'>
+          {label} {required && <span className='text-red-500'>*</span>}
+        </label>
+      )}
+      {type !== 'textarea' ? (
+        <input
+          id={id}
+          type={type}
+          value={value}
+          tabIndex={tabIndex}
+          required={required}
+          onChange={onChange}
+          placeholder={placeholder}
+          className={clsx(INPUT_CLASSES, {
+            'border-red-500': !!error
+          })}
+          {...rest}
+        />
+      ) : (
+        <textarea
+          id={id}
+          rows={4}
+          tabIndex={tabIndex}
+          required={required}
+          onChange={onChange}
+          placeholder={placeholder}
+          className={clsx(INPUT_CLASSES, 'min-h-48 px-4 py-2', {
+            'border-red-500': !!error
+          })}
+          {...rest}
+        >
+          {value}
+        </textarea>
+      )}
+      {error && <span className='text-md ml-1 mt-1 text-red-500'>{error}</span>}
+    </div>
+  );
+}
