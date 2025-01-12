@@ -84,7 +84,7 @@ export const PROJECTS_DATA: {
         'Tailwind'
       ],
       description:
-        'The site introducing the iron sheet production factory with nanotechnology in Iran.'
+        'This project includes detailed product introductions in a professional and multilingual format. One of the challenges in this project is handling the loading of a large number of high-resolution images and generating or editing images on the backend. I am using Python (Django) and Javascript/Typescript (React)'
     },
     {
       id: 4,
@@ -95,6 +95,15 @@ export const PROJECTS_DATA: {
       stack: ['React', 'HTML', 'CSS', 'SASS'],
       description:
         'Online store of security products with the possibility of special authentication for sales representatives in the country and with support for more than 4 different modes of selling goods to representatives and ordinary people.'
+    },
+    {
+      id: 5,
+      url: 'https://github.com/raminr77/csv-row-printer',
+      isPrivate: false,
+      title: 'CSV Row Printer',
+      role: 'Personal Project - Developer',
+      stack: ['JavaScript', 'HTML', 'CSS', 'SASS'],
+      description: 'CSV Row Printer is a small tool that helps you upload your CSV files to it and separate the information in each row and print it as a card or output it.'
     }
   ]
 } as const;
