@@ -8,6 +8,8 @@ import { usePathname } from 'next/navigation';
 import { BurgerMenu } from '@/layout/components/burger-menu';
 import { MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 
+import styles from './header.module.scss';
+
 export function Header() {
   const pathname: string = usePathname();
   const pageTitle = pageTitleGenerator(pathname);
@@ -34,7 +36,12 @@ export function Header() {
             {pageTitle}
           </h3>
         </div>
-        <ul className='flex w-full items-center justify-center gap-2 text-xl max-md:hidden'>
+        <ul
+          className={clsx(
+            'flex w-full items-center justify-center gap-2 text-xl max-md:hidden',
+            styles['header__desktop-items-container']
+          )}
+        >
           {MENU_ITEM_ROUTES.map(({ id, title, url }, index: number) => (
             <li
               key={`${title}-${id}-desktop`}
