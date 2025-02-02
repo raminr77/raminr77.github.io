@@ -47,7 +47,7 @@ export function HeroTextAnimator() {
       <h1
         ref={titleRef}
         className={clsx(
-          'invisible flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl font-extrabold',
+          'invisible flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl mt-10 font-extrabold',
           titleFont.className
         )}
       >
