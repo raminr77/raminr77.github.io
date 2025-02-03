@@ -12,7 +12,10 @@ import 'animate.css';
 import './globals.scss';
 
 export const metadata: Metadata = {
-  title: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`,
+  title: {
+    template: `%s | ${PERSONAL_DATA.title}`,
+    default: PERSONAL_DATA.fullName
+  },
   description: PERSONAL_DATA.pageDescription
 };
 
