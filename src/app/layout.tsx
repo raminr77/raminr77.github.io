@@ -13,8 +13,8 @@ import './globals.scss';
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${PERSONAL_DATA.title}`,
-    default: PERSONAL_DATA.fullName
+    template: `%s | ${PERSONAL_DATA.fullName}`,
+    default: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`
   },
   description: PERSONAL_DATA.pageDescription
 };

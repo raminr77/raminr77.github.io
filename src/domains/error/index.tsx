@@ -1,12 +1,7 @@
 'use client';
 import { clsx } from 'clsx';
 import { useEffect } from 'react';
-import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
-
-export const metadata: Metadata = {
-  title: 'Ohh Server Error :('
-};
 
 export function ErrorPage({
   error,
@@ -22,9 +17,18 @@ export function ErrorPage({
 
   return (
     <div className='flex h-dvh w-full select-none flex-col items-center justify-center gap-10'>
+
       <h2 className={clsx('text-4xl font-extrabold', titleFont.className)}>
         Something went wrong!
       </h2>
+      <p className='text-xl'>
+        We are experiencing an issue in our development process.
+        <br />
+        We are working hard to resolve it as soon as possible.
+        <br />
+        Thank you for your understanding.
+      </p>
+
       <button
         className={clsx(
           'cursor-pointer border-b px-4 leading-10 duration-300 hover:px-8',

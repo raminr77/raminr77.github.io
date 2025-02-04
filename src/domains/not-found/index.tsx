@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
 
 export const metadata: Metadata = {
-  title: 'Not Found Error :('
+  title: 'Not Found Error'
 };
 
 export function NotFoundPage() {

@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
+import type { Metadata } from 'next'
 import { titleFont } from '@/app/fonts';
 import { redirect } from 'next/navigation';
 import { ROUTES } from '@/shared/constants';
@@ -9,7 +10,21 @@ import { ContentContainer } from '@/layout/components/content-container';
 
 import styles from './post-detail-page.module.scss';
 
-export async function PostDetailPage({ params }: { params: Promise<{ id: string }> }) {
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id: postId } = await params;
+  const post: Post | null =
+    POSTS_DATA.find(({ id }: Post) => String(id) === postId) || null;
+
+  return {
+    title: post?.title
+  }
+}
+
+export async function PostDetailPage({ params }: Props) {
   const { id: postId } = await params;
   const post: Post | null =
     POSTS_DATA.find(({ id }: Post) => String(id) === postId) || null;

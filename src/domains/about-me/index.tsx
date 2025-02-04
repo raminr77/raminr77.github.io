@@ -13,7 +13,9 @@ import { renderContent } from './helper';
 import styles from './about-me.module.scss';
 
 export const metadata: Metadata = {
-  title: `About ${PERSONAL_DATA.fullName}`
+  title: {
+    absolute: `About ${PERSONAL_DATA.fullName}`
+  }
 };
 
 export function AboutMePage() {
