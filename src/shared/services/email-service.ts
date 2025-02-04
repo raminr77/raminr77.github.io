@@ -15,19 +15,15 @@ export const sendEmail = (data: requestData) => {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        template_params: data,
-        user_id: process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY,
-        service_id: process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID,
-        template_id: process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID
-      })
+      body: JSON.stringify(data)
     })
+      .then((rawResponse) => rawResponse.json())
       .then((response) => {
-        if (response.status === 200) {
-          notify.success({ message: 'Your message has been sent successfully.' });
+        if (response.success) {
+          notify.success({ message: response.message || 'Your message has been sent successfully.' });
           resolve(response);
         } else {
-          notify.error({ message: 'We could not send your message now!' });
+          notify.error({ message: response.message || 'We could not send your message now!' });
           reject();
         }
       })

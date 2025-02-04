@@ -1,3 +1,3 @@
 export const CONTACT_ME_ENDPOINTS = {
-  sendMessage: 'https://api.emailjs.com/api/v1.0/email/send'
+  sendMessage: 'https://email-api.ramiin.workers.dev/'
 } as const;
