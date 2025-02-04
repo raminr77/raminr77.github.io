@@ -13,7 +13,8 @@ const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
 import styles from './journey-card.module.scss';
 
 const TITLE_CLASSES = clsx(
-  'text-2xl font-bold tracking-wide pb-2 border-b mb-3',
+  styles['journey-card__title'],
+  'text-2xl font-bold tracking-wide pb-2 border-b mb-3 duration-500',
   titleFont.className
 );
 export function JourneyCard({
@@ -31,13 +32,14 @@ export function JourneyCard({
   return (
     <div
       className={clsx(
+        styles['journey-card'],
         'flex w-full justify-center gap-4 max-md:flex-col max-md:items-center max-md:gap-16',
         className
       )}
     >
       <div
         className={clsx(
-          'relative flex h-20 min-h-20 w-20 min-w-20 select-none items-center justify-center overflow-hidden border',
+          'float-animation relative flex h-20 min-h-20 w-20 min-w-20 select-none items-center justify-center overflow-hidden border-2 duration-500',
           styles['journey-card__circle']
         )}
       >

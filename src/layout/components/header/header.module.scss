@@ -6,7 +6,7 @@
     }
 
     &:has(:hover) :not(:hover) {
-      filter: blur(2px);
+      filter: blur(1px);
     }
   }
 }

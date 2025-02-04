@@ -54,6 +54,10 @@ body {
 .shine-animation-bottom {
   animation: shine 6s infinite linear;
 }
+.float-animation {
+  transform: translateY(0px);
+  animation: float 6s ease-in-out infinite;
+}
 @keyframes shine {
   0% {
     opacity: 0.5;
@@ -63,5 +67,16 @@ body {
   }
   100% {
     opacity: 0.5;
+  }
+}
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
   }
 }

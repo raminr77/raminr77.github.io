@@ -1,4 +1,11 @@
 .journey-card {
+
+  &:hover & {
+    &__circle, &__title {
+      border-color: #ff8f00;
+    }
+  }
+
   &__circle {
     border-radius: 60% 40% 30% 70% / 60% 30% 60% 40%;
   }

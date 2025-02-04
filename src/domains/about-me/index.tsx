@@ -1,6 +1,6 @@
+'use client';
 import { clsx } from 'clsx';
 import Image from 'next/image';
-import type { Metadata } from 'next';
 import { PERSONAL_DATA } from '@/data';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
@@ -10,23 +10,22 @@ import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-bu
 
 import { renderContent } from './helper';
 
-import styles from './about-me.module.scss';
+const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
+  ssr: false
+});
 
-export const metadata: Metadata = {
-  title: {
-    absolute: `About ${PERSONAL_DATA.fullName}`
-  }
-};
+import styles from './about-me.module.scss';
+import dynamic from 'next/dynamic';
 
 export function AboutMePage() {
   return (
     <ContentContainer className='text-center'>
-      <div className='flex w-full select-none justify-center'>
+      <div className='relative mb-10 flex w-full select-none justify-center'>
         <Image
           width={384}
           height={480}
           className={clsx(
-            'w-4/5 max-w-96',
+            'pointer-events-none z-20 w-4/5 max-w-96',
             animator({ name: 'fadeIn', speed: 'slow', delay: '1s' })
           )}
           draggable={false}
@@ -34,6 +33,8 @@ export function AboutMePage() {
           alt={PERSONAL_DATA.fullName}
           title={PERSONAL_DATA.fullName}
         />
+
+        <PixelCanvas color='white' className='absolute z-0 h-full w-full' />
       </div>
       <h1
         className={clsx(
