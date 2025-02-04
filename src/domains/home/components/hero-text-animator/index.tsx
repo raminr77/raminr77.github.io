@@ -44,7 +44,7 @@ export function HeroTextAnimator() {
 
   return (
     <div className='flex w-full flex-col items-center justify-center'>
-      <h1
+      <div
         ref={titleRef}
         className={clsx(
           'invisible flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl mt-10 font-extrabold',
@@ -52,15 +52,15 @@ export function HeroTextAnimator() {
         )}
       >
         {HETO_TEXT_CHARACTERS.map(({ id, text, replaceText }) => (
-          <span
+          <h1
             className={styles['hero-text-animator__character']}
             data-text={replaceText}
             key={id}
           >
             {text}
-          </span>
+          </h1>
         ))}
-      </h1>
+      </div>
       <h3
         className={clsx(
           'text-3xl',
