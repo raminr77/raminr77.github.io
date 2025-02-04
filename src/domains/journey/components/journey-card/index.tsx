@@ -53,7 +53,7 @@ export function JourneyCard({
         >
           {year}
         </h5>
-        <PixelCanvas color='yellow' />
+        <PixelCanvas color='yellow' autoPlay />
       </div>
 
       <div

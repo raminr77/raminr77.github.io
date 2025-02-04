@@ -1,6 +1,7 @@
 'use client';
 import { clsx } from 'clsx';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { PERSONAL_DATA } from '@/data';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
@@ -15,7 +16,6 @@ const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
 });
 
 import styles from './about-me.module.scss';
-import dynamic from 'next/dynamic';
 
 export function AboutMePage() {
   return (
@@ -34,7 +34,7 @@ export function AboutMePage() {
           title={PERSONAL_DATA.fullName}
         />
 
-        <PixelCanvas color='white' className='absolute z-0 h-full w-full' />
+        <PixelCanvas playOnes color='white' className='absolute z-0 h-full w-full' />
       </div>
       <h1
         className={clsx(

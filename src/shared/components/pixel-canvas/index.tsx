@@ -14,6 +14,8 @@ export type PixelCanvasColor = keyof typeof COLORS;
 interface PixelCanvasProps {
   gap?: number;
   speed?: number;
+  playOnes?: boolean;
+  autoPlay?: boolean;
   className?: string;
   color?: PixelCanvasColor;
 }
@@ -22,7 +24,9 @@ export default function PixelCanvas({
   gap = 10,
   className,
   speed = 25,
-  color = 'white'
+  color = 'white',
+  autoPlay = false,
+  playOnes = false
 }: PixelCanvasProps) {
   useEffect(() => {
     if (!isSSR()) {
@@ -35,6 +39,8 @@ export default function PixelCanvas({
       <pixel-canvas
         data-gap={gap}
         data-speed={speed}
+        data-play-ones={playOnes}
+        data-auto-play={autoPlay}
         data-colors={COLORS[color]}
       ></pixel-canvas>
     </div>

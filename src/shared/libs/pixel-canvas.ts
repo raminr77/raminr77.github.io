@@ -167,6 +167,12 @@ export class PixelCanvas extends HTMLElement {
     this.resizeObserver.observe(this);
 
     const parent = this.parentElement!;
+
+    if (this.dataset.autoPlay === '') {
+      this.startAnimation('appear');
+      return;
+    }
+
     parent.addEventListener('mouseenter', this);
     parent.addEventListener('mouseleave', this);
 
@@ -214,6 +220,11 @@ export class PixelCanvas extends HTMLElement {
   }
 
   handleEvent(event: Event): void {
+    if (this.dataset.playOnes === '') {
+      this.startAnimation('appear');
+      return;
+    }
+
     if (event.type === 'mouseenter') {
       this.startAnimation('appear');
     } else if (event.type === 'mouseleave') {
