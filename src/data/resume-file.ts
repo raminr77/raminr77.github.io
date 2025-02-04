@@ -1,6 +1,5 @@
 export const RESUME_FILE = {
-  url: '/resume.pdf',
   actionLabel: 'Download Resume',
-  name: 'Software-Engineer-Ramin-Rezaei-CV-2025',
+  url: '/Software-Engineer-Ramin-Rezaei-CV-2025.pdf',
   fileName: 'Software-Engineer-Ramin-Rezaei-CV-2025.pdf'
 } as const;
