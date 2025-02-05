@@ -2,21 +2,21 @@
 import { clsx } from 'clsx';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { PERSONAL_DATA } from '@/data';
 import { titleFont } from '@/app/fonts';
 import { animator } from '@/shared/helpers';
 import { ABOUT_ME_DATA, type AboutMeContentItem } from '@/data';
 import { ContentContainer } from '@/layout/components/content-container';
-import { PERSONAL_DATA, RECOMMENDATIONS, type RecommendationItem } from '@/data';
 import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-button';
 
 import { renderContent } from './helper';
+import { RecommendationSlider } from './components/RecommendationSlider';
 
 const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
   ssr: false
 });
 
 import styles from './about-me.module.scss';
-import {RecommendationCard} from "@/domains/about-me/components/RecommendationCard";
 
 export function AboutMePage() {
   return (
@@ -60,9 +60,12 @@ export function AboutMePage() {
           styles['about-me']
         )}
       >
-        {ABOUT_ME_DATA.content.map((item: AboutMeContentItem, index: number) =>
-          renderContent(index, item)
-        )}
+        {ABOUT_ME_DATA.content.map((item: AboutMeContentItem, index: number) => {
+          if (index === 3) {
+            return (<RecommendationSlider key='linkedIn-Recommendations' />);
+          }
+          return renderContent(index, item);
+        })}
       </div>
 
       <div className='my-10 flex flex-col items-start gap-4'>
@@ -71,13 +74,6 @@ export function AboutMePage() {
       </div>
 
       <br />
-
-      <h3 className={clsx(titleFont.className, 'text-3xl mb-7')}>Recommendations On LinkedIn</h3>
-      <div className='grid grid-cols-1 gap-4'>
-        {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
-          <RecommendationCard key={item.id} data={item} animationDelay={`${(index + 1) * 0.3}s`} />
-        ))}
-      </div>
     </ContentContainer>
   );
 }

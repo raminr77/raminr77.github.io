@@ -11,7 +11,7 @@ export function RecommendationCard({ data, animationDelay = '0s' }: { data: Reco
     <div
       style={{ animationDelay }}
       className={clsx(
-        'flex flex-col gap-2 bg-slate-500/10 drop-shadow-sm shadow-lg p-4 items-start',
+        'flex flex-col gap-2 shadow-lg p-4 items-start border dark:bg-black bg-white',
         animator({ name: 'fadeInUp' })
       )}
     >

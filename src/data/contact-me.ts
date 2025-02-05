@@ -5,6 +5,7 @@ export const CONTACT_ME_DATA = {
     'If you have an interesting or funny topic, you can send it to me and make me happy.',
     'I will try to answer you as soon as possible ...'
   ],
+  linkedInURL: 'https://www.linkedin.com/in/raminr77/',
   links: [
     {
       title: 'GitHub',
