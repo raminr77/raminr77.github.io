@@ -31,7 +31,7 @@ export function JourneyPage() {
       />
 
       <div className='mt-20 flex flex-col gap-28'>
-        {JOURNEY_DATA.items.map((item: JourneyItem, index: number) => (
+        {JOURNEY_DATA.items.reverse().map((item: JourneyItem, index: number) => (
           <JourneyCard key={index} order={index + 1} data={item} />
         ))}
       </div>

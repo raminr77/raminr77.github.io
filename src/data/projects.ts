@@ -105,6 +105,16 @@ export const PROJECTS_DATA: {
       stack: ['JavaScript', 'HTML', 'CSS', 'SASS'],
       description:
         'CSV Row Printer is a small tool that helps you upload your CSV files to it and separate the information in each row and print it as a card or output it.'
+    },
+    {
+      id: 6,
+      url: 'https://github.com/raminr77/raminr77.github.io',
+      isPrivate: false,
+      title: 'Personal Website ( this one )',
+      role: 'Personal Project - Developer',
+      stack: ['JavaScript', 'HTML', 'CSS', 'SASS', 'Gsap', 'React 19', 'Tailwind CSS', 'Next JS 15', 'Cloudflare Workers'],
+      description:
+        'Built a modern personal website using React 19, Next.js 15, Tailwind CSS, and GSAP, with Cloudflare Workers for serverless functions, ensuring high performance and smooth animations.'
     }
   ]
 } as const;
