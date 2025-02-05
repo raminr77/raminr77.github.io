@@ -20,7 +20,7 @@ export function RecommendationCard({ data, animationDelay = '0s' }: { data: Reco
           <h4 className={clsx(titleFont.className, 'text-xl font-bold')}>{fullname.toUpperCase()}</h4>
         </Link>
         <p>{title}</p>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-2 flex-wrap'>
           <span>{caption}</span>
           <span>( {date} )</span>
         </div>

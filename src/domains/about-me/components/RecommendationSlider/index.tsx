@@ -24,7 +24,7 @@ export function RecommendationSlider() {
         modules={[EffectCards, Navigation]}
       >
         {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
-          <SwiperSlide key={item.id} className='px-12'>
+          <SwiperSlide key={item.id} className='md:px-12'>
             <RecommendationCard data={item} animationDelay={`${(index + 1) * 0.3}s`} />
           </SwiperSlide>
         ))}
