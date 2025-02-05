@@ -16,7 +16,12 @@ export const metadata: Metadata = {
     template: `%s | ${PERSONAL_DATA.fullName}`,
     default: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`
   },
-  description: PERSONAL_DATA.pageDescription
+  description: PERSONAL_DATA.pageDescription,
+  keywords: [ ...PERSONAL_DATA.keywords ],
+  authors: {
+    url: PERSONAL_DATA.url,
+    name: PERSONAL_DATA.fullName
+  }
 };
 
 export default function RootLayout({
