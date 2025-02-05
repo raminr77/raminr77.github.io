@@ -17,11 +17,16 @@ export const metadata: Metadata = {
     default: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`
   },
   description: PERSONAL_DATA.pageDescription,
-  keywords: [ ...PERSONAL_DATA.keywords ],
+  keywords: [
+    ...PERSONAL_DATA.persianKeywords,
+    ...PERSONAL_DATA.englishKeywords,
+    ...PERSONAL_DATA.swedishKeywords
+  ],
   authors: {
     url: PERSONAL_DATA.url,
     name: PERSONAL_DATA.fullName
-  }
+  },
+  applicationName: PERSONAL_DATA.fullName
 };
 
 export default function RootLayout({
