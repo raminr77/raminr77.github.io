@@ -34,7 +34,7 @@ export function AboutMePage() {
           title={PERSONAL_DATA.fullName}
         />
 
-        <PixelCanvas playOnes color='white' className='absolute z-0 h-full w-full' />
+        <PixelCanvas playOnes color='white' className='absolute z-0 h-full w-full invert dark:invert-0' />
       </div>
       <h1
         className={clsx(

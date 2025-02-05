@@ -34,7 +34,7 @@ export function PostCard({
           {tags.map((tag: string, index: number) => (
             <span
               key={`${id}-${tag}-${index}`}
-              className='rounded bg-slate-600/50 px-2 py-0 text-xs leading-6'
+              className='rounded bg-slate-100 dark:bg-slate-600/50 px-2 py-0 text-xs leading-6'
             >
               {tag}
             </span>

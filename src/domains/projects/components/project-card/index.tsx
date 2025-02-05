@@ -52,7 +52,7 @@ export function ProjectCard({
         {stack.map((item: string, index: number) => (
           <span
             key={`${item}-${index}`}
-            className='rounded bg-slate-600/50 px-2 py-0 text-xs leading-6'
+            className='rounded bg-slate-100 dark:bg-slate-600/50 px-2 py-0 text-xs leading-6'
           >
             {item}
           </span>
