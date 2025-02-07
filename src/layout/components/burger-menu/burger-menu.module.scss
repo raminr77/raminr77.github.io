@@ -1,0 +1,97 @@
+.burger-menu {
+  &__button-content {
+    direction: rtl;
+
+    &::after,
+    &::before {
+      content: '';
+      height: 1px;
+      display: block;
+      position: relative;
+      transition: transform 0.3s;
+      background-color: var(--foreground);
+    }
+
+    &::after {
+      top: -5px;
+      width: 12px;
+    }
+
+    &::before {
+      top: 5px;
+    }
+
+    &--is-active {
+      &::after {
+        top: -1px;
+        width: 100%;
+        transform: rotate(45deg);
+      }
+
+      &::before {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &__button-outline-1 {
+    animation: morph 3s infinite linear;
+    border-radius: 60% 40% 30% 70% / 60% 30% 60% 40%;
+  }
+
+  &__button-outline-2 {
+    border-radius: 53% 47% 43% 57% / 51% 39% 61% 49%;
+  }
+
+  &__content-container {
+    animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  &__link {
+    &:hover {
+      &:before,
+      &:after {
+        opacity: 1;
+        animation: grow-line 0.2s ease-in forwards;
+      }
+    }
+    &:before,
+    &:after {
+      left: 0;
+      opacity: 0;
+      height: 4px;
+      content: '';
+      bottom: -10px;
+      position: absolute;
+      border-radius: 100px;
+      background-color: #ff8f00;
+      transition-duration: 0.2s;
+    }
+    &:after {
+      z-index: -1;
+      opacity: 0.8;
+      filter: blur(10px);
+      box-shadow: 0 0 30px #ff8f00;
+    }
+  }
+}
+@keyframes grow-line {
+  from {
+    width: 0;
+  }
+  to {
+    width: 150px;
+  }
+}
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}

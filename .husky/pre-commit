@@ -1,6 +1,10 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo '- formating your code ...'
+
+npm run format
+
 echo '- checking your code ...'
 
 npm run check-format ||
@@ -11,8 +15,8 @@ npm run check-format ||
 
 npm run check-lint ||
 (
-        echo '❌ ESLint Check Failed.'
-        false; 
+    echo '❌ ESLint Check Failed.'
+    false; 
 )
 
 npm run check-types ||

@@ -1,20 +1,13 @@
-import { PropsWithChildren } from 'react';
-
-export {};
-
-declare global {
-  type GID = string | number;
-  interface GCommonCompnentProperties {
-    className?: string;
-    style?: CSSProperties;
-  }
-
-  type GCommonCompnentPropertiesWithChildren =
-    PropsWithChildren<GCommonCompnentProperties>;
-
-  type GVoidFunction = () => void;
-
-  interface Window {
-    dataLayer: Record<string, any>[];
+declare namespace JSX {
+  interface IntrinsicElements {
+    'pixel-canvas': React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLElement>,
+      HTMLElement
+    > & {
+      className?: string;
+      'data-gap'?: number;
+      'data-speed'?: number;
+      'data-colors'?: string;
+    };
   }
 }

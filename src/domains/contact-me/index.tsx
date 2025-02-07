@@ -1,183 +1,163 @@
-import { useState } from 'react';
+'use client';
+import { clsx } from 'clsx';
 import Link from 'next/link';
-import classNames from 'classnames';
-import Swal from 'sweetalert2';
-import { PageContainer } from '@/app/layout/page-container';
-import { CONTACT_ME_DATA } from '@/data/contact-me';
-import { Input } from '@/shared/components/input';
-import { CRO_DATA } from '@/shared/constants/cro';
-import { EMAIL_CONFIG, EMAIL_SERVER } from '@/shared/constants/email';
-import { GA_EVENT_NAMES } from '@/shared/constants/ga';
-import { gaEvent } from '@/shared/services/ga';
-import { animator } from '@/shared/utils/animator';
+import { useState } from 'react';
+import { CONTACT_ME_DATA } from '@/data';
+import { useForm } from 'react-hook-form';
+import { animator } from '@/shared/helpers';
+import { Button } from '@/shared/components/button';
+import { TextInput } from '@/shared/components/text-input';
+import { EMAIL_VALIDATION_REGEX } from '@/shared/constants';
+import { ContentContainer } from '@/layout/components/content-container';
+import { sendEmail } from '@/shared/services';
+
+interface ContactMeForm {
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export function ContactMePage() {
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    subject: '',
-    message: '',
-    email: ''
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const {
+    formState: { errors },
+    reset,
+    register,
+    getValues,
+    handleSubmit
+  } = useForm<ContactMeForm>({
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+    values: {
+      email: '',
+      subject: '',
+      message: ''
+    }
   });
 
-  const emailValidation = (email = '') => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      return true;
-    }
-    return false;
-  };
-
-  const changeInputs = ({ name, value }: { name: string; value: string }) => {
-    if (!name) return;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const submit = () => {
-    if (!formData.subject || !formData.message) {
-      Swal.fire({
-        timer: 4000,
-        icon: 'error',
-        showCloseButton: true,
-        showCancelButton: false,
-        showConfirmButton: false,
-        text: 'The Subject and Message Should Be Not Empty.'
-      });
-      return;
-    }
-
-    if (!emailValidation(formData.email)) {
-      Swal.fire({
-        timer: 4000,
-        icon: 'error',
-        showCloseButton: true,
-        showCancelButton: false,
-        showConfirmButton: false,
-        text: 'Please, Enter A Valid Email Address.'
-      });
-      return;
-    }
+  const onSubmit = () => {
     setLoading(true);
-
-    gaEvent({ action: GA_EVENT_NAMES.SUBMIT_CONTACT_ME_FORM, params: { ...formData } });
-
-    fetch(EMAIL_SERVER, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: EMAIL_CONFIG.PUBLIC_KEY,
-        service_id: EMAIL_CONFIG.SERVICE_ID,
-        template_id: EMAIL_CONFIG.TEMPLATE_ID,
-        template_params: formData
-      })
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          setFormData({ email: '', subject: '', message: '' });
-          Swal.fire({
-            timer: 4000,
-            icon: 'success',
-            showCloseButton: true,
-            showConfirmButton: false,
-            text: 'Your Message Sent Successfully.'
-          });
-        } else {
-          Swal.fire({
-            timer: 4000,
-            icon: 'error',
-            showCloseButton: true,
-            showConfirmButton: false,
-            text: 'Server Error, Please Try Again ...'
-          });
-        }
-      })
+    sendEmail(getValues())
+      .then(() => reset())
       .finally(() => setLoading(false));
   };
 
   return (
-    <PageContainer title='Contact' animationName='fadeIn'>
-      <div
-        className={classNames('w-10/12 mx-auto mt-5 select-none', {
-          'pointer-events-none': loading
-        })}
-      >
-        <h3 className='font-title-bold text-2xl mb-3'>Contact Me</h3>
-        <div className='w-full mb-4 flex lg:gap-x-6 gap-y-6 lg:justify-between lg:flex-row flex-col'>
-          <div
-            className='leading-7'
-            dangerouslySetInnerHTML={{ __html: CONTACT_ME_DATA.TEXT }}
-          />
-          <ul
-            className={classNames(
-              animator({ name: 'fadeIn' }),
-              'border border-solid border-white p-5 min-w-fit'
-            )}
-          >
-            {CONTACT_ME_DATA.LINKS.map((item, index) => (
-              <li key={index} className='flex items-center text-sm leading-7'>
-                <p>{item.title}</p>
-                <p className='ml-1 mr-2'>:</p>
-                <Link
-                  data-cro-id={CRO_DATA.CLICK_CONTACT_US_LINKS}
-                  href={item.url}
-                  target='_blank'
-                  className='text-sky-500'
-                >
-                  {item.actionText}
-                </Link>
-              </li>
-            ))}
-          </ul>
+    <ContentContainer title='Contact Me' className='z-40'>
+      <div className='flex gap-5 max-lg:flex-wrap'>
+        <div
+          className={clsx('w-full text-xl leading-7', animator({ name: 'fadeInLeft' }))}
+        >
+          {CONTACT_ME_DATA.texts.map((text: string, index: number) => (
+            <p
+              key={index}
+              className={animator({ name: 'fadeInUp' })}
+              style={{ animationDelay: `${(index + 1) * 0.3}s` }}
+            >
+              {text}
+            </p>
+          ))}
         </div>
-        <Input
-          required
-          name='subject'
-          label='Subject'
-          inputClassName='mb-4'
-          onChange={changeInputs}
-          value={formData.subject}
-          placeholder='Your Subject'
-        />
-        <Input
-          required
-          name='email'
-          label='Email'
-          inputClassName='mb-4'
-          value={formData.email}
-          onChange={changeInputs}
-          placeholder='Your Email Address'
-        />
-        <Input
-          rows={6}
-          required
-          isMultiRow
-          name='message'
-          label='Message'
-          inputClassName='mb-4'
-          onChange={changeInputs}
-          value={formData.message}
-          placeholder='Your Message ...'
-        />
-        <div className='w-full flex justify-end'>
-          <button
-            type='button'
-            onClick={submit}
-            disabled={loading}
-            data-cro-id={CRO_DATA.CLICK_CONTACT_US_SUBMIT}
-            className={classNames(
-              'bg-white leading-10 hover:bg-black hover:text-white text-black w-full lg:max-w-xs border border-solid border-white',
-              {
-                'opacity-60 pointer-events-none': loading
-              }
-            )}
-          >
-            {loading ? 'Pending ...' : 'Submit'}
-          </button>
-          <br />
+
+        <div
+          className={clsx(
+            'text-md flex select-none flex-col gap-3 bg-transparent',
+            animator({ name: 'fadeInRight' })
+          )}
+        >
+          {CONTACT_ME_DATA.links.map(({ title, actionLabel, url }, index: number) => (
+            <div
+              key={title}
+              className={clsx('flex items-center gap-2', animator({ name: 'fadeInUp' }))}
+              style={{ animationDelay: `${(index + 1) * 0.3}s` }}
+            >
+              <h3>{title}:</h3>
+              <Link
+                href={url}
+                target='_blank'
+                className={clsx('text-md whitespace-nowrap text-amber-500', {
+                  'pointer-events-none': !url
+                })}
+              >
+                {actionLabel}
+              </Link>
+            </div>
+          ))}
         </div>
-        <br />
       </div>
-    </PageContainer>
+
+      <form
+        className={clsx(
+          'mt-5 flex flex-col gap-4',
+          animator({ name: 'fadeIn', delay: '1s' }),
+          {
+            'pointer-events-none': loading
+          }
+        )}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <TextInput
+          required
+          type='text'
+          id='subject'
+          tabIndex={1}
+          label='Subject'
+          placeholder='Enter your subject'
+          error={errors.subject?.message}
+          {...register('subject', {
+            required: {
+              value: true,
+              message: 'You must to enter a subject!'
+            },
+            minLength: {
+              value: 10,
+              message: 'Your subject should be more than 10 characters'
+            }
+          })}
+        />
+        <TextInput
+          required
+          id='email'
+          type='email'
+          tabIndex={2}
+          label='Email'
+          error={errors.email?.message}
+          placeholder='Enter your email address'
+          {...register('email', {
+            pattern: {
+              value: EMAIL_VALIDATION_REGEX,
+              message: 'Your email address is invalid!'
+            },
+            required: {
+              value: true,
+              message: 'You must to enter your email address!'
+            }
+          })}
+        />
+        <TextInput
+          required
+          tabIndex={3}
+          id='message'
+          type='textarea'
+          label='Message'
+          placeholder='Enter your message'
+          error={errors.message?.message}
+          {...register('message', {
+            minLength: {
+              value: 30,
+              message: 'Your message should be more than 30 characters'
+            },
+            required: {
+              value: true,
+              message: 'You must to enter your message!'
+            }
+          })}
+        />
+        <div className='mt-2 flex w-full justify-end'>
+          <Button label='Submit' type='submit' loading={loading} />
+        </div>
+      </form>
+    </ContentContainer>
   );
 }

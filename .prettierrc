@@ -11,8 +11,10 @@
   "requireConfig": false,
   "trailingComma": "none",
   "editor.formatOnSave": true,
+  "importOrderSeparation": true,
   "html.format.wrapLineLength": 80,
   "importOrderSortSpecifiers": true,
+  "plugins": ["prettier-plugin-tailwindcss"],
   "html.format.wrapAttributes": "force-expand-multiline",
-  "importOrder": ["^react", "^next" ,"<THIRD_PARTY_MODULES>", "^@/", "^[./]"]
+  "importOrder": ["^react", "^next", "<THIRD_PARTY_MODULES>", "^@/", "^[./]"]
 }

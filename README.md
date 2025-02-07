@@ -1,15 +1,12 @@
-# RaminRezaei.ir
+# Rsmin Rezaei - Personal Website!
 
-Ramin Rezaei Personal Page.
+### Welcome to the repository for my personal website.
 
-### [LinkedIn Page](https://www.linkedin.com/in/raminr77/)
-
-### Technologies:
-
--   Next JS
--   React JS
--   TypeScript
--   Tailwind CSS
--   SASS Modules
-
-#### [Show Project](https://raminrezaei.ir)
+This project launched on 11 Jun ( My Birthday )
+<br />
+This project introduces me, **Rsmin Rezaei**, as a **Software Engineer** and showcases my work, skills, and experiences.
+<br />
+I tried to develop all the parts of this project by myself and learn from it.
+<br />
+<br />
+URL: [RaminRezaei.se](https://raminrezaei.ir)
