@@ -5,7 +5,7 @@ import { animator } from "@/shared/helpers";
 import type { RecommendationItem } from "@/data";
 
 export function RecommendationCard({ data, animationDelay = '0s' }: { data: RecommendationItem; animationDelay?: string }) {
-  const { url, text, date, title, caption, fullname } = data;
+  const { url, text, date, title, caption, fullName } = data;
 
   return (
     <div
@@ -17,7 +17,7 @@ export function RecommendationCard({ data, animationDelay = '0s' }: { data: Reco
     >
       <div className='flex flex-col gap-1 w-full text-left border-b pb-4 mb-2'>
         <Link href={url} target='_blank' rel='noopener noreferrer' className="text-amber-500">
-          <h4 className={clsx(titleFont.className, 'text-xl font-bold')}>{fullname.toUpperCase()}</h4>
+          <h4 className={clsx(titleFont.className, 'text-xl font-bold')}>{fullName.toUpperCase()}</h4>
         </Link>
         <p>{title}</p>
         <div className='flex items-center gap-2 flex-wrap'>
