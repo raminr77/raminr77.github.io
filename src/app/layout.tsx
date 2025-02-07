@@ -6,6 +6,7 @@ import { PERSONAL_DATA } from '@/data';
 import { textFont } from '@/app/fonts';
 import { ToastContainer } from 'react-toastify';
 import { Header } from '@/layout/components/header';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { CustomCursor } from '@/shared/components/custom-cursor';
 
 import 'animate.css';
@@ -58,6 +59,7 @@ export default function RootLayout({
         <Header />
         {children}
 
+        <SpeedInsights />
         <ToastContainer position='bottom-center' theme='colored' />
         <Script src='/click-spark.js' />
         <Script src='/service-worker.js' />
