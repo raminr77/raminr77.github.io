@@ -1,5 +1,8 @@
+'use client';
 import { clsx } from 'clsx';
 import { RESUME_FILE } from '@/data';
+import { GTM_EVENTS } from '@/shared/constants';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 import styles from './resume-downloader-button.module.scss';
 
@@ -9,6 +12,7 @@ export function ResumeDownloaderButton() {
       target='_blank'
       href={RESUME_FILE.url}
       download={RESUME_FILE.fileName}
+      onClick={() => sendGTMEvent(GTM_EVENTS.DOWNLOAD_RESUME)}
       className={clsx(
         'relative block rounded px-4 text-xl leading-10 duration-500',
         styles['resume-downloader-button']

@@ -5,11 +5,12 @@ import { useState } from 'react';
 import { CONTACT_ME_DATA } from '@/data';
 import { useForm } from 'react-hook-form';
 import { animator } from '@/shared/helpers';
-import { Button } from '@/shared/components/button';
-import { TextInput } from '@/shared/components/text-input';
-import { EMAIL_VALIDATION_REGEX } from '@/shared/constants';
-import { ContentContainer } from '@/layout/components/content-container';
 import { sendEmail } from '@/shared/services';
+import { Button } from '@/shared/components/button';
+import { sendGTMEvent } from '@next/third-parties/google';
+import { TextInput } from '@/shared/components/text-input';
+import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
+import { ContentContainer } from '@/layout/components/content-container';
 
 interface ContactMeForm {
   email: string;
@@ -38,6 +39,8 @@ export function ContactMePage() {
 
   const onSubmit = () => {
     setLoading(true);
+    sendGTMEvent(GTM_EVENTS.SEND_MESSAGE);
+
     sendEmail(getValues())
       .then(() => reset())
       .finally(() => setLoading(false));

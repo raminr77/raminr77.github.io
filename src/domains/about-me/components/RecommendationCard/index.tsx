@@ -4,11 +4,15 @@ import Image from "next/image";
 import { titleFont } from "@/app/fonts";
 import { animator } from "@/shared/helpers";
 import type { RecommendationItem } from "@/data";
+import { sendGTMEvent } from '@next/third-parties/google';
 
 import styles from './recommendation-card.module.scss';
+import { GTM_EVENTS } from '@/shared/constants';
 
 export function RecommendationCard({ data, animationDelay = '0s' }: { data: RecommendationItem; animationDelay?: string }) {
   const { url, text, date, title, caption, fullName, imageURL } = data;
+
+  const sendEvent = () => sendGTMEvent(GTM_EVENTS.LINKEDIN_RECOMMENDATION(fullName));
 
   return (
     <div
@@ -26,7 +30,7 @@ export function RecommendationCard({ data, animationDelay = '0s' }: { data: Reco
         )}
       >
         {imageURL && (
-          <Link href={url} target='_blank' rel='noopener noreferrer'>
+          <Link onClick={sendEvent} href={url} target='_blank' rel='noopener noreferrer'>
             <Image
               width={100}
               height={100}
@@ -40,6 +44,7 @@ export function RecommendationCard({ data, animationDelay = '0s' }: { data: Reco
           <Link
             href={url}
             target='_blank'
+            onClick={sendEvent}
             rel='noopener noreferrer'
             className='text-amber-500'
           >
@@ -60,6 +65,7 @@ export function RecommendationCard({ data, animationDelay = '0s' }: { data: Reco
       <Link
         href={url}
         target='_blank'
+        onClick={sendEvent}
         rel='noopener noreferrer'
         className='text-amber-500'
       >
