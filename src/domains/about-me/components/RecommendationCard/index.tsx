@@ -3,11 +3,11 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import { titleFont } from "@/app/fonts";
 import { animator } from "@/shared/helpers";
+import { GTM_EVENTS } from '@/shared/constants';
 import type { RecommendationItem } from "@/data";
 import { sendGTMEvent } from '@next/third-parties/google';
 
 import styles from './recommendation-card.module.scss';
-import { GTM_EVENTS } from '@/shared/constants';
 
 export function RecommendationCard({ data, animationDelay = '0s' }: { data: RecommendationItem; animationDelay?: string }) {
   const { url, text, date, title, caption, fullName, imageURL } = data;
