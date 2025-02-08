@@ -1,15 +1,15 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { titleFont } from '@/app/fonts';
+import { animator } from '@/shared/helpers';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards, Navigation } from 'swiper/modules';
 import { RECOMMENDATIONS, type RecommendationItem, CONTACT_ME_DATA } from '@/data';
-import { RecommendationCard } from '../RecommendationCard';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-cards';
-import { animator } from '@/shared/helpers';
+import { RecommendationCard } from '../RecommendationCard';
 
 export function RecommendationSlider() {
   return (

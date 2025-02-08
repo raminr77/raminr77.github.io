@@ -4,9 +4,10 @@ import { isSSR } from '@/shared/helpers';
 
 const COLORS = {
   white: '#ffffff',
-  red: '#fecdd3, #fda4af, #e11d48',
+  red: '#fca5a5, #ef4444, #7f1d1d',
   blue: '#e0f2fe, #7dd3fc, #0ea5e9',
-  yellow: '#fef08a, #fde047, #eab308'
+  green: '#bbf7d0, #4ade80, #166534',
+  yellow: '#fef08a, #fde047, #eab308',
 } as const;
 
 export type PixelCanvasColor = keyof typeof COLORS;
