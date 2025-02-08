@@ -7,8 +7,8 @@ import { textFont } from '@/app/fonts';
 import { ToastContainer } from 'react-toastify';
 import { Header } from '@/layout/components/header';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { CustomCursor } from '@/shared/components/custom-cursor';
+import { GoogleAnalytics, GoogleTagManager  } from '@next/third-parties/google';
 
 import 'animate.css';
 import './globals.scss';
@@ -66,6 +66,7 @@ export default function RootLayout({
         <Script src='/click-spark.js' />
         <Script src='/service-worker.js' />
         <GoogleAnalytics gaId="G-K7FM8D9D43" />
+        <GoogleTagManager gtmId="GTM-W8BNDMMW" />
       </body>
     </html>
   );
