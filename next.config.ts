@@ -1,4 +1,4 @@
-import {withSentryConfig} from '@sentry/nextjs';
+import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
@@ -29,10 +29,10 @@ const nextConfig: NextConfig = {
 };
 
 export default withSentryConfig(nextConfig, {
-  org: "ramin-zone",
-  disableLogger: true,
-  silent: !process.env.CI,
-  project: "personal-site",
-  widenClientFileUpload: true,
-  automaticVercelMonitors: true
+    org: 'ramin-zone',
+    disableLogger: true,
+    silent: !process.env.CI,
+    project: 'personal-site',
+    widenClientFileUpload: true,
+    automaticVercelMonitors: true
 });
