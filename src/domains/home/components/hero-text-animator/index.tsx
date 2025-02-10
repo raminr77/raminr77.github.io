@@ -15,9 +15,9 @@ export function HeroTextAnimator() {
   useEffect(() => {
     if (titleRef.current) {
       const titleElement = titleRef.current;
-      const textCharacters = titleElement.querySelectorAll('span');
-      const replaceCharacters = titleRef.current.querySelectorAll(
-        'span:not([data-text="."])'
+      const textCharacters = titleElement.querySelectorAll('h1');
+      const replaceCharacters = titleElement.querySelectorAll(
+        'h1:not([data-text="."])'
       );
 
       const timeline = gsap.timeline();
