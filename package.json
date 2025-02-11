@@ -31,7 +31,9 @@
   },
   "lint-staged": {
     "**/*": [
-      "prettier --write ."
+      "prettier --write .",
+      "tsc --pretty --noEmit --project ./",
+      "eslint ./src/* --ext ts --ext tsx --ext js"
     ]
   },
   "devDependencies": {
