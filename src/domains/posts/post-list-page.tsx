@@ -7,7 +7,7 @@ import { PostCard } from '@/domains/posts/components/post-card';
 import { ContentContainer } from '@/layout/components/content-container';
 
 export const metadata: Metadata = {
-  title: 'Posts',
+  title: 'Posts'
 };
 
 export async function PostListPage() {
