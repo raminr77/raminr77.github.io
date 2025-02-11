@@ -16,9 +16,7 @@ export function HeroTextAnimator() {
     if (titleRef.current) {
       const titleElement = titleRef.current;
       const textCharacters = titleElement.querySelectorAll('h1');
-      const replaceCharacters = titleElement.querySelectorAll(
-        'h1:not([data-text="."])'
-      );
+      const replaceCharacters = titleElement.querySelectorAll('h1:not([data-text="."])');
 
       const timeline = gsap.timeline();
       timeline.set(titleElement, { autoAlpha: 1 });
@@ -47,7 +45,7 @@ export function HeroTextAnimator() {
       <div
         ref={titleRef}
         className={clsx(
-          'invisible flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl mt-10 font-extrabold',
+          'invisible mt-10 flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl font-extrabold',
           titleFont.className
         )}
       >

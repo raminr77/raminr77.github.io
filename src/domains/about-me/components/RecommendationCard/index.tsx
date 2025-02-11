@@ -1,15 +1,21 @@
-import Link from "next/link";
-import { clsx } from "clsx";
-import Image from "next/image";
-import { titleFont } from "@/app/fonts";
-import { animator } from "@/shared/helpers";
+import Link from 'next/link';
+import { clsx } from 'clsx';
+import Image from 'next/image';
+import { titleFont } from '@/app/fonts';
+import { animator } from '@/shared/helpers';
 import { GTM_EVENTS } from '@/shared/constants';
-import type { RecommendationItem } from "@/data";
+import type { RecommendationItem } from '@/data';
 import { sendGTMEvent } from '@next/third-parties/google';
 
 import styles from './recommendation-card.module.scss';
 
-export function RecommendationCard({ data, animationDelay = '0s' }: { data: RecommendationItem; animationDelay?: string }) {
+export function RecommendationCard({
+  data,
+  animationDelay = '0s'
+}: {
+  data: RecommendationItem;
+  animationDelay?: string;
+}) {
   const { url, text, date, title, caption, fullName, imageURL } = data;
 
   const sendEvent = () => sendGTMEvent(GTM_EVENTS.LINKEDIN_RECOMMENDATION(fullName));
@@ -36,7 +42,10 @@ export function RecommendationCard({ data, animationDelay = '0s' }: { data: Reco
               height={100}
               alt={fullName}
               src={imageURL}
-              className={clsx('rounded-md grayscale duration-500', styles['recommendation-card__profile-image'])}
+              className={clsx(
+                'rounded-md grayscale duration-500',
+                styles['recommendation-card__profile-image']
+              )}
             />
           </Link>
         )}

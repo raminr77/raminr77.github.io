@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
 import { titleFont } from '@/app/fonts';
 import { redirect } from 'next/navigation';
 import { ROUTES } from '@/shared/constants';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: post?.title
-  }
+  };
 }
 
 export async function PostDetailPage({ params }: Props) {

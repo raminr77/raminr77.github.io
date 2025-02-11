@@ -20,10 +20,14 @@ export const sendEmail = (data: requestData) => {
       .then((rawResponse) => rawResponse.json())
       .then((response) => {
         if (response.success) {
-          notify.success({ message: response.message || 'Your message has been sent successfully.' });
+          notify.success({
+            message: response.message || 'Your message has been sent successfully.'
+          });
           resolve(response);
         } else {
-          notify.error({ message: response.message || 'We could not send your message now!' });
+          notify.error({
+            message: response.message || 'We could not send your message now!'
+          });
           reject();
         }
       })

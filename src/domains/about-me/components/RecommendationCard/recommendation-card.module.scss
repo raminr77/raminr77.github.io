@@ -1,13 +1,11 @@
 .recommendation-card {
-
-    &:hover & {
-
-      &__header {
-        border-color: #ff8f00;
-      }
-
-      &__profile-image {
-        filter: grayscale(0);
-      }
+  &:hover & {
+    &__header {
+      border-color: #ff8f00;
     }
+
+    &__profile-image {
+      filter: grayscale(0);
+    }
+  }
 }

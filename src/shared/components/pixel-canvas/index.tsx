@@ -7,7 +7,7 @@ const COLORS = {
   red: '#fca5a5, #ef4444, #7f1d1d',
   blue: '#e0f2fe, #7dd3fc, #0ea5e9',
   green: '#bbf7d0, #4ade80, #166534',
-  yellow: '#fef08a, #fde047, #eab308',
+  yellow: '#fef08a, #fde047, #eab308'
 } as const;
 
 export type PixelCanvasColor = keyof typeof COLORS;

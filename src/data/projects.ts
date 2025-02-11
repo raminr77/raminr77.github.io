@@ -112,7 +112,17 @@ export const PROJECTS_DATA: {
       isPrivate: false,
       title: 'Personal Website ( this one )',
       role: 'Personal Project - Developer',
-      stack: ['JavaScript', 'HTML', 'CSS', 'SASS', 'Gsap', 'React 19', 'Tailwind CSS', 'Next JS 15', 'Cloudflare Workers'],
+      stack: [
+        'JavaScript',
+        'HTML',
+        'CSS',
+        'SASS',
+        'Gsap',
+        'React 19',
+        'Tailwind CSS',
+        'Next JS 15',
+        'Cloudflare Workers'
+      ],
       description:
         'Built a modern personal website using React 19, Next.js 15, Tailwind CSS, and GSAP, with Cloudflare Workers for serverless functions, ensuring high performance and smooth animations.'
     }

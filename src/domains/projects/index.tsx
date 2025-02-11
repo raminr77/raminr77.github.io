@@ -8,7 +8,7 @@ import { ContentContainer } from '@/layout/components/content-container';
 import { ProjectCard } from '@/domains/projects/components/project-card';
 
 export const metadata: Metadata = {
-  title: 'Projects',
+  title: 'Projects'
 };
 
 export function ProjectsPage() {

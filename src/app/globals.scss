@@ -48,7 +48,8 @@ body {
   padding: 12px 20px;
 }
 
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev,
+.swiper-button-next {
   &:after {
     color: var(--foreground);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);

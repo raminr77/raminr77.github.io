@@ -35,7 +35,11 @@ export function AboutMePage() {
           title={PERSONAL_DATA.fullName}
         />
 
-        <PixelCanvas playOnes color='green' className='absolute z-0 h-full w-full invert dark:invert-0 grayscale hover:grayscale-0 duration-500' />
+        <PixelCanvas
+          playOnes
+          color='green'
+          className='absolute z-0 h-full w-full grayscale invert duration-500 hover:grayscale-0 dark:invert-0'
+        />
       </div>
       <h1
         className={clsx(
@@ -62,7 +66,7 @@ export function AboutMePage() {
       >
         {ABOUT_ME_DATA.content.map((item: AboutMeContentItem, index: number) => {
           if (index === 3) {
-            return (<RecommendationSlider key='linkedIn-Recommendations' />);
+            return <RecommendationSlider key='linkedIn-Recommendations' />;
           }
           return renderContent(index, item);
         })}
