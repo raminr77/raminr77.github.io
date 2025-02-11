@@ -1,8 +1,10 @@
 import Link from 'next/link';
+
 import { clsx } from 'clsx';
-import { titleFont } from '@/app/fonts';
-import type { ProjectItem } from '@/data';
+
 import { animator } from '@/shared/helpers';
+import type { ProjectItem } from '@/data';
+import { titleFont } from '@/app/fonts';
 
 export function ProjectCard({
   data,
@@ -20,11 +22,11 @@ export function ProjectCard({
       )}
       style={{ animationDelay: `${animationDelay}s` }}
     >
-      <div className='mb-3 flex flex-col gap-2'>
+      <div className="mb-3 flex flex-col gap-2">
         <h3 className={titleFont.className}>{title}</h3>
         <p>{role}</p>
       </div>
-      <div className='flex select-none flex-wrap gap-3'>
+      <div className="flex select-none flex-wrap gap-3">
         <span
           className={clsx(
             'inline-block whitespace-nowrap rounded px-2 py-0 text-sm leading-6',
@@ -40,19 +42,19 @@ export function ProjectCard({
         {url && (
           <Link
             href={url}
-            target='_blank'
-            className='inline-block whitespace-nowrap rounded bg-sky-400/80 px-2 py-0 text-sm leading-6'
+            target="_blank"
+            className="inline-block whitespace-nowrap rounded bg-sky-400/80 px-2 py-0 text-sm leading-6"
           >
             Demo
           </Link>
         )}
       </div>
-      <p className='my-3 grow'>{description}</p>
-      <div className='flex select-none flex-wrap gap-2'>
+      <p className="my-3 grow">{description}</p>
+      <div className="flex select-none flex-wrap gap-2">
         {stack.map((item: string, index: number) => (
           <span
             key={`${item}-${index}`}
-            className='rounded bg-slate-100 px-2 py-0 text-xs leading-6 dark:bg-slate-600/50'
+            className="rounded bg-slate-100 px-2 py-0 text-xs leading-6 dark:bg-slate-600/50"
           >
             {item}
           </span>

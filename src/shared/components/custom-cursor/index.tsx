@@ -1,7 +1,10 @@
 'use client';
-import React, { useRef, useState, useEffect } from 'react';
-import { animator, isSSR } from '@/shared/helpers';
+
+import React, { useEffect, useRef, useState } from 'react';
+
 import { clsx } from 'clsx';
+
+import { animator, isSSR } from '@/shared/helpers';
 
 const MINIMUM_SCREEN_SIZE = 1100;
 

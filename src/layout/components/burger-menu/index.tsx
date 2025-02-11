@@ -1,11 +1,16 @@
 'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
+
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+
 import { clsx } from 'clsx';
+
+import { MENU_ITEM_ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
-import { usePathname } from 'next/navigation';
-import { MENU_ITEM_ROUTES } from '@/shared/constants';
+
 import { BurgerMenuToolsAnimation } from './burger-menu-tools-animation';
 import styles from './burger-menu.module.scss';
 
@@ -50,7 +55,7 @@ export function BurgerMenu() {
   }, [pagePath]);
 
   return (
-    <div className='md:hidden'>
+    <div className="md:hidden">
       {isActive && (
         <div
           ref={menuRef}
@@ -60,7 +65,7 @@ export function BurgerMenu() {
             animator({ name: 'fadeInDown', speed: 'fast' })
           )}
         >
-          <div className='flex w-full flex-grow flex-col items-center justify-center gap-10 lg:gap-16'>
+          <div className="flex w-full flex-grow flex-col items-center justify-center gap-10 lg:gap-16">
             {MENU_ITEM_ROUTES.map(({ id, title, url }, index) => (
               <Link
                 key={id}

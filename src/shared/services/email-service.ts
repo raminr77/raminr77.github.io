@@ -1,5 +1,5 @@
-import { notify } from '@/shared/helpers';
 import { CONTACT_ME_ENDPOINTS } from '@/shared/api/constants';
+import { notify } from '@/shared/helpers';
 
 type requestData = {
   email: string;

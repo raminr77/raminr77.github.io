@@ -1,12 +1,14 @@
-import { clsx } from 'clsx';
-import Link from 'next/link';
-import type { Metadata } from 'next';
-import { titleFont } from '@/app/fonts';
 import { redirect } from 'next/navigation';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+import { clsx } from 'clsx';
+
+import { ContentContainer } from '@/layout/components/content-container';
+import { POSTS_DATA, type Post } from '@/data';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { type Post, POSTS_DATA } from '@/data';
-import { ContentContainer } from '@/layout/components/content-container';
+import { titleFont } from '@/app/fonts';
 
 import styles from './post-detail-page.module.scss';
 
@@ -34,7 +36,7 @@ export async function PostDetailPage({ params }: Props) {
   }
 
   return (
-    <ContentContainer animationName='fadeIn'>
+    <ContentContainer animationName="fadeIn">
       <h1
         className={clsx(
           'mb-8 text-center text-4xl font-bold',
@@ -45,7 +47,7 @@ export async function PostDetailPage({ params }: Props) {
         {post.title}
       </h1>
 
-      <p className='mb-5 text-xl'>{post.summary}</p>
+      <p className="mb-5 text-xl">{post.summary}</p>
 
       <div
         className={clsx('text-xl leading-8', styles['post-detail-page__text'])}
@@ -60,7 +62,7 @@ export async function PostDetailPage({ params }: Props) {
       >
         <Link
           href={ROUTES.POSTS}
-          className='border-b border-amber-500 px-4 pb-1 duration-300 hover:text-amber-500'
+          className="border-b border-amber-500 px-4 pb-1 duration-300 hover:text-amber-500"
         >
           Back to list
         </Link>

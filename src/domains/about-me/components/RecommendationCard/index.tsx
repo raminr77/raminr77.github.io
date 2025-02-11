@@ -1,11 +1,13 @@
-import Link from 'next/link';
-import { clsx } from 'clsx';
 import Image from 'next/image';
-import { titleFont } from '@/app/fonts';
-import { animator } from '@/shared/helpers';
-import { GTM_EVENTS } from '@/shared/constants';
-import type { RecommendationItem } from '@/data';
+import Link from 'next/link';
+
 import { sendGTMEvent } from '@next/third-parties/google';
+import { clsx } from 'clsx';
+
+import type { RecommendationItem } from '@/data';
+import { GTM_EVENTS } from '@/shared/constants';
+import { animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
 
 import styles from './recommendation-card.module.scss';
 
@@ -36,7 +38,7 @@ export function RecommendationCard({
         )}
       >
         {imageURL && (
-          <Link onClick={sendEvent} href={url} target='_blank' rel='noopener noreferrer'>
+          <Link onClick={sendEvent} href={url} target="_blank" rel="noopener noreferrer">
             <Image
               width={100}
               height={100}
@@ -49,34 +51,34 @@ export function RecommendationCard({
             />
           </Link>
         )}
-        <div className='flex w-full flex-col gap-1 text-left'>
+        <div className="flex w-full flex-col gap-1 text-left">
           <Link
             href={url}
-            target='_blank'
+            target="_blank"
             onClick={sendEvent}
-            rel='noopener noreferrer'
-            className='text-amber-500'
+            rel="noopener noreferrer"
+            className="text-amber-500"
           >
             <h4 className={clsx(titleFont.className, 'text-xl font-bold')}>
               {fullName.toUpperCase()}
             </h4>
           </Link>
           <p>{title}</p>
-          <div className='flex flex-wrap items-center gap-2'>
+          <div className="flex flex-wrap items-center gap-2">
             <span>{caption}</span>
             <span>( {date} )</span>
           </div>
         </div>
       </div>
 
-      <p className='w-full text-left'>{text}</p>
+      <p className="w-full text-left">{text}</p>
 
       <Link
         href={url}
-        target='_blank'
+        target="_blank"
         onClick={sendEvent}
-        rel='noopener noreferrer'
-        className='text-amber-500'
+        rel="noopener noreferrer"
+        className="text-amber-500"
       >
         LinkedIn
       </Link>

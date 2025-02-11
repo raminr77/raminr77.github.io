@@ -1,12 +1,15 @@
 'use client';
-import { clsx } from 'clsx';
-import Link from 'next/link';
-import { PERSONAL_DATA } from '@/data';
-import { titleFont } from '@/app/fonts';
-import { animator, pageTitleGenerator } from '@/shared/helpers';
+
 import { usePathname } from 'next/navigation';
-import { BurgerMenu } from '@/layout/components/burger-menu';
+import Link from 'next/link';
+
+import { clsx } from 'clsx';
+
+import { animator, pageTitleGenerator } from '@/shared/helpers';
 import { MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
+import { BurgerMenu } from '@/layout/components/burger-menu';
+import { titleFont } from '@/app/fonts';
+import { PERSONAL_DATA } from '@/data';
 
 import styles from './header.module.scss';
 
@@ -15,8 +18,8 @@ export function Header() {
   const pageTitle = pageTitleGenerator(pathname);
 
   return (
-    <header className='fixed top-0 z-50 flex w-full items-center justify-center pt-5 backdrop-blur-sm md:pt-10 lg:pt-16'>
-      <nav className='flex w-11/12 flex-row-reverse items-center justify-between p-3'>
+    <header className="fixed top-0 z-50 flex w-full items-center justify-center pt-5 backdrop-blur-sm md:pt-10 lg:pt-16">
+      <nav className="flex w-11/12 flex-row-reverse items-center justify-between p-3">
         <BurgerMenu />
         <div
           className={clsx('hidden flex-col justify-center max-md:flex', {
@@ -50,7 +53,7 @@ export function Header() {
             >
               <Link
                 href={url}
-                className='border-b border-transparent bg-transparent px-4 py-3 duration-200 hover:border-orange-500'
+                className="border-b border-transparent bg-transparent px-4 py-3 duration-200 hover:border-orange-500"
               >
                 {title}
               </Link>

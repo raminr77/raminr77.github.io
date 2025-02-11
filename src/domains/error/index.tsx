@@ -1,6 +1,9 @@
 'use client';
-import { clsx } from 'clsx';
+
 import { useEffect } from 'react';
+
+import { clsx } from 'clsx';
+
 import { titleFont } from '@/app/fonts';
 
 export function ErrorPage({
@@ -16,11 +19,11 @@ export function ErrorPage({
   }, [error]);
 
   return (
-    <div className='flex h-dvh w-full select-none flex-col items-center justify-center gap-10'>
+    <div className="flex h-dvh w-full select-none flex-col items-center justify-center gap-10">
       <h2 className={clsx('text-4xl font-extrabold', titleFont.className)}>
         Something went wrong!
       </h2>
-      <p className='text-xl'>
+      <p className="text-xl">
         We are experiencing an issue in our development process.
         <br />
         We are working hard to resolve it as soon as possible.

@@ -1,11 +1,13 @@
-import Link from 'next/link';
-import { clsx } from 'clsx';
 import type { Metadata } from 'next';
-import { titleFont } from '@/app/fonts';
-import { animator } from '@/shared/helpers';
-import { PROJECTS_DATA, type ProjectItem } from '@/data';
-import { ContentContainer } from '@/layout/components/content-container';
+import Link from 'next/link';
+
+import { clsx } from 'clsx';
+
 import { ProjectCard } from '@/domains/projects/components/project-card';
+import { ContentContainer } from '@/layout/components/content-container';
+import { PROJECTS_DATA, type ProjectItem } from '@/data';
+import { animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: 'Projects'
@@ -31,7 +33,7 @@ export function ProjectsPage() {
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}
       />
 
-      <div className='mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1'>
+      <div className="mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1">
         {PROJECTS_DATA.items.map((item: ProjectItem, index: number) => (
           <ProjectCard key={index} data={item} animationDelay={(index + 1) * 0.3} />
         ))}
@@ -46,7 +48,7 @@ export function ProjectsPage() {
         <h4>{PROJECTS_DATA.footer}</h4>
         <Link
           href={PROJECTS_DATA.footerActionURL}
-          className='border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 hover:text-orange-500'
+          className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 hover:text-orange-500"
         >
           {PROJECTS_DATA.footerActionLabel}
         </Link>

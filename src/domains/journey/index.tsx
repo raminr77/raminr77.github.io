@@ -1,10 +1,12 @@
-import { clsx } from 'clsx';
 import type { Metadata } from 'next';
-import { titleFont } from '@/app/fonts';
-import { animator } from '@/shared/helpers';
-import { JOURNEY_DATA, type JourneyItem } from '@/data';
-import { JourneyCard } from '@/domains/journey/components/journey-card';
+
+import { clsx } from 'clsx';
+
 import { ContentContainer } from '@/layout/components/content-container';
+import { JourneyCard } from '@/domains/journey/components/journey-card';
+import { JOURNEY_DATA, type JourneyItem } from '@/data';
+import { animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: 'Journey'
@@ -30,7 +32,7 @@ export function JourneyPage() {
         dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.description }}
       />
 
-      <div className='mt-20 flex flex-col gap-28'>
+      <div className="mt-20 flex flex-col gap-28">
         {JOURNEY_DATA.items.reverse().map((item: JourneyItem, index: number) => (
           <JourneyCard key={index} order={index + 1} data={item} />
         ))}

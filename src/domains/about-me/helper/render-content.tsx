@@ -1,6 +1,9 @@
-import { clsx } from 'clsx';
-import Image from 'next/image';
 import React, { type ReactNode } from 'react';
+
+import Image from 'next/image';
+
+import { clsx } from 'clsx';
+
 import { ABOUT_ME_CONTENT_TYPE, type AboutMeContentItem } from '@/data';
 
 export const renderContent = (index: number, content: AboutMeContentItem): ReactNode => {
@@ -26,7 +29,7 @@ export const renderContent = (index: number, content: AboutMeContentItem): React
     return (
       <div key={index}>
         <h5>{content.title}</h5>
-        <ul className='ml-5 mt-2'>
+        <ul className="ml-5 mt-2">
           {content.data.map((listItemContent: string, listItemIndex: number) => (
             <li
               key={listItemIndex}

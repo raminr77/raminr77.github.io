@@ -1,7 +1,9 @@
-import { clsx } from 'clsx';
-import { titleFont } from '@/app/fonts';
 import React, { ReactNode } from 'react';
+
+import { clsx } from 'clsx';
+
 import { type AnimationNames, animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
 
 interface ContentContainerProps {
   title?: string;
@@ -17,7 +19,7 @@ export function ContentContainer({
   animationName = 'fadeInUp'
 }: ContentContainerProps) {
   return (
-    <main className='flex w-full justify-center overflow-hidden p-5 pb-16 pt-32 md:pt-40'>
+    <main className="flex w-full justify-center overflow-hidden p-5 pb-16 pt-32 md:pt-40">
       <div
         className={clsx(
           'w-11/12 max-w-screen-lg',

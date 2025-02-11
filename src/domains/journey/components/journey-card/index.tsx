@@ -1,16 +1,19 @@
 'use client';
-import { clsx } from 'clsx';
-import Link from 'next/link';
+
 import dynamic from 'next/dynamic';
-import { titleFont } from '@/app/fonts';
-import { animator } from '@/shared/helpers';
+import Link from 'next/link';
+
+import { clsx } from 'clsx';
+
 import { JourneyItem } from '@/data/journey';
+import { animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
+
+import styles from './journey-card.module.scss';
 
 const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
   ssr: false
 });
-
-import styles from './journey-card.module.scss';
 
 const TITLE_CLASSES = clsx(
   styles['journey-card__title'],
@@ -53,7 +56,7 @@ export function JourneyCard({
         >
           {year}
         </h5>
-        <PixelCanvas color='yellow' autoPlay />
+        <PixelCanvas color="yellow" autoPlay />
       </div>
 
       <div
@@ -63,11 +66,11 @@ export function JourneyCard({
           animator({ name: 'fadeInUp' })
         )}
       >
-        <div className='flex select-none flex-col'>
+        <div className="flex select-none flex-col">
           {url ? (
             <Link
               href={url}
-              target='_blank'
+              target="_blank"
               className={clsx(TITLE_CLASSES, 'text-amber-500')}
             >
               {title.toUpperCase()}
@@ -76,7 +79,7 @@ export function JourneyCard({
             <h3 className={TITLE_CLASSES}>{title.toUpperCase()}</h3>
           )}
 
-          <div className='flex items-center justify-between'>
+          <div className="flex items-center justify-between">
             <span>{location}</span>
             <span>{date}</span>
           </div>
@@ -85,7 +88,7 @@ export function JourneyCard({
         <div dangerouslySetInnerHTML={{ __html: description }} />
 
         {items && (
-          <ul className='ml-4 mt-2 list-disc leading-8'>
+          <ul className="ml-4 mt-2 list-disc leading-8">
             {items.map((item: string, index: number) => (
               <li key={index}>{item}</li>
             ))}

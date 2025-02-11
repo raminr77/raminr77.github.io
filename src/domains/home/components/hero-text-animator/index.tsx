@@ -1,11 +1,14 @@
 'use client';
+
+import { useEffect, useRef } from 'react';
+
 import { clsx } from 'clsx';
 import { gsap } from 'gsap';
-import { PERSONAL_DATA } from '@/data';
-import { titleFont } from '@/app/fonts';
-import { useEffect, useRef } from 'react';
-import { animator } from '@/shared/helpers';
+
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
+import { animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
+import { PERSONAL_DATA } from '@/data';
 
 import styles from './hero-text-animator.module.scss';
 
@@ -41,7 +44,7 @@ export function HeroTextAnimator() {
   }, []);
 
   return (
-    <div className='flex w-full flex-col items-center justify-center'>
+    <div className="flex w-full flex-col items-center justify-center">
       <div
         ref={titleRef}
         className={clsx(

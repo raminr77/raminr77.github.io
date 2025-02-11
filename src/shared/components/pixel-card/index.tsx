@@ -1,10 +1,14 @@
 'use client';
-import { clsx } from 'clsx';
-import dynamic from 'next/dynamic';
+
 import type { ReactNode } from 'react';
-import { titleFont } from '@/app/fonts';
-import { animator, type AnimationNames } from '@/shared/helpers';
+
+import dynamic from 'next/dynamic';
+
+import { clsx } from 'clsx';
+
 import type { PixelCanvasColor } from '@/shared/components/pixel-canvas';
+import { type AnimationNames, animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
 
 const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
   ssr: false
@@ -36,7 +40,7 @@ export function PixelCard({
       )}
     >
       {children || (
-        <div className='pointer-events-none z-10 flex w-full flex-col items-center justify-center gap-1 px-5 py-6'>
+        <div className="pointer-events-none z-10 flex w-full flex-col items-center justify-center gap-1 px-5 py-6">
           <h3
             className={clsx(
               'text-2xl font-bold leading-10',
@@ -58,7 +62,7 @@ export function PixelCard({
           )}
         </div>
       )}
-      <PixelCanvas color={color} className='absolute left-0 top-0 z-0 h-full w-full' />
+      <PixelCanvas color={color} className="absolute left-0 top-0 z-0 h-full w-full" />
     </div>
   );
 }

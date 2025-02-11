@@ -1,16 +1,19 @@
-import React from 'react';
-import Image from 'next/image';
-import Script from 'next/script';
-import type { Metadata } from 'next';
-import { PERSONAL_DATA } from '@/data';
-import { textFont } from '@/app/fonts';
 import { ToastContainer } from 'react-toastify';
-import { Header } from '@/layout/components/header';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { CustomCursor } from '@/shared/components/custom-cursor';
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import React from 'react';
 
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import Image from 'next/image';
+
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import 'animate.css';
+
+import { CustomCursor } from '@/shared/components/custom-cursor';
+import { Header } from '@/layout/components/header';
+import { textFont } from '@/app/fonts';
+import { PERSONAL_DATA } from '@/data';
+
 import './globals.scss';
 
 export const metadata: Metadata = {
@@ -35,38 +38,38 @@ export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={textFont.className}>
         <Image
           width={830}
           height={830}
-          alt='top-shine'
+          alt="top-shine"
           priority={false}
           draggable={false}
-          src='/images/background.png'
-          className='shine-animation-top pointer-events-none fixed left-0 top-0 blur-md'
+          src="/images/background.png"
+          className="shine-animation-top pointer-events-none fixed left-0 top-0 blur-md"
         />
         <Image
           width={830}
           height={830}
           priority={false}
           draggable={false}
-          alt='bottom-shine'
-          src='/images/background.png'
-          className='shine-animation-bottom pointer-events-none fixed -bottom-6 right-0 rotate-180 blur-lg'
+          alt="bottom-shine"
+          src="/images/background.png"
+          className="shine-animation-bottom pointer-events-none fixed -bottom-6 right-0 rotate-180 blur-lg"
         />
         <CustomCursor />
 
         <Header />
         {children}
 
-        <ToastContainer position='bottom-center' theme='colored' />
+        <ToastContainer position="bottom-center" theme="colored" />
 
         <SpeedInsights />
-        <Script src='/click-spark.js' />
-        <Script src='/service-worker.js' />
-        <GoogleAnalytics gaId='G-K7FM8D9D43' />
-        <GoogleTagManager gtmId='GTM-W8BNDMMW' />
+        <Script src="/click-spark.js" />
+        <Script src="/service-worker.js" />
+        <GoogleAnalytics gaId="G-K7FM8D9D43" />
+        <GoogleTagManager gtmId="GTM-W8BNDMMW" />
       </body>
     </html>
   );

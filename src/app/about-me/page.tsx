@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { PERSONAL_DATA } from '@/data';
+
 import { AboutMePage } from '@/domains/about-me';
+import { PERSONAL_DATA } from '@/data';
 
 export const metadata: Metadata = {
   title: {

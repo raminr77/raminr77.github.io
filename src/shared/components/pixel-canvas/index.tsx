@@ -1,5 +1,7 @@
 'use client';
+
 import { useEffect } from 'react';
+
 import { isSSR } from '@/shared/helpers';
 
 const COLORS = {

@@ -1,6 +1,8 @@
 'use client';
-import { clsx } from 'clsx';
+
 import type { ChangeEvent } from 'react';
+
+import { clsx } from 'clsx';
 
 interface TextInputProps {
   id?: string;
@@ -30,10 +32,10 @@ export function TextInput({
   ...rest
 }: TextInputProps) {
   return (
-    <div className='flex flex-col'>
+    <div className="flex flex-col">
       {label && (
-        <label id={id} className='mb-2 text-lg'>
-          {label} {required && <span className='text-red-500'>*</span>}
+        <label id={id} className="mb-2 text-lg">
+          {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
       {type !== 'textarea' ? (
@@ -66,7 +68,7 @@ export function TextInput({
           {value}
         </textarea>
       )}
-      {error && <span className='text-md ml-1 mt-1 text-red-500'>{error}</span>}
+      {error && <span className="text-md ml-1 mt-1 text-red-500">{error}</span>}
     </div>
   );
 }

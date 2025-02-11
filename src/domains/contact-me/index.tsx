@@ -1,16 +1,20 @@
 'use client';
-import { clsx } from 'clsx';
-import Link from 'next/link';
-import { useState } from 'react';
-import { CONTACT_ME_DATA } from '@/data';
+
 import { useForm } from 'react-hook-form';
-import { animator } from '@/shared/helpers';
-import { sendEmail } from '@/shared/services';
-import { Button } from '@/shared/components/button';
+import { useState } from 'react';
+
+import Link from 'next/link';
+
 import { sendGTMEvent } from '@next/third-parties/google';
-import { TextInput } from '@/shared/components/text-input';
-import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
+import { clsx } from 'clsx';
+
 import { ContentContainer } from '@/layout/components/content-container';
+import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
+import { TextInput } from '@/shared/components/text-input';
+import { Button } from '@/shared/components/button';
+import { sendEmail } from '@/shared/services';
+import { animator } from '@/shared/helpers';
+import { CONTACT_ME_DATA } from '@/data';
 
 interface ContactMeForm {
   email: string;
@@ -47,8 +51,8 @@ export function ContactMePage() {
   };
 
   return (
-    <ContentContainer title='Contact Me' className='z-40'>
-      <div className='flex gap-5 max-lg:flex-wrap'>
+    <ContentContainer title="Contact Me" className="z-40">
+      <div className="flex gap-5 max-lg:flex-wrap">
         <div
           className={clsx('w-full text-xl leading-7', animator({ name: 'fadeInLeft' }))}
         >
@@ -78,7 +82,7 @@ export function ContactMePage() {
               <h3>{title}:</h3>
               <Link
                 href={url}
-                target='_blank'
+                target="_blank"
                 className={clsx('text-md whitespace-nowrap text-amber-500', {
                   'pointer-events-none': !url
                 })}
@@ -102,11 +106,11 @@ export function ContactMePage() {
       >
         <TextInput
           required
-          type='text'
-          id='subject'
+          type="text"
+          id="subject"
           tabIndex={1}
-          label='Subject'
-          placeholder='Enter your subject'
+          label="Subject"
+          placeholder="Enter your subject"
           error={errors.subject?.message}
           {...register('subject', {
             required: {
@@ -121,12 +125,12 @@ export function ContactMePage() {
         />
         <TextInput
           required
-          id='email'
-          type='email'
+          id="email"
+          type="email"
           tabIndex={2}
-          label='Email'
+          label="Email"
           error={errors.email?.message}
-          placeholder='Enter your email address'
+          placeholder="Enter your email address"
           {...register('email', {
             pattern: {
               value: EMAIL_VALIDATION_REGEX,
@@ -141,10 +145,10 @@ export function ContactMePage() {
         <TextInput
           required
           tabIndex={3}
-          id='message'
-          type='textarea'
-          label='Message'
-          placeholder='Enter your message'
+          id="message"
+          type="textarea"
+          label="Message"
+          placeholder="Enter your message"
           error={errors.message?.message}
           {...register('message', {
             minLength: {
@@ -157,8 +161,8 @@ export function ContactMePage() {
             }
           })}
         />
-        <div className='mt-2 flex w-full justify-end'>
-          <Button label='Submit' type='submit' loading={loading} />
+        <div className="mt-2 flex w-full justify-end">
+          <Button label="Submit" type="submit" loading={loading} />
         </div>
       </form>
     </ContentContainer>
