@@ -21,6 +21,16 @@ const nextConfig: NextConfig = {
         permanent: true,
         source: '/educations',
         destination: '/journey'
+      },
+      {
+        permanent: true,
+        source: '/random-sex-position',
+        destination: 'https://ramiiin.ir/random-sex-position/'
+      },
+      {
+        permanent: true,
+        source: '/csv-row-printer',
+        destination: 'https://ramiiin.ir/csv-row-printer/'
       }
     ];
   },
