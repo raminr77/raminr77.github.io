@@ -10,29 +10,34 @@ interface TextInputProps {
   label?: string;
   tabIndex?: number;
   required?: boolean;
+  className?: string;
   placeholder?: string;
   error?: string | null;
+  containerClassName?: string;
   type?: 'text' | 'password' | 'email' | 'textarea';
   onChange?: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
-
-const INPUT_CLASSES =
-  'border dark:bg-gray-950/20 bg-gray-50/20 outline-0 indent-2 leading-8 duration-100 focus:border-amber-500 text-lg backdrop-blur-sm';
 
 export function TextInput({
   label,
   value,
   error,
   onChange,
+  className,
   placeholder,
   tabIndex = 0,
   type = 'text',
   required = false,
   id = 'text-input',
+  containerClassName,
   ...rest
 }: TextInputProps) {
+  const INPUT_CLASSES = clsx(
+    'border dark:bg-gray-950/20 bg-gray-50/20 outline-0 indent-2 leading-8 duration-100 focus:border-amber-500 text-lg backdrop-blur-sm',
+    className
+  );
   return (
-    <div className="flex flex-col">
+    <div className={clsx('flex flex-col', containerClassName)}>
       {label && (
         <label id={id} className="mb-2 text-lg">
           {label} {required && <span className="text-red-500">*</span>}

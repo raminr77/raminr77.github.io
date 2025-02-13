@@ -71,11 +71,3 @@ Mentorship _____________________________________________________________________
 Others ___________________________________________________________________________________________
   •   First Place: Achieved 1st prize in the Code in the Dark competition, showcasing advanced front-end development skills under high-pressure conditions (Malmö, 11/2024).
   •   Course Completed Certificate: Machine Learning in JavaScript using TensorFlow.js (12/2024)
---------
-Ramin is a Senior Frontend Engineer currently residing in Malmö, Sweden. He was born on January 11, 1999, in Isfahan, Iran. Ramin pursued his higher education in Software Engineering at Azad University of Najafabad, Isfahan.
-Professionally, Ramin has gained significant experience in frontend development. He initially worked at Snapp, specifically in the SnappCarFix division, before moving on to Digikala, where he contributed for three years. Currently, he is employed as a Senior Frontend Developer at Boozt.
-Ramin is passionate about advancing his technical skills and has obtained various certifications, including one in 'Machine Learning in JavaScript with TensorFlow.js' from Frontend Masters. He is also working towards certifications in data science and Google Cloud functions. Additionally, he won first place in the 'Code in the Dark' competition hosted by Mpya Digital in Malmö, showcasing his ability to excel under high-pressure coding conditions.
-In terms of skills, Ramin has expertise in System Design, React, TypeScript, GraphQL, Micro-frontend architecture, Kubernetes, Docker, and Cloud technologies such as AWS. He has recently been preparing for a technical interview for a Senior Full Stack Engineer - TypeScript position at Sinch.
-To further strengthen his technical knowledge, Ramin has been focusing on System Design and deepening his understanding of binary trees for coding interviews.
-In addition to his technical growth, Ramin is also keen on improving his English proficiency.
-Ramin has a younger sister and maintains a connection with his mother.

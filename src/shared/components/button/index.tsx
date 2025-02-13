@@ -1,8 +1,10 @@
 import type { MouseEventHandler } from 'react';
+import { clsx } from 'clsx';
 
 interface ButtonProps {
   label: string;
   loading?: boolean;
+  className?: string;
   type: 'submit' | 'button';
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
@@ -11,6 +13,7 @@ export function Button({
   type = 'button',
   label,
   onClick,
+  className,
   loading = false
 }: ButtonProps) {
   return (
@@ -18,7 +21,10 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={loading}
-      className="flex min-w-36 items-center justify-center gap-2 border px-5 leading-10 shadow backdrop-blur-md duration-300 hover:border-amber-500 hover:shadow-amber-500/50"
+      className={clsx(
+        'flex min-w-36 items-center justify-center gap-2 border px-5 leading-10 shadow backdrop-blur-md duration-300 hover:border-amber-500 hover:shadow-amber-500/50',
+        className
+      )}
     >
       {loading && (
         <svg
