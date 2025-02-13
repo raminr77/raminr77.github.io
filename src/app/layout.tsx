@@ -64,7 +64,7 @@ export default function RootLayout({
         <Header />
         {children}
 
-        <AiBot />
+        {/*<AiBot />*/}
 
         <ToastContainer position="bottom-center" theme="colored" />
 
