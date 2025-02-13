@@ -50,14 +50,14 @@ export function AiBot() {
 
     // REQUEST
     sendTextToAI(text)
-      .then(({ answer }: unknown) => {
+      .then((response: unknown) => {
         reset();
         setChatData((state) => [
           ...state,
           {
-            text: answer,
             isUser: false,
-            id: crypto.randomUUID()
+            id: crypto.randomUUID(),
+            text: response?.answer || 'Could you ask again, please :)'
           }
         ]);
       })
@@ -107,7 +107,7 @@ export function AiBot() {
           tabIndex={1}
           className="w-full h-12"
           containerClassName="w-full"
-          error={errors.message?.message}
+          error={errors.text?.message}
           placeholder="Ask About Ramin From AI"
           {...register('text', {
             required: {
