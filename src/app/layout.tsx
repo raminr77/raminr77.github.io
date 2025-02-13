@@ -11,7 +11,6 @@ import 'animate.css';
 
 import { CustomCursor } from '@/shared/components/custom-cursor';
 import { Header } from '@/layout/components/header';
-import { AiBot } from '@/layout/components/ai-bot';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
@@ -63,8 +62,6 @@ export default function RootLayout({
 
         <Header />
         {children}
-
-        {/*<AiBot />*/}
 
         <ToastContainer position="bottom-center" theme="colored" />
 
