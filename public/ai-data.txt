@@ -1,105 +1,81 @@
 ﻿Ramin Rezaei
-Malmo, Sweden  |    +46-762433001  |     RaminRezaei.se  |     Ramin.Rezaei77@gmail.com  
-  
- LinkedIn - RaminR77  |     GitHub - RaminR77
-
-
+Birthday: 11 Jan 1999
+Location: Malmo, Sweden
+Phone Number: +46-762433001
+Personal Email: Ramin.Rezaei77@gmail.com
+Public Email: info@raminrezaei.se
+LinkedIn: https://www.linkedin.com/in/raminr77/
+GitHub: https://github.com/raminr77
 Summary ____________________________________________________________________________________________
-Highly motivated Software Engineer with 6+ years of experience in developing and optimizing scalable web applications, with a proven track record in backend development using Python (Django) and PHP (Laravel), and expertise in building high-throughput systems and optimizing APIs and SQL databases. Proven ability to contribute to large-scale projects within agile teams (100+ members), focusing on performance, efficiency, Ramin Rezaei - Senior Front-end Engineer with the Boozt Company tshirt. 
-
-
+  Highly motivated Software Engineer with 6+ years of experience in developing and optimizing scalable web applications, with a proven track record in backend development using Python (Django) and PHP (Laravel), and expertise in building high-throughput systems and optimizing APIs and SQL databases. Proven ability to contribute to large-scale projects within agile teams (100+ members), focusing on performance, efficiency, Ramin Rezaei - Senior Front-end Engineer with the Boozt Company tshirt.
 Skills ____________________________________________________________________________________________
-
-•   Programming Languages: JavaScript, TypeScript, Python, PHP
-•   Databases: SQL, NoSQL, Firebase DB, Google Cloud Platform For DB, MySql, MongoDB, SQLite
-•   Frameworks & Libraries: Node.js, Express, NestJS, Django, Laravel, React, Redux, jQuery, RESTful APIs
-•   Testing & DevOps: Unix, Linux, Vim, CI/CD, Docker, Github Actions,  Jest, Cypress, E2E Testing, Unit Testing, Git
-
-
-
+  •   Programming Languages: JavaScript, TypeScript, Python, PHP
+  •   Databases: SQL, NoSQL, Firebase DB, Google Cloud Platform For DB, MySql, MongoDB, SQLite
+  •   Frameworks & Libraries: Node.js, Express, NestJS, Django, Laravel, React, Redux, jQuery, RESTful APIs
+  •   Testing & DevOps: Unix, Linux, Vim, CI/CD, Docker, Github Actions,  Jest, Cypress, E2E Testing, Unit Testing, Git
 Experience _______________________________________________________________________________________
-
 Software Engineer - Senior Frontend Engineer
-	
-
 	Boozt
 	Malmo, Sweden
 	08/2023 - Present
 	•  Continuous Integration/Deployment Pipeline Integration, pull requests, code reviews, unit/integration/e2e testing
-•  Developed and Optimized CMS: Built a CMS for generating dynamic web pages, promotions, and campaign pages for 17 countries, enabling seamless integration with the mobile app and eliminating the need for updates by supporting all web elements.
-•  Enhanced Data Efficiency: Optimized CMS data structure using efficient algorithms and data structures to improve speed, updates, and storage. Eliminated redundant loops by implementing hash maps, reducing unnecessary computation
-•  Brand Asset Management: Designed an internal system with Google Cloud Functions and Google Storage to store brand assets and logos, reducing costs by eliminating external services.
-•  Google Cloud Project (GCP): Developed serverless functions using GCP Cloud Functions to automate background tasks, reducing operational overhead by 20%.
-•  React and TypeScript Migration: Migrated and redesigned website features from the legacy platform, adapting them to meet evolving business requirements while improving performance.
-•  Performance Optimization: Refactored state management and component architecture to minimize unnecessary re-renders, achieving faster load times and smoother user experience.
-
-
+  •  Developed and Optimized CMS: Built a CMS for generating dynamic web pages, promotions, and campaign pages for 17 countries, enabling seamless integration with the mobile app and eliminating the need for updates by supporting all web elements.
+  •  Enhanced Data Efficiency: Optimized CMS data structure using efficient algorithms and data structures to improve speed, updates, and storage. Eliminated redundant loops by implementing hash maps, reducing unnecessary computation
+  •  Brand Asset Management: Designed an internal system with Google Cloud Functions and Google Storage to store brand assets and logos, reducing costs by eliminating external services.
+  •  Google Cloud Project (GCP): Developed serverless functions using GCP Cloud Functions to automate background tasks, reducing operational overhead by 20%.
+  •  React and TypeScript Migration: Migrated and redesigned website features from the legacy platform, adapting them to meet evolving business requirements while improving performance.
+  •  Performance Optimization: Refactored state management and component architecture to minimize unnecessary re-renders, achieving faster load times and smoother user experience.
 Software Engineer - Senior Frontend Engineer
-	
-
 	Digikala
 	Tehran, Iran
 	08/2020 - 08/2023
 	•  E-commerce Platform Development: Rebuilt two e-commerce platforms with JavaScript, ReactJS, Next.js, and TypeScript in agile teams using the Spotify Squad Framework.
-•  Data and Analytics Integration: Implemented Google Analytics services, including DataLayer and over 20 A/B tests. Leveraged tools like Big-Data Tracker and Google Tag Manager to collect and analyze user behavior.
-•  Dynamic Landing Pages: Designed and implemented dynamic landing pages with over 30 reusable modules, reducing development time for promotional pages.
-•  Testing and QA: Wrote unit and E2E tests using Jest, React Testing Library, and Cypress, ensuring high-quality code. Utilized Storybook to streamline component reuse.
-•  Monorepository Expertise: Worked on a PHP monorepository using the Symfony framework, while integrating micro-frontend architecture with NX, enhancing code quality and structure adherence by 80%. Also developed and maintained backend services, improving API response times by 10% and reducing database query load by 20% through efficient caching strategies.
-•  Automated and optimized business logic for the core marketing experiments, including A/B, Auto-Targeting, and Multivariate Testing.
-•  Completely automated the marketing platforms' user-experience testing process by integrating Nightwatch Selenium.
-
-
-
+  •  Data and Analytics Integration: Implemented Google Analytics services, including DataLayer and over 20 A/B tests. Leveraged tools like Big-Data Tracker and Google Tag Manager to collect and analyze user behavior.
+  •  Dynamic Landing Pages: Designed and implemented dynamic landing pages with over 30 reusable modules, reducing development time for promotional pages.
+  •  Testing and QA: Wrote unit and E2E tests using Jest, React Testing Library, and Cypress, ensuring high-quality code. Utilized Storybook to streamline component reuse.
+  •  Monorepository Expertise: Worked on a PHP monorepository using the Symfony framework, while integrating micro-frontend architecture with NX, enhancing code quality and structure adherence by 80%. Also developed and maintained backend services, improving API response times by 10% and reducing database query load by 20% through efficient caching strategies.
+  •  Automated and optimized business logic for the core marketing experiments, including A/B, Auto-Targeting, and Multivariate Testing.
+  •  Completely automated the marketing platforms' user-experience testing process by integrating Nightwatch Selenium.
 Software Engineer - Frontend Team Lead
-	
-
 	Snapp, SnappCarFix
 	Isfahan, Iran
 	04/2019 - 08/2020
 	•  Team Leadership and Mentorship: Mentored 5+ engineers, enhancing their technical and soft skills while managing cross-functional project delivery.
-•  Platform Migration: Transitioned a WordPress platform to a modern JavaScript and React-based system, achieving a 90% improvement in user experience.
-•  Reusable Components: Developed a general layout and component library as an installable package, reducing project setup time by 40%.
-•  Performance Enhancements: Built high-performance timers for advertisements and discount banners, reducing page load times by 2 seconds.
-
-
+  •  Platform Migration: Transitioned a WordPress platform to a modern JavaScript and React-based system, achieving a 90% improvement in user experience.
+  •  Reusable Components: Developed a general layout and component library as an installable package, reducing project setup time by 40%.
+  •  Performance Enhancements: Built high-performance timers for advertisements and discount banners, reducing page load times by 2 seconds.
 Software Engineer
-	
-
 	Self Employed · Freelance
 	Isfahan, Iran
 	01/2019 - 01/2020
-	•   Led the development of several products E2E, from identifying system requirements and partner dependencies to workload balancing, 
+	•   Led the development of several products E2E, from identifying system requirements and partner dependencies to workload balancing,
     software implementation, engineering, testing, and configuring metrics, alarms, monitors, and dashboards.
-•   Designed and implemented scalable RESTful APIs using Python (Django) and PHP (Laravel) for managing proprietary licenses, handling peak loads of 500 requests per second and, ensuring 99.9% uptime.
-
+  •   Designed and implemented scalable RESTful APIs using Python (Django) and PHP (Laravel) for managing proprietary licenses, handling peak loads of 500 requests per second and, ensuring 99.9% uptime.
 Education ________________________________________________________________________________________
-
-Bachelor's degree in
-Computer Software Engineering
-	
-
-	Azad University (AIUN)
-	Isfahan, Iran
-	11/2017 - 11/2021
-	•   Professor’s assistance and research of more than 2 semesters about the effects of hidden elements on the web page and improving user behavior by changing the UI of the components or elements.
-•   Professor’s assistant and top student in Graphic and database design courses.
-
+  Bachelor's degree in
+  Computer Software Engineering
+    Azad University (AIUN)
+    Isfahan, Iran
+    11/2017 - 11/2021
+    •   Professor’s assistance and research of more than 2 semesters about the effects of hidden elements on the web page and improving user behavior by changing the UI of the components or elements.
+    •   Professor’s assistant and top student in Graphic and database design courses.
 Projects __________________________________________________________________________________________
-
-•  Setaregan Club Management System | Software Engineer | Full Stack
-Develop a large-scale club management system with features like: payment, insurance, monthly payments, user system, and marketing. In this project, I am using PHP (Laravel) and Javascript/Typescript (React)
-•  Raven System | Software Engineer | Full Stack
-A complete accounting system for managing major purchases and sales with the ability to display graphs and calculate sales profit in different modes. Currently, I handle more than 1000 products in 2 stores. In this project, I am using Python (Django) and Javascript/Typescript (React)
+  •  Setaregan Club Management System | Software Engineer | Full Stack
+    Develop a large-scale club management system with features like: payment, insurance, monthly payments, user system, and marketing. In this project, I am using PHP (Laravel) and Javascript/Typescript (React)
+  •  Raven System | Software Engineer | Full Stack
+    A complete accounting system for managing major purchases and sales with the ability to display graphs and calculate sales profit in different modes. Currently, I handle more than 1000 products in 2 stores. In this project, I am using Python (Django) and Javascript/Typescript (React)
 
 Mentorship _______________________________________________________________________________________
-
-•   Rapico & Private Company Bootcamps:
-Coding Bootcamp Mentor responsible for mentoring and giving career advice to students (07/2021 - 11/2021)
-
+  •   Rapico & Private Company Bootcamps:
+    Coding Bootcamp Mentor responsible for mentoring and giving career advice to students (07/2021 - 11/2021)
 Others ___________________________________________________________________________________________
-
-•   First Place: Achieved 1st prize in the Code in the Dark competition, showcasing advanced front-end development skills under high-pressure conditions (Malmö, 11/2024).
-•   Course Completed Certificate: Machine Learning in JavaScript using TensorFlow.js (12/2024)
-
-
-Visit my LinkedIn ( linkedin.com/in/raminr77 ) to read what others say about me.
+  •   First Place: Achieved 1st prize in the Code in the Dark competition, showcasing advanced front-end development skills under high-pressure conditions (Malmö, 11/2024).
+  •   Course Completed Certificate: Machine Learning in JavaScript using TensorFlow.js (12/2024)
+--------
+Ramin is a Senior Frontend Engineer currently residing in Malmö, Sweden. He was born on January 11, 1999, in Isfahan, Iran. Ramin pursued his higher education in Software Engineering at Azad University of Najafabad, Isfahan.
+Professionally, Ramin has gained significant experience in frontend development. He initially worked at Snapp, specifically in the SnappCarFix division, before moving on to Digikala, where he contributed for three years. Currently, he is employed as a Senior Frontend Developer at Boozt.
+Ramin is passionate about advancing his technical skills and has obtained various certifications, including one in 'Machine Learning in JavaScript with TensorFlow.js' from Frontend Masters. He is also working towards certifications in data science and Google Cloud functions. Additionally, he won first place in the 'Code in the Dark' competition hosted by Mpya Digital in Malmö, showcasing his ability to excel under high-pressure coding conditions.
+In terms of skills, Ramin has expertise in System Design, React, TypeScript, GraphQL, Micro-frontend architecture, Kubernetes, Docker, and Cloud technologies such as AWS. He has recently been preparing for a technical interview for a Senior Full Stack Engineer - TypeScript position at Sinch.
+To further strengthen his technical knowledge, Ramin has been focusing on System Design and deepening his understanding of binary trees for coding interviews.
+In addition to his technical growth, Ramin is also keen on improving his English proficiency.
+Ramin has a younger sister and maintains a connection with his mother.
