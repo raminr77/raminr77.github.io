@@ -50,14 +50,14 @@ export function AiBot() {
 
     // REQUEST
     sendTextToAI(text)
-      .then((response: unknown) => {
+      .then(({ answer }) => {
         reset();
         setChatData((state) => [
           ...state,
           {
+            text: answer,
             isUser: false,
-            id: crypto.randomUUID(),
-            text: response?.answer || 'Could you ask again, please :)'
+            id: crypto.randomUUID()
           }
         ]);
       })

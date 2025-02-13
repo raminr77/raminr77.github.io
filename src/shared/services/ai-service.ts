@@ -1,7 +1,7 @@
 import { CONTACT_ME_ENDPOINTS } from '@/shared/api/constants';
 import { notify } from '@/shared/helpers';
 
-export const sendTextToAI = (text: string) => {
+export const sendTextToAI = (text: string): Promise<{ answer: string }> => {
   return new Promise((resolve, reject) => {
     fetch(CONTACT_ME_ENDPOINTS.sendTextToAI(text), {
       headers: {
@@ -12,7 +12,7 @@ export const sendTextToAI = (text: string) => {
       .then((rawResponse) => rawResponse.json())
       .then((response) => {
         if (response.success) {
-          resolve(response.data);
+          resolve(response.data || { answer: 'Could you ask again, please :)' });
         } else {
           notify.error({
             message: response.message || 'We could not send your message now!'
