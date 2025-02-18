@@ -15,7 +15,6 @@ import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import './globals.scss';
-import { AiBot } from '@/layout/components/ai-bot';
 
 export const metadata: Metadata = {
   title: {
@@ -66,7 +65,6 @@ export default function RootLayout({
 
         <ToastContainer position="bottom-center" theme="colored" />
 
-        <AiBot />
         <SpeedInsights />
         <Script src="/click-spark.js" />
         <Script src="/service-worker.js" />

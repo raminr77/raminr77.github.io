@@ -20,9 +20,14 @@ interface ChatItem {
   isUser: boolean;
 }
 
+interface AiBotProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 const MUTATION_OBSERVER_CONFIGS = { childList: true, subtree: true };
 
-export function AiBot() {
+export function AiBot({ isOpen, onClose }: AiBotProps) {
   const [chatData, setChatData] = useState<ChatItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
@@ -89,12 +94,15 @@ export function AiBot() {
     return () => observer.disconnect();
   }, [])
 
-  return (
+  return isOpen && (
     <div
-      className="fixed top-0 left-0 w-full h-screen bg-white/60 dark:bg-black/60 z-50 backdrop-blur-md flex items-center justify-between flex-col pb-6"
+      className={clsx(
+        "fixed top-0 left-0 w-full h-screen bg-white/60 dark:bg-black/60 z-50 backdrop-blur-md flex items-center justify-between flex-col pb-6",
+        animator({ name: 'fadeInDown' })
+      )}
     >
       <div className='w-full flex items-center justify-between p-3 lg:max-w-3xl bg-white dark:bg-black border-b'>
-        <button className='hover:text-amber-500 duration-300'>Close</button>
+        <button className='hover:text-amber-500 duration-300' onClick={onClose}>Close</button>
         <h3 className={clsx('text-2xl font-bold', titleFont.className)}>AI Assistant</h3>
         <div />
       </div>
@@ -153,7 +161,7 @@ export function AiBot() {
         <Button
           type="submit"
           label="Submit"
-          loading={isLoading}
+          disabled={isLoading}
           className="h-12 min-w-24"
         />
       </form>
