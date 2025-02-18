@@ -170,9 +170,9 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
             type="text"
             tabIndex={1}
             className="w-full h-12"
-            containerClassName="w-full"
             error={errors.text?.message}
             placeholder="Ask About Ramin From AI"
+            containerClassName="w-full flex-col-reverse"
             {...register('text', {
               required: {
                 value: true,
