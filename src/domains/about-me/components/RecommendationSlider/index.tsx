@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
-import { EffectCards, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/effect-cards';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css/navigation';
 import { clsx } from 'clsx';
 import 'swiper/css';
@@ -20,10 +19,12 @@ export function RecommendationSlider() {
         Recommendations On LinkedIn
       </h3>
       <Swiper
+        loop
+        grabCursor
         navigation
-        effect={'cards'}
-        grabCursor={true}
-        modules={[EffectCards, Navigation]}
+        centeredSlides
+        slidesPerView="auto"
+        modules={[Navigation]}
       >
         {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
           <SwiperSlide key={item.id} className="md:px-12">

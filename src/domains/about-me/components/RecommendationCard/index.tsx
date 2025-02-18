@@ -6,7 +6,6 @@ import { clsx } from 'clsx';
 
 import type { RecommendationItem } from '@/data';
 import { GTM_EVENTS } from '@/shared/constants';
-import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
 import styles from './recommendation-card.module.scss';
@@ -26,9 +25,8 @@ export function RecommendationCard({
     <div
       style={{ animationDelay }}
       className={clsx(
-        'flex flex-col items-start gap-2 border bg-white p-4 shadow-lg dark:bg-black',
-        styles['recommendation-card'],
-        animator({ name: 'fadeInUp' })
+        'flex flex-col items-start gap-2 border bg-white p-4 dark:bg-black',
+        styles['recommendation-card']
       )}
     >
       <div
