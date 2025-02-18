@@ -114,7 +114,7 @@ export const RECOMMENDATIONS: RecommendationItem[] = [
     id: 11,
     fullName: 'Sepideh Gheisar',
     title: 'Senior Product Manager',
-    text: 'I have worked with many professionals throughout my work, but Ramin was a unique one on them. His ability to go out of his way to help others has made him stand out. I can say that Ramin has two very prominent characteristics and that speed of action in finding useful solutions and having a very good work ethic that makes each member of the product team want to work with Ramin. His expertise as a developer is considerable, and it helped our team come up with more efficient solutions on different projects. In addition his contribution is valuable to the side, and I highly recommend Ramin and would love to work with him again :)',
+    text: 'I have worked with many professionals throughout my work, but Ramin was a unique one on them. His ability to go out of his way to help others has made him stand out. I can say that Ramin has two very prominent characteristics and that speed of action in finding useful solutions and having a very good work ethic that makes each member of the product team want to work with Ramin. His expertise as a developer is considerable, and it helped our team come up with more efficient solutions on different projects. In addition his contribution is valuable to the side.',
     date: 'October 16, 2021',
     caption: 'October 16, 2021, Sepideh worked with Ramin on the same team',
     url: 'https://www.linkedin.com/in/sgheysar',
@@ -143,8 +143,7 @@ export const RECOMMENDATIONS: RecommendationItem[] = [
   {
     id: 14,
     fullName: 'Amirreza Balouchi',
-    title:
-      'Experienced Software Engineer | Machine Learning Enthusiast | Data Science & AI Solutions | DevOps',
+    title: 'Experienced Software Engineer | Machine Learning Enthusiast',
     text: 'He does what he says and his work is always top-notch. Hardworking, intelligent, and helpful, he has come a long way and is sure to achieve greater heights.',
     date: 'May 11, 2021',
     caption: 'May 11, 2021, Amirreza managed Ramin directly',
