@@ -6,14 +6,26 @@ export interface AiResponse {
   answer: string;
 }
 
-export const sendTextToAI = (text: string): Promise<AiResponse> => {
+export const sendTextToAI = ({
+  text,
+  userId
+}: {
+  text: string;
+  userId: string;
+}): Promise<AiResponse> => {
   return new Promise((resolve, reject) => {
-    fetch(CONTACT_ME_ENDPOINTS.sendTextToAI(text), {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+    fetch(
+      CONTACT_ME_ENDPOINTS.sendTextToAI({
+        text,
+        userId
+      }),
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
-    })
+    )
       .then((rawResponse) => rawResponse.json())
       .then((response) => {
         if (response.success) {
@@ -25,8 +37,10 @@ export const sendTextToAI = (text: string): Promise<AiResponse> => {
           reject();
         }
       })
-      .catch(() => {
-        notify.error({ message: 'Error: We couldn\'t handle your message now!' });
+      .catch((error) => {
+        notify.error({
+          message: error.message || "Error: We couldn't handle your message now!"
+        });
         reject();
       });
   });

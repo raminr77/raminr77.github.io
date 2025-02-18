@@ -10,6 +10,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import 'animate.css';
 
 import { CustomCursor } from '@/shared/components/custom-cursor';
+import { AiButton } from '@/layout/components/ai-bot';
 import { Header } from '@/layout/components/header';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
@@ -62,6 +63,8 @@ export default function RootLayout({
 
         <Header />
         {children}
+
+        <AiButton />
 
         <ToastContainer position="bottom-center" theme="colored" />
 
