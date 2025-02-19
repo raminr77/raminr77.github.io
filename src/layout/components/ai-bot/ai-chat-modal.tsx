@@ -103,7 +103,7 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
     isOpen && (
       <div
         className={clsx(
-          'fixed top-0 left-0 w-full h-screen bg-white/60 dark:bg-black/60 z-50 backdrop-blur-md flex items-center justify-between flex-col pb-6',
+          'fixed top-0 left-0 w-full h-dvh bg-white/60 dark:bg-black/60 z-50 backdrop-blur-md flex items-center justify-between flex-col pb-6',
           animator({ name: 'slideInDown', speed: 'fast' })
         )}
       >
