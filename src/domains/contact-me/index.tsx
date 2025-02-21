@@ -65,6 +65,27 @@ export function ContactMePage() {
               {text}
             </p>
           ))}
+
+          <br />
+          <p className={animator({ name: 'fadeIn', delay: '2s' })}>You can book a meeting with me:</p>
+          <div className={clsx('text-md flex items-center gap-2', animator({ name: 'fadeIn', delay: '2s' }))}>
+            <Link
+              href={CONTACT_ME_DATA.googleCalendar}
+              className='text-amber-500'
+              target="_blank"
+            >
+              Personal Calendar
+            </Link>
+            <span>|</span>
+            <Link
+              href={CONTACT_ME_DATA.mentorCalendar}
+              className='text-amber-500'
+              target="_blank"
+            >
+              Mentorship Calendar
+            </Link>
+          </div>
+
         </div>
 
         <div

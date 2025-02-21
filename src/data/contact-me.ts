@@ -6,6 +6,8 @@ export const CONTACT_ME_DATA = {
     'I will try to answer you as soon as possible ...'
   ],
   linkedInURL: 'https://www.linkedin.com/in/raminr77/',
+  googleCalendar: 'https://calendar.app.google/5BvuowMckPYbCxj6A',
+  mentorCalendar: 'https://adplist.org/mentors/ramin-rezaei',
   links: [
     {
       title: 'GitHub',
