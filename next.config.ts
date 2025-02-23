@@ -24,6 +24,11 @@ const nextConfig: NextConfig = {
       },
       {
         permanent: true,
+        destination: '/',
+        source: '/resume.pdf'
+      },
+      {
+        permanent: true,
         source: '/random-sex-position',
         destination: 'https://ramiiin.ir/random-sex-position/'
       },
