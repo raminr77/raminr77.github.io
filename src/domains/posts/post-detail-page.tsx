@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -5,7 +6,7 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { ContentContainer } from '@/layout/components/content-container';
-import { POSTS_DATA, type Post } from '@/data';
+import { allPosts, type Post } from 'contentlayer/generated';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
@@ -19,7 +20,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id: postId } = await params;
   const post: Post | null =
-    POSTS_DATA.find(({ id }: Post) => String(id) === postId) || null;
+    allPosts.find(({ id }: Post) => String(id) === postId) || null;
 
   return {
     title: post?.title
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function PostDetailPage({ params }: Props) {
   const { id: postId } = await params;
   const post: Post | null =
-    POSTS_DATA.find(({ id }: Post) => String(id) === postId) || null;
+    allPosts.find(({ id }: Post) => String(id) === postId) || null;
 
   if (!post) {
     redirect(ROUTES.POSTS);
@@ -47,11 +48,17 @@ export async function PostDetailPage({ params }: Props) {
         {post.title}
       </h1>
 
-      <p className="mb-5 text-xl">{post.summary}</p>
+      <p
+        className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl"
+        dangerouslySetInnerHTML={{ __html: post.description.html }}
+      />
 
       <div
-        className={clsx('text-xl leading-8', styles['post-detail-page__text'])}
-        dangerouslySetInnerHTML={{ __html: post.text }}
+        className={clsx(
+          'text-xl leading-8 [&>*]:mb-3 [&>*:last-child]:mb-0',
+          styles['post-detail-page__text']
+        )}
+        dangerouslySetInnerHTML={{ __html: post.body.html }}
       />
 
       <div
@@ -66,7 +73,7 @@ export async function PostDetailPage({ params }: Props) {
         >
           Back to list
         </Link>
-        <span>{post.created}</span>
+        <span>{format(parseISO(post.date), 'LLLL d, yyyy')}</span>
       </div>
     </ContentContainer>
   );

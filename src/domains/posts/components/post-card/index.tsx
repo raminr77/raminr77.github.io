@@ -2,10 +2,11 @@ import Link from 'next/link';
 
 import { clsx } from 'clsx';
 
+import type { Post } from 'contentlayer/generated';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
+import { format, parseISO } from 'date-fns';
 import { titleFont } from '@/app/fonts';
-import type { Post } from '@/data';
 
 export function PostCard({
   data,
@@ -14,8 +15,12 @@ export function PostCard({
   data: Post;
   animationDelay?: number;
 }) {
-  const { id, title, summary, tags, created } = data;
-  const url = `${ROUTES.POSTS}${id}`;
+  const { id, title, slug, description, tags, date, isActive, category } = data;
+  const url = `${ROUTES.POSTS}${id}?slug=${slug}`;
+
+  if (!isActive) {
+    return null;
+  }
 
   return (
     <div
@@ -26,10 +31,14 @@ export function PostCard({
       style={{ animationDelay: `${animationDelay}s` }}
     >
       <Link href={url} className="text-amber-500">
-        <h3 className={clsx('font-bold', titleFont.className)}>{title}</h3>
+        <h3 className={clsx('text-lg font-bold', titleFont.className)}>{title}</h3>
       </Link>
+      <span className='text-sm'>{`Category: ${category.toUpperCase()}`}</span>
 
-      <p className="text-md mb-3 mt-1 h-20">{summary.slice(0, 110)}...</p>
+      <p
+        className="mb-3 mt-2 [&>*]:mb-3 [&>*:last-child]:mb-0 text-md"
+        dangerouslySetInnerHTML={{ __html: description.html }}
+      />
 
       {tags.length > 0 && (
         <div className="mb-2 flex select-none flex-wrap gap-2">
@@ -45,7 +54,7 @@ export function PostCard({
       )}
 
       <div className="flex select-none items-center justify-between">
-        <span>{created}</span>
+        <span>{format(parseISO(date), 'LLLL d, yyyy')}</span>
         <Link href={url} className="text-amber-500">
           Read More
         </Link>

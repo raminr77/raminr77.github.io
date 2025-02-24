@@ -1,10 +1,11 @@
-import type { NextConfig } from 'next';
-
+import { withContentlayer } from 'next-contentlayer';
 import { withSentryConfig } from '@sentry/nextjs';
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
   trailingSlash: true,
+  reactStrictMode: true,
   async redirects() {
     return [
       {
@@ -52,3 +53,5 @@ export default withSentryConfig(nextConfig, {
   widenClientFileUpload: true,
   automaticVercelMonitors: true
 });
+
+module.exports = withContentlayer(nextConfig);
