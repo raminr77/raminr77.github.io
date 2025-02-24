@@ -32,7 +32,10 @@ export function PostCard({
       )}
       style={{ animationDelay: `${animationDelay}s` }}
     >
-      <Link href={postDetailUrl} className={clsx('text-lg font-bold text-amber-500', titleFont.className)}>
+      <Link
+        href={postDetailUrl}
+        className={clsx('text-lg font-bold text-amber-500', titleFont.className)}
+      >
         {title}
       </Link>
       <PostCategory category={category} />
