@@ -107,7 +107,7 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
           animator({ name: 'slideInDown', speed: 'fast' })
         )}
       >
-        <div className="w-full flex items-center justify-between p-3 lg:max-w-3xl bg-white dark:bg-black border-b">
+        <div className="w-full flex items-center justify-between p-3 lg:max-w-3xl bg-white/20 dark:bg-black/20 border-b">
           <button className="hover:text-amber-500 duration-300" onClick={onClose}>
             Close
           </button>
@@ -130,7 +130,7 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
                   animator({ name: 'fadeInUp' })
                 )}
               >
-                <div className="bg-sky-950 py-2 px-3 rounded-2xl rounded-br-md">
+                <div className="dark:bg-sky-950 bg-sky-200 py-2 px-3 rounded-2xl rounded-br-md">
                   {text}
                 </div>
               </div>
@@ -143,7 +143,7 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
                 )}
               >
                 <div
-                  className="bg-sky-800 py-2 px-3 rounded-2xl rounded-tl-md"
+                  className="dark:bg-sky-800 bg-sky-300 py-2 px-3 rounded-2xl rounded-tl-md"
                   dangerouslySetInnerHTML={{ __html: text }}
                 />
               </div>
