@@ -61,6 +61,7 @@ export function TextInput({
         <textarea
           id={id}
           rows={4}
+          spellCheck
           tabIndex={tabIndex}
           required={required}
           onChange={onChange}
