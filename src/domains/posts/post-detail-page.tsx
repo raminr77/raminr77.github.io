@@ -11,6 +11,8 @@ import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
+import { readingTime } from './helpers';
+
 import styles from './post-detail-page.module.scss';
 
 interface Props {
@@ -47,6 +49,15 @@ export async function PostDetailPage({ params }: Props) {
       >
         {post.title}
       </h1>
+
+      <div className="mb-4 flex flex-col">
+        <p>{`Author: ${post.author}`}</p>
+        <div className='flex gap-1 items-center'>
+          <p>Category:</p>
+          <Link className='text-amber-500' href={`${ROUTES.POSTS}?category=${post.category}`}>{post.category.toUpperCase()}</Link>
+        </div>
+        <p>{`Read Time: ${readingTime(post.body.raw)} minute(s)`}</p>
+      </div>
 
       <p
         className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl"

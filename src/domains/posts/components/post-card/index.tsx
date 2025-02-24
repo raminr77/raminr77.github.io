@@ -33,7 +33,7 @@ export function PostCard({
       <Link href={url} className="text-amber-500">
         <h3 className={clsx('text-lg font-bold', titleFont.className)}>{title}</h3>
       </Link>
-      <span className='text-sm'>{`Category: ${category.toUpperCase()}`}</span>
+      <span className="text-sm">{`Category: ${category.toUpperCase()}`}</span>
 
       <p
         className="mb-3 mt-2 [&>*]:mb-3 [&>*:last-child]:mb-0 text-md"
