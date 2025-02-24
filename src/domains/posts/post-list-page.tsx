@@ -12,7 +12,7 @@ import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 interface PostListPageProps {
-  searchParams: Record<'tag' | 'category', string>;
+  searchParams: Promise<Record<'tag' | 'category', string>>;
 }
 
 export const metadata: Metadata = {
@@ -20,7 +20,8 @@ export const metadata: Metadata = {
 };
 
 export async function PostListPage({ searchParams }: PostListPageProps) {
-  const filter = Object.keys(searchParams).length > 0 ? searchParams : null;
+  const filterObject = await searchParams;
+  const filter = Object.keys(filterObject).length > 0 ? filterObject : null;
   const posts: Post[] = allPosts
     .filter((postItem: Post) => filterPostsByKey(postItem, filter))
     .sort(postSorter);
