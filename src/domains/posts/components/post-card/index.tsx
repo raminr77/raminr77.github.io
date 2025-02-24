@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { PostTags } from '@/domains/posts/components/post-tags';
-import { generateFilteredPostUrl } from '../../helpers';
 import type { Post } from 'contentlayer/generated';
+import { PostCategory } from '../post-category';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { format, parseISO } from 'date-fns';
+import { PostDate } from '../post-date';
 import { titleFont } from '@/app/fonts';
 
 export function PostCard({
@@ -35,12 +35,7 @@ export function PostCard({
       <Link href={postDetailUrl} className="text-amber-500">
         <h3 className={clsx('text-lg font-bold', titleFont.className)}>{title}</h3>
       </Link>
-      <div className="flex gap-1 items-center text-sm">
-        <p>Category:</p>
-        <Link className="text-amber-500" href={generateFilteredPostUrl({ category })}>
-          {category.toUpperCase()}
-        </Link>
-      </div>
+      <PostCategory category={category} />
 
       <p
         className="mb-3 mt-2 [&>*]:mb-3 [&>*:last-child]:mb-0 text-md"
@@ -50,9 +45,9 @@ export function PostCard({
       <PostTags postId={id} tags={tags} />
 
       <div className="flex select-none items-center justify-between">
-        <span>{format(parseISO(date), 'LLLL d, yyyy')}</span>
+        <PostDate date={date} />
         <Link href={postDetailUrl} className="text-amber-500">
-          Read More
+          {`{ Read More }`}
         </Link>
       </div>
     </div>

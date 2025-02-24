@@ -1,10 +1,12 @@
 import { ContentContainer } from '@/layout/components/content-container';
-import { generateFilteredPostUrl, readingTime } from './helpers';
 import { allPosts, type Post } from 'contentlayer/generated';
+import { PostReadTime } from './components/post-read-time';
+import { PostCategory } from './components/post-category';
+import { PostAuthor } from './components/post-author';
 import { PostTags } from './components/post-tags';
+import { PostDate } from './components/post-date';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { format, parseISO } from 'date-fns';
 import { redirect } from 'next/navigation';
 import { titleFont } from '@/app/fonts';
 import type { Metadata } from 'next';
@@ -48,18 +50,12 @@ export async function PostDetailPage({ params }: Props) {
         {post.title}
       </h1>
 
-      <div className="mb-4 flex flex-col">
-        <p>{`Author: ${post.author}`}</p>
-        <div className="flex gap-1 items-center">
-          <p>Category:</p>
-          <Link
-            className="text-amber-500"
-            href={generateFilteredPostUrl({ category: post.category })}
-          >
-            {post.category.toUpperCase()}
-          </Link>
-        </div>
-        <p>{`Read Time: ${readingTime(post.body.raw)} minute(s)`}</p>
+      <div className="mb-4 flex gap-2">
+        <PostCategory category={post.category} />
+        <span>|</span>
+        <PostAuthor author={post.author} />
+        <span>|</span>
+        <PostReadTime words={post.body.raw} />
       </div>
 
       <p
@@ -89,7 +85,7 @@ export async function PostDetailPage({ params }: Props) {
         >
           Back to list
         </Link>
-        <span>{format(parseISO(post.date), 'LLLL d, yyyy')}</span>
+        <PostDate date={post.date} />
       </div>
     </ContentContainer>
   );
