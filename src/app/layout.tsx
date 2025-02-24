@@ -46,6 +46,7 @@ export default function RootLayout({
         <Image
           width={830}
           height={830}
+          loading="lazy"
           alt="top-shine"
           priority={false}
           draggable={false}
@@ -55,6 +56,7 @@ export default function RootLayout({
         <Image
           width={830}
           height={830}
+          loading="lazy"
           priority={false}
           draggable={false}
           alt="bottom-shine"
