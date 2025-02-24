@@ -7,13 +7,15 @@ import Image from 'next/image';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import 'animate.css';
 
 import { CustomCursor } from '@/shared/components/custom-cursor';
 import { AiButton } from '@/layout/components/ai-bot';
 import { Header } from '@/layout/components/header';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
+
+import '../../public/highlight.min.css';
+import 'animate.css';
 
 import './globals.scss';
 
@@ -69,8 +71,10 @@ export default function RootLayout({
         <ToastContainer position="bottom-center" theme="colored" />
 
         <SpeedInsights />
-        <Script src="/click-spark.js" />
-        <Script src="/service-worker.js" />
+
+        <Script src="/click-spark.js" defer />
+        <Script src="/service-worker.js" defer />
+
         <GoogleAnalytics gaId="G-K7FM8D9D43" />
         <GoogleTagManager gtmId="GTM-W8BNDMMW" />
       </body>

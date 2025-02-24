@@ -1,17 +1,22 @@
-import { ContentContainer } from '@/layout/components/content-container';
+import { redirect } from 'next/navigation';
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import Link from 'next/link';
+import { clsx } from 'clsx';
+import React from 'react';
+
 import { allPosts, type Post } from 'contentlayer/generated';
+
+import { ContentContainer } from '@/layout/components/content-container';
+import { ROUTES } from '@/shared/constants';
+import { animator } from '@/shared/helpers';
+import { titleFont } from '@/app/fonts';
+
 import { PostReadTime } from './components/post-read-time';
 import { PostCategory } from './components/post-category';
 import { PostAuthor } from './components/post-author';
 import { PostTags } from './components/post-tags';
 import { PostDate } from './components/post-date';
-import { ROUTES } from '@/shared/constants';
-import { animator } from '@/shared/helpers';
-import { redirect } from 'next/navigation';
-import { titleFont } from '@/app/fonts';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { clsx } from 'clsx';
 
 import styles from './post-detail-page.module.scss';
 
@@ -87,6 +92,9 @@ export async function PostDetailPage({ params }: Props) {
         </Link>
         <PostDate date={post.date} />
       </div>
+
+      <Script defer strategy="lazyOnload" src="/highlight.min.js" />
+      <Script defer strategy="lazyOnload" src="/highlight-loader.js" />
     </ContentContainer>
   );
 }
