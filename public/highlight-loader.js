@@ -1,3 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
+setTimeout(() => {
   hljs.highlightAll();
-});
+}, 1000);
