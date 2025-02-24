@@ -24,7 +24,7 @@ export function ProjectsPage() {
         )}
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.title }}
       />
-      <h3
+      <p
         className={clsx(
           titleFont.className,
           'mt-4 select-none text-center text-xl',
@@ -45,7 +45,7 @@ export function ProjectsPage() {
           animator({ name: 'fadeInUp', delay: '1s' })
         )}
       >
-        <h4>{PROJECTS_DATA.footer}</h4>
+        <p>{PROJECTS_DATA.footer}</p>
         <Link
           href={PROJECTS_DATA.footerActionURL}
           className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 hover:text-orange-500"

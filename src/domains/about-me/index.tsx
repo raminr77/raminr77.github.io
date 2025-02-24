@@ -27,6 +27,7 @@ export function AboutMePage() {
         <Image
           width={384}
           height={480}
+          loading="lazy"
           className={clsx(
             'pointer-events-none z-20 w-4/5 max-w-96',
             animator({ name: 'fadeIn', speed: 'slow', delay: '1s' })
@@ -53,12 +54,12 @@ export function AboutMePage() {
       >
         {`About ${PERSONAL_DATA.firstName}`}
       </h1>
-      <h3
+      <p
         className={clsx('mt-1 text-left text-xl', animator({ name: 'fadeInUp' }))}
         style={{ animationDelay: `${2 * 0.3}s` }}
       >
         {`${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`}
-      </h3>
+      </p>
       <div
         className={clsx(
           'mb-5 mt-4 flex flex-col gap-4 text-justify text-lg',

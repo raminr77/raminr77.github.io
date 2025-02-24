@@ -28,7 +28,7 @@ export const renderContent = (index: number, content: AboutMeContentItem): React
   if (content.type === ABOUT_ME_CONTENT_TYPE.list) {
     return (
       <div key={index}>
-        <h5>{content.title}</h5>
+        <p>{content.title}</p>
         <ul className="ml-5 mt-2">
           {content.data.map((listItemContent: string, listItemIndex: number) => (
             <li

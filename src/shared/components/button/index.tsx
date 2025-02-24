@@ -22,7 +22,9 @@ export function Button({
   return (
     <button
       type={type}
+      title={label}
       onClick={onClick}
+      aria-label={label}
       disabled={loading || disabled}
       className={clsx(
         'flex min-w-36 items-center justify-center gap-2 border px-5 leading-10 shadow backdrop-blur-md duration-300 hover:border-amber-500 hover:shadow-amber-500/50',

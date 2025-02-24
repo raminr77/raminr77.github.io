@@ -46,7 +46,7 @@ export function JourneyCard({
           styles['journey-card__circle']
         )}
       >
-        <h5
+        <span
           style={{ animationDelay }}
           className={clsx(
             'pointer-events-none absolute text-xl font-extrabold tracking-wide',
@@ -55,7 +55,7 @@ export function JourneyCard({
           )}
         >
           {year}
-        </h5>
+        </span>
         <PixelCanvas color="yellow" autoPlay />
       </div>
 
@@ -76,7 +76,7 @@ export function JourneyCard({
               {title.toUpperCase()}
             </Link>
           ) : (
-            <h3 className={TITLE_CLASSES}>{title.toUpperCase()}</h3>
+            <p className={TITLE_CLASSES}>{title.toUpperCase()}</p>
           )}
 
           <div className="flex items-center justify-between">

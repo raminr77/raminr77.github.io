@@ -15,9 +15,9 @@ import { RecommendationCard } from '../RecommendationCard';
 export function RecommendationSlider() {
   return (
     <section className={clsx('my-10', animator({ name: 'fadeIn', delay: '1s' }))}>
-      <h3 className={clsx(titleFont.className, 'mb-7 text-2xl font-extrabold')}>
+      <p className={clsx(titleFont.className, 'mb-7 text-2xl font-extrabold')}>
         Recommendations On LinkedIn
-      </h3>
+      </p>
       <Swiper
         loop
         grabCursor
@@ -32,6 +32,8 @@ export function RecommendationSlider() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <br />
 
       <Link
         target="_blank"

@@ -106,7 +106,7 @@ export function ContactMePage() {
               className={clsx('flex items-center gap-2', animator({ name: 'fadeInUp' }))}
               style={{ animationDelay: `${(index + 1) * 0.3}s` }}
             >
-              <h3>{title}:</h3>
+              <span>{title}:</span>
               <Link
                 href={url}
                 target="_blank"
@@ -135,7 +135,6 @@ export function ContactMePage() {
           required
           type="text"
           id="subject"
-          tabIndex={1}
           label="Subject"
           placeholder="Enter your subject"
           error={errors.subject?.message}
@@ -154,7 +153,6 @@ export function ContactMePage() {
           required
           id="email"
           type="email"
-          tabIndex={2}
           label="Email"
           error={errors.email?.message}
           placeholder="Enter your email address"
@@ -171,7 +169,6 @@ export function ContactMePage() {
         />
         <TextInput
           required
-          tabIndex={3}
           id="message"
           type="textarea"
           label="Message"

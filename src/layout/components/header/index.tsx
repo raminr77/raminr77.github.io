@@ -35,9 +35,9 @@ export function Header() {
           >
             {PERSONAL_DATA.fullName}
           </h1>
-          <h3 className={clsx('text-lg', animator({ name: 'fadeIn', delay: '1s' }))}>
+          <p className={clsx('text-lg', animator({ name: 'fadeIn', delay: '1s' }))}>
             {pageTitle}
-          </h3>
+          </p>
         </div>
         <ul
           className={clsx(

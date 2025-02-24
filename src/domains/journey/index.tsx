@@ -23,7 +23,7 @@ export function JourneyPage() {
         )}
         dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.title }}
       />
-      <h3
+      <p
         className={clsx(
           titleFont.className,
           'mt-4 select-none text-center text-xl',

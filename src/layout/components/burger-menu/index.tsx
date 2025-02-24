@@ -90,6 +90,8 @@ export function BurgerMenu() {
 
       <button
         onClick={handleToggle}
+        title="Burger Menu"
+        aria-label="Burger Menu Toggle"
         className={clsx(
           'relative h-16 w-16 rounded-full p-5',
           animator({ name: 'fadeIn', delay: '1s' })

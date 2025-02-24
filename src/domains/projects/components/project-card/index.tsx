@@ -23,15 +23,15 @@ export function ProjectCard({
       style={{ animationDelay: `${animationDelay}s` }}
     >
       <div className="mb-3 flex flex-col gap-2">
-        <h3 className={titleFont.className}>{title}</h3>
-        <p>{role}</p>
+        <p className={titleFont.className}>{title}</p>
+        <span>{role}</span>
       </div>
       <div className="flex select-none flex-wrap gap-3">
         <span
           className={clsx(
             'inline-block whitespace-nowrap rounded px-2 py-0 text-sm leading-6',
             {
-              'bg-green-400/80': !isPrivate,
+              'bg-green-800': !isPrivate,
               'bg-red-600/50': isPrivate
             }
           )}
@@ -43,7 +43,7 @@ export function ProjectCard({
           <Link
             href={url}
             target="_blank"
-            className="inline-block whitespace-nowrap rounded bg-sky-400/80 px-2 py-0 text-sm leading-6"
+            className="inline-block whitespace-nowrap rounded bg-sky-700 px-2 py-0 text-sm leading-6"
           >
             Demo
           </Link>

@@ -42,6 +42,7 @@ export function RecommendationCard({
               height={100}
               alt={fullName}
               src={imageURL}
+              loading="lazy"
               className={clsx(
                 'rounded-md grayscale duration-500',
                 styles['recommendation-card__profile-image']
@@ -55,11 +56,9 @@ export function RecommendationCard({
             target="_blank"
             onClick={sendEvent}
             rel="noopener noreferrer"
-            className="text-amber-500"
+            className={clsx(titleFont.className, 'text-xl font-bold text-amber-500')}
           >
-            <h4 className={clsx(titleFont.className, 'text-xl font-bold')}>
-              {fullName.toUpperCase()}
-            </h4>
+            {fullName.toUpperCase()}
           </Link>
           <p>{title}</p>
           <div className="flex flex-wrap items-center gap-2">
