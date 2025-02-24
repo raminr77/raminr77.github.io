@@ -1,17 +1,15 @@
-import { format, parseISO } from 'date-fns';
-import { redirect } from 'next/navigation';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-
-import { clsx } from 'clsx';
-
 import { ContentContainer } from '@/layout/components/content-container';
+import { generateFilteredPostUrl, readingTime } from './helpers';
 import { allPosts, type Post } from 'contentlayer/generated';
+import { PostTags } from './components/post-tags';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
+import { format, parseISO } from 'date-fns';
+import { redirect } from 'next/navigation';
 import { titleFont } from '@/app/fonts';
-
-import { readingTime } from './helpers';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { clsx } from 'clsx';
 
 import styles from './post-detail-page.module.scss';
 
@@ -56,7 +54,7 @@ export async function PostDetailPage({ params }: Props) {
           <p>Category:</p>
           <Link
             className="text-amber-500"
-            href={`${ROUTES.POSTS}?category=${post.category}`}
+            href={generateFilteredPostUrl({ category: post.category })}
           >
             {post.category.toUpperCase()}
           </Link>
@@ -71,11 +69,13 @@ export async function PostDetailPage({ params }: Props) {
 
       <div
         className={clsx(
-          'text-xl leading-8 [&>*]:mb-3 [&>*:last-child]:mb-0',
+          'text-xl leading-8 [&>*]:mb-3 [&>*:last-child]:mb-4',
           styles['post-detail-page__text']
         )}
         dangerouslySetInnerHTML={{ __html: post.body.html }}
       />
+
+      <PostTags postId={post.id} tags={post.tags} />
 
       <div
         className={clsx(
