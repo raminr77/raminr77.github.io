@@ -2,7 +2,7 @@ import { generateFilteredPostUrl } from '@/domains/posts/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function PostCategory({ category }: { category: string }) {
+export function PostCategory({ category, showLabel = false }: { showLabel?: boolean; category: string }) {
   return (
     <div className="flex gap-1 items-center">
       <Image
@@ -13,6 +13,7 @@ export function PostCategory({ category }: { category: string }) {
         className="dark:invert"
         src="/images/category-icon.svg"
       />
+      {showLabel && <span>Category: </span>}
       <Link className="text-amber-500" href={generateFilteredPostUrl({ category })}>
         {category.toUpperCase()}
       </Link>

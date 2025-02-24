@@ -12,7 +12,7 @@ export function PostReadTime({ words }: { words: string }) {
         className="dark:invert"
         src="/images/time-icon.svg"
       />
-      <p>{`${readingTime(words)} minute(s)`}</p>
+      <p>{`Reading Time ${readingTime(words)} Minute(s)`}</p>
     </div>
   );
 }

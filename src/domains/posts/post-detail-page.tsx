@@ -55,11 +55,10 @@ export async function PostDetailPage({ params }: Props) {
         {post.title}
       </h1>
 
-      <div className="mb-4 flex gap-2">
-        <PostCategory category={post.category} />
-        <span>|</span>
+      <div className="mb-4 flex gap-5 max-md:flex-col max-md:gap-2">
         <PostAuthor author={post.author} />
-        <span>|</span>
+        <PostCategory showLabel category={post.category} />
+        <PostDate date={post.date} />
         <PostReadTime words={post.body.raw} />
       </div>
 
