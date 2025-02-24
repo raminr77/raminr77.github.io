@@ -1,3 +1,3 @@
 setTimeout(() => {
   hljs.highlightAll();
-}, 1000);
+}, 500);
