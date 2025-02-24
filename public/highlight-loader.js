@@ -1,1 +1,3 @@
-hljs.highlightAll();
+document.addEventListener("DOMContentLoaded", function() {
+  hljs.highlightAll();
+});
