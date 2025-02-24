@@ -52,9 +52,14 @@ export async function PostDetailPage({ params }: Props) {
 
       <div className="mb-4 flex flex-col">
         <p>{`Author: ${post.author}`}</p>
-        <div className='flex gap-1 items-center'>
+        <div className="flex gap-1 items-center">
           <p>Category:</p>
-          <Link className='text-amber-500' href={`${ROUTES.POSTS}?category=${post.category}`}>{post.category.toUpperCase()}</Link>
+          <Link
+            className="text-amber-500"
+            href={`${ROUTES.POSTS}?category=${post.category}`}
+          >
+            {post.category.toUpperCase()}
+          </Link>
         </div>
         <p>{`Read Time: ${readingTime(post.body.raw)} minute(s)`}</p>
       </div>
