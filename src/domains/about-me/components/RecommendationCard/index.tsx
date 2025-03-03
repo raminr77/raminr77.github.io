@@ -68,7 +68,7 @@ export function RecommendationCard({
         </div>
       </div>
 
-      <p className="w-full text-left">{text}</p>
+      <p className="w-full text-left" dangerouslySetInnerHTML={{ __html: text }} />
 
       <Link
         href={url}
