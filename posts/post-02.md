@@ -10,6 +10,7 @@ description: The `@property` CSS at-rule is part of the CSS Houdini set of APIs.
 tags:
   - css
 ---
+
 CSS has evolved significantly over the years, introducing powerful features that enhance styling capabilities. One such feature is @property, which allows developers to define custom properties (CSS variables) with specific types, default values, and inheritance behavior. This feature enables better performance and flexibility when working with dynamic styles, particularly in animations and transitions.
 
 ## What is @property?
@@ -20,7 +21,7 @@ CSS has evolved significantly over the years, introducing powerful features that
 
 ```css
 @property --my-color {
-  syntax: "<color>";
+  syntax: '<color>';
   inherits: false;
   initial-value: blue;
 }
@@ -44,7 +45,7 @@ With `@property`, we can animate CSS variables smoothly.
 
 ```css
 @property --main-bg-color {
-  syntax: "<color>";
+  syntax: '<color>';
   inherits: false;
   initial-value: white;
 }
