@@ -11,6 +11,16 @@ export interface RecommendationItem {
 
 export const RECOMMENDATIONS: RecommendationItem[] = [
   {
+    id: 17,
+    fullName: 'Lukas Tutkus',
+    title: 'Team lead at Boozt Technology Baltics',
+    text: "I've worked with Ramin a year together in Boozt <br /> He did a lot of great work and is great addition to our chapter as a motivated and keen to help developer. <br /> He build a lot of great improvements in our internal system which other developers could reuse and always thinks of a way to improve something. He also does carefully review our codebase and gives great insights to other devs as well. <br /> I would recommend Ramin to everyone who might be needing a senior FE with great motivation and quick learning.",
+    date: 'March 6, 2025',
+    caption: 'Lukas worked with Ramin on the same team',
+    url: 'https://www.linkedin.com/in/lukas-tutkus-08657815b/',
+    imageURL: '/images/linkedIn-profiles/lukas-tutkus.jpeg'
+  },
+  {
     id: 16,
     fullName: 'Matīss Cikota',
     title: 'Senior Frontend Developer at Boozt',
