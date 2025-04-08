@@ -64,7 +64,7 @@ export async function PostDetailPage({ params }: Props) {
 
       <p
         className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl"
-        dangerouslySetInnerHTML={{ __html: post.description.html }}
+        dangerouslySetInnerHTML={{ __html: post.description.raw }}
       />
 
       <div
