@@ -6,7 +6,7 @@ category: tutorial
 date: 2025-02-25
 slug: understanding-property-in-css
 title: Understanding @property in CSS
-description: The `@property` CSS at-rule is part of the CSS Houdini set of APIs. It allows developers to explicitly define CSS custom properties, allowing for property type checking and constraining, setting default values, and defining whether a custom property can inherit values or not.
+description: The @property CSS at-rule is part of the CSS Houdini set of APIs. It allows developers to explicitly define CSS custom properties, allowing for property type checking and constraining, setting default values, and defining whether a custom property can inherit values or not.
 tags:
   - css
 ---

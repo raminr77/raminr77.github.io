@@ -11,5 +11,12 @@
       font-size: 14px;
       border-radius: 10px;
     }
+
+    pre {
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #282c34;
+      transition-duration: 500ms;
+    }
   }
 }
