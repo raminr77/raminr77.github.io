@@ -27,7 +27,7 @@ export function PostCard({
   return (
     <div
       className={clsx(
-        'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5',
+        'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5 h-fit',
         animator({ name: 'fadeIn' })
       )}
       style={{ animationDelay: `${animationDelay}s` }}
