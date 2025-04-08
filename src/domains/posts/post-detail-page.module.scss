@@ -12,6 +12,11 @@
       border-radius: 10px;
     }
 
+    pre code {
+      padding: 0;
+      transition-duration: 500ms;
+    }
+
     pre {
       padding: 1rem;
       border-radius: 8px;
