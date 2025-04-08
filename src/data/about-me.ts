@@ -37,11 +37,11 @@ export const ABOUT_ME_DATA: {
   content: [
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: "Hi, I’m <strong>Ramin Rezaei</strong>, a dedicated and ambitious <strong>Software Engineer</strong> with over six years of professional experience in designing, developing, and optimizing web applications and systems. Currently, I’m based in <strong>Malmö, Sweden</strong>, where I work as a <strong>Senior Frontend Engineer</strong> at <a href='https://www.boozt.com' target='_blank'>Boozt</a>, crafting innovative, high-performance solutions for e-commerce platforms serving millions of users across 17 countries."
+      data: "Hi, I’m <strong>Ramin Rezaei</strong>, a dedicated and ambitious <strong>Software Engineer</strong> with over six years of professional experience in designing, developing, and optimizing web applications and systems. Currently, I’m based in <strong>Malmö, Sweden</strong>, where I work as a <strong>Senior Software Engineer</strong> at <a href='https://www.sinch.com' target='_blank'>Sinch AB</a>, a Swedish company specializing in cloud-based communications services, commonly referred to as Communications Platform as a Service (CPaaS)."
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'My professional journey has been a blend of technical challenges, impactful projects, and continuous learning. I specialize in <strong>frontend technologies</strong> such as <strong>JavaScript</strong>,<strong>React</strong>, <strong>TypeScript</strong>, and <strong>Next.js</strong>, but my expertise extends across the software development stack, with hands-on experience in <strong>backend systems</strong> built on <strong>Python (Django)</strong> and <strong>PHP (Laravel)</strong>. I thrive in <strong>agile environments</strong>, working with cross-functional teams to deliver scalable, efficient, and user-centric solutions.'
+      data: 'My professional journey has been a blend of technical challenges, impactful projects, and continuous learning. I specialize in <strong>frontend technologies</strong> such as <strong>JavaScript</strong>,<strong>React</strong>, <strong>TypeScript</strong>, and <strong>Next.js</strong>, but my expertise extends across the software development stack, with hands-on experience in <strong>backend systems</strong> built on <strong>Python (Django)</strong>, <strong>Js/Ts (NestJs)</strong>, <strong>Java (Kotlin)</strong> and <strong>PHP (Laravel)</strong>. I thrive in <strong>agile environments</strong>, working with cross-functional teams to deliver scalable, efficient, and user-centric solutions.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.list,

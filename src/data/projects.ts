@@ -125,6 +125,26 @@ export const PROJECTS_DATA: {
       ],
       description:
         'Built a modern personal website using React 19, Next.js 15, Tailwind CSS, and GSAP, with Cloudflare Workers for serverless functions, ensuring high performance and smooth animations.'
+    },
+    {
+      id: 7,
+      url: 'https://github.com/raminr77/khela-client',
+      isPrivate: false,
+      title: 'Khela Application ( PWA )',
+      role: 'Software Engineer | Full Stack',
+      stack: [
+        'PWA',
+        'WebApp Configs',
+        'JavaScript',
+        'HTML',
+        'CSS',
+        'SASS',
+        'React 19',
+        'Tailwind CSS',
+        'Cache UI'
+      ],
+      description:
+        'Khela is a fun side project I work on in my free time, mainly focused on improving and learning skills around building a Progressive Web App (PWA). My goal is to push a regular web app as close as possible to the experience of a native mobile app.'
     }
   ]
 } as const;

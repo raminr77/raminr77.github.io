@@ -101,10 +101,10 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
   {
     id: 8,
     year: 2023,
-    date: 'Aug 2023 - Now',
+    date: 'Aug 2023 - April 2025',
     location: 'Malmö, Sweden',
     url: 'https://www.linkedin.com/company/boozt-fashion/',
-    title: 'Boozt - Software Engineer',
+    title: 'Boozt - Senior Frontend Developer',
     description:
       '<p>As a <strong>Senior Frontend Developer</strong> at <strong>Boozt</strong>, I am driving innovation in e-commerce solutions. My work includes building CMS platforms for multiple countries, optimizing system performance, and leading projects to improve the overall user experience across web and mobile platforms.</p>',
     items: [
@@ -116,6 +116,16 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
       'React and TypeScript Migration: Migrated and redesigned website features from the legacy platform, adapting them to meet evolving business requirements while improving performance.',
       'Performance Optimization: Refactored state management and component architecture to minimize unnecessary re-renders, achieving faster load times and smoother user experience.'
     ]
+  },
+  {
+    id: 9,
+    year: 2025,
+    date: 'May 2025 - Now',
+    location: 'Malmö, Sweden',
+    url: 'https://www.linkedin.com/company/sinch/',
+    title: 'Sinch - Senior Software Engineer',
+    description: '<p>As a <strong>Senior Software Engineer</strong> at <strong>Sinch</strong>.</p>',
+    items: []
   }
 ];
 
