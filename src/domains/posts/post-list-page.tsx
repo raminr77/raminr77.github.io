@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
+import { allPosts, type Post } from 'contentlayer/generated';
+
 import { ContentContainer } from '@/layout/components/content-container';
 import { filterPostsByKey, postSorter } from '@/domains/posts/helpers';
 import { PostCard } from '@/domains/posts/components/post-card';
-import { allPosts, type Post } from 'contentlayer/generated';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';

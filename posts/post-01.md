@@ -2,14 +2,13 @@
 id: 1
 author: Ramin
 isActive: true
-category: news
+category: News
 date: 2025-01-11
 slug: start-a-new-adventure
 title: Start A New Adventure
 description: On my birthday, I decided to embark on a new adventure by completely refactoring and redesigning my personal webpage. Using the latest features of Next.js 15, I focused on creating a more modern, efficient, and visually appealing platform to showcase my skills and experiences. This project not only marked a fresh start for my online presence but also gave me the opportunity to dive deeper into the capabilities of this powerful framework.
 tags:
-  - welcome
-  - hello world
+  - Personal
 ---
 
 <p>The process began with assessing my old website, which no longer reflected my current level of expertise or aesthetic preferences. I wanted a design that felt professional, clean, and aligned with modern web development standards. By leveraging Next.js 15, I explored features like server-side rendering, dynamic routing, and performance optimizations, ensuring my site was both fast and functional.</p>
