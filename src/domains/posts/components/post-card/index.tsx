@@ -42,7 +42,7 @@ export function PostCard({
 
       <p
         className="mb-3 mt-2 [&>*]:mb-3 [&>*:last-child]:mb-0 text-md"
-        dangerouslySetInnerHTML={{ __html: description.html }}
+        dangerouslySetInnerHTML={{ __html: description.raw }}
       />
 
       <PostTags postId={id} tags={tags} />

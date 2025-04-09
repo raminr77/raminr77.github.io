@@ -26,6 +26,10 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
   const posts: Post[] = allPosts
     .filter((postItem: Post) => filterPostsByKey(postItem, filter))
     .sort(postSorter);
+  const categories: Record<string, true> = allPosts.reduce((accumulator, currentValue: Post) => {
+    accumulator[currentValue.category] = true;
+    return accumulator;
+  }, {} as Record<string, true>);
 
   return (
     <ContentContainer animationName="fadeIn">
@@ -39,7 +43,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
         {`${PERSONAL_DATA.firstName}'s Post`}
       </h1>
 
-      {posts.length === 0 && (
+      {posts.length === 0 ? (
         <div
           className={clsx(
             'flex items-center flex-col gap-2 justify-center w-full mt-10',
@@ -53,6 +57,18 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
           <Link className="text-amber-500 mt-3" href={ROUTES.POSTS}>
             Clear Your Filter
           </Link>
+        </div>
+      ) : (
+        <div className='flex items-center flex-wrap gap-3'>
+          {Object.keys(categories).map((item) => (
+            <Link
+              key={item}
+              href={`?category=${item}`}
+              className='border px-4 py-1 text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5'
+            >
+              {item}
+            </Link>
+          ))}
         </div>
       )}
 
