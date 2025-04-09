@@ -21,7 +21,7 @@ List virtualization (sometimes called "windowing") is a performance optimization
 
 Think of it like a movie reel: you don’t need to see all the frames at once, just the one currently on screen.
 
-### Why Use List Virtualization?
+## Why Use List Virtualization?
 
 Here’s why list virtualization is a game-changer:
 
@@ -38,7 +38,9 @@ At its core, list virtualization relies on two key concepts:
 1. **Viewport Detection**: Determine which items are visible based on the scroll position and container size.
 2. **Dynamic Rendering**: Render only the visible items (plus a small buffer) and update them as the user scrolls.
 
-The technique uses the scroll container’s dimensions and the scroll offset to calculate which items should be in view. For example:
+The technique uses the scroll container’s dimensions and the scroll offset to calculate which items should be in view. 
+
+### For example:
 - If your container is 500px tall and each item is 50px tall, you can display 10 items at once.
 - As the user scrolls, you adjust the rendered items based on the scroll position.
 
@@ -78,7 +80,7 @@ First, install the library:
 npm install react-window
 ```
 
-## Step 2: Set Up Your Data
+### Step 2: Set Up Your Data
 Create a large dataset to virtualize. For example:
 
 ```javascript
@@ -88,7 +90,7 @@ const bigList = Array.from({ length: 10000 }, (_, index) => ({
 }));
 ```
 
-## Step 3: Create a Virtualized List Component
+### Step 3: Create a Virtualized List Component
 Import the `FixedSizeList` component from `react-window` and use it to render your list:
 
 ```javascript
@@ -126,7 +128,7 @@ Here’s what’s happening:
 - `itemSize` is the height of each row (must be fixed for FixedSizeList).
 - The `Row` component receives `index` (the item’s position) and `style` (positioning styles) as props.
 
-## Step 4: Add Styling
+### Step 4: Add Styling
 To make it look like a scrollable list, add some basic CSS:
 
 ```css
@@ -144,7 +146,7 @@ Wrap your `VirtualizedList` in a styled div:
 </div>
 ```
 
-## Step 5: Handle Variable Heights (Optional)
+### Step 5: Handle Variable Heights (Optional)
 If your list items have variable heights, use `VariableSizeList` instead:
 
 ```javascript
@@ -166,7 +168,7 @@ const VirtualizedList = () => {
 };
 ```
 
-### Advanced Use Cases
+## Advanced Use Cases
 - **Infinite Scrolling**: Combine virtualization with an API to load more data as the user scrolls.
 - **Dynamic Data**: Update itemCount and re-render when the dataset changes.
 - **Grids**: Use FixedSizeGrid or VariableSizeGrid for 2D layouts.
@@ -175,7 +177,7 @@ const VirtualizedList = () => {
 
 Let’s create a basic virtualized list without a library to understand the underlying mechanics. This example assumes a fixed item height and a static dataset.
 
-## Step 1: Set Up the Component
+### Step 1: Set Up the Component
 
 ```javascript
 import React, { useState, useRef } from 'react';
@@ -247,7 +249,7 @@ const SimpleVirtualizedList = () => {
 export default SimpleVirtualizedList;
 ```
 
-## Step 2: Use It in Your App
+### Step 2: Use It in Your App
 
 ```javascript
 import React from 'react';
