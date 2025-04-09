@@ -34,7 +34,17 @@ export const metadata: Metadata = {
     url: PERSONAL_DATA.url,
     name: PERSONAL_DATA.fullName
   },
-  applicationName: PERSONAL_DATA.fullName
+  applicationName: PERSONAL_DATA.fullName,
+  twitter: {
+    title: PERSONAL_DATA.fullName,
+    description: PERSONAL_DATA.pageDescription,
+    card: 'summary_large_image',
+    images: ['/images/social-banner.png']
+  },
+  appleWebApp: {
+    title: PERSONAL_DATA.fullName,
+    capable: true,
+  }
 };
 
 export default function RootLayout({
