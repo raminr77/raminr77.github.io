@@ -16,7 +16,7 @@ export function AiButton() {
     <>
       <button
         className={clsx(
-          'z-40 fixed w-12 h-12 border-2 text-amber-500 border-amber-500 rounded-full bottom-7 right-5 bg-white dark:bg-black hover:bg-amber-500 hover:text-black duration-300 font-extrabold',
+          'z-40 fixed w-12 h-12 rounded-full bottom-7 right-5 bg-amber-500 text-black duration-300 font-extrabold text-xl',
           animator({ name: 'fadeInDown' }),
           titleFont.className
         )}
