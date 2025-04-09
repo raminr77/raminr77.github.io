@@ -65,14 +65,14 @@
       bottom: -10px;
       position: absolute;
       border-radius: 100px;
-      background-color: #ff8f00;
       transition-duration: 0.2s;
+      background-color: var(--primary);
     }
     &:after {
       z-index: -1;
       opacity: 0.8;
       filter: blur(10px);
-      box-shadow: 0 0 30px #ff8f00;
+      box-shadow: 0 0 30px var(--primary);
     }
   }
 }

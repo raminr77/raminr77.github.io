@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #ff8f00;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,11 +38,11 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
-  background: #ff8f00;
+  background: var(--primary);
 }
 
 #dify-chatbot-bubble-button {
-  background-color: #ff8f00 !important;
+  background-color: var(--primary) !important;
 }
 #dify-chatbot-bubble-window {
   width: 24rem !important;

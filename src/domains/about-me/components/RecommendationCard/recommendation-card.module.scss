@@ -1,7 +1,7 @@
 .recommendation-card {
   &:hover & {
     &__header {
-      border-color: #ff8f00;
+      border-color: var(--primary);
     }
 
     &__profile-image {

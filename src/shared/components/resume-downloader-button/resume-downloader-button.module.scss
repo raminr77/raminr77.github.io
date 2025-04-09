@@ -18,10 +18,10 @@
     animation: 2.5s animate-angle infinite linear;
     background-image: conic-gradient(
       from var(--angle),
-      #ff8f00,
+      var(--primary),
       var(--background),
       var(--background),
-      #ff8f00
+      var(--primary)
     );
   }
   &:before {
