@@ -29,10 +29,10 @@ export function ProjectCard({
       <div className="flex select-none flex-wrap gap-3">
         <span
           className={clsx(
-            'inline-block whitespace-nowrap rounded px-2 py-0 text-sm leading-6',
+            'inline-block whitespace-nowrap rounded px-2 py-0 text-sm leading-6 text-white',
             {
               'bg-green-800': !isPrivate,
-              'bg-red-600/50': isPrivate
+              'dark:bg-red-600/50 bg-red-600': isPrivate
             }
           )}
         >
@@ -43,7 +43,7 @@ export function ProjectCard({
           <Link
             href={url}
             target="_blank"
-            className="inline-block whitespace-nowrap rounded bg-sky-700 px-2 py-0 text-sm leading-6"
+            className="inline-block whitespace-nowrap rounded bg-sky-700 px-2 py-0 text-sm leading-6 text-white"
           >
             Demo
           </Link>
@@ -54,7 +54,7 @@ export function ProjectCard({
         {stack.map((item: string, index: number) => (
           <span
             key={`${item}-${index}`}
-            className="rounded bg-slate-100 px-2 py-0 text-xs leading-6 dark:bg-slate-600/50"
+            className="rounded bg-slate-200 px-2 py-0 text-xs leading-6 dark:bg-slate-600/50"
           >
             {item}
           </span>
