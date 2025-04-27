@@ -1,6 +1,13 @@
 // FAKE API FOR PUBLIC REPOSITORY DEMO
 // https://github.com/raminr77/react-sample
 
+const headers = {
+  'Content-Type': 'application/json',
+  'access-control-allow-origin': '*',
+  'access-control-allow-headers': 'Content-Type, Authorization',
+  'access-control-allow-methods': 'GET, POST',
+};
+
 const FAKE_DATA = [
   { id: 1, name: 'John Doe', age: 30 },
   { id: 2, name: 'Jane Smith', age: 25 },
@@ -19,6 +26,9 @@ export async function GET() {
     success: true,
     message: 'Your request was successful',
     data: FAKE_DATA
+  }, {
+    status: 200,
+    headers
   });
 }
 
@@ -26,7 +36,7 @@ export async function POST(request: Request) {
   const { username, password } = await request.json();
   if (username !== 'admin' || password !== 'admin') {
     return Response.json(
-      {success: false, message: 'Invalid request' }, { status: 400 }
+      {success: false, message: 'Invalid request' }, { status: 400, headers }
     );
   }
   return Response.json({
@@ -41,5 +51,8 @@ export async function POST(request: Request) {
         email: 'info@raminrezaei.se'
       }
     }
+  }, {
+    status: 200,
+    headers
   });
 }
