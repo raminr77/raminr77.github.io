@@ -3,9 +3,9 @@
 
 const headers = {
   'Content-Type': 'application/json',
-  'access-control-allow-origin': '*',
-  'access-control-allow-headers': 'Content-Type, Authorization',
-  'access-control-allow-methods': 'GET, POST',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': '*',
+  'Access-Control-Allow-Methods': 'GET, POST',
 };
 
 const FAKE_DATA = [
