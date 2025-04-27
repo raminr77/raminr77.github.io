@@ -22,11 +22,11 @@ const FAKE_DATA = [
 ];
 
 export async function GET() {
-  return Response.json({
+  return new Response(JSON.stringify({
     success: true,
     message: 'Your request was successful',
     data: FAKE_DATA
-  }, {
+  }), {
     status: 200,
     headers
   });
@@ -35,11 +35,11 @@ export async function GET() {
 export async function POST(request: Request) {
   const { username, password } = await request.json();
   if (username !== 'admin' || password !== 'admin') {
-    return Response.json(
-      {success: false, message: 'Invalid request' }, { status: 400, headers }
+    return new Response(
+      JSON.stringify({success: false, message: 'Invalid request' }), { status: 400, headers }
     );
   }
-  return Response.json({
+  return new Response(JSON.stringify({
     success: true,
     message: 'Logged in successfully.',
     data: {
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
         email: 'info@raminrezaei.se'
       }
     }
-  }, {
+  }), {
     status: 200,
     headers
   });
