@@ -25,7 +25,21 @@ export async function GET() {
 export async function POST(request: Request) {
   const { username, password } = await request.json();
   if (username !== 'admin' || password !== 'admin') {
-    return Response.json({ message: 'Invalid request' }, { status: 400 });
+    return Response.json(
+      {success: false, message: 'Invalid request' }, { status: 400 }
+    );
   }
-  return Response.json({ message: 'Logged in successfully.' });
+  return Response.json({
+    success: true,
+    message: 'Logged in successfully.',
+    data: {
+      repository: 'https://github.com/raminr77/react-sample',
+      token: 'fake-sample-token-1234567890',
+      user: {
+        id: 1,
+        name: 'Ramin Rezaei',
+        email: 'info@raminrezaei.se'
+      }
+    }
+  });
 }
