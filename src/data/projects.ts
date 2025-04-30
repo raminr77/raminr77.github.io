@@ -145,6 +145,26 @@ export const PROJECTS_DATA: {
       ],
       description:
         'Khela is a fun side project I work on in my free time, mainly focused on improving and learning skills around building a Progressive Web App (PWA). My goal is to push a regular web app as close as possible to the experience of a native mobile app.'
+    },
+    {
+      id: 8,
+      url: 'https://github.com/raminr77/react-sample',
+      isPrivate: false,
+      title: 'React Sample',
+      role: 'Open Source - Developer',
+      stack: [
+        'PWA',
+        'React 19',
+        'RTK Query',
+        'JavaScript',
+        'TypeScript',
+        'Zero Config',
+        'React Router',
+        'WebApp Configs',
+        'React Sample Project'
+      ],
+      description:
+        'A simple and clean React + TypeScript + Vite starter project, configured with essential tools and structured with best practices gained from 7+ years of frontend development experience. It is a sample of the ReactJs project for starting easily and fast.'
     }
   ]
 } as const;
