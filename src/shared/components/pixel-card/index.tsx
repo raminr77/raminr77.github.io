@@ -30,7 +30,7 @@ export function PixelCard({
   description,
   color = 'white',
   animationName = 'fadeIn'
-}: PixelCardProps): JSX.Element {
+}: PixelCardProps) {
   return (
     <div
       className={clsx(
