@@ -18,15 +18,3 @@ declare global {
     }
   }
 }
-
-declare module 'react/jsx-runtime' {
-  namespace JSX {
-    interface IntrinsicElements {
-      'pixel-canvas': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > &
-        PixelCanvasProps;
-    }
-  }
-}

@@ -39,6 +39,7 @@ export default function PixelCanvas({
 
   return (
     <div className={className}>
+      {/* @ts-expect-error: Unreachable code error */}
       <pixel-canvas
         data-gap={gap}
         data-speed={speed}
