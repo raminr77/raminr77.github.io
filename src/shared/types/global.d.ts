@@ -18,7 +18,7 @@ declare global {
   }
 }
 
-declare module "react" {
+declare module "react/jsx-runtime" {
   namespace JSX {
     interface IntrinsicElements {
       'pixel-canvas': React.DetailedHTMLProps<
