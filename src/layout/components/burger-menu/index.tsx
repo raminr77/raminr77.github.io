@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 import { clsx } from 'clsx';
 
+import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
 import { MENU_ITEM_ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
@@ -82,7 +83,17 @@ export function BurgerMenu() {
               >
                 {title.toUpperCase()}
               </Link>
+
             ))}
+            {/* Toggle Theme */}
+            <div
+              className={clsx(
+                animator({ name: 'fadeIn', speed: 'fast', delay: '1s' }),
+                'w-4/5 relative flex justify-start items-center text-left mt-5'
+              )}
+            >
+              <ToggleThemeButton isBurgerMenu />
+            </div>
           </div>
           <BurgerMenuToolsAnimation />
         </div>

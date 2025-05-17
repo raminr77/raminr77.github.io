@@ -32,7 +32,7 @@ export default function PixelCanvas({
   playOnes = false
 }: PixelCanvasProps) {
   useEffect(() => {
-    if (!isSSR()) {
+    if (!isSSR) {
       import('../../libs/pixel-canvas');
     }
   }, []);

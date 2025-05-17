@@ -11,7 +11,7 @@ const MINIMUM_SCREEN_SIZE = 1100;
 export function CustomCursor() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [pointer, setPointer] = useState(
-    !isSSR()
+    !isSSR
       ? {
           x: 0.5 * window.innerWidth,
           y: 0.5 * window.innerHeight

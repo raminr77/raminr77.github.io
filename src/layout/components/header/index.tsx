@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { clsx } from 'clsx';
 
+import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
 import { animator, pageTitleGenerator } from '@/shared/helpers';
 import { MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { BurgerMenu } from '@/layout/components/burger-menu';
@@ -59,6 +60,9 @@ export function Header() {
               </Link>
             </li>
           ))}
+          <li className={clsx('ml-4', animator({ name: 'fadeIn', delay: '3s' }))}>
+            <ToggleThemeButton />
+          </li>
         </ul>
       </nav>
     </header>

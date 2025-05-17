@@ -1,3 +1,1 @@
-export function isSSR() {
-  return typeof window === 'undefined';
-}
+export const isSSR: boolean = typeof window === 'undefined';
