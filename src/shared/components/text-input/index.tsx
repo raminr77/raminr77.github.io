@@ -33,7 +33,7 @@ export function TextInput({
   ...rest
 }: TextInputProps) {
   const INPUT_CLASSES = clsx(
-    'border dark:bg-gray-950/20 bg-gray-50/20 outline-0 indent-2 leading-8 duration-100 focus:border-amber-500 text-lg backdrop-blur-sm',
+    'border outline-0 indent-2 leading-8 duration-100 focus:border-amber-500 text-lg backdrop-blur-sm dark:placeholder-white-800',
     className
   );
   return (
