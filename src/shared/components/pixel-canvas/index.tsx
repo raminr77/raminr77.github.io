@@ -45,7 +45,7 @@ export default function PixelCanvas({
         data-play-ones={playOnes}
         data-auto-play={autoPlay}
         data-colors={COLORS[color]}
-      ></pixel-canvas>
+      />
     </div>
   );
 }
