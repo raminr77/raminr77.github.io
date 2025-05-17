@@ -35,12 +35,14 @@ Without virtualization, rendering a list of 10,000 items might freeze your app. 
 ## How Does List Virtualization Work?
 
 At its core, list virtualization relies on two key concepts:
+
 1. **Viewport Detection**: Determine which items are visible based on the scroll position and container size.
 2. **Dynamic Rendering**: Render only the visible items (plus a small buffer) and update them as the user scrolls.
 
-The technique uses the scroll container’s dimensions and the scroll offset to calculate which items should be in view. 
+The technique uses the scroll container’s dimensions and the scroll offset to calculate which items should be in view.
 
 ### For example:
+
 - If your container is 500px tall and each item is 50px tall, you can display 10 items at once.
 - As the user scrolls, you adjust the rendered items based on the scroll position.
 
@@ -51,20 +53,23 @@ Libraries like `react-virtualized` or `react-window` handle the heavy lifting, b
 While you can build virtualization from scratch, several battle-tested libraries make it easier:
 
 1. **`react-window`**:
-  - Lightweight (~5KB gzipped).
-  - Simple API for fixed-size or variable-size lists.
-  - Maintained by Brian Vaughn, a former React core team member.
-  - Ideal for most use cases.
+
+- Lightweight (~5KB gzipped).
+- Simple API for fixed-size or variable-size lists.
+- Maintained by Brian Vaughn, a former React core team member.
+- Ideal for most use cases.
 
 2. **`react-virtualized`**:
-  - More feature-rich but heavier (~30KB gzipped).
-  - Supports advanced use cases like grids, tables, and infinite loading.
-  - Also created by Brian Vaughn.
+
+- More feature-rich but heavier (~30KB gzipped).
+- Supports advanced use cases like grids, tables, and infinite loading.
+- Also created by Brian Vaughn.
 
 3. **`react-virtuoso`**:
-  - Modern and user-friendly.
-  - Great for dynamic content and responsive designs.
-  - Includes built-in support for infinite scrolling.
+
+- Modern and user-friendly.
+- Great for dynamic content and responsive designs.
+- Includes built-in support for infinite scrolling.
 
 For this guide, we’ll focus on `react-window` because it’s lightweight, widely used, and strikes a balance between simplicity and power.
 
@@ -81,35 +86,33 @@ npm install react-window
 ```
 
 ### Step 2: Set Up Your Data
+
 Create a large dataset to virtualize. For example:
 
 ```javascript
 const bigList = Array.from({ length: 10000 }, (_, index) => ({
   id: index,
-  name: `Item ${index}`,
+  name: `Item ${index}`
 }));
 ```
 
 ### Step 3: Create a Virtualized List Component
+
 Import the `FixedSizeList` component from `react-window` and use it to render your list:
 
 ```javascript
-import React from 'react';
 import { FixedSizeList } from 'react-window';
+import React from 'react';
 
-const Row = ({ index, style }) => (
-  <div style={style}>
-    Item {index}
-  </div>
-);
+const Row = ({ index, style }) => <div style={style}>Item {index}</div>;
 
 const VirtualizedList = () => {
   return (
     <FixedSizeList
-      height={400}        // Height of the list container
-      width={300}         // Width of the list container
-      itemCount={10000}   // Total number of items
-      itemSize={50}       // Height of each item
+      height={400} // Height of the list container
+      width={300} // Width of the list container
+      itemCount={10000} // Total number of items
+      itemSize={50} // Height of each item
     >
       {Row}
     </FixedSizeList>
@@ -117,7 +120,6 @@ const VirtualizedList = () => {
 };
 
 export default VirtualizedList;
-
 ```
 
 Here’s what’s happening:
@@ -129,6 +131,7 @@ Here’s what’s happening:
 - The `Row` component receives `index` (the item’s position) and `style` (positioning styles) as props.
 
 ### Step 4: Add Styling
+
 To make it look like a scrollable list, add some basic CSS:
 
 ```css
@@ -147,6 +150,7 @@ Wrap your `VirtualizedList` in a styled div:
 ```
 
 ### Step 5: Handle Variable Heights (Optional)
+
 If your list items have variable heights, use `VariableSizeList` instead:
 
 ```javascript
@@ -169,6 +173,7 @@ const VirtualizedList = () => {
 ```
 
 ## Advanced Use Cases
+
 - **Infinite Scrolling**: Combine virtualization with an API to load more data as the user scrolls.
 - **Dynamic Data**: Update itemCount and re-render when the dataset changes.
 - **Grids**: Use FixedSizeGrid or VariableSizeGrid for 2D layouts.
@@ -186,11 +191,11 @@ const SimpleVirtualizedList = () => {
   const [scrollTop, setScrollTop] = useState(0);
   const containerRef = useRef(null);
 
-  const itemHeight = 50;         // Height of each item
-  const containerHeight = 400;   // Height of the container
-  const itemCount = 10000;       // Total items
+  const itemHeight = 50; // Height of each item
+  const containerHeight = 400; // Height of the container
+  const itemCount = 10000; // Total items
   const visibleItems = Math.ceil(containerHeight / itemHeight); // Items in view
-  const buffer = 5;              // Extra items to render above/below
+  const buffer = 5; // Extra items to render above/below
 
   // Calculate start and end indices based on scroll position
   const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - buffer);
@@ -207,7 +212,7 @@ const SimpleVirtualizedList = () => {
           position: 'absolute',
           top: `${i * itemHeight}px`,
           width: '100%',
-          borderBottom: '1px solid #eee',
+          borderBottom: '1px solid #eee'
         }}
       >
         Item {i}
@@ -231,13 +236,13 @@ const SimpleVirtualizedList = () => {
         width: '300px',
         overflow: 'auto',
         position: 'relative',
-        border: '1px solid #ccc',
+        border: '1px solid #ccc'
       }}
     >
       <div
         style={{
           height: `${itemCount * itemHeight}px`, // Total height of the list
-          position: 'relative',
+          position: 'relative'
         }}
       >
         {items}
@@ -252,8 +257,8 @@ export default SimpleVirtualizedList;
 ### Step 2: Use It in Your App
 
 ```javascript
-import React from 'react';
 import SimpleVirtualizedList from './SimpleVirtualizedList';
+import React from 'react';
 
 const App = () => {
   return (
@@ -268,13 +273,14 @@ export default App;
 ```
 
 ## How It Works
+
 - **Scroll Tracking**: The `scrollTop` state updates as the user scrolls.
 - **Visible Range**: `startIndex` and `endIndex` calculate which items to render based on the scroll position, with a buffer for smooth scrolling.
 - **Absolute Positioning**: Items are positioned absolutely within a tall container to simulate the full list height.
-This is a basic implementation. For production use, libraries like react-window handle edge cases and optimizations better.
+  This is a basic implementation. For production use, libraries like react-window handle edge cases and optimizations better.
 
 ## Conclusion
+
 List virtualization is an essential technique for optimizing React applications with large datasets. Whether you use a library like react-window or roll your own solution, the key is to render only what’s visible. Start with react-window for most projects—it’s lightweight and easy to integrate. For learning purposes or custom needs, building it from scratch can deepen your understanding.
 
 Try implementing the examples above in your next project and watch your app’s performance soar!
-

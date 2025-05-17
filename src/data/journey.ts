@@ -124,7 +124,8 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     location: 'Malmö, Sweden',
     url: 'https://www.linkedin.com/company/sinch/',
     title: 'Sinch - Senior Software Engineer',
-    description: '<p>As a <strong>Senior Software Engineer</strong> at <strong>Sinch</strong>.</p>',
+    description:
+      '<p>As a <strong>Senior Software Engineer</strong> at <strong>Sinch</strong>.</p>',
     items: []
   }
 ];

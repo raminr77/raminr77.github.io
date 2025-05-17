@@ -1,17 +1,17 @@
 const CACHE_NAME = 'static-cache-v1';
 const STATIC_FILES_URL_PATTERN = /\/images\/.*\.(png|jpg|jpeg|gif|webp|svg)$/;
 
-self.addEventListener("install", () => {
-  console.log("Service Worker installed.");
+self.addEventListener('install', () => {
+  console.log('Service Worker installed.');
   self.skipWaiting();
 });
 
-self.addEventListener("activate", (event) => {
-  console.log("Service Worker activated.");
+self.addEventListener('activate', (event) => {
+  console.log('Service Worker activated.');
   event.waitUntil(self.clients.claim());
 });
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);
 
   if (STATIC_FILES_URL_PATTERN.test(requestUrl.pathname)) {

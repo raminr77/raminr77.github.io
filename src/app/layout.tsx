@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     title: PERSONAL_DATA.fullName,
-    capable: true,
+    capable: true
   }
 };
 

@@ -62,9 +62,7 @@ export async function PostDetailPage({ params }: Props) {
         <PostReadTime words={post.body.raw} />
       </div>
 
-      <p
-        className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl"
-      >
+      <p className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl">
         {post.description.raw}
       </p>
 

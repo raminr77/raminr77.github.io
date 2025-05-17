@@ -5,7 +5,7 @@ const headers = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': '*',
-  'Access-Control-Allow-Methods': 'GET, POST',
+  'Access-Control-Allow-Methods': 'GET, POST'
 };
 
 const FAKE_DATA = [
@@ -22,37 +22,44 @@ const FAKE_DATA = [
 ];
 
 export async function GET() {
-  return new Response(JSON.stringify({
-    success: true,
-    message: 'Your request was successful',
-    data: FAKE_DATA
-  }), {
-    status: 200,
-    headers
-  });
+  return new Response(
+    JSON.stringify({
+      success: true,
+      message: 'Your request was successful',
+      data: FAKE_DATA
+    }),
+    {
+      status: 200,
+      headers
+    }
+  );
 }
 
 export async function POST(request: Request) {
   const { username, password } = await request.json();
   if (username !== 'admin' || password !== 'admin') {
-    return new Response(
-      JSON.stringify({success: false, message: 'Invalid request' }), { status: 400, headers }
-    );
+    return new Response(JSON.stringify({ success: false, message: 'Invalid request' }), {
+      status: 400,
+      headers
+    });
   }
-  return new Response(JSON.stringify({
-    success: true,
-    message: 'Logged in successfully.',
-    data: {
-      repository: 'https://github.com/raminr77/react-sample',
-      token: 'fake-sample-token-1234567890',
-      user: {
-        id: 1,
-        name: 'Ramin Rezaei',
-        email: 'info@raminrezaei.se'
+  return new Response(
+    JSON.stringify({
+      success: true,
+      message: 'Logged in successfully.',
+      data: {
+        repository: 'https://github.com/raminr77/react-sample',
+        token: 'fake-sample-token-1234567890',
+        user: {
+          id: 1,
+          name: 'Ramin Rezaei',
+          email: 'info@raminrezaei.se'
+        }
       }
+    }),
+    {
+      status: 200,
+      headers
     }
-  }), {
-    status: 200,
-    headers
-  });
+  );
 }

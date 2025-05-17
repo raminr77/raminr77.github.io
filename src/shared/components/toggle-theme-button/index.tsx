@@ -1,9 +1,9 @@
 'use client';
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 
-import { isSSR } from "@/shared/helpers";
+import { isSSR } from '@/shared/helpers';
 
-const THEMES = { light: "light", dark: "dark" } as const;
+const THEMES = { light: 'light', dark: 'dark' } as const;
 
 export type Theme = keyof typeof THEMES;
 
@@ -26,9 +26,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
   if (isFirstLoad.current && !isSSR) {
     isFirstLoad.current = false;
 
-    let isDarkTheme = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches;
+    let isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (localStorage.theme) {
       isDarkTheme = localStorage.theme === THEMES.dark;

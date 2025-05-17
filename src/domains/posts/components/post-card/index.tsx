@@ -40,9 +40,7 @@ export function PostCard({
           {title}
         </Link>
         <PostCategory category={category} />
-        <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md">
-          {description.raw}
-        </p>
+        <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md">{description.raw}</p>
       </div>
 
       <div className="flex flex-col gap-2 mt-3">

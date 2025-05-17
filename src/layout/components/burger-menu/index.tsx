@@ -83,7 +83,6 @@ export function BurgerMenu() {
               >
                 {title.toUpperCase()}
               </Link>
-
             ))}
             {/* Toggle Theme */}
             <div

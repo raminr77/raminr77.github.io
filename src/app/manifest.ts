@@ -2,10 +2,10 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    id: "/",
+    id: '/',
     dir: 'ltr',
     scope: '/',
-    lang: "en-US",
+    lang: 'en-US',
     start_url: '/',
     name: 'Ramin Rezaei',
     short_name: 'Ramin Rezaei',
@@ -72,10 +72,10 @@ export default function manifest(): MetadataRoute.Manifest {
         type: 'image/png'
       },
       {
-        sizes: "180x180",
-        type: "image/png",
-        purpose: "maskable",
-        src: 'images/icons/maskable-icon-180.png',
+        sizes: '180x180',
+        type: 'image/png',
+        purpose: 'maskable',
+        src: 'images/icons/maskable-icon-180.png'
       }
     ]
   };
