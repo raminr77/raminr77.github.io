@@ -37,20 +37,22 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
     setTheme(systemTheme);
   }
 
-  // const buttonText = `Switch to ${theme === THEMES.light ? "dark" : "light"} mode `
+  const buttonText = `Switch to ${theme === THEMES.light ? "dark" : "light"} mode `;
 
-  return null;
+  if (isBurgerMenu) {
+    console.log('THEME: ', theme);
+  }
 
-  // return (
-  //   <button
-  //     type="button"
-  //     title={buttonText}
-  //     aria-label="Toggle theme"
-  //     onClick={handleThemeChange}
-  //     className="cursor-pointer text-2xl"
-  //   >
-  //     {isBurgerMenu && buttonText}
-  //     {theme === THEMES.light ? "🌙" : "☀️"}
-  //   </button>
-  // );
+  return (
+    <button
+      type="button"
+      title={buttonText}
+      aria-label="Toggle theme"
+      onClick={handleThemeChange}
+      className="cursor-pointer text-2xl"
+    >
+      {/* {isBurgerMenu && buttonText} */}
+      {/* {theme === THEMES.light ? "🌙" : "☀️"} */}
+    </button>
+  );
 }
