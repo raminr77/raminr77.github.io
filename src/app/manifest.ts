@@ -8,13 +8,20 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: 'en-US',
     start_url: '/',
     name: 'Ramin Rezaei',
-    short_name: 'Ramin Rezaei',
     display: 'fullscreen',
     theme_color: '#000000',
-    orientation: 'portrait',
+    short_name: 'Ramin Rezaei',
     background_color: '#ffffff',
+    orientation: 'portrait-primary',
     description: 'Ramin Rezaei Personal Page.',
     display_override: ['fullscreen', 'minimal-ui'],
+    categories: ["social", "personal", "portfolio", "blog"],
+    related_applications: [
+      {
+        platform: "webapp",
+        url: "https://khela.ir/manifest.json"
+      }
+    ],
     protocol_handlers: [
       {
         protocol: 'web+open',
@@ -37,11 +44,6 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     icons: [
       {
-        src: 'images/icons/icon-72x72.png',
-        sizes: '72x72',
-        type: 'image/png'
-      },
-      {
         src: 'images/icons/icon-96x96.png',
         sizes: '96x96',
         type: 'image/png'
@@ -54,11 +56,6 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         src: 'images/icons/icon-144x144.png',
         sizes: '144x144',
-        type: 'image/png'
-      },
-      {
-        src: 'images/icons/icon-152x152.png',
-        sizes: '152x152',
         type: 'image/png'
       },
       {
