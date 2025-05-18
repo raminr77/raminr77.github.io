@@ -7,17 +7,25 @@ Public Email: info@raminrezaei.se
 LinkedIn: https://www.linkedin.com/in/raminr77/
 GitHub: https://github.com/raminr77
 Summary ____________________________________________________________________________________________
-  Highly motivated Software Engineer with 6+ years of experience in developing and optimizing scalable web applications, with a proven track record in backend development using Python (Django) and PHP (Laravel), and expertise in building high-throughput systems and optimizing APIs and SQL databases. Proven ability to contribute to large-scale projects within agile teams (100+ members), focusing on performance, efficiency, Ramin Rezaei - Senior Front-end Engineer with the Boozt Company tshirt.
+  Highly motivated Software Engineer with 7+ years of experience in developing and optimizing scalable web applications, with a proven track record in backend development using Python (Django) and PHP (Laravel), and expertise in building high-throughput systems and optimizing APIs and SQL databases. Proven ability to contribute to large-scale projects within agile teams (100+ members), focusing on performance, efficiency, Ramin Rezaei - Senior Front-end Engineer with the Boozt Company tshirt.
 Skills ____________________________________________________________________________________________
-  •   Programming Languages: JavaScript, TypeScript, Python, PHP
+  •   Programming Languages: JavaScript, TypeScript, Python, PHP, Java, Kotlin
   •   Databases: SQL, NoSQL, Firebase DB, Google Cloud Platform For DB, MySql, MongoDB, SQLite
   •   Frameworks & Libraries: Node.js, Express, NestJS, Django, Laravel, React, Redux, jQuery, RESTful APIs
-  •   Testing & DevOps: Unix, Linux, Vim, CI/CD, Docker, Github Actions,  Jest, Cypress, E2E Testing, Unit Testing, Git
+  •   Testing & DevOps: Unix, Linux, Kubernetes, GCP, AWS, Jenkins, Azure, Kafka, CI/CD, Docker, Github Actions, Jest, Cypress, E2E Testing, Unit Testing, Git
 Experience _______________________________________________________________________________________
-Software Engineer - Senior Frontend Engineer
+Senior Software Engineer
+	Sinch
+	Malmo, Sweden
+	05/2025 - Present
+  •  Designed and maintained large-scale distributed systems, ensuring scalability, reliability, and performance across multiple microservices.
+  •  Developed backend services using Java and Kotlin, focusing on clean architecture, high availability, and efficient resource utilization.
+  •  Deployed and managed applications in Kubernetes clusters across AWS, GCP, and Azure environments, using best practices in infrastructure-as-code and CI/CD.
+  •  Built and optimized real-time data pipelines using Apache Kafka, enabling reliable event streaming and decoupled service communication.
+Senior Frontend Engineer
 	Boozt
 	Malmo, Sweden
-	08/2023 - Present
+	08/2023 - 04/2025
 	•  Continuous Integration/Deployment Pipeline Integration, pull requests, code reviews, unit/integration/e2e testing
   •  Developed and Optimized CMS: Built a CMS for generating dynamic web pages, promotions, and campaign pages for 17 countries, enabling seamless integration with the mobile app and eliminating the need for updates by supporting all web elements.
   •  Enhanced Data Efficiency: Optimized CMS data structure using efficient algorithms and data structures to improve speed, updates, and storage. Eliminated redundant loops by implementing hash maps, reducing unnecessary computation
