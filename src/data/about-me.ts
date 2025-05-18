@@ -37,7 +37,7 @@ export const ABOUT_ME_DATA: {
   content: [
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: "Hi, I’m <strong>Ramin Rezaei</strong>, a dedicated and ambitious <strong>Software Engineer</strong> with over six years of professional experience in designing, developing, and optimizing web applications and systems. Currently, I’m based in <strong>Malmö, Sweden</strong>, where I work as a <strong>Senior Software Engineer</strong> at <a href='https://www.sinch.com' target='_blank'>Sinch AB</a>, a Swedish company specializing in cloud-based communications services, commonly referred to as Communications Platform as a Service (CPaaS)."
+      data: "Hi, I’m <strong>Ramin Rezaei</strong>, a dedicated and ambitious <strong>Software Engineer</strong> with over seven years of professional experience in designing, developing, and optimizing web applications and systems. Currently, I’m based in <strong>Malmö, Sweden</strong>, where I work as a <strong>Senior Software Engineer</strong> at <a href='https://www.sinch.com' target='_blank'>Sinch AB</a>, a Swedish company specializing in cloud-based communications services, commonly referred to as Communications Platform as a Service (CPaaS)."
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
