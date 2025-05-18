@@ -19,7 +19,9 @@ export function Header() {
   const pageTitle = pageTitleGenerator(pathname);
 
   return (
-    <header className="fixed top-0 z-50 flex w-full items-center justify-center pt-5 backdrop-blur-sm md:pt-10 lg:pt-16">
+    <header className={clsx("fixed top-0 z-50 flex w-full items-center justify-center pt-5 md:pt-10 lg:pt-16", {
+      'backdrop-blur-sm': pathname !== ROUTES.HOME
+    })}>
       <nav className="flex w-11/12 flex-row-reverse items-center justify-between p-3">
         <BurgerMenu />
         <div
