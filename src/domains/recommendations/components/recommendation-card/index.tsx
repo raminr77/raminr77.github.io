@@ -26,6 +26,7 @@ export function RecommendationCard({
 
   return (
     <div
+      id={`item-${data.id}`}
       style={{ animationDelay }}
       className={clsx(
         'w-full flex flex-col items-start gap-2 bg-white  p-4 dark:bg-black/50',

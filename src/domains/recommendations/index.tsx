@@ -48,7 +48,7 @@ export function RecommendationsPage() {
         <p>{RECOMMENDATION_PAGE_DATA.footer}</p>
         <Link
           href={RECOMMENDATION_PAGE_DATA.footerActionURL}
-          className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 hover:text-orange-500"
+          className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8"
         >
           {RECOMMENDATION_PAGE_DATA.footerActionLabel}
         </Link>

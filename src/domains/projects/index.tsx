@@ -48,7 +48,7 @@ export function ProjectsPage() {
         <p>{PROJECTS_DATA.footer}</p>
         <Link
           href={PROJECTS_DATA.footerActionURL}
-          className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 hover:text-orange-500"
+          className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8"
         >
           {PROJECTS_DATA.footerActionLabel}
         </Link>
