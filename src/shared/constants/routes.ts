@@ -4,7 +4,8 @@ export const ROUTES = {
   JOURNEY: '/journey/',
   PROJECTS: '/projects/',
   ABOUT_ME: '/about-me/',
-  CONTACT_ME: '/contact-me/'
+  CONTACT_ME: '/contact-me/',
+  RECOMMENDATIONS: '/recommendations/',
 } as const;
 
 export const MENU_ITEM_ROUTES = [

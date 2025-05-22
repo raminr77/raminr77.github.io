@@ -1,0 +1,11 @@
+.recommendation-card {
+  &:hover & {
+    &__header {
+      border-color: var(--primary);
+    }
+
+    &__profile-image {
+      filter: grayscale(0);
+    }
+  }
+}

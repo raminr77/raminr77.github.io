@@ -1,19 +1,19 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-
 import { clsx } from 'clsx';
+import Link from 'next/link';
+import { Metadata } from 'next';
 
-import { ProjectCard } from '@/domains/projects/components/project-card';
+import { RECOMMENDATION_PAGE_DATA, RECOMMENDATIONS, type RecommendationItem } from '@/data';
 import { ContentContainer } from '@/layout/components/content-container';
-import { PROJECTS_DATA, type ProjectItem } from '@/data';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
+import { RecommendationCard } from './components/RecommendationCard';
+
 export const metadata: Metadata = {
-  title: 'Projects'
+  title: 'Recommendations'
 };
 
-export function ProjectsPage() {
+export async function RecommendationsPage() {
   return (
     <ContentContainer>
       <h1
@@ -22,7 +22,7 @@ export function ProjectsPage() {
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}
-        dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.title }}
+        dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.title }}
       />
       <p
         className={clsx(
@@ -30,12 +30,12 @@ export function ProjectsPage() {
           'mt-4 select-none text-center text-xl',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
-        dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}
+        dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.description }}
       />
 
-      <div className="mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1">
-        {PROJECTS_DATA.items.map((item: ProjectItem, index: number) => (
-          <ProjectCard key={index} data={item} animationDelay={(index + 1) * 0.3} />
+      <div className="mt-8 flex flex-col gap-4 overflow-hidden">
+        {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
+          <RecommendationCard key={item.id} data={item} animationDelay={`${(index + 1) * 0.3}s`} />
         ))}
       </div>
 
@@ -45,12 +45,12 @@ export function ProjectsPage() {
           animator({ name: 'fadeInUp', delay: '1s' })
         )}
       >
-        <p>{PROJECTS_DATA.footer}</p>
+        <p>{RECOMMENDATION_PAGE_DATA.footer}</p>
         <Link
-          href={PROJECTS_DATA.footerActionURL}
+          href={RECOMMENDATION_PAGE_DATA.footerActionURL}
           className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 hover:text-orange-500"
         >
-          {PROJECTS_DATA.footerActionLabel}
+          {RECOMMENDATION_PAGE_DATA.footerActionLabel}
         </Link>
       </div>
     </ContentContainer>

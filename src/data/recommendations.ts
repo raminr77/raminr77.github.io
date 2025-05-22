@@ -1,3 +1,5 @@
+import { ROUTES } from "@/shared/constants";
+
 export interface RecommendationItem {
   id: number;
   url: string;
@@ -8,6 +10,15 @@ export interface RecommendationItem {
   fullName: string;
   imageURL: string | null;
 }
+
+export const RECOMMENDATION_PAGE_DATA = {
+  title: 'Recommendations',
+  description:
+    'I have had the pleasure of working with many talented individuals throughout my career. Here are some of the recommendations I have received from my colleagues and managers.',
+  footer: 'If you would like to know more about me, feel free to reach out.',
+  footerActionLabel: 'Contact Me',
+  footerActionURL: ROUTES.CONTACT_ME,
+} as const;
 
 export const RECOMMENDATIONS: RecommendationItem[] = [
   {
