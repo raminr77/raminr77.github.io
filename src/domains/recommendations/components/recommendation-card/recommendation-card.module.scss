@@ -1,0 +1,7 @@
+.recommendation-card {
+  &:hover & {
+    &__profile-image {
+      filter: grayscale(0);
+    }
+  }
+}

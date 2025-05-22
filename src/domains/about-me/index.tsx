@@ -12,7 +12,7 @@ import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
-import { RecommendationSlider } from './components/RecommendationSlider';
+import { RecommendationsBox } from './components/recommendations-box';
 import styles from './about-me.module.scss';
 import { renderContent } from './helper';
 
@@ -69,7 +69,7 @@ export function AboutMePage() {
       >
         {ABOUT_ME_DATA.content.map((item: AboutMeContentItem, index: number) => {
           if (index === 3) {
-            return <RecommendationSlider key="linkedIn-Recommendations" />;
+            return <RecommendationsBox key="linkedIn-Recommendations" />;
           }
           return renderContent(index, item);
         })}

@@ -7,13 +7,13 @@ import { ContentContainer } from '@/layout/components/content-container';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
-import { RecommendationCard } from './components/RecommendationCard';
+import { RecommendationCard } from './components/recommendation-card';
 
 export const metadata: Metadata = {
   title: 'Recommendations'
 };
 
-export async function RecommendationsPage() {
+export function RecommendationsPage() {
   return (
     <ContentContainer>
       <h1
@@ -33,7 +33,7 @@ export async function RecommendationsPage() {
         dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.description }}
       />
 
-      <div className="mt-8 flex flex-col gap-4 overflow-hidden">
+      <div className="mt-8 flex flex-col gap-6 overflow-hidden">
         {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
           <RecommendationCard key={item.id} data={item} animationDelay={`${(index + 1) * 0.3}s`} />
         ))}
