@@ -66,13 +66,6 @@ button {
   padding: 12px 20px;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  &:after {
-    color: var(--foreground);
-  }
-}
-
 .shine-animation-top {
   animation: shine 4s infinite ease-in-out;
 }
