@@ -80,6 +80,12 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
   };
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
     const callback = (mutationList: MutationRecord[]) => {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
@@ -96,7 +102,10 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
       observer.observe(chatContainerRef.current, MUTATION_OBSERVER_CONFIGS);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('keydown', handleKeyDown);
+    }
   }, []);
 
   return (
@@ -166,9 +175,10 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
         >
           <TextInput
             required
-            id="text"
+            autoFocus
             type="text"
             tabIndex={1}
+            id="ai-chat-input"
             className="w-full h-12"
             error={errors.text?.message}
             placeholder="Ask About Ramin From AI"

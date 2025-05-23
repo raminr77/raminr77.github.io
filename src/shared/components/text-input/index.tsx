@@ -6,11 +6,13 @@ import { clsx } from 'clsx';
 
 interface TextInputProps {
   id?: string;
+  name?: string;
   value?: string;
   label?: string;
   tabIndex?: number;
   required?: boolean;
   className?: string;
+  autoFocus?: boolean;
   placeholder?: string;
   error?: string | null;
   containerClassName?: string;
@@ -19,6 +21,7 @@ interface TextInputProps {
 }
 
 export function TextInput({
+  name,
   label,
   value,
   error,
@@ -29,6 +32,7 @@ export function TextInput({
   type = 'text',
   required = false,
   id = 'text-input',
+  autoFocus = false,
   containerClassName,
   ...rest
 }: TextInputProps) {
@@ -48,9 +52,11 @@ export function TextInput({
           id={id}
           type={type}
           value={value}
+          name={name ?? id}
           tabIndex={tabIndex}
           required={required}
           onChange={onChange}
+          autoFocus={autoFocus}
           placeholder={placeholder}
           className={clsx(INPUT_CLASSES, {
             'border-red-500': !!error
