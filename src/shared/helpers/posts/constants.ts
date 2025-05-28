@@ -1,0 +1,1 @@
+export const POSTT_FOLTER_PATH = 'posts';

@@ -5,22 +5,21 @@ import { PERSONAL_DATA } from '@/data';
 
 import type { PostMetadata, PostFilters } from '../../types/post';
 import { filterPostsByKey, postSorter } from './utils';
+import { POSTT_FOLTER_PATH } from './constants';
 
 interface Posts {
     categories: string[];
     data: PostMetadata[];
 }
 
-const FOLDER_PATH = `./posts`;
-
 // ONLY FOR SERVER SIDE
 export function getPosts(filters: PostFilters | null = null): Posts {
-    const files = fs.readdirSync(FOLDER_PATH);
+    const files = fs.readdirSync(POSTT_FOLTER_PATH);
     const posts = files.filter((file) => file.endsWith('.md'));
 
     const categories: Record<string, true> = {};
     const postsMetadata = posts.map((file) => {
-        const fileContent = fs.readFileSync(`${FOLDER_PATH}/${file}`, 'utf-8');
+        const fileContent = fs.readFileSync(`${POSTT_FOLTER_PATH}/${file}`, 'utf-8');
         const { data } = matter(fileContent);
 
         if (data.category) {
