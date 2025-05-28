@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation';
+import Markdown from 'markdown-to-jsx';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 import React from 'react';
 
-import { allPosts, type Post } from 'contentlayer/generated';
-
+import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ContentContainer } from '@/layout/components/content-container';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
@@ -18,6 +18,8 @@ import { PostAuthor } from './components/post-author';
 import { PostTags } from './components/post-tags';
 import { PostDate } from './components/post-date';
 
+import type { Post } from '@/shared/types/post';
+
 import styles from './post-detail-page.module.scss';
 
 interface Props {
@@ -26,18 +28,16 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id: postId } = await params;
-  const post: Post | null =
-    allPosts.find(({ id }: Post) => String(id) === postId) || null;
+  const post: Post | null = getPostContent(Number(postId));
 
   return {
-    title: post?.title
+    title: post?.title ?? 'Post Not Found',
   };
 }
 
 export async function PostDetailPage({ params }: Props) {
   const { id: postId } = await params;
-  const post: Post | null =
-    allPosts.find(({ id }: Post) => String(id) === postId) || null;
+  const post: Post | null = getPostContent(Number(postId));
 
   if (!post) {
     redirect(ROUTES.POSTS);
@@ -59,20 +59,21 @@ export async function PostDetailPage({ params }: Props) {
         <PostAuthor author={post.author} />
         <PostCategory showLabel category={post.category} />
         <PostDate date={post.date} />
-        <PostReadTime words={post.body.raw} />
+        <PostReadTime words={post.content} />
       </div>
 
-      <p className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl">
-        {post.description.raw}
-      </p>
+      <Markdown className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl">
+        {post.description}
+      </Markdown>
 
-      <div
+      <Markdown
         className={clsx(
           'text-xl leading-8 [&>*]:mb-3 [&>*:last-child]:mb-4',
           styles['post-detail-page__text']
         )}
-        dangerouslySetInnerHTML={{ __html: post.body.html }}
-      />
+      >
+        {post.content}
+      </Markdown>
 
       <PostTags postId={post.id} tags={post.tags} />
 

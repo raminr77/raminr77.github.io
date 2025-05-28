@@ -1,7 +1,7 @@
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import Image from 'next/image';
 
-export function PostDate({ date }: { date: string }) {
+export function PostDate({ date }: { date: Date }) {
   return (
     <div className="flex gap-1 items-center">
       <Image
@@ -12,7 +12,7 @@ export function PostDate({ date }: { date: string }) {
         className="dark:invert"
         src="/images/date-icon.svg"
       />
-      <span>{format(parseISO(date), 'LLLL d, yyyy')}</span>
+      <span>{format(date, 'LLLL d, yyyy')}</span>
     </div>
   );
 }

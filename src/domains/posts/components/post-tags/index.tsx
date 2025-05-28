@@ -1,5 +1,6 @@
-import { generateFilteredPostUrl } from '@/domains/posts/helpers';
 import Link from 'next/link';
+
+import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
 
 export function PostTags({ postId, tags = [] }: { postId: number; tags: string[] }) {
   return (

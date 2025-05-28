@@ -1,5 +1,6 @@
-import { readingTime } from '@/domains/posts/helpers';
 import Image from 'next/image';
+
+import { readingTime } from '@/shared/helpers/posts/utils';
 
 export function PostReadTime({ words }: { words: string }) {
   return (

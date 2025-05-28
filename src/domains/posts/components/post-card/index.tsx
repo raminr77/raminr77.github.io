@@ -3,18 +3,19 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { PostTags } from '@/domains/posts/components/post-tags';
-import type { Post } from 'contentlayer/generated';
 import { PostCategory } from '../post-category';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { PostDate } from '../post-date';
 import { titleFont } from '@/app/fonts';
 
+import type { PostMetadata } from '@/shared/types/post';
+
 export function PostCard({
   data,
   animationDelay = 1
 }: {
-  data: Post;
+  data: PostMetadata;
   animationDelay?: number;
 }) {
   const { id, title, slug, description, tags, date, isActive, category } = data;
@@ -40,7 +41,7 @@ export function PostCard({
           {title}
         </Link>
         <PostCategory category={category} />
-        <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md">{description.raw}</p>
+        <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md">{description}</p>
       </div>
 
       <div className="flex flex-col gap-2 mt-3">

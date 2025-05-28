@@ -1,6 +1,7 @@
-import { generateFilteredPostUrl } from '@/domains/posts/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
 
 export function PostCategory({
   category,
