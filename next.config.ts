@@ -1,4 +1,3 @@
-import { withContentlayer } from 'next-contentlayer';
 import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
@@ -74,4 +73,4 @@ export default withSentryConfig(nextConfig, {
   automaticVercelMonitors: true
 });
 
-module.exports = withContentlayer(nextConfig);
+module.exports = nextConfig;
