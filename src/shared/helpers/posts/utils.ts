@@ -1,15 +1,16 @@
-import type { Post } from 'contentlayer/generated';
 import { ROUTES } from '@/shared/constants';
 import { compareDesc } from 'date-fns';
 import { stringify } from 'qs';
 
-export function postSorter(first: Post, second: Post) {
+import type { PostMetadata, PostFilters } from '@/shared/types/post';
+
+export function postSorter(first: PostMetadata, second: PostMetadata) {
   return compareDesc(new Date(first.date), new Date(second.date));
 }
 
 export function filterPostsByKey(
-  postItem: Post,
-  filter: Record<'tag' | 'category', string> | null = null
+  postItem: PostMetadata,
+  filter: PostFilters | null = null
 ) {
   if (!filter) {
     return true;
