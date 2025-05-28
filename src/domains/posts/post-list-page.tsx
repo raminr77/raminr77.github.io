@@ -11,6 +11,7 @@ import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
+import { FilterSection } from './components/filter-section';
 
 interface PostListPageProps {
   searchParams: Promise<PostFilters>;
@@ -48,22 +49,14 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
             No posts found.
           </p>
           <p>There are no posts that match your search or filters.</p>
-          <Link className="text-amber-500 mt-3" href={ROUTES.POSTS}>
-            Clear Your Filter
-          </Link>
+          {!!filters && (
+            <Link className="text-amber-500 mt-3" href={ROUTES.POSTS}>
+              Clear Your Filter
+            </Link>
+          )}
         </div>
       ) : (
-        <div className="flex items-center flex-wrap gap-3">
-          {categories.map((item) => (
-            <Link
-              key={item}
-              href={`?category=${item}`}
-              className="border px-4 py-1 text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
+        <FilterSection categories={categories} hasActiveFilter={!!filters} />
       )}
 
       <div className="mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1">
