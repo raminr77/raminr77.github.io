@@ -92,8 +92,8 @@ export async function PostDetailPage({ params }: Props) {
         <PostDate date={post.date} />
       </div>
 
-      <Script defer strategy="lazyOnload" src="/highlight.min.js" />
-      <Script defer strategy="lazyOnload" src="/highlight-loader.js" />
+      <Script defer strategy="beforeInteractive" src="/highlight.min.js" />
+      <Script defer strategy="beforeInteractive" src="/highlight-loader.js" />
     </ContentContainer>
   );
 }
