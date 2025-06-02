@@ -56,7 +56,11 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
           )}
         </div>
       ) : (
-        <FilterSection categories={categories} hasActiveFilter={!!filters} />
+        <FilterSection
+          activeFilter={filters}
+          categories={categories}
+          hasActiveFilter={!!filters}
+        />
       )}
 
       <div className="mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1">
