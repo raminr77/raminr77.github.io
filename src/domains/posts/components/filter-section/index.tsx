@@ -4,25 +4,23 @@ import Link from "next/link";
 import type { PostFilters } from "@/shared/types/post";
 import { ROUTES } from "@/shared/constants";
 
-interface FilterSectionProps {
+interface CategoryFilterSectionProps {
   categories: string[];
-  hasActiveFilter: boolean;
-  activeFilter: PostFilters | null;
+  activeFilters: PostFilters | null;
 }
 
-export function FilterSection({
+export function CategoryFilterSection({
   categories = [],
-  activeFilter = null,
-  hasActiveFilter = false
-}: FilterSectionProps) {
+  activeFilters = null,
+}: CategoryFilterSectionProps) {
   return (
     <div className="flex items-center flex-wrap gap-3">
       {categories.map((item) => {
-        const isActive = hasActiveFilter && activeFilter?.category === item;
+        const isActive = activeFilters?.category === item;
         return (
           <Link
             key={item}
-            href={isActive ? '' : `?category=${item}`} 
+            href={isActive ? ROUTES.POSTS : `?category=${item}`}
             className={clsx(
               "border px-4 py-1 text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5",
               {
@@ -35,10 +33,10 @@ export function FilterSection({
         );
       })}
 
-      {hasActiveFilter && (
+      {!!activeFilters && (
         <Link
           href={ROUTES.POSTS}
-          className="border px-4 py-1 text-md border-amber-500 bg-transparent shadow backdrop-blur-sm bg-slate-300/5"
+          className="px-2 py-1 text-md bg-transparent backdrop-blur-sm hover:text-amber-500 duration-300"
         >
           Clear Filter
         </Link>

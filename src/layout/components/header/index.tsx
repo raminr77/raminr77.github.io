@@ -52,7 +52,7 @@ export function Header() {
             <li
               key={`${title}-${id}-desktop`}
               style={{ animationDelay: `${(index + 1) * 0.3}s` }}
-              className={animator({ name: 'bounceInDown', speed: 'slow' })}
+              className={animator({ name: 'fadeIn', speed: 'slow' })}
             >
               <Link
                 href={url}

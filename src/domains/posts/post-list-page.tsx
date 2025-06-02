@@ -11,7 +11,7 @@ import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
-import { FilterSection } from './components/filter-section';
+import { CategoryFilterSection } from './components/filter-section';
 
 interface PostListPageProps {
   searchParams: Promise<PostFilters>;
@@ -56,14 +56,15 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
           )}
         </div>
       ) : (
-        <FilterSection
-          activeFilter={filters}
+        <CategoryFilterSection
+          activeFilters={filters}
           categories={categories}
-          hasActiveFilter={!!filters}
         />
       )}
 
-      <div className="mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1">
+      <div
+        className="mt-8 gap-4 overflow-hidden columns-3 max-md:columns-1 max-lg:columns-2"
+      >
         {posts.map((post: PostMetadata, index: number) => (
           <PostCard key={post.id} data={post} animationDelay={(index + 1) * 0.3} />
         ))}

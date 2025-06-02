@@ -28,10 +28,10 @@ export function PostCard({
   return (
     <div
       className={clsx(
-        'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5 justify-between h-fit',
+        'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5 justify-between h-fit break-inside-avoid mb-4',
         animator({ name: 'fadeIn' })
       )}
-      style={{ animationDelay: `${animationDelay}s` }}
+      style={{ animationDelay: `${animationDelay}s`, pageBreakInside: 'avoid' }}
     >
       <div className="flex flex-col gap-2">
         <Link
@@ -50,7 +50,7 @@ export function PostCard({
         <div className="flex select-none items-center justify-between">
           <PostDate date={date} />
           <Link href={postDetailUrl} className="text-amber-500">
-            {`{ Read More }`}
+            [ Read More ]
           </Link>
         </div>
       </div>
