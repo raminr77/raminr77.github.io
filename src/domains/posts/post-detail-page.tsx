@@ -47,7 +47,7 @@ export async function PostDetailPage({ params }: Props) {
     <ContentContainer animationName="fadeIn">
       <h1
         className={clsx(
-          'mb-8 text-center text-4xl font-bold',
+          'mb-8 text-center text-3xl font-bold',
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}

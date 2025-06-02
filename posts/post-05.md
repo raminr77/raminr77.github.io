@@ -16,15 +16,11 @@ Modern web apps often rely on **client-side routing** to create fast, responsive
 
 With the **View Transitions API**, now supported in Chromium-based browsers, you can animate DOM changes natively — offering sleek visual feedback with minimal code.
 
----
-
 ## ✨ What is the View Transitions API?
 
 The View Transitions API enables **animated transitions between different DOM states**. Whether you're navigating between routes or toggling views in a single-page application (SPA), this API lets you animate the shift between “before” and “after” states.
 
 > ✅ Unlike traditional CSS transitions, this API handles **DOM updates and animations together** in a well-defined sequence.
-
----
 
 ## 🧠 When to Use It
 
@@ -35,8 +31,6 @@ The API is especially useful for:
 - Complex layout state changes
 
 For multi-page apps, the browser automatically captures the before/after snapshots. But for same-document navigation (e.g., SPAs), you **manually define** the DOM update within the transition.
-
----
 
 ## 🔧 Basic Implementation Example
 
@@ -112,16 +106,12 @@ Let’s build a minimal example with two views: `Home` and `About`.
 </html>
 ```
 
----
-
 ## 📦 How It Works
 
 1. We assign a `view-transition-name` to the `main` element.
 2. We define animations using `@keyframes` for both the old and new views.
 3. On button click, we call `document.startViewTransition()` and update the DOM inside it.
 4. The browser handles the transition between the two visual states smoothly.
-
----
 
 ## ⚠️ Browser Support
 
@@ -135,13 +125,9 @@ if ('startViewTransition' in document) {
 }
 ```
 
----
-
 ## 🔗 References
 
 - 📘 [View Transitions API Overview](https://developer.chrome.com/docs/web-platform/view-transitions)
 - 📘 [Same-Document Transitions Guide](https://developer.chrome.com/docs/web-platform/view-transitions/same-document)
-
----
 
 If you're building a modern SPA and want to add native-feeling polish with minimal effort, the View Transitions API is a fantastic tool to explore. Try it in your next project and let your UI breathe with smooth transitions!
