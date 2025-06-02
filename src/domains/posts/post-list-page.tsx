@@ -11,7 +11,7 @@ import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
-import { CategoryFilterSection } from './components/filter-section';
+import { CategoryFilterSection } from './components/category-filter-section';
 
 interface PostListPageProps {
   searchParams: Promise<PostFilters>;
