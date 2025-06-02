@@ -31,7 +31,7 @@ export function PostCard({
         'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5 justify-between h-fit break-inside-avoid mb-4',
         animator({ name: 'fadeIn' })
       )}
-      style={{ animationDelay: `${animationDelay}s`, pageBreakInside: 'avoid' }}
+      style={{ animationDelay: `${animationDelay}s` }}
     >
       <div className="flex flex-col gap-2">
         <Link
