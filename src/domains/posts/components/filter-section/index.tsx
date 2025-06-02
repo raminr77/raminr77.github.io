@@ -17,20 +17,23 @@ export function FilterSection({
 }: FilterSectionProps) {
   return (
     <div className="flex items-center flex-wrap gap-3">
-      {categories.map((item) => (
-        <Link
-          key={item}
-          href={`?category=${item}`} 
-          className={clsx(
-            "border px-4 py-1 text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5",
-            {
-              "bg-amber-500/10 border-amber-500": hasActiveFilter && activeFilter?.category === item
-            }
-          )}
-        >
-          {item}
-        </Link>
-      ))}
+      {categories.map((item) => {
+        const isActive = hasActiveFilter && activeFilter?.category === item;
+        return (
+          <Link
+            key={item}
+            href={isActive ? '' : `?category=${item}`} 
+            className={clsx(
+              "border px-4 py-1 text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5",
+              {
+                "bg-amber-500/20 border-amber-500": isActive
+              }
+            )}
+          >
+            {item}
+          </Link>
+        );
+      })}
 
       {hasActiveFilter && (
         <Link
