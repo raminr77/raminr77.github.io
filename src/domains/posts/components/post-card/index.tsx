@@ -28,7 +28,7 @@ export function PostCard({
   return (
     <div
       className={clsx(
-        'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5 justify-between h-fit break-inside-avoid mb-4',
+        'flex flex-col bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 justify-between border border-slate-300/40',
         animator({ name: 'fadeIn' })
       )}
       style={{ animationDelay: `${animationDelay}s` }}
@@ -41,7 +41,11 @@ export function PostCard({
           {title}
         </Link>
         <PostCategory category={category} />
-        <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md">{description}</p>
+        
+        <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md overflow-hidden">
+          {description.substring(0, 210)}
+          {description.length > 210 ? '...' : ''}
+        </p>
       </div>
 
       <div className="flex flex-col gap-2 mt-3">

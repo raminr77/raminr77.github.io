@@ -63,7 +63,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
       )}
 
       <div
-        className="mt-8 gap-4 overflow-hidden columns-3 max-md:columns-1 max-lg:columns-2"
+        className="mt-4 overflow-hidden grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-2"
       >
         {posts.map((post: PostMetadata, index: number) => (
           <PostCard key={post.id} data={post} animationDelay={(index + 1) * 0.3} />
