@@ -54,7 +54,7 @@ export function ContactMePage() {
     <ContentContainer title="Contact Me" className="z-40">
       <div className="flex gap-5 max-lg:flex-wrap">
         <div
-          className={clsx('w-full text-xl leading-7', animator({ name: 'fadeInLeft' }))}
+          className={clsx('w-full text-xl leading-7', animator({ name: 'fadeIn' }))}
         >
           {CONTACT_ME_DATA.texts.map((text: string, index: number) => (
             <p
@@ -97,7 +97,7 @@ export function ContactMePage() {
         <div
           className={clsx(
             'text-md flex select-none flex-col gap-3 bg-transparent',
-            animator({ name: 'fadeInRight' })
+            animator({ name: 'fadeIn' })
           )}
         >
           {CONTACT_ME_DATA.links.map(({ title, actionLabel, url }, index: number) => (
@@ -124,7 +124,7 @@ export function ContactMePage() {
       <form
         className={clsx(
           'mt-5 flex flex-col gap-4',
-          animator({ name: 'fadeIn', delay: '1s' }),
+          animator({ name: 'fadeIn', delay: '2s' }),
           {
             'pointer-events-none': loading
           }

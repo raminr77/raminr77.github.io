@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: 'Journey'
 };
 
+// Reverse the order of items to display them in reverse chronological order
+const JOURNEY_ITEMS = JOURNEY_DATA.items.reverse();
+
 export function JourneyPage() {
   return (
     <ContentContainer>
@@ -26,14 +29,14 @@ export function JourneyPage() {
       <p
         className={clsx(
           titleFont.className,
-          'mt-4 select-none text-center text-xl',
+          'mt-4 select-none text-center',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
         dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.description }}
       />
 
       <div className="mt-20 flex flex-col gap-28">
-        {JOURNEY_DATA.items.reverse().map((item: JourneyItem, index: number) => (
+        {JOURNEY_ITEMS.map((item: JourneyItem, index: number) => (
           <JourneyCard key={index} order={index + 1} data={item} />
         ))}
       </div>

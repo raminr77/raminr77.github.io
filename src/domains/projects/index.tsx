@@ -27,7 +27,7 @@ export function ProjectsPage() {
       <p
         className={clsx(
           titleFont.className,
-          'mt-4 select-none text-center text-xl',
+          'mt-4 select-none text-center',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}

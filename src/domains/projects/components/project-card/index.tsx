@@ -17,7 +17,7 @@ export function ProjectCard({
   return (
     <div
       className={clsx(
-        'flex flex-col border bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5',
+        'flex flex-col bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 justify-between border border-slate-300/40',
         animator({ name: 'fadeIn' })
       )}
       style={{ animationDelay: `${animationDelay}s` }}

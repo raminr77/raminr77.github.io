@@ -16,7 +16,7 @@ export function ContentContainer({
   title,
   children,
   className,
-  animationName = 'fadeInUp'
+  animationName = 'fadeIn'
 }: ContentContainerProps) {
   return (
     <main className="flex w-full justify-center overflow-hidden p-5 pb-16 pt-32 md:pt-40">

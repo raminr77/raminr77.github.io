@@ -30,7 +30,7 @@ export function AboutMePage() {
           loading="lazy"
           className={clsx(
             'pointer-events-none z-20 w-4/5 max-w-96',
-            animator({ name: 'fadeIn', speed: 'slow', delay: '1s' })
+            animator({ name: 'fadeIn', speed: 'slow' })
           )}
           draggable={false}
           src={ABOUT_ME_DATA.heroURL}
@@ -47,25 +47,25 @@ export function AboutMePage() {
       <h1
         className={clsx(
           'text-left text-4xl font-extrabold',
-          animator({ name: 'fadeInUp' }),
+          animator({ name: 'fadeInUp', delay: '1s' }),
           titleFont.className
         )}
-        style={{ animationDelay: `${0.3}s` }}
       >
         {`About ${PERSONAL_DATA.firstName}`}
       </h1>
       <p
         className={clsx('mt-1 text-left text-xl', animator({ name: 'fadeInUp' }))}
-        style={{ animationDelay: `${2 * 0.3}s` }}
+        style={{ animationDelay: '1.3s' }}
       >
         {`${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`}
       </p>
       <div
         className={clsx(
           'mb-5 mt-4 flex flex-col gap-4 text-justify text-lg',
-          animator({ name: 'fadeIn', delay: '1s' }),
+          animator({ name: 'fadeIn' }),
           styles['about-me']
         )}
+        style={{ animationDelay: '1.5s' }}
       >
         {ABOUT_ME_DATA.content.map((item: AboutMeContentItem, index: number) => {
           if (index === 3) {
