@@ -18,7 +18,7 @@ export function ProjectsPage() {
     <ContentContainer>
       <h1
         className={clsx(
-          'select-none text-center text-3xl font-bold',
+          'select-none text-center text-2xl font-bold',
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}

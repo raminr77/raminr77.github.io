@@ -20,7 +20,7 @@ export function JourneyPage() {
     <ContentContainer>
       <h1
         className={clsx(
-          'select-none text-center text-3xl font-bold',
+          'select-none text-center text-2xl font-bold',
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}
@@ -35,7 +35,7 @@ export function JourneyPage() {
         dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.description }}
       />
 
-      <div className="mt-20 flex flex-col gap-28">
+      <div className="mt-20 flex flex-col gap-16">
         {JOURNEY_ITEMS.map((item: JourneyItem, index: number) => (
           <JourneyCard key={index} order={index + 1} data={item} />
         ))}

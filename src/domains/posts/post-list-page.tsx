@@ -30,7 +30,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
     <ContentContainer animationName="fadeIn">
       <h1
         className={clsx(
-          'mb-4 text-center text-4xl font-bold',
+          'mb-4 text-center text-2xl font-bold',
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}

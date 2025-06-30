@@ -18,7 +18,7 @@ export function RecommendationsPage() {
     <ContentContainer>
       <h1
         className={clsx(
-          'select-none text-center text-3xl font-bold',
+          'select-none text-center text-2xl font-bold',
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}
@@ -27,13 +27,13 @@ export function RecommendationsPage() {
       <p
         className={clsx(
           titleFont.className,
-          'mt-4 select-none text-center text-xl',
+          'mt-4 select-none text-center text-lg',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
         dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.description }}
       />
 
-      <div className="mt-8 flex flex-col gap-6 overflow-hidden">
+      <div className="mt-10 flex flex-col gap-6 overflow-hidden">
         {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
           <RecommendationCard key={item.id} data={item} animationDelay={`${(index + 1) * 0.3}s`} />
         ))}

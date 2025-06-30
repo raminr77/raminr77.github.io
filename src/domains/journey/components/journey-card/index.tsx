@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { clsx } from 'clsx';
@@ -17,7 +18,7 @@ const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
 
 const TITLE_CLASSES = clsx(
   styles['journey-card__title'],
-  'text-2xl font-bold tracking-wide pb-2 border-b mb-3 duration-500',
+  'text-xl tracking-wide pb-2 border-b border-slate-300/40 mb-3 duration-500',
   titleFont.className
 );
 export function JourneyCard({
@@ -36,21 +37,21 @@ export function JourneyCard({
     <div
       className={clsx(
         styles['journey-card'],
-        'flex w-full justify-center gap-4 max-md:flex-col max-md:items-center max-md:gap-16',
+        'flex w-full text-lg justify-center gap-4 max-md:flex-col max-md:items-center max-md:gap-6',
         className
       )}
     >
       <div
         className={clsx(
-          'float-animation relative flex h-20 min-h-20 w-20 min-w-20 select-none items-center justify-center overflow-hidden border-2 duration-500',
+          'float-animation relative flex h-20 min-h-20 w-20 min-w-20 select-none items-center justify-center overflow-hidden border-2 border-slate-300/40 duration-500',
           styles['journey-card__circle']
         )}
-      >
+        >
         <span
           style={{ animationDelay }}
           className={clsx(
             'pointer-events-none absolute text-xl font-extrabold tracking-wide',
-            animator({ name: 'fadeInUp' }),
+            animator({ name: 'fadeIn' }),
             titleFont.className
           )}
         >
@@ -63,7 +64,7 @@ export function JourneyCard({
         style={{ animationDelay }}
         className={clsx(
           'relative flex w-full flex-col gap-3',
-          animator({ name: 'fadeInUp' })
+          animator({ name: 'fadeIn' })
         )}
       >
         <div className="flex select-none flex-col">
@@ -71,12 +72,20 @@ export function JourneyCard({
             <Link
               href={url}
               target="_blank"
-              className={clsx(TITLE_CLASSES, 'text-amber-500')}
+              className={clsx(TITLE_CLASSES, 'flex items-center gap-2 hover:text-amber-500')}
             >
-              {title.toUpperCase()}
+              {title}
+              <Image
+                width={32}
+                height={32}
+                loading="lazy"
+                className="dark:invert"
+                alt={`Link to ${title}`}
+                src="/images/new-tab-icon.svg"
+              />
             </Link>
           ) : (
-            <p className={TITLE_CLASSES}>{title.toUpperCase()}</p>
+            <p className={clsx(TITLE_CLASSES)}>{title}</p>
           )}
 
           <div className="flex items-center justify-between">
@@ -85,15 +94,17 @@ export function JourneyCard({
           </div>
         </div>
 
-        <div dangerouslySetInnerHTML={{ __html: description }} />
+        <div className="mt-2">
+          <div dangerouslySetInnerHTML={{ __html: description }} />
 
-        {items && (
-          <ul className="ml-4 mt-2 list-disc leading-8">
-            {items.map((item: string, index: number) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        )}
+          {items && (
+            <ul className="ml-4 mt-2 list-disc leading-8">
+              {items.map((item: string, index: number) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
