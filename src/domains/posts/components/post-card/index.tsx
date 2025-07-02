@@ -13,10 +13,12 @@ import type { PostMetadata } from '@/shared/types/post';
 
 export function PostCard({
   data,
-  animationDelay = 1
+  animationDelay = 1,
+  disabledAnimation = false,
 }: {
   data: PostMetadata;
   animationDelay?: number;
+  disabledAnimation?: boolean;
 }) {
   const { id, title, slug, description, tags, date, isActive, category } = data;
   const postDetailUrl = `${ROUTES.POSTS}${id}?slug=${slug}`;
@@ -29,7 +31,7 @@ export function PostCard({
     <div
       className={clsx(
         'flex flex-col bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 justify-between border border-slate-300/40',
-        animator({ name: 'fadeIn' })
+        !disabledAnimation && animator({ name: 'fadeIn' })
       )}
       style={{ animationDelay: `${animationDelay}s` }}
     >

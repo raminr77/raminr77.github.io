@@ -40,9 +40,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function PostDetailPage({ params }: Props) {
   const { id: postId } = await params;
   const post: Post | null = getPostContent(Number(postId));
-  const { data: recommendedPosts = [] } = getPosts(
+  const { data: sameCategoryPosts = [] } = getPosts(
     post ? { category: post.category } as PostFilters : null
   );
+  const recommendedPosts = sameCategoryPosts.filter(
+    ({ id }) => id !== Number(postId)
+  ).slice(0, 3);
 
   if (!post) {
     redirect(ROUTES.POSTS);
@@ -82,12 +85,7 @@ export async function PostDetailPage({ params }: Props) {
 
       <PostTags postId={post.id} tags={post.tags} />
 
-      <div
-        className={clsx(
-          'my-10 flex items-center justify-between border-t border-slate-300/40 pt-4',
-          animator({ name: 'fadeInUp', delay: '2s' })
-        )}
-      >
+      <div className="my-10 flex items-center justify-between border-t border-slate-300/40 pt-4">
         <Link
           href={ROUTES.POSTS}
           className="border-b border-amber-500 px-4 pb-1 duration-300 hover:text-amber-500"
@@ -97,11 +95,13 @@ export async function PostDetailPage({ params }: Props) {
         <PostDate date={post.date} />
       </div>
 
-      <div className="flex overflow-x-auto gap-4 mb-6">
-        {recommendedPosts.slice(0, 3).map((post: PostMetadata, index: number) => (
-          <PostCard key={post.id} data={post} animationDelay={(index + 1) * 0.3} />
-        ))}
-      </div>
+      {recommendedPosts.length > 0 ? (
+        <div className="flex overflow-x-auto gap-4 mb-6 max-lg:flex-col">
+          {recommendedPosts.map((post: PostMetadata) => (
+            <PostCard key={post.id} data={post} disabledAnimation />
+          ))}
+        </div>
+      ) : null}
 
       <Script defer strategy="beforeInteractive" src="/highlight.min.js" />
       <Script defer strategy="beforeInteractive" src="/highlight-loader.js" />
