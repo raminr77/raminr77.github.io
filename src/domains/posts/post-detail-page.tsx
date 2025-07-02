@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation';
 import Markdown from 'markdown-to-jsx';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 import React from 'react';
 
+import { ClientCodeLoader } from '@/shared/components/client-code-loader';
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ContentContainer } from '@/layout/components/content-container';
 import { PostCard } from '@/domains/posts/components/post-card';
@@ -21,8 +21,6 @@ import { PostTags } from './components/post-tags';
 import { PostDate } from './components/post-date';
 
 import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
-
-import '../../../public/highlight.min.css';
 
 import styles from './post-detail-page.module.scss';
 
@@ -55,9 +53,6 @@ export async function PostDetailPage({ params }: Props) {
 
   return (
     <ContentContainer animationName="fadeIn">
-      <Script src="/highlight.min.js" />
-      <Script src="/highlight-loader.js" />
-
       <h1
         className={clsx(
           titleFont.className,
@@ -107,6 +102,8 @@ export async function PostDetailPage({ params }: Props) {
           ))}
         </div>
       ) : null}
+
+      <ClientCodeLoader />
     </ContentContainer>
   );
 }
