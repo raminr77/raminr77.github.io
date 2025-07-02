@@ -8,6 +8,8 @@ import React from 'react';
 
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ContentContainer } from '@/layout/components/content-container';
+import { PostCard } from '@/domains/posts/components/post-card';
+import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
@@ -18,7 +20,7 @@ import { PostAuthor } from './components/post-author';
 import { PostTags } from './components/post-tags';
 import { PostDate } from './components/post-date';
 
-import type { Post } from '@/shared/types/post';
+import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
 
 import styles from './post-detail-page.module.scss';
 
@@ -38,6 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function PostDetailPage({ params }: Props) {
   const { id: postId } = await params;
   const post: Post | null = getPostContent(Number(postId));
+  const { data: recommendedPosts = [] } = getPosts(
+    post ? { category: post.category } as PostFilters : null
+  );
 
   if (!post) {
     redirect(ROUTES.POSTS);
@@ -47,7 +52,7 @@ export async function PostDetailPage({ params }: Props) {
     <ContentContainer animationName="fadeIn">
       <h1
         className={clsx(
-          'mb-8 text-center text-3xl font-bold',
+          'mb-12 text-center text-2xl ',
           titleFont.className,
           animator({ name: 'fadeInUp' })
         )}
@@ -55,7 +60,7 @@ export async function PostDetailPage({ params }: Props) {
         {post.title}
       </h1>
 
-      <div className="mb-4 flex gap-5 max-md:flex-col max-md:gap-2">
+      <div className="mb-4 flex gap-5 max-md:flex-col max-md:gap-2 border-b border-slate-300/40 pb-4">
         <PostAuthor author={post.author} />
         <PostCategory showLabel category={post.category} />
         <PostDate date={post.date} />
@@ -79,7 +84,7 @@ export async function PostDetailPage({ params }: Props) {
 
       <div
         className={clsx(
-          'my-10 flex items-center justify-between border-t pt-4',
+          'my-10 flex items-center justify-between border-t border-slate-300/40 pt-4',
           animator({ name: 'fadeInUp', delay: '2s' })
         )}
       >
@@ -87,9 +92,15 @@ export async function PostDetailPage({ params }: Props) {
           href={ROUTES.POSTS}
           className="border-b border-amber-500 px-4 pb-1 duration-300 hover:text-amber-500"
         >
-          Back to list
+          Back To All Posts
         </Link>
         <PostDate date={post.date} />
+      </div>
+
+      <div className="flex overflow-x-auto gap-4 mb-6">
+        {recommendedPosts.slice(0, 3).map((post: PostMetadata, index: number) => (
+          <PostCard key={post.id} data={post} animationDelay={(index + 1) * 0.3} />
+        ))}
       </div>
 
       <Script defer strategy="beforeInteractive" src="/highlight.min.js" />
