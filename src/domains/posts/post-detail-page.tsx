@@ -22,6 +22,8 @@ import { PostDate } from './components/post-date';
 
 import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
 
+import '../../../public/highlight.min.css';
+
 import styles from './post-detail-page.module.scss';
 
 interface Props {
@@ -53,10 +55,13 @@ export async function PostDetailPage({ params }: Props) {
 
   return (
     <ContentContainer animationName="fadeIn">
+      <Script src="/highlight.min.js" defer />
+      <Script src="/highlight-loader.js" defer />
+
       <h1
         className={clsx(
-          'mb-12 text-center text-2xl ',
           titleFont.className,
+          'mb-12 text-center text-2xl ',
           animator({ name: 'fadeInUp' })
         )}
       >
@@ -102,9 +107,6 @@ export async function PostDetailPage({ params }: Props) {
           ))}
         </div>
       ) : null}
-
-      <Script defer strategy="beforeInteractive" src="/highlight.min.js" />
-      <Script defer strategy="beforeInteractive" src="/highlight-loader.js" />
     </ContentContainer>
   );
 }

@@ -14,7 +14,6 @@ import { Header } from '@/layout/components/header';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
-import '../../public/highlight.min.css';
 import 'animate.css';
 
 import './globals.scss';
