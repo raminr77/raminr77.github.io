@@ -14,7 +14,6 @@ pre {
     overflow: hidden;
     position: relative;
     border-radius: 8px;
-    padding-bottom: 60px;
     transition-duration: 500ms;
     background-color: rgb(40, 44, 52);
 }
@@ -35,6 +34,7 @@ pre {
     }
 
     &--collapsed {
+        padding-bottom: 60px;
         &::before {
             height: 100px;
         }
