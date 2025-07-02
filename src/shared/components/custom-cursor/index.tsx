@@ -4,14 +4,16 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { clsx } from 'clsx';
 
-import { animator, isSSR } from '@/shared/helpers';
+import { useIsClient } from '@/shared/hooks';
+import { animator } from '@/shared/helpers';
 
 const MINIMUM_SCREEN_SIZE = 1100;
 
 export function CustomCursor() {
+  const isClient = useIsClient();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [pointer, setPointer] = useState(
-    !isSSR
+    isClient
       ? {
           x: 0.5 * window.innerWidth,
           y: 0.5 * window.innerHeight

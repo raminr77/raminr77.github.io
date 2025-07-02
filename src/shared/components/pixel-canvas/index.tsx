@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
-
-import { isSSR } from '@/shared/helpers';
+import { useIsClient } from '@/shared/hooks';
 
 const COLORS = {
   white: '#ffffff',
@@ -31,11 +29,11 @@ export default function PixelCanvas({
   autoPlay = false,
   playOnes = false
 }: PixelCanvasProps) {
-  useEffect(() => {
-    if (!isSSR) {
-      import('../../libs/pixel-canvas');
-    }
-  }, []);
+  const isClient = useIsClient();
+
+  if (isClient) {
+    import('../../libs/pixel-canvas');
+  }
 
   return (
     <div className={className}>

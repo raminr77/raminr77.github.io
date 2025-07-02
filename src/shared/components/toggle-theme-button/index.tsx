@@ -1,13 +1,14 @@
 'use client';
 import { useRef, useState } from 'react';
 
-import { isSSR } from '@/shared/helpers';
+import { useIsClient} from '@/shared/hooks';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
 
 export type Theme = keyof typeof THEMES;
 
 export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boolean }) {
+  const isClient = useIsClient();
   const isFirstLoad = useRef<boolean>(true);
   const [theme, setTheme] = useState<Theme>(THEMES.light);
 
@@ -23,7 +24,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
     setTheme(newTheme);
   };
 
-  if (isFirstLoad.current && !isSSR) {
+  if (isFirstLoad.current && isClient) {
     isFirstLoad.current = false;
 
     let isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;

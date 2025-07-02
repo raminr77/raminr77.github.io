@@ -55,8 +55,8 @@ export async function PostDetailPage({ params }: Props) {
 
   return (
     <ContentContainer animationName="fadeIn">
-      <Script src="/highlight.min.js" defer />
-      <Script src="/highlight-loader.js" defer />
+      <Script src="/highlight.min.js" />
+      <Script src="/highlight-loader.js" />
 
       <h1
         className={clsx(
