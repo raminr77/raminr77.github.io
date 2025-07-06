@@ -23,7 +23,7 @@ export function ClientCodeLoader() {
       if (!parentElement.classList.contains('max-h-100')) {
         parentElement.classList.remove('expand-button-overlay--collapsed');
         parentElement.classList.add('max-h-100');
-        target.textContent = 'Expand Code';
+        target.innerHTML = 'Expand Code';
         window.scrollTo({
           top: parentElement.offsetTop - 200,
           behavior: 'smooth'
@@ -31,7 +31,7 @@ export function ClientCodeLoader() {
       } else {
         parentElement.classList.add('expand-button-overlay--collapsed');
         parentElement.classList.remove('max-h-100');
-        target.textContent = 'Collapse Code';
+        target.innerHTML = 'Collapse Code';
       }
     };
 
@@ -45,7 +45,7 @@ export function ClientCodeLoader() {
 
       const expandButton = document.createElement('button');
       expandButton.className = 'handle-change-code-preview-button';
-      expandButton.textContent = 'Expand Code';
+      expandButton.innerHTML = 'Expand Code';
 
       expandButton.addEventListener('click', handleChangeCodePreview);
 

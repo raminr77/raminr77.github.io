@@ -29,14 +29,9 @@
     }
 
     h2 {
-      padding: 8px 16px;
+      padding: 8px 0;
       font-weight: bolder;
-      border-left: 2px solid var(--primary);
-      background-image: linear-gradient(
-        45deg,
-        var(--blog-title-background),
-        transparent 20%
-      );
+      font-size: 26px;
     }
 
     ul {
@@ -44,7 +39,10 @@
     }
 
     ol li {
-      border-color: var(--primary);
+      margin: 0 20px;
+      padding-left: 0;
+      border-left: unset;
+      list-style-type: decimal;
     }
 
     li {

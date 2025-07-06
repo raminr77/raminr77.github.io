@@ -17,6 +17,7 @@ import { titleFont } from '@/app/fonts';
 import { PostReadTime } from './components/post-read-time';
 import { PostCategory } from './components/post-category';
 import { PostAuthor } from './components/post-author';
+import { PostShare } from './components/post-share';
 import { PostTags } from './components/post-tags';
 import { PostDate } from './components/post-date';
 
@@ -63,11 +64,14 @@ export async function PostDetailPage({ params }: Props) {
         {post.title}
       </h1>
 
-      <div className="mb-4 flex gap-5 max-md:flex-col max-md:gap-2 border-b border-slate-300/40 pb-4">
-        <PostAuthor author={post.author} />
-        <PostCategory showLabel category={post.category} />
-        <PostDate date={post.date} />
-        <PostReadTime words={post.content} />
+      <div className="mb-4 flex justify-between items-center border-b border-slate-300/40 pb-2 max-md:flex-col">
+        <div className="flex gap-5 max-md:flex-col max-md:gap-2">
+          <PostAuthor author={post.author} />
+          <PostCategory showLabel category={post.category} />
+          <PostDate date={post.date} />
+          <PostReadTime words={post.content} />
+        </div>
+        <PostShare postId={post.id} />
       </div>
 
       <Markdown className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl">
