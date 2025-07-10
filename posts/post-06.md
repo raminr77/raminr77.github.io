@@ -20,8 +20,6 @@ As a software engineer with over 8 years of experience — 5 of which have been 
 
 This post is an honest look into **why we often don’t do what we know is right**, and what that actually says about our industry, our teams, and ourselves.
 
----
-
 ### 🧠 How much decision-making power do we really have?
 
 According to [Self-Determination Theory](https://psycnet.apa.org/record/2000-13324-007), autonomy is a key factor in motivation. But in many real-world teams, **decision-making is distributed unevenly** — or worse, **diffused to the point of paralysis**.
@@ -30,8 +28,6 @@ I’ve often found myself knowing what needs to be done — refactor a service, 
 
 You hesitate, you rationalize, and eventually… you postpone.  
 In a system with unclear ownership, “right” often becomes “later”.
-
----
 
 ### 🛠 Where are we in the software lifecycle?
 
@@ -43,8 +39,6 @@ In early development, you have a chance to lay strong foundations. But in later 
 
 Instead of asking “Why didn’t we do it right?”, ask:  
 **“Did we do what was realistic given our constraints?”**
-
----
 
 ### 💸 Why we stick with bad tools (even when we know they’re bad)
 
@@ -81,8 +75,6 @@ Many engineers would rather live with a bad known than risk a worse unknown.
 
 This fear makes us overly cautious — especially in high-stakes systems. But **progress requires discomfort**.
 
----
-
 ### 🧑‍💻 Sometimes, we just don’t have the people
 
 In fast-paced environments, the bottleneck isn’t usually knowledge. It’s **capacity**.
@@ -90,8 +82,6 @@ In fast-paced environments, the bottleneck isn’t usually knowledge. It’s **c
 You can have the best plan, the cleanest RFC, the strongest rationale — but if you only have 3 engineers maintaining a 10-person system, even the “right thing” becomes a luxury.
 
 Leadership often wants velocity, not technical perfection. And it’s up to senior engineers to **balance tech debt with delivery**, without burning out or burning bridges.
-
----
 
 ### 🧩 What else gets in the way?
 
@@ -102,8 +92,6 @@ Here are some other invisible blockers I’ve seen over the years:
 - **Too many cooks** – Decision by committee leads to compromise, not clarity
 - **Bad estimations** – Refactors always look longer than features, so they get cut
 - **Unclear ownership** – No one feels responsible for long-term health
-
----
 
 ### 🚀 So… what now?
 
@@ -125,8 +113,6 @@ But here’s what *has* helped me over the years:
 - **Mentor junior devs**: Teach the *why* behind clean code — not just the *how*
 - **Lead by influence**: You don’t need a title to nudge a team in the right direction
 
----
-
 ### 📚 Recommended Reading
 
 If you’ve ever struggled with this, you’re not alone. These helped me a lot:
@@ -137,7 +123,7 @@ If you’ve ever struggled with this, you’re not alone. These helped me a lot:
 - [Sunk Cost Fallacy (Wikipedia)](https://en.wikipedia.org/wiki/Sunk_cost)  
 - [Self-Determination Theory](https://psycnet.apa.org/record/2000-13324-007)
 
----
+
 
 At the end of the day, **doing the right thing in tech is a leadership act**, not just a coding decision.  
 And sometimes, leadership looks like slowing down — or even saying no.
