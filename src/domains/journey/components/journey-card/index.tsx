@@ -72,12 +72,12 @@ export function JourneyCard({
             <Link
               href={url}
               target="_blank"
-              className={clsx(TITLE_CLASSES, 'flex items-center gap-2 hover:text-amber-500')}
+              className={clsx(TITLE_CLASSES, 'flex items-center gap-2 hover:text-amber-500 flex-wrap')}
             >
-              {title}
+              <span>{title}</span>
               <Image
-                width={32}
-                height={32}
+                width={24}
+                height={24}
                 loading="lazy"
                 className="dark:invert"
                 alt={`Link to ${title}`}
@@ -88,7 +88,7 @@ export function JourneyCard({
             <p className={clsx(TITLE_CLASSES)}>{title}</p>
           )}
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap">
             <span>{location}</span>
             <span>{date}</span>
           </div>

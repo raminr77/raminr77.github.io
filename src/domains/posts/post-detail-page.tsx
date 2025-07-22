@@ -64,8 +64,8 @@ export async function PostDetailPage({ params }: Props) {
         {post.title}
       </h1>
 
-      <div className="mb-4 flex justify-between items-center border-b border-slate-300/40 pb-2 max-md:flex-col">
-        <div className="flex gap-5 max-md:flex-col max-md:gap-2">
+      <div className="mb-4 flex gap-2 justify-between items-center border-b border-slate-300/40 pb-3 max-md:flex-col max-md:items-start">
+        <div className="flex gap-5 max-md:flex-wrap max-md:gap-2">
           <PostAuthor author={post.author} />
           <PostCategory showLabel category={post.category} />
           <PostDate date={post.date} />
