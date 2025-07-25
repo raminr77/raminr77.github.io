@@ -28,6 +28,7 @@ export function ContactMePage() {
   const {
     formState: { errors },
     reset,
+    watch,
     register,
     getValues,
     handleSubmit
@@ -49,6 +50,8 @@ export function ContactMePage() {
       .then(() => reset())
       .finally(() => setLoading(false));
   };
+
+  const textareaValue = watch('message');
 
   return (
     <ContentContainer title="Contact Me" className="z-40">
@@ -174,6 +177,7 @@ export function ContactMePage() {
           label="Message"
           placeholder="Enter your message"
           error={errors.message?.message}
+          value={textareaValue}
           {...register('message', {
             minLength: {
               value: 30,
