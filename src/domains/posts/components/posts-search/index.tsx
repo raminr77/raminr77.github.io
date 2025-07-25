@@ -120,7 +120,10 @@ export function PostsSearch() {
             <ul
               className={clsx(
                 "flex flex-col overflow-y-auto",
-                { "opacity-50 pointer-events-none": loading }
+                {
+                  "opacity-50 pointer-events-none": loading,
+                  "max-h-[60vh]": posts.length > 0 && !loading
+                }
               )}
             >
               {loading && (
