@@ -68,6 +68,7 @@ export function TextInput({
           id={id}
           rows={4}
           spellCheck
+          defaultValue={value}
           tabIndex={tabIndex}
           required={required}
           onChange={onChange}
@@ -76,9 +77,7 @@ export function TextInput({
             'border-red-500': !!error
           })}
           {...rest}
-        >
-          {value}
-        </textarea>
+        />
       )}
       {error && <span className="text-md ml-1 mt-1 text-red-500">{error}</span>}
     </div>

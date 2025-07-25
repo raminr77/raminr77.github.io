@@ -1,6 +1,6 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useState } from 'react';
 
 import Link from 'next/link';
@@ -28,7 +28,7 @@ export function ContactMePage() {
   const {
     formState: { errors },
     reset,
-    watch,
+    control,
     register,
     getValues,
     handleSubmit
@@ -50,8 +50,6 @@ export function ContactMePage() {
       .then(() => reset())
       .finally(() => setLoading(false));
   };
-
-  const textareaValue = watch('message');
 
   return (
     <ContentContainer title="Contact Me" className="z-40">
@@ -170,15 +168,11 @@ export function ContactMePage() {
             }
           })}
         />
-        <TextInput
-          required
-          id="message"
-          type="textarea"
-          label="Message"
-          placeholder="Enter your message"
-          error={errors.message?.message}
-          value={textareaValue}
-          {...register('message', {
+
+        <Controller
+          name="message"
+          control={control}
+          rules={{
             minLength: {
               value: 30,
               message: 'Your message should be more than 30 characters'
@@ -187,7 +181,19 @@ export function ContactMePage() {
               value: true,
               message: 'You must to enter your message!'
             }
-          })}
+          }}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              required
+              id="message"
+              value={value}
+              type="textarea"
+              label="Message"
+              onChange={onChange}
+              placeholder="Enter your message"
+              error={errors.message?.message}
+            />
+          )}
         />
         <div className="mt-2 flex w-full justify-end">
           <Button label="Submit" type="submit" loading={loading} />
