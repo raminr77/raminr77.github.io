@@ -43,7 +43,7 @@ export function TextInput({
   return (
     <div className={clsx('flex flex-col', containerClassName)}>
       {label && (
-        <label id={id} className="mb-2 text-lg">
+        <label htmlFor={id} className="mb-2 text-lg">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
