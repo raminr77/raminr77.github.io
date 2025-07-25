@@ -1,4 +1,4 @@
-import { CONTACT_ME_ENDPOINTS } from '@/shared/api/constants';
+import { ENDPOINTS } from '@/shared/api/constants';
 import { notify } from '@/shared/helpers';
 
 type requestData = {
@@ -9,7 +9,7 @@ type requestData = {
 
 export const sendEmail = (data: requestData) => {
   return new Promise((resolve, reject) => {
-    fetch(CONTACT_ME_ENDPOINTS.sendMessage, {
+    fetch(ENDPOINTS.sendMessage, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

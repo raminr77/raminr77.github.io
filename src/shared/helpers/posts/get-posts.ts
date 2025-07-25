@@ -4,16 +4,16 @@ import matter from 'gray-matter';
 import { PERSONAL_DATA } from '@/data';
 
 import type { PostMetadata, PostFilters } from '../../types/post';
-import { filterPostsByKey, postSorter } from './utils';
+import { filterPostsByKey, postSorter, searchPosts } from './utils';
 import { POSTT_FOLTER_PATH } from './constants';
 
-interface Posts {
+export type Posts = {
     categories: string[];
     data: PostMetadata[];
-}
+};
 
 // ONLY FOR SERVER SIDE
-export function getPosts(filters: PostFilters | null = null): Posts {
+export function getPosts(filters: PostFilters | null = null, searchValue: string | null = null): Posts {
     const files = fs.readdirSync(POSTT_FOLTER_PATH);
     const posts = files.filter((file) => file.endsWith('.md'));
 
@@ -41,7 +41,8 @@ export function getPosts(filters: PostFilters | null = null): Posts {
     .filter(
         (postItem: PostMetadata) => filterPostsByKey(postItem, filters)
     )
-    .sort(postSorter);;
+    .filter((postItem: PostMetadata) => searchPosts(postItem, searchValue))
+    .sort(postSorter);
 
     return {
         categories: Object.keys(categories),

@@ -4,7 +4,7 @@ author: Ramin
 isActive: true
 category: Tutorial
 date: 2025-06-02
-slug: smooth_dom_transitions_in_spas_using_the_view_transitions_api
+slug: smooth-dom-transitions-in-spas-using-the-view-transitions-api
 title: Smooth DOM Transitions in SPAs Using the View Transitions API
 description: Learn how to create native, animated transitions between UI states in your single-page applications using the View Transitions API. This post walks through the basics, provides a practical example, and links to official documentation to help you get started quickly.
 tags:

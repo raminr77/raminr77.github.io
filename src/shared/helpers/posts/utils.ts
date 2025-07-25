@@ -32,3 +32,17 @@ export function readingTime(text: string) {
 export function generateFilteredPostUrl(filters: { tag?: string; category?: string }) {
   return `${ROUTES.POSTS}?${stringify(filters)}`;
 }
+
+export function searchPosts(postItem: PostMetadata, searchValue: string | null) {
+  if (!searchValue) {
+    return true;
+  }
+
+  const lowerSearchValue = searchValue.toLowerCase();
+  return (
+    postItem.title.toLowerCase().includes(lowerSearchValue) ||
+    postItem.description.toLowerCase().includes(lowerSearchValue) ||
+    postItem.tags.some((tag) => tag.toLowerCase().includes(lowerSearchValue)) ||
+    postItem.category.toLowerCase().includes(lowerSearchValue)
+  );
+}

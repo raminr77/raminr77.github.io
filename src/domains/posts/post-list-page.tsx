@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { ContentContainer } from '@/layout/components/content-container';
+import type { PostMetadata, PostFilters } from '@/shared/types/post';
 import { PostCard } from '@/domains/posts/components/post-card';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { ROUTES } from '@/shared/constants';
@@ -10,8 +11,8 @@ import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
-import type { PostMetadata, PostFilters } from '@/shared/types/post';
-import { CategoryFilterSection } from './components/category-filter-section';
+import { PostsSearch } from './components/posts-search';
+import { PostsCategoryFilter } from './components/posts-category-filter';
 
 interface PostListPageProps {
   searchParams: Promise<PostFilters>;
@@ -56,10 +57,13 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
           )}
         </div>
       ) : (
-        <CategoryFilterSection
-          activeFilters={filters}
-          categories={categories}
-        />
+        <div className="flex items-center justify-between flex-wrap gap-4">
+          <PostsCategoryFilter
+            activeFilters={filters}
+            categories={categories}
+          />
+          <PostsSearch />
+        </div>
       )}
 
       <div

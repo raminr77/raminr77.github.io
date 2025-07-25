@@ -44,7 +44,7 @@ export async function GET(request: Request) {
   } catch {
     return Response.json({
       success: false,
-      message: 'The AI is Unavailing now :('
+      message: 'The AI is Unavailable now :('
     });
   }
 }

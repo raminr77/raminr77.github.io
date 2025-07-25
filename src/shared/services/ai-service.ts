@@ -1,4 +1,4 @@
-import { CONTACT_ME_ENDPOINTS } from '@/shared/api/constants';
+import { ENDPOINTS } from '@/shared/api/constants';
 import { notify } from '@/shared/helpers';
 
 export interface AiResponse {
@@ -15,7 +15,7 @@ export const sendTextToAI = ({
 }): Promise<AiResponse> => {
   return new Promise((resolve, reject) => {
     fetch(
-      CONTACT_ME_ENDPOINTS.sendTextToAI({
+      ENDPOINTS.sendTextToAI({
         text,
         userId
       }),

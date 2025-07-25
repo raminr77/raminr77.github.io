@@ -4,15 +4,15 @@ import Link from "next/link";
 import type { PostFilters } from "@/shared/types/post";
 import { ROUTES } from "@/shared/constants";
 
-interface CategoryFilterSectionProps {
+interface PostsCategoryFilterProps {
   categories: string[];
   activeFilters: PostFilters | null;
 }
 
-export function CategoryFilterSection({
+export function PostsCategoryFilter({
   categories = [],
   activeFilters = null,
-}: CategoryFilterSectionProps) {
+}: PostsCategoryFilterProps) {
   return (
     <div className="flex items-center flex-wrap gap-3">
       {categories.map((item) => {
@@ -22,7 +22,7 @@ export function CategoryFilterSection({
             key={item}
             href={isActive ? ROUTES.POSTS : `?category=${item}`}
             className={clsx(
-              "border px-4 py-1 text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5",
+              "border px-4 h-9 flex items-center text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5",
               {
                 "bg-amber-500/20 border-amber-500": isActive
               }
