@@ -68,6 +68,26 @@ export function AboutMePage() {
         style={{ animationDelay: '1.5s' }}
       >
         {ABOUT_ME_DATA.content.map((item: AboutMeContentItem, index: number) => {
+          if (index === 7) {
+            return (
+              <div className="flex items-center justify-center px-5 relative select-none py-5 overflow-hidden" style={{ maxHeight: 575 }}>
+                <Image
+                  width={400}
+                  height={575}
+                  loading="lazy"
+                  draggable={false}
+                  alt={PERSONAL_DATA.fullName}
+                  title={PERSONAL_DATA.fullName}
+                  src="/images/personal-images/02.png"
+                  className="grayscale-75 pointer-events-none z-20 mt-4"
+                />
+                <PixelCanvas
+                  color="yellow"
+                  className="absolute z-0 h-full w-full grayscale invert duration-500 hover:grayscale-0 dark:invert-0"
+                />
+              </div>
+            )
+          }
           if (index === 3) {
             return <RecommendationsBox key="linkedIn-Recommendations" />;
           }
