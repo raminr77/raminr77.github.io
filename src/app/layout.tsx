@@ -1,12 +1,11 @@
 import { ToastContainer } from 'react-toastify';
 import React from 'react';
 
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import Image from 'next/image';
-
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { CustomCursor } from '@/shared/components/custom-cursor';
 import { AiButton } from '@/layout/components/ai-bot';
@@ -43,7 +42,30 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: PERSONAL_DATA.fullName,
     capable: true
-  }
+  },
+  metadataBase: new URL(PERSONAL_DATA.url),
+  alternates: {
+    canonical: '/',
+    // languages: {
+    //   'en-US': '/en',
+    // },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: PERSONAL_DATA.url,
+    siteName: PERSONAL_DATA.fullName,
+    description: PERSONAL_DATA.pageDescription,
+    title: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`,
+    images: [
+      {
+        width: 1200,
+        height: 630,
+        url: '/social-banner.png',
+        alt: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
