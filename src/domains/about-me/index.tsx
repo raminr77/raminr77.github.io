@@ -70,7 +70,7 @@ export function AboutMePage() {
         {ABOUT_ME_DATA.content.map((item: AboutMeContentItem, index: number) => {
           if (index === 7) {
             return (
-              <div className="flex items-center justify-center px-5 relative select-none py-5 overflow-hidden" style={{ maxHeight: 575 }}>
+              <div key="code-in-the-dark-image" className="flex items-center justify-center px-5 relative select-none py-5 overflow-hidden" style={{ maxHeight: 575 }}>
                 <Image
                   width={400}
                   height={575}
