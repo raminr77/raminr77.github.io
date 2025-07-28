@@ -101,7 +101,12 @@ export default function RootLayout({
 
         <AiButton />
 
-        <ToastContainer position="bottom-center" theme="colored" />
+        <ToastContainer
+          limit={4}
+          newestOnTop
+          theme="dark"
+          position="bottom-center"
+        />
 
         <SpeedInsights />
 
