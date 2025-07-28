@@ -6,12 +6,15 @@ import Image from 'next/image';
 export function PostShare({ postId }: { postId: number }) {
   const handleCopyShareLink = () => {
     const shareLink = `${window.location.origin}/posts/${postId}/`;
-    navigator.clipboard.writeText(shareLink).then(() => {
-      notify.success({ message: 'Share link copied to clipboard!' });
-    }).catch(error => {
-      console.error('Failed to copy share link:', error);
-      notify.error({ message: 'Failed to copy share link.' });
-    });
+    navigator.clipboard
+      .writeText(shareLink)
+      .then(() => {
+        notify.success({ message: 'Share link copied to clipboard!' });
+      })
+      .catch((error) => {
+        console.error('Failed to copy share link:', error);
+        notify.error({ message: 'Failed to copy share link.' });
+      });
   };
 
   return (

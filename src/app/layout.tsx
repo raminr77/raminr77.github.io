@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(PERSONAL_DATA.url),
   alternates: {
-    canonical: '/',
+    canonical: '/'
     // languages: {
     //   'en-US': '/en',
     // },
@@ -63,9 +63,9 @@ export const metadata: Metadata = {
         height: 630,
         url: '/social-banner.png',
         alt: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`
-      },
-    ],
-  },
+      }
+    ]
+  }
 };
 
 export default function RootLayout({
@@ -101,12 +101,7 @@ export default function RootLayout({
 
         <AiButton />
 
-        <ToastContainer
-          limit={4}
-          newestOnTop
-          theme="dark"
-          position="bottom-center"
-        />
+        <ToastContainer limit={4} newestOnTop theme="dark" position="bottom-center" />
 
         <SpeedInsights />
 

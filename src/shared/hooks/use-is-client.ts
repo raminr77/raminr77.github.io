@@ -5,7 +5,7 @@ export function useIsClient(): boolean {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-        setIsClient(true);
+      setIsClient(true);
     }
   }, []);
 

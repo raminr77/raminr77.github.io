@@ -61,7 +61,7 @@ Even when better tools exist, **momentum keeps the current tool alive**. This is
 
 #### 2. **Team Culture and Shared Illusions**
 
-Sometimes the team *knows* the tool sucks. But no one speaks up.  
+Sometimes the team _knows_ the tool sucks. But no one speaks up.  
 Why? Because everyone assumes everyone else is fine with it.
 
 This is a classic case of **pluralistic ignorance** — a psychological phenomenon where everyone privately disagrees with a decision but publicly goes along with it because they think they’re the only one.
@@ -98,32 +98,30 @@ Here are some other invisible blockers I’ve seen over the years:
 Doing the “right thing” in software is rarely simple.  
 It’s often a messy negotiation between:
 
-- Business reality  
-- Human bandwidth  
-- Organizational inertia  
-- Team dynamics  
+- Business reality
+- Human bandwidth
+- Organizational inertia
+- Team dynamics
 - And your own energy levels
 
-But here’s what *has* helped me over the years:
+But here’s what _has_ helped me over the years:
 
 - **Start small**: Don’t wait for the “perfect time” to refactor — fix one thing per PR
 - **Make invisible work visible**: Log time spent on improvements, track value delivered
 - **Talk openly**: You’d be surprised how many teammates silently agree with you
-- **Document intent**: Even if you can’t fix it now, explain what *should* happen later
-- **Mentor junior devs**: Teach the *why* behind clean code — not just the *how*
+- **Document intent**: Even if you can’t fix it now, explain what _should_ happen later
+- **Mentor junior devs**: Teach the _why_ behind clean code — not just the _how_
 - **Lead by influence**: You don’t need a title to nudge a team in the right direction
 
 ### 📚 Recommended Reading
 
 If you’ve ever struggled with this, you’re not alone. These helped me a lot:
 
-- *Drive* by Daniel Pink  
-- *The Psychology of Computer Programming* by Gerald Weinberg  
-- *Software Engineering at Google* by Titus Winters et al.  
-- [Sunk Cost Fallacy (Wikipedia)](https://en.wikipedia.org/wiki/Sunk_cost)  
+- _Drive_ by Daniel Pink
+- _The Psychology of Computer Programming_ by Gerald Weinberg
+- _Software Engineering at Google_ by Titus Winters et al.
+- [Sunk Cost Fallacy (Wikipedia)](https://en.wikipedia.org/wiki/Sunk_cost)
 - [Self-Determination Theory](https://psycnet.apa.org/record/2000-13324-007)
-
-
 
 At the end of the day, **doing the right thing in tech is a leadership act**, not just a coding decision.  
 And sometimes, leadership looks like slowing down — or even saying no.

@@ -1,7 +1,13 @@
 export const ABOUT_ME_CONTENT_TYPE = {
   text: 'text',
   list: 'list',
-  image: 'image'
+  image: 'image',
+  component: 'component'
+} as const;
+
+export const ABOUT_ME_COMPONENT_NAMES = {
+  recommendations: 'recommendations',
+  competition: 'competition'
 } as const;
 
 type AboutMeImageContent = {
@@ -24,10 +30,17 @@ type AboutMeTextContent = {
   type: 'text';
 };
 
+type ABOUT_ME_COMPONENT_NAMES_KEYS = keyof typeof ABOUT_ME_COMPONENT_NAMES;
+type AboutMeComponentContent = {
+  name: (typeof ABOUT_ME_COMPONENT_NAMES)[ABOUT_ME_COMPONENT_NAMES_KEYS];
+  type: 'component';
+};
+
 export type AboutMeContentItem =
   | AboutMeTextContent
   | AboutMeListContent
-  | AboutMeImageContent;
+  | AboutMeImageContent
+  | AboutMeComponentContent;
 
 export const ABOUT_ME_DATA: {
   heroURL: string;
@@ -53,6 +66,10 @@ export const ABOUT_ME_DATA: {
       ]
     },
     {
+      type: ABOUT_ME_CONTENT_TYPE.component,
+      name: ABOUT_ME_COMPONENT_NAMES.recommendations
+    },
+    {
       type: ABOUT_ME_CONTENT_TYPE.text,
       data: "Prior to this, I spent three impactful years at<Link href='https://www.linkedin.com/company/digikala/' target='_blank'>Digikala</Link>, where I contributed to rebuilding their e-commerce platforms, designing reusable components, implementing analytics services, and optimizing marketing platforms through <strong>A/B testing</strong> and <strong>automated testing pipelines</strong>. At <Link href='https://www.linkedin.com/company/snapp.ir/' target='_blank'>Snapp!</Link>, I led a frontend team, spearheading projects like migrating systems from WordPress to modern frameworks, creating reusable component libraries, and dramatically improving user experiences."
     },
@@ -67,6 +84,10 @@ export const ABOUT_ME_DATA: {
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
       data: 'I approach every project with curiosity and a drive to solve problems through elegant and efficient code. Whether it’s developing scalable APIs, optimizing complex systems, or creating user-friendly interfaces, I aim to deliver software that makes an impact.'
+    },
+    {
+      type: ABOUT_ME_CONTENT_TYPE.component,
+      name: ABOUT_ME_COMPONENT_NAMES.competition
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,

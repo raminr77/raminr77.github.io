@@ -1,8 +1,12 @@
-import { clsx } from 'clsx';
-import Link from 'next/link';
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { clsx } from 'clsx';
 
-import { RECOMMENDATION_PAGE_DATA, RECOMMENDATIONS, type RecommendationItem } from '@/data';
+import {
+  RECOMMENDATION_PAGE_DATA,
+  RECOMMENDATIONS,
+  type RecommendationItem
+} from '@/data';
 import { ContentContainer } from '@/layout/components/content-container';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
@@ -35,7 +39,11 @@ export function RecommendationsPage() {
 
       <div className="mt-10 flex flex-col gap-6 overflow-hidden">
         {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
-          <RecommendationCard key={item.id} data={item} animationDelay={`${(index + 1) * 0.3}s`} />
+          <RecommendationCard
+            key={item.id}
+            data={item}
+            animationDelay={`${(index + 1) * 0.3}s`}
+          />
         ))}
       </div>
 

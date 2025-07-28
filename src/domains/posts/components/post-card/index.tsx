@@ -14,7 +14,7 @@ import type { PostMetadata } from '@/shared/types/post';
 export function PostCard({
   data,
   animationDelay = 1,
-  disabledAnimation = false,
+  disabledAnimation = false
 }: {
   data: PostMetadata;
   animationDelay?: number;
@@ -43,7 +43,7 @@ export function PostCard({
           {title}
         </Link>
         <PostCategory category={category} />
-        
+
         <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md overflow-hidden">
           {description.substring(0, 210)}
           {description.length > 210 ? '...' : ''}

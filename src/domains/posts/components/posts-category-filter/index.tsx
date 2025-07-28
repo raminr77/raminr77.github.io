@@ -1,8 +1,8 @@
-import clsx from "clsx";
-import Link from "next/link";
+import Link from 'next/link';
+import clsx from 'clsx';
 
-import type { PostFilters } from "@/shared/types/post";
-import { ROUTES } from "@/shared/constants";
+import type { PostFilters } from '@/shared/types/post';
+import { ROUTES } from '@/shared/constants';
 
 interface PostsCategoryFilterProps {
   categories: string[];
@@ -11,7 +11,7 @@ interface PostsCategoryFilterProps {
 
 export function PostsCategoryFilter({
   categories = [],
-  activeFilters = null,
+  activeFilters = null
 }: PostsCategoryFilterProps) {
   return (
     <div className="flex items-center flex-wrap gap-3">
@@ -22,9 +22,9 @@ export function PostsCategoryFilter({
             key={item}
             href={isActive ? ROUTES.POSTS : `?category=${item}`}
             className={clsx(
-              "border px-4 h-9 flex items-center text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5",
+              'border px-4 h-9 flex items-center text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5',
               {
-                "bg-amber-500/20 border-amber-500": isActive
+                'bg-amber-500/20 border-amber-500': isActive
               }
             )}
           >

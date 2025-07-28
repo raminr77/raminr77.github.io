@@ -25,6 +25,7 @@ The View Transitions API enables **animated transitions between different DOM st
 ## 🧠 When to Use It
 
 The API is especially useful for:
+
 - Navigating between routes in SPAs
 - Showing/hiding sections or modals
 - Tab-based navigation
@@ -39,70 +40,78 @@ Let’s build a minimal example with two views: `Home` and `About`.
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <title>View Transitions Example</title>
-  <style>
-    main {
-      view-transition-name: main;
-    }
-
-    ::view-transition-old(main),
-    ::view-transition-new(main) {
-      animation-duration: 0.4s;
-      animation-timing-function: ease;
-    }
-
-    ::view-transition-old(main) {
-      animation-name: fade-out;
-    }
-
-    ::view-transition-new(main) {
-      animation-name: fade-in;
-    }
-
-    @keyframes fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fade-out {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
-    nav {
-      margin-bottom: 20px;
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <button onclick="navigate('home')">Home</button>
-    <button onclick="navigate('about')">About</button>
-  </nav>
-
-  <main id="content">Welcome to the homepage.</main>
-
-  <script>
-    const pages = {
-      home: 'Welcome to the homepage.',
-      about: 'This is the about page.'
-    };
-
-    function navigate(page) {
-      const content = document.getElementById('content');
-
-      if (!document.startViewTransition) {
-        content.textContent = pages[page];
-        return;
+  <head>
+    <title>View Transitions Example</title>
+    <style>
+      main {
+        view-transition-name: main;
       }
 
-      document.startViewTransition(() => {
-        content.textContent = pages[page];
-      });
-    }
-  </script>
-</body>
+      ::view-transition-old(main),
+      ::view-transition-new(main) {
+        animation-duration: 0.4s;
+        animation-timing-function: ease;
+      }
+
+      ::view-transition-old(main) {
+        animation-name: fade-out;
+      }
+
+      ::view-transition-new(main) {
+        animation-name: fade-in;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade-out {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      nav {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button onclick="navigate('home')">Home</button>
+      <button onclick="navigate('about')">About</button>
+    </nav>
+
+    <main id="content">Welcome to the homepage.</main>
+
+    <script>
+      const pages = {
+        home: 'Welcome to the homepage.',
+        about: 'This is the about page.'
+      };
+
+      function navigate(page) {
+        const content = document.getElementById('content');
+
+        if (!document.startViewTransition) {
+          content.textContent = pages[page];
+          return;
+        }
+
+        document.startViewTransition(() => {
+          content.textContent = pages[page];
+        });
+      }
+    </script>
+  </body>
 </html>
 ```
 

@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect } from 'react';
 import { notify } from '@/shared/helpers';
+import { useEffect } from 'react';
 
 import CopyButtonPlugin from '../../../../public/highlight-copy.min.js';
 
-import '../../../../public/highlight.min.css';
 import '../../../../public/highlight-copy.min.css';
+import '../../../../public/highlight.min.css';
 
 import './client-code-loader.scss';
 
@@ -17,7 +17,7 @@ export function ClientCodeLoader() {
     const handleChangeCodePreview = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       const parentElement = target.parentElement;
-      
+
       if (!parentElement) return;
 
       if (!parentElement.classList.contains('max-h-100')) {
@@ -37,7 +37,7 @@ export function ClientCodeLoader() {
 
     codeContainers.forEach((container) => {
       const containerElement = container as HTMLElement;
-      
+
       const isSmallCodeBlock = containerElement.offsetHeight < 300;
       if (isSmallCodeBlock) return;
 
@@ -56,7 +56,7 @@ export function ClientCodeLoader() {
       hljs.addPlugin(
         new CopyButtonPlugin({
           autohide: false,
-          callback: () => notify.success({ message: "Copied to clipboard." })
+          callback: () => notify.success({ message: 'Copied to clipboard.' })
         })
       );
       hljs.highlightAll();

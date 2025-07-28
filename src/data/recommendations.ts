@@ -1,4 +1,4 @@
-import { ROUTES } from "@/shared/constants";
+import { ROUTES } from '@/shared/constants';
 
 export interface RecommendationItem {
   id: number;
@@ -19,7 +19,7 @@ export const RECOMMENDATION_PAGE_DATA = {
     'I have had the pleasure of working with many talented individuals throughout my career. <br /> Here are some of the recommendations I have received from them.',
   footer: 'If you would like to know more about me, feel free to reach out.',
   footerActionLabel: 'Contact Me',
-  footerActionURL: ROUTES.CONTACT_ME,
+  footerActionURL: ROUTES.CONTACT_ME
 } as const;
 
 export const RECOMMENDATIONS: RecommendationItem[] = [

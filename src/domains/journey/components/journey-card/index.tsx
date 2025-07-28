@@ -46,7 +46,7 @@ export function JourneyCard({
           'float-animation relative flex h-20 min-h-20 w-20 min-w-20 select-none items-center justify-center overflow-hidden border-2 border-slate-300/40 duration-500',
           styles['journey-card__circle']
         )}
-        >
+      >
         <span
           style={{ animationDelay }}
           className={clsx(
@@ -72,7 +72,10 @@ export function JourneyCard({
             <Link
               href={url}
               target="_blank"
-              className={clsx(TITLE_CLASSES, 'flex items-center gap-2 hover:text-amber-500 flex-wrap')}
+              className={clsx(
+                TITLE_CLASSES,
+                'flex items-center gap-2 hover:text-amber-500 flex-wrap'
+              )}
             >
               <span>{title}</span>
               <Image

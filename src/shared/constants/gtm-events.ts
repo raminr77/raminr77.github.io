@@ -6,5 +6,5 @@ export const GTM_EVENTS = {
   LINKEDIN_RECOMMENDATION: (linkedInUser: string) => ({
     event: 'linkedIn-recommendation-clicked',
     value: linkedInUser
-  }),
+  })
 } as const;

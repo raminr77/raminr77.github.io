@@ -11,8 +11,8 @@ import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
-import { PostsSearch } from './components/posts-search';
 import { PostsCategoryFilter } from './components/posts-category-filter';
+import { PostsSearch } from './components/posts-search';
 
 interface PostListPageProps {
   searchParams: Promise<PostFilters>;
@@ -58,17 +58,12 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
         </div>
       ) : (
         <div className="flex items-center justify-between flex-wrap gap-4">
-          <PostsCategoryFilter
-            activeFilters={filters}
-            categories={categories}
-          />
+          <PostsCategoryFilter activeFilters={filters} categories={categories} />
           <PostsSearch />
         </div>
       )}
 
-      <div
-        className="mt-4 overflow-hidden grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-2"
-      >
+      <div className="mt-4 overflow-hidden grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-2">
         {posts.map((post: PostMetadata, index: number) => (
           <PostCard key={post.id} data={post} animationDelay={(index + 1) * 0.3} />
         ))}

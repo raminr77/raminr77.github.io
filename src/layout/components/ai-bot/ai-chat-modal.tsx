@@ -105,7 +105,7 @@ export function AiChatModal({ isOpen, onClose }: AiChatModalProps) {
     return () => {
       observer.disconnect();
       window.removeEventListener('keydown', handleKeyDown);
-    }
+    };
   }, []);
 
   return (

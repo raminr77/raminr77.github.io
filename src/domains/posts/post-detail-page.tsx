@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post: Post | null = getPostContent(Number(postId));
 
   return {
-    title: post?.title ?? 'Post Not Found',
+    title: post?.title ?? 'Post Not Found'
   };
 }
 
@@ -42,11 +42,11 @@ export async function PostDetailPage({ params }: Props) {
   const { id: postId } = await params;
   const post: Post | null = getPostContent(Number(postId));
   const { data: sameCategoryPosts = [] } = getPosts(
-    post ? { category: post.category } as PostFilters : null
+    post ? ({ category: post.category } as PostFilters) : null
   );
-  const recommendedPosts = sameCategoryPosts.filter(
-    ({ id }) => id !== Number(postId)
-  ).slice(0, 3);
+  const recommendedPosts = sameCategoryPosts
+    .filter(({ id }) => id !== Number(postId))
+    .slice(0, 3);
 
   if (!post) {
     redirect(ROUTES.POSTS);

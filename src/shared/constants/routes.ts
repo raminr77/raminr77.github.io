@@ -5,7 +5,7 @@ export const ROUTES = {
   PROJECTS: '/projects/',
   ABOUT_ME: '/about-me/',
   CONTACT_ME: '/contact-me/',
-  RECOMMENDATIONS: '/recommendations/',
+  RECOMMENDATIONS: '/recommendations/'
 } as const;
 
 export const MENU_ITEM_ROUTES = [

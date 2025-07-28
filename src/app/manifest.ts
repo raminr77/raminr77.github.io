@@ -15,11 +15,11 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: 'portrait-primary',
     description: 'Ramin Rezaei Personal Page.',
     display_override: ['fullscreen', 'minimal-ui'],
-    categories: ["social", "personal", "portfolio", "blog"],
+    categories: ['social', 'personal', 'portfolio', 'blog'],
     related_applications: [
       {
-        platform: "webapp",
-        url: "https://khela.ir/manifest.json"
+        platform: 'webapp',
+        url: 'https://khela.ir/manifest.json'
       }
     ],
     protocol_handlers: [

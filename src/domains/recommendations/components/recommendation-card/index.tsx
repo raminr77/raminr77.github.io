@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
-
 import type { RecommendationItem } from '@/data';
 import { GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
@@ -34,9 +33,7 @@ export function RecommendationCard({
         styles['recommendation-card']
       )}
     >
-      <div
-        className='mb-2 flex w-full gap-3 text-left duration-500'
-      >
+      <div className="mb-2 flex w-full gap-3 text-left duration-500">
         {imageURL && (
           <Link href={url} onClick={sendEvent} target="_blank" rel="noopener noreferrer">
             <Image

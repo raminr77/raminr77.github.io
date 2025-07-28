@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 
-import { clsx } from 'clsx';
 import { gsap } from 'gsap';
+import { clsx } from 'clsx';
 
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
 import { animator } from '@/shared/helpers';

@@ -1,7 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
 
-import { useIsClient} from '@/shared/hooks';
+import { useIsClient } from '@/shared/hooks';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
 
@@ -38,7 +38,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
     setTheme(systemTheme);
   }
 
-  const buttonText = `Switch to ${theme === THEMES.light ? "dark" : "light"} mode `;
+  const buttonText = `Switch to ${theme === THEMES.light ? 'dark' : 'light'} mode `;
 
   if (isBurgerMenu) {
     console.log('THEME: ', theme);
