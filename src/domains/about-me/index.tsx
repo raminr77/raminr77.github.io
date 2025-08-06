@@ -43,11 +43,7 @@ const ABOUT_ME_COMPONENTS = {
         alt={PERSONAL_DATA.fullName}
         title={PERSONAL_DATA.fullName}
         src="/images/personal-images/02.png"
-        className="grayscale-75 pointer-events-none z-20 mt-4"
-      />
-      <PixelCanvas
-        color="yellow"
-        className="absolute z-0 h-full w-full grayscale invert duration-500 hover:grayscale-0 dark:invert-0"
+        className="pointer-events-none z-20 mt-4"
       />
     </div>
   )
