@@ -125,8 +125,17 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     url: 'https://www.linkedin.com/company/sinch/',
     title: 'Sinch - Senior Software Engineer',
     description:
-      '<p>As a <strong>Senior Software Engineer</strong> at <strong>Sinch</strong>.</p>',
-    items: []
+      '<p>As a <strong>Senior Software Engineer</strong> at <strong>Sinch</strong>, I’m shaping the architecture and frontend infrastructure of complex systems powering global-scale communications. My work involves defining and implementing scalable project structures, integrating with more than 10 <strong>micro frontends</strong>, and ensuring optimal performance and maintainability across platforms. I actively collaborate on full-stack projects, combining <strong>React</strong>, <strong>NX monorepos</strong>, and <strong>Kotlin microservices</strong> — all deployed via <strong>Kubernetes</strong> and managed using <strong>Istio service mesh</strong>.</p>',
+    items: [
+      'Micro Frontend Architecture: Designed and maintained a highly modular architecture consisting of over 10 micro frontends, ensuring consistent communication, isolation, and performance across teams and domains.',
+      'NX Monorepo Strategy: Defined scalable project structure using Nx for a multi-team environment, enabling efficient dependency management, caching, and unified development pipelines.',
+      'Module Federation & Federated Testing: Implemented dynamic module federation strategies and developed isolated testing strategies across micro frontends, including unit, integration, and E2E tests using Cypress and Playwright.',
+      'Performance Optimization: Introduced advanced performance patterns such as lazy loading, route prefetching, and bundle splitting to reduce time-to-interactive and improve Lighthouse scores across critical flows.',
+      'CI/CD & Configuration Management: Led frontend build configuration efforts including linting, formatting, test coverage enforcement, and automated checks using GitHub Actions and internal tools.',
+      'DevOps Integration: Actively working with <strong>Kubernetes</strong> and <strong>Istio</strong> for deployment, traffic management, and observability. Implemented custom routing rules and fault tolerance strategies within the service mesh.',
+      'Backend Collaboration: Contributing to <strong>Spring Boot</strong> microservices written in <strong>Kotlin</strong>, with data exchange handled via <strong>gRPC</strong> and <strong>Protocol Buffers</strong>. Helped define service contracts and improved interoperability between frontend and backend teams.',
+      'Cross-functional Leadership: Act as a bridge between product, design, and engineering teams to ensure delivery of scalable, maintainable, and user-centric features.'
+    ]
   }
 ];
 

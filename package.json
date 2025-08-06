@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "4.5.1",
+  "version": "4.5.4",
   "private": true,
   "scripts": {
     "check-all": "npm run check-format && npm run check-lint && npm run check-types",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@next/third-parties": "^15.4.4",
-    "@sentry/nextjs": "^9.42.0",
+    "@sentry/nextjs": "^10.2.0",
     "@vercel/speed-insights": "^1.2.0",
     "animate.css": "^4.1.1",
     "clsx": "^2.1.1",
@@ -48,7 +48,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "eslint": "^9.32.0",
-    "eslint-config-next": "15.4.4",
+    "eslint-config-next": "15.4.6",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
