@@ -2,22 +2,16 @@
 
 :root {
   --primary: #ff8f00;
+  --background: #ffffff;
+  --foreground: #171717;
+  --blog-title-background: #F1F5F9;
+}
 
-  // FOR LIGHT MODE
-  // --background: #ffffff;
-  // --foreground: #171717;
-  // --blog-title-background: #F1F5F9;
+.dark {
+  --primary: #ff8f00;
   --background: #0a0a0a;
   --foreground: #ededed;
   --blog-title-background: #282c34;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --blog-title-background: #282c34;
-  }
 }
 
 body {

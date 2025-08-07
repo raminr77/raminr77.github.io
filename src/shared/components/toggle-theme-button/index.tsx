@@ -1,48 +1,32 @@
 'use client';
-import { useRef, useState } from 'react';
-
-import { useIsClient } from '@/shared/hooks';
+import { useEffect, useState } from 'react';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
-
-export type Theme = keyof typeof THEMES;
+type Theme = keyof typeof THEMES;
 
 export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boolean }) {
-  const isClient = useIsClient();
-  const isFirstLoad = useRef<boolean>(true);
-  const [theme, setTheme] = useState<Theme>(THEMES.light);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return THEMES.dark;
 
-  const setDocumentTheme = (value: Theme) => {
+    const localTheme = localStorage.theme as Theme | undefined;
+    if (localTheme) return localTheme;
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? THEMES.dark : THEMES.light;
+  });
+
+  useEffect(() => {
     document.documentElement.classList.remove(THEMES.light, THEMES.dark);
-    document.documentElement.classList.add(value);
-    localStorage.theme = value;
-  };
+    document.documentElement.classList.add(theme);
+    localStorage.theme = theme;
+  }, [theme]);
 
   const handleThemeChange = () => {
     const newTheme = theme === THEMES.light ? THEMES.dark : THEMES.light;
-    setDocumentTheme(newTheme);
     setTheme(newTheme);
   };
 
-  if (isFirstLoad.current && isClient) {
-    isFirstLoad.current = false;
-
-    let isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (localStorage.theme) {
-      isDarkTheme = localStorage.theme === THEMES.dark;
-    }
-
-    const systemTheme: Theme = isDarkTheme ? THEMES.dark : THEMES.light;
-    setDocumentTheme(systemTheme);
-    setTheme(systemTheme);
-  }
-
-  const buttonText = `Switch to ${theme === THEMES.light ? 'dark' : 'light'} mode `;
-
-  if (isBurgerMenu) {
-    console.log('THEME: ', theme);
-  }
+  const buttonText = `Switch to ${theme === THEMES.light ? 'dark' : 'light'} mode`;
 
   return (
     <button
@@ -53,7 +37,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
       className="cursor-pointer text-2xl"
     >
       {/* {isBurgerMenu && buttonText} */}
-      {/* {theme === THEMES.light ? "🌙" : "☀️"} */}
+      {/* {theme === THEMES.light ? '🌙' : '☀️'} */}
     </button>
   );
 }
