@@ -1,26 +1,25 @@
 'use client';
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
 type Theme = keyof typeof THEMES;
 
 export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boolean }) {
-  return null;
-  // const [theme, setTheme] = useState<Theme>(() => {
-  //   if (typeof window === 'undefined') return THEMES.dark;
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return THEMES.dark;
 
-  //   const localTheme = localStorage.theme as Theme | undefined;
-  //   if (localTheme) return localTheme;
+    const localTheme = localStorage.theme as Theme | undefined;
+    if (localTheme) return localTheme;
 
-  //   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  //   return prefersDark ? THEMES.dark : THEMES.light;
-  // });
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? THEMES.dark : THEMES.light;
+  });
 
-  // useEffect(() => {
-  //   document.documentElement.classList.remove(THEMES.light, THEMES.dark);
-  //   document.documentElement.classList.add(theme);
-  //   localStorage.theme = theme;
-  // }, [theme]);
+  useEffect(() => {
+    document.documentElement.classList.remove(THEMES.light, THEMES.dark);
+    document.documentElement.classList.add(theme);
+    localStorage.theme = theme;
+  }, [theme]);
 
   // const handleThemeChange = () => {
   //   const newTheme = theme === THEMES.light ? THEMES.dark : THEMES.light;
@@ -41,4 +40,5 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
   //     {theme === THEMES.light ? '🌙' : '☀️'}
   //   </button>
   // );
+  return null;
 }
