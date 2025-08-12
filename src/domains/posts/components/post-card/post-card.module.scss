@@ -1,0 +1,9 @@
+.post-card {
+
+    &:hover {
+        img {
+            z-index: -1;
+            opacity: 5%;
+        }
+    }
+}

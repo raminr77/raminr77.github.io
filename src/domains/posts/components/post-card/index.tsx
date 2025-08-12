@@ -3,13 +3,15 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { PostTags } from '@/domains/posts/components/post-tags';
-import { PostCategory } from '../post-category';
+import type { PostMetadata } from '@/shared/types/post';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { PostDate } from '../post-date';
 import { titleFont } from '@/app/fonts';
 
-import type { PostMetadata } from '@/shared/types/post';
+import { PostCategory } from '../post-category';
+import { PostDate } from '../post-date';
+
+import styles from './post-card.module.scss';
 
 export function PostCard({
   data,
@@ -31,11 +33,21 @@ export function PostCard({
     <div
       className={clsx(
         'flex flex-col bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 justify-between border border-slate-300/40',
-        !disabledAnimation && animator({ name: 'fadeIn' })
+        !disabledAnimation && animator({ name: 'fadeIn' }),
+        styles['post-card']
       )}
       style={{ animationDelay: `${animationDelay}s` }}
     >
-      <div className="flex flex-col gap-2">
+      {/* 
+      TODO: Post Cover
+      <img
+        alt={title}
+        src="/images/screenshot-02.png"
+        className='w-full h-full absolute top-1/2 left-1/2 -translate-1/2 z-20 duration-300 opacity-100 object-cover'
+      />
+      */}
+
+      <div className="flex flex-col gap-2 z-10">
         <Link
           href={postDetailUrl}
           className={clsx('text-lg font-bold text-amber-500', titleFont.className)}
@@ -50,7 +62,7 @@ export function PostCard({
         </p>
       </div>
 
-      <div className="flex flex-col gap-2 mt-3">
+      <div className="flex flex-col gap-2 mt-3 z-10">
         <PostTags postId={id} tags={tags} />
 
         <div className="flex select-none items-center justify-between">
