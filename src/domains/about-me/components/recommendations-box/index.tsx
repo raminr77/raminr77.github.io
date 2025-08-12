@@ -1,8 +1,9 @@
 import {
-  RECOMMENDATION_PAGE_DATA,
   RECOMMENDATIONS,
+  RECOMMENDATION_PAGE_DATA,
   type RecommendationItem
 } from '@/data';
+import { Tooltip } from '@/shared/components/tooltip';
 import { ROUTES } from '@/shared/constants';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,20 +16,22 @@ export function RecommendationsBox() {
         dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.aboutMeDescription }}
       />
 
-      <div className="max-h-[210px] w-full flex flex-wrap items-center justify-center gap-2 overflow-hidden">
+      <div className="max-h-[210px] w-full flex flex-wrap items-center justify-center gap-2">
         {RECOMMENDATIONS.slice(0, 17).map(
           ({ id, fullName, imageURL }: RecommendationItem) =>
             imageURL && (
-              <Link key={id} href={ROUTES.RECOMMENDATIONS}>
-                <Image
-                  width={100}
-                  height={100}
-                  alt={fullName}
-                  src={imageURL}
-                  loading="lazy"
-                  className="grayscale rounded-md w-[100px] h-[100px]"
-                />
-              </Link>
+              <Tooltip key={id} text={fullName}>
+                <Link href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}>
+                    <Image
+                      width={100}
+                      height={100}
+                      alt={fullName}
+                      src={imageURL}
+                      loading="lazy"
+                      className="grayscale hover:grayscale-0 duration-500 rounded-md w-[100px] h-[100px]"
+                    />
+                </Link>
+              </Tooltip>
             )
         )}
       </div>
