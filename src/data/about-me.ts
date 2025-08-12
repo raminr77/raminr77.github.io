@@ -16,6 +16,7 @@ type AboutMeImageContent = {
   title: string;
   width: number;
   height: number;
+  tooltip?: string;
   className?: string;
 };
 
@@ -81,6 +82,7 @@ export const ABOUT_ME_DATA: {
       className: 'w-full rounded',
       type: ABOUT_ME_CONTENT_TYPE.image,
       url: '/images/personal-images/boozt.jpg',
+      tooltip: 'Last Day in Boozt Company - 2025',
       title: 'Ramin Rezaei - Last week in Boozt Company - Senior Software Engineer',
     },
     {

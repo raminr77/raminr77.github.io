@@ -2,11 +2,15 @@ import React, { useState, ReactNode } from 'react';
 
 interface TooltipProps {
   children: ReactNode;
-  text: string;
+  text?: string;
 }
 
 export const Tooltip: React.FC<TooltipProps> = ({ children, text }) => {
   const [isVisible, setIsVisible] = useState(false);
+
+  if (!text) {
+    return children;
+  }
 
   return (
     <div className="relative inline-block">

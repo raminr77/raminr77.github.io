@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { clsx } from 'clsx';
 
 import { ABOUT_ME_CONTENT_TYPE, type AboutMeContentItem } from '@/data';
+import { Tooltip } from '@/shared/components/tooltip';
 
 export const renderContent = (index: number, content: AboutMeContentItem): ReactNode => {
   if (content.type === ABOUT_ME_CONTENT_TYPE.text) {
@@ -12,16 +13,18 @@ export const renderContent = (index: number, content: AboutMeContentItem): React
   }
   if (content.type === ABOUT_ME_CONTENT_TYPE.image) {
     return (
-      <Image
-        key={index}
-        draggable={false}
-        src={content.url}
-        alt={content.title}
-        title={content.title}
-        width={content.width}
-        height={content.height}
-        className={clsx('my-4', content.className)}
-      />
+      <Tooltip text={content.tooltip}>
+        <Image
+          key={index}
+          draggable={false}
+          src={content.url}
+          alt={content.title}
+          title={content.title}
+          width={content.width}
+          height={content.height}
+          className={clsx('my-2', content.className)}
+        />
+      </Tooltip>
     );
   }
 
