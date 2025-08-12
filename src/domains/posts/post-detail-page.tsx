@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import Markdown from 'markdown-to-jsx';
+import Markdown, { RuleType } from 'markdown-to-jsx';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { clsx } from 'clsx';
@@ -83,6 +83,19 @@ export async function PostDetailPage({ params }: Props) {
           'text-xl leading-8 [&>*]:mb-3 [&>*:last-child]:mb-4',
           styles['post-detail-page__text']
         )}
+        options={{
+          renderRule: (next, node, ـ, state) => {
+            if (node.type === RuleType.table) {
+              return (
+                <div className={styles['post-detail-page__table-container']} key={state.key}>
+                  {next()}
+                </div>
+              )
+            }
+
+            return next();
+          }
+        }}
       >
         {post.content}
       </Markdown>
