@@ -2,8 +2,8 @@
 id: 4
 author: Ramin
 isActive: true
-category: Tutorial
 date: 2025-04-10
+category: Frontend
 slug: understanding-list-virtualization-in-react
 title: Understanding List Virtualization in React
 description: List virtualization in React is a powerful technique to boost performance when rendering large datasets, by only displaying items visible in the viewport instead of the entire list. This post explores its benefits—like faster rendering and lower memory use—explains how it works, and provides a step-by-step guide to implement it using react-window.

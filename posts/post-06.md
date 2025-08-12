@@ -2,8 +2,8 @@
 id: 6
 author: Ramin
 isActive: true
-category: Tech Env
 date: 2025-07-10
+category: Experience
 slug: why-dont-i-do-the-right-thing
 title: Why Don’t I Do the Right Thing?
 description: As a senior software engineer with years of experience in large-scale systems, I reflect on the psychological, organizational, and cultural reasons why we often don’t do the right thing — even when we know what it is.

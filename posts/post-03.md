@@ -2,8 +2,8 @@
 id: 3
 author: Ramin
 isActive: true
-category: Tutorial
 date: 2025-04-09
+category: Frontend
 slug: how-i-manage-my-static-blog-with-nextjs-and-markdown
 title: How I Manage My Static Blog with Next.js and Markdown
 description: Building a blog can feel overwhelming, especially when you want something fast, customizable, and easy to maintain. If you're a developer who loves working with modern tools, combining Next.js, Contentlayer, and Markdown offers a powerful yet simple solution for creating and managing a blog.
