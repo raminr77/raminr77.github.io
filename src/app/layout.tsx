@@ -8,7 +8,7 @@ import Script from 'next/script';
 import Image from 'next/image';
 
 import { CustomCursor } from '@/shared/components/custom-cursor';
-import { AiButton } from '@/layout/components/ai-bot';
+// import { AiButton } from '@/layout/components/ai-bot';
 import { Header } from '@/layout/components/header';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
@@ -99,7 +99,7 @@ export default function RootLayout({
         <Header />
         {children}
 
-        <AiButton />
+        {/* <AiButton /> */}
 
         <ToastContainer limit={4} newestOnTop theme="dark" position="bottom-center" />
 
