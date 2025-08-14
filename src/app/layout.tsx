@@ -108,8 +108,12 @@ export default function RootLayout({
         <Script src="/click-spark.js" defer />
         <Script src="/service-worker.js" defer />
 
-        <GoogleAnalytics gaId="G-K7FM8D9D43" />
-        <GoogleTagManager gtmId="GTM-W8BNDMMW" />
+        {process.env.GOOGLE_ANALYTICS_CODE && (
+          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_CODE} />
+        )}
+        {process.env.GOOGLE_TAG_MANAGER_CODE && (
+          <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_CODE} />
+        )}
       </body>
     </html>
   );
