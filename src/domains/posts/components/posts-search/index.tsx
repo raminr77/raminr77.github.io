@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState, type ChangeEvent } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 
@@ -9,6 +8,7 @@ import { TextInput } from '@/shared/components/text-input';
 import { useDebounce } from '@/shared/hooks/use-debounce';
 import type { PostMetadata } from '@/shared/types/post';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
+import { Icon } from '@/shared/components/icon';
 import { searchPosts } from '@/shared/services';
 import { animator } from '@/shared/helpers';
 
@@ -67,14 +67,7 @@ export function PostsSearch() {
         onClick={handleOpenSearch}
         className={BUTTON_CLASSES}
       >
-        <Image
-          width={18}
-          height={18}
-          alt="Search"
-          loading="lazy"
-          className="dark:invert"
-          src="/images/search-icon.svg"
-        />
+        <Icon alt="Search" name="search" />
       </button>
 
       {showSearch && (
@@ -96,14 +89,7 @@ export function PostsSearch() {
               onClick={handleCloseSearch}
               className={clsx(BUTTON_CLASSES, 'absolute top-4 right-4')}
             >
-              <Image
-                width={18}
-                height={18}
-                loading="lazy"
-                alt="Close Search"
-                className="dark:invert"
-                src="/images/close-icon.svg"
-              />
+              <Icon name="close" alt="Close Search" />
             </button>
 
             <TextInput

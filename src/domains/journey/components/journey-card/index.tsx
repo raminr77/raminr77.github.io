@@ -1,11 +1,11 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { clsx } from 'clsx';
 
+import { Icon } from '@/shared/components/icon';
 import { JourneyItem } from '@/data/journey';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
@@ -78,14 +78,7 @@ export function JourneyCard({
               )}
             >
               <span>{title}</span>
-              <Image
-                width={24}
-                height={24}
-                loading="lazy"
-                className="dark:invert"
-                alt={`Link to ${title}`}
-                src="/images/new-tab-icon.svg"
-              />
+              <Icon alt={`Link to ${title}`} name="new-tab" />
             </Link>
           ) : (
             <p className={clsx(TITLE_CLASSES)}>{title}</p>

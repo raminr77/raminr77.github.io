@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
+import { Icon } from '@/shared/components/icon';
 
 export function PostCategory({
   category,
@@ -12,14 +12,7 @@ export function PostCategory({
 }) {
   return (
     <div className="flex gap-1 items-center">
-      <Image
-        width={20}
-        height={20}
-        loading="lazy"
-        alt="Category"
-        className="dark:invert"
-        src="/images/category-icon.svg"
-      />
+      <Icon alt="Category" name="category" />
       {showLabel && <span>Category: </span>}
       <Link className="text-amber-500" href={generateFilteredPostUrl({ category })}>
         {category.toUpperCase()}

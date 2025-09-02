@@ -1,7 +1,7 @@
 'use client';
 
+import { Icon } from '@/shared/components/icon';
 import { notify } from '@/shared/helpers';
-import Image from 'next/image';
 
 export function PostShare({ postId }: { postId: number }) {
   const handleCopyShareLink = () => {
@@ -25,14 +25,7 @@ export function PostShare({ postId }: { postId: number }) {
       title="Copy share link to clipboard"
       className="flex gap-1 items-center select-none hover:text-amber-500 duration-300"
     >
-      <Image
-        width={20}
-        height={20}
-        loading="lazy"
-        alt="Category"
-        className="dark:invert"
-        src="/images/new-tab-icon.svg"
-      />
+      <Icon alt="Share" name="new-tab" />
       <p>Share</p>
     </button>
   );
