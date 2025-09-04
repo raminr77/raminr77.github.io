@@ -6,12 +6,12 @@ import { clsx } from 'clsx';
 import { titleFont } from '@/app/fonts';
 
 export const metadata: Metadata = {
-  title: 'Not Found Error'
+  title: 'Not Found Page'
 };
 
 export function NotFoundPage() {
   return (
-    <main className="relative flex h-dvh w-full flex-col items-center justify-center">
+    <main className="relative flex h-dvh w-full flex-col items-center justify-center select-none">
       <h1 className={clsx(titleFont.className, 'text-4xl font-extrabold')}>Not Found</h1>
       <p>Could not find requested resource</p>
       <Link
