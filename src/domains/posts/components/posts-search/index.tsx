@@ -8,7 +8,7 @@ import { TextInput } from '@/shared/components/text-input';
 import { useDebounce } from '@/shared/hooks/use-debounce';
 import type { PostMetadata } from '@/shared/types/post';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
-import { Icon } from '@/shared/components/icon';
+import { Icons } from '@/shared/components/icons';
 import { searchPosts } from '@/shared/services';
 import { animator } from '@/shared/helpers';
 
@@ -67,7 +67,7 @@ export function PostsSearch() {
         onClick={handleOpenSearch}
         className={BUTTON_CLASSES}
       >
-        <Icon alt="Search" name="search" />
+        <Icons name="search" />
       </button>
 
       {showSearch && (
@@ -75,7 +75,7 @@ export function PostsSearch() {
           onClick={handleCloseSearch}
           className={clsx(
             'flex justify-center fixed left-0 right-0 top-0 bottom-0 z-10 bg-black/80 w-full h-full overflow-hidden',
-            animator({ name: 'fadeIn', speed: 'fast' })
+            animator({ name: 'fadeIn', speed: 'faster' })
           )}
         >
           <div
@@ -89,7 +89,7 @@ export function PostsSearch() {
               onClick={handleCloseSearch}
               className={clsx(BUTTON_CLASSES, 'absolute top-4 right-4')}
             >
-              <Icon name="close" alt="Close Search" />
+              <Icons name="close" />
             </button>
 
             <TextInput

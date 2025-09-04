@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { clsx } from 'clsx';
 
-import { Icon } from '@/shared/components/icon';
+import { Icons } from '@/shared/components/icons';
 import { JourneyItem } from '@/data/journey';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
@@ -78,7 +78,7 @@ export function JourneyCard({
               )}
             >
               <span>{title}</span>
-              <Icon alt={`Link to ${title}`} name="new-tab" />
+              <Icons name="share" />
             </Link>
           ) : (
             <p className={clsx(TITLE_CLASSES)}>{title}</p>

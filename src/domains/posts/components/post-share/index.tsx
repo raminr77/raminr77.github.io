@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon } from '@/shared/components/icon';
+import { Icons } from '@/shared/components/icons';
 import { notify } from '@/shared/helpers';
 
 export function PostShare({ postId }: { postId: number }) {
@@ -25,7 +25,7 @@ export function PostShare({ postId }: { postId: number }) {
       title="Copy share link to clipboard"
       className="flex gap-1 items-center select-none hover:text-amber-500 duration-300"
     >
-      <Icon alt="Share" name="new-tab" />
+      <Icons name="share" />
       <p>Share</p>
     </button>
   );

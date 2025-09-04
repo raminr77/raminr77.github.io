@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
-import { Icon } from '@/shared/components/icon';
+import { Icons } from '@/shared/components/icons';
 
 export function PostCategory({
   category,
@@ -12,7 +12,7 @@ export function PostCategory({
 }) {
   return (
     <div className="flex gap-1 items-center">
-      <Icon alt="Category" name="category" />
+      <Icons name="category" />
       {showLabel && <span>Category: </span>}
       <Link className="text-amber-500" href={generateFilteredPostUrl({ category })}>
         {category.toUpperCase()}
