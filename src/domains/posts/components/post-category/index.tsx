@@ -13,7 +13,7 @@ export function PostCategory({
   return (
     <div className="flex gap-1 items-center">
       <Icons name="category" />
-      {showLabel && <span>Category: </span>}
+      {showLabel && <span>Category</span>}
       <Link className="text-amber-500" href={generateFilteredPostUrl({ category })}>
         {category.toUpperCase()}
       </Link>
