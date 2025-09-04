@@ -6,10 +6,10 @@ import { gsap } from 'gsap';
 import { clsx } from 'clsx';
 
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
-import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
+import { DecryptedText } from '@/shared/components/decrypted-text';
 import styles from './hero-text-animator.module.scss';
 
 export function HeroTextAnimator() {
@@ -62,17 +62,12 @@ export function HeroTextAnimator() {
           </h1>
         ))}
       </div>
-      <h3
-        className={clsx(
-          'text-3xl',
-          animator({
-            delay: '1s',
-            name: 'fadeInDown'
-          })
-        )}
-      >
-        {PERSONAL_DATA.title}
-      </h3>
+      <DecryptedText
+        sequential
+        speed={80}
+        parentClassName="text-3xl"
+        text={PERSONAL_DATA.title}
+      />
     </div>
   );
 }
