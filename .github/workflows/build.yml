@@ -14,6 +14,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     env:
       NEXT_TELEMETRY_DISABLED: '1'
       SENTRY_SKIP_UPLOAD: '1'
