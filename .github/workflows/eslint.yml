@@ -1,50 +1,75 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# ESLint is a tool for identifying and reporting on patterns
-# found in ECMAScript/JavaScript code.
-# More details at https://github.com/eslint/eslint
-# and https://eslint.org
-
-name: ESLint
+name: Lint (ESLint)
 
 on:
   push:
-    branches: ['master']
+    branches: [master]
+    paths:
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.json'
+      - '.eslintrc*'
+      - 'package.json'
+      - 'package-lock.json'
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: ['master']
+    branches: [master]
+    paths:
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.json'
+      - '.eslintrc*'
+      - 'package.json'
+      - 'package-lock.json'
   schedule:
     - cron: '25 20 * * 2'
+  workflow_dispatch:
+
+concurrency:
+  group: eslint-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   eslint:
-    name: Run eslint scanning
+    name: Run ESLint
     runs-on: ubuntu-latest
     permissions:
       contents: read
       security-events: write
+
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install ESLint
-        run: |
-          npm install eslint@8.10.0
-          npm install @microsoft/eslint-formatter-sarif@3.1.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
 
-      - name: Run ESLint
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Next.js ESLint
+        run: npx next lint --max-warnings=0
+
+      - name: Ensure SARIF formatter is available
+        run: npm i -D @microsoft/eslint-formatter-sarif
+
+      - name: Run ESLint (SARIF)
         env:
           SARIF_ESLINT_IGNORE_SUPPRESSED: 'true'
-        run: npx eslint .
-          --config .eslintrc.json
-          --ext .js,.jsx,.ts,.tsx,.json
-          --format @microsoft/eslint-formatter-sarif
-          --output-file eslint-results.sarif
-        continue-on-error: true
+        run: |
+          npx eslint . \
+            --ext .js,.jsx,.ts,.tsx \
+            --cache --cache-location .eslintcache \
+            --format @microsoft/eslint-formatter-sarif \
+            --output-file eslint-results.sarif || true
 
       - name: Upload analysis results to GitHub
+        if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: eslint-results.sarif
