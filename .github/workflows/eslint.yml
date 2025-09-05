@@ -12,6 +12,7 @@ on:
       - '.eslintrc*'
       - 'package.json'
       - 'package-lock.json'
+      - '.nvmrc'
   pull_request:
     branches: [master]
     paths:
@@ -49,17 +50,16 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Run Next.js ESLint
-        run: npx next lint --max-warnings=0
+      - name: Ensure ESLint + SARIF formatter
+        run: npm i -D eslint @microsoft/eslint-formatter-sarif
 
-      - name: Ensure SARIF formatter is available
-        run: npm i -D @microsoft/eslint-formatter-sarif
-
-      - name: Run ESLint (SARIF)
+      - name: Run ESLint (produce SARIF)
         env:
           SARIF_ESLINT_IGNORE_SUPPRESSED: 'true'
         run: |
@@ -69,9 +69,15 @@ jobs:
             --format @microsoft/eslint-formatter-sarif \
             --output-file eslint-results.sarif || true
 
-      - name: Upload analysis results to GitHub
+      - name: Upload ESLint SARIF to GitHub
         if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: eslint-results.sarif
           wait-for-processing: true
+      - name: Fail build on warnings (PR only)
+        if: github.event_name == 'pull_request'
+        run: |
+          npx eslint . \
+            --ext .js,.jsx,.ts,.tsx \
+            --max-warnings=0
