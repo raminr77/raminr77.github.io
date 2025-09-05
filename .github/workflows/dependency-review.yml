@@ -2,20 +2,20 @@ name: Dependency Review
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
     paths:
-      - "**/package.json"
-      - "**/package-lock.json"
-      - "**/pnpm-lock.yaml"
-      - "**/yarn.lock"
-      - "**/pom.xml"
-      - "**/build.gradle"
-      - "**/build.gradle.kts"
-      - "**/requirements.txt"
-      - "**/poetry.lock"
-      - "**/Pipfile.lock"
-      - "**/Cargo.toml"
-      - "**/Cargo.lock"
+      - '**/package.json'
+      - '**/package-lock.json'
+      - '**/pnpm-lock.yaml'
+      - '**/yarn.lock'
+      - '**/pom.xml'
+      - '**/build.gradle'
+      - '**/build.gradle.kts'
+      - '**/requirements.txt'
+      - '**/poetry.lock'
+      - '**/Pipfile.lock'
+      - '**/Cargo.toml'
+      - '**/Cargo.lock'
 
 permissions:
   contents: read
