@@ -12,6 +12,8 @@ I tried to develop all the parts of this project by myself and learn from it.
 URL: [RaminRezaei.se](https://raminrezaei.ir)
 <br />
 <br />
+[![CodeQL](https://github.com/raminr77/raminr77.github.io/actions/workflows/github-code-scanning/codeql/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/github-code-scanning/codeql)
+
 [![Dependabot Updates](https://github.com/raminr77/raminr77.github.io/actions/workflows/dependabot/dependabot-updates/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/dependabot/dependabot-updates)
 
 ![alt text](https://github.com/raminr77/raminr77.github.io/blob/master/Preview.png?raw=true)
