@@ -1,21 +1,9 @@
 name: Dependency Review
 
 on:
-  pull_request:
-    branches: ['master']
-    paths:
-      - '**/package.json'
-      - '**/package-lock.json'
-      - '**/pnpm-lock.yaml'
-      - '**/yarn.lock'
-      - '**/pom.xml'
-      - '**/build.gradle'
-      - '**/build.gradle.kts'
-      - '**/requirements.txt'
-      - '**/poetry.lock'
-      - '**/Pipfile.lock'
-      - '**/Cargo.toml'
-      - '**/Cargo.lock'
+  push:
+    branches: ['master', 'dev']
+  workflow_dispatch:
 
 permissions:
   contents: read

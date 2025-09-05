@@ -2,31 +2,7 @@ name: Lint (ESLint)
 
 on:
   push:
-    branches: [master]
-    paths:
-      - '**/*.js'
-      - '**/*.jsx'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '**/*.json'
-      - '.eslintrc*'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.nvmrc'
-  pull_request:
-    branches: [master]
-    paths:
-      - '**/*.js'
-      - '**/*.jsx'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '**/*.json'
-      - '.eslintrc*'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.nvmrc'
-  schedule:
-    - cron: '25 20 * * 2'
+    branches: ['master', 'dev']
   workflow_dispatch:
 
 concurrency:

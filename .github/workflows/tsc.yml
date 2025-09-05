@@ -2,23 +2,7 @@ name: TypeScript Check
 
 on:
   push:
-    branches: [master]
-    paths:
-      - '**/*.ts'
-      - '**/*.tsx'
-      - 'tsconfig*.json'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.nvmrc'
-  pull_request:
-    branches: [master]
-    paths:
-      - '**/*.ts'
-      - '**/*.tsx'
-      - 'tsconfig*.json'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.nvmrc'
+    branches: ['master', 'dev']
   workflow_dispatch:
 
 concurrency:
