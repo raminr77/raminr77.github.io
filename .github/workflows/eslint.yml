@@ -23,6 +23,7 @@ on:
       - '.eslintrc*'
       - 'package.json'
       - 'package-lock.json'
+      - '.nvmrc'
   schedule:
     - cron: '25 20 * * 2'
   workflow_dispatch:
