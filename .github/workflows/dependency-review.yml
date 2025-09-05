@@ -1,0 +1,42 @@
+name: Dependency Review
+
+on:
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - "**/package.json"
+      - "**/package-lock.json"
+      - "**/pnpm-lock.yaml"
+      - "**/yarn.lock"
+      - "**/pom.xml"
+      - "**/build.gradle"
+      - "**/build.gradle.kts"
+      - "**/requirements.txt"
+      - "**/poetry.lock"
+      - "**/Pipfile.lock"
+      - "**/Cargo.toml"
+      - "**/Cargo.lock"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          comment-summary-in-pr: always
+
+          # fail-on-severity: moderate
+
+          # deny-licenses: GPL-1.0-or-later, LGPL-2.0-or-later
+
+          # retry-on-snapshot-warnings: true
