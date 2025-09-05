@@ -1,4 +1,4 @@
-name: Personal Website Deployment
+name: Build and Deploy to GitHub Pages
 on:
   push:
     branches: ['master']
@@ -36,24 +36,29 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # پایدارتر
+          node-version-file: '.nvmrc'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: |
+            package-lock.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           static_site_generator: next
 
-      - name: Restore cache
+      - name: Restore Next.js cache
         uses: actions/cache@v4
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      # - name: Install dependencies (TEMP workaround)
+      #   run: npm install --no-audit --no-fund
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
