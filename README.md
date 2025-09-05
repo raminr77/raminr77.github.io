@@ -10,15 +10,15 @@ I tried to develop all the parts of this project by myself and learn from it.
 
 ## Badges
 
+[![Build](https://github.com/raminr77/raminr77.github.io/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/build.yml)
+
 [![CodeQL](https://github.com/raminr77/raminr77.github.io/actions/workflows/github-code-scanning/codeql/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/github-code-scanning/codeql)
 
-[![Lint (ESLint)](https://github.com/raminr77/raminr77.github.io/actions/workflows/eslint.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/eslint.yml)
+[![ESLint Check](https://github.com/raminr77/raminr77.github.io/actions/workflows/eslint.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/eslint.yml)
 
 [![TypeScript Check](https://github.com/raminr77/raminr77.github.io/actions/workflows/tsc.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/tsc.yml)
 
-[![Dependency Review](https://github.com/raminr77/raminr77.github.io/actions/workflows/dependency-review.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/dependency-review.yml)
-
-[![Build and Deploy to GitHub Pages](https://github.com/raminr77/raminr77.github.io/actions/workflows/deployment.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/deployment.yml)
+Check Dependencies On PRs
 
 ### Demo
 
