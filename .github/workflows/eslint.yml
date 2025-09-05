@@ -1,4 +1,4 @@
-name: Lint (ESLint)
+name: ESLint Check
 
 on:
   push:
