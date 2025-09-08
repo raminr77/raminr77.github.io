@@ -16,20 +16,20 @@ export function RecommendationsBox() {
         dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.aboutMeDescription }}
       />
 
-      <div className="max-h-[210px] w-full flex flex-wrap items-center justify-center gap-2">
+      <div className="max-h-[210px] w-full flex flex-wrap items-center justify-center gap-2 overflow-hidden">
         {RECOMMENDATIONS.slice(0, 17).map(
           ({ id, fullName, imageURL }: RecommendationItem) =>
             imageURL && (
               <Tooltip key={id} text={fullName}>
                 <Link href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}>
-                    <Image
-                      width={100}
-                      height={100}
-                      alt={fullName}
-                      src={imageURL}
-                      loading="lazy"
-                      className="grayscale hover:grayscale-0 duration-500 rounded-md w-[100px] h-[100px]"
-                    />
+                  <Image
+                    width={100}
+                    height={100}
+                    alt={fullName}
+                    src={imageURL}
+                    loading="lazy"
+                    className="grayscale hover:grayscale-0 duration-500 rounded-md w-[100px] h-[100px]"
+                  />
                 </Link>
               </Tooltip>
             )
