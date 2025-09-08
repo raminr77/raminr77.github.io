@@ -13,6 +13,7 @@ import {
 } from '@/data';
 import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-button';
 import { ContentContainer } from '@/layout/components/content-container';
+import { DecryptedText } from '@/shared/components/decrypted-text';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
@@ -73,15 +74,16 @@ export function AboutMePage() {
           className="absolute z-0 h-full w-full grayscale invert duration-500 hover:grayscale-0 dark:invert-0"
         />
       </div>
-      <h1
-        className={clsx(
-          'text-left text-4xl font-extrabold',
+      <DecryptedText
+        sequential
+        speed={150}
+        parentClassName={clsx(
+          'w-full text-left text-4xl font-extrabold',
           animator({ name: 'fadeInUp', delay: '1s' }),
           titleFont.className
         )}
-      >
-        {`About ${PERSONAL_DATA.firstName}`}
-      </h1>
+        text={`About ${PERSONAL_DATA.firstName}`}
+      />
       <p
         className={clsx('mt-1 text-left text-xl', animator({ name: 'fadeInUp' }))}
         style={{ animationDelay: '1.3s' }}
@@ -90,7 +92,7 @@ export function AboutMePage() {
       </p>
       <div
         className={clsx(
-          'mb-5 mt-4 flex flex-col gap-4 text-justify text-lg',
+          'mb-5 mt-4 flex flex-col gap-4 text-left text-lg',
           animator({ name: 'fadeIn' }),
           styles['about-me']
         )}

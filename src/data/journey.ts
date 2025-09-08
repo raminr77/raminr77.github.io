@@ -143,7 +143,6 @@ export const JOURNEY_DATA = {
   title: 'The Adventure Started ...',
   footer:
     'Everything began on a cold winter morning, just eleven days into the year 1999.',
-  description:
-    'On a journey to <span className="text-2xl font-bold">Google</span>, driven by curiosity and a desire to learn more.',
+  description: 'On a journey to <span className="text-2xl font-bold">Google</span>',
   items: JOURNEY_ITEM_DATA
 } as const;

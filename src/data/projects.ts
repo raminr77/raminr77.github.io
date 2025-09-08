@@ -21,7 +21,7 @@ export const PROJECTS_DATA: {
   title: 'Projects',
   footerActionURL: ROUTES.CONTACT_ME,
   footerActionLabel: 'Help Me To Find You ( Contact me )',
-  description: 'Some experiences happened outside the companies.',
+  description: 'Some experiences happened<br />Outside the companies',
   footer: 'We can create a idea and develop the future for everyone',
   items: [
     {
