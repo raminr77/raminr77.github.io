@@ -103,7 +103,7 @@ export function BurgerMenu() {
         title="Burger Menu"
         aria-label="Burger Menu Toggle"
         className={clsx(
-          'relative h-16 w-16 rounded-full p-5',
+          'relative h-12 w-12 rounded-full p-5',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
       >
