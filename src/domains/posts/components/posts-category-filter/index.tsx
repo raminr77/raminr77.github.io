@@ -1,5 +1,7 @@
+'use client';
+import { useRouter } from 'next/navigation';
+import type { ChangeEvent } from 'react';
 import Link from 'next/link';
-import clsx from 'clsx';
 
 import type { PostFilters } from '@/shared/types/post';
 import { ROUTES } from '@/shared/constants';
@@ -13,25 +15,33 @@ export function PostsCategoryFilter({
   categories = [],
   activeFilters = null
 }: PostsCategoryFilterProps) {
+  const router = useRouter();
+
+  const handleCategoryChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
+    const value = target.value;
+    if (!value) {
+      router.push(ROUTES.POSTS);
+      return;
+    }
+    router.push(`?category=${target.value}`);
+  };
+
   return (
     <div className="flex items-center flex-wrap gap-3">
-      {categories.map((item) => {
-        const isActive = activeFilters?.category === item;
-        return (
-          <Link
-            key={item}
-            href={isActive ? ROUTES.POSTS : `?category=${item}`}
-            className={clsx(
-              'border px-4 h-9 flex items-center text-md hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5',
-              {
-                'bg-amber-500/20 border-amber-500': isActive
-              }
-            )}
-          >
-            {item}
-          </Link>
-        );
-      })}
+      <select
+        onChange={handleCategoryChange}
+        className="h-9 px-3 text-md border appearance-none outline-none cursor-pointer bg-transparent backdrop-blur-sm duration-300 hover:border-amber-500"
+      >
+        <option value="">Select a category ...</option>
+        {categories.map((item) => {
+          const isActive = activeFilters?.category === item;
+          return (
+            <option selected={isActive} key={item} value={item}>
+              {item}
+            </option>
+          );
+        })}
+      </select>
 
       {!!activeFilters && (
         <Link
