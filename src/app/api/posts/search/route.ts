@@ -17,10 +17,10 @@ export async function GET(request: Request) {
         headers: { 'Content-Type': 'application/json' }
       }
     );
-  } catch (error) {
+  } catch {
     return Response.json({
       success: false,
-      message: 'The AI is Unavailable now :('
+      message: 'An error occurred while searching for posts.'
     });
   }
 }
