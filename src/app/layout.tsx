@@ -5,7 +5,6 @@ import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import Image from 'next/image';
 
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
@@ -18,6 +17,11 @@ const CustomCursor = React.lazy(() =>
 );
 const Header = React.lazy(() =>
   import('@/layout/components/header').then((module) => ({ default: module.Header }))
+);
+const BackgroundImage = React.lazy(() =>
+  import('@/layout/components/background-image').then((module) => ({
+    default: module.BackgroundImage
+  }))
 );
 const PerformanceMonitor = React.lazy(() =>
   import('@/shared/components/performance-monitor').then((module) => ({
@@ -87,26 +91,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx('site-top-shadow', textFont.className)}>
-        <div
-          style={{
-            width: 830,
-            height: 830,
-            maxWidth: '100%',
-            background: 'url(/images/background.png) no-repeat',
-            backgroundSize: 'contain'
-          }}
-          className="shine-animation-top pointer-events-none fixed left-0 top-0 blur-md"
-        />
-        <div
-          style={{
-            width: 830,
-            height: 830,
-            maxWidth: '100%',
-            background: 'url(/images/background.png) no-repeat',
-            backgroundSize: 'contain'
-          }}
-          className="shine-animation-bottom pointer-events-none fixed -bottom-6 right-0 rotate-180 blur-lg"
-        />
+        <Suspense
+          fallback={
+            <div className="fixed pointer-events-none top-0 left-0 w-full h-screen" />
+          }
+        >
+          <BackgroundImage />
+        </Suspense>
 
         <Suspense fallback={<div className="cursor-default" />}>
           <CustomCursor />
@@ -131,7 +122,7 @@ export default function RootLayout({
 
         <SpeedInsights />
 
-        <PerformanceMonitor />
+        {process.env.ANALYZE === 'true' && <PerformanceMonitor />}
 
         {/* Optimized script loading */}
         <Script src="/click-spark.js" strategy="lazyOnload" />
