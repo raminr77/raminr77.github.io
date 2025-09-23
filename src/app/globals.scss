@@ -23,6 +23,25 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@media (max-width: 768px) {
+  .site-top-shadow::after {
+    top: 0;
+    left: 0;
+    opacity: 1;
+    width: 100%;
+    content: '';
+    height: 360px;
+    position: fixed;
+    pointer-events: none;
+    transition-duration: 500ms;
+    background: radial-gradient(
+      circle at 50% -120%,
+      var(--background) 60%,
+      transparent 90%
+    );
+  }
+}
+
 button {
   cursor: pointer;
 }

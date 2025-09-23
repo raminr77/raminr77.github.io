@@ -17,8 +17,13 @@ export function Summary() {
       )}
     >
       <div
-        className={styles['summary__content']}
+        className={clsx('block max-md:hidden', styles['summary__content'])}
         dangerouslySetInnerHTML={{ __html: PERSONAL_DATA.summary }}
+      />
+
+      <div
+        className={clsx('hidden max-md:block', styles['summary__content'])}
+        dangerouslySetInnerHTML={{ __html: PERSONAL_DATA.shortSummary }}
       />
 
       <Link href={ROUTES.ABOUT_ME} className="border-b px-3 pb-1 duration-200 hover:px-5">

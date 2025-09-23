@@ -1,6 +1,6 @@
 'use client';
 
-import { initPerformanceMonitoring } from '@/shared/helpers/performance';
+import { initPerformanceMonitoring } from '@/shared/helpers';
 import { useEffect } from 'react';
 
 export function PerformanceMonitor() {
