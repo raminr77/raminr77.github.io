@@ -36,7 +36,7 @@ const nextConfig: NextConfig = {
 
   // Bundle analyzer in development
   ...(process.env.ANALYZE === 'true' && {
-    webpack: (config: any) => {
+    webpack: (config) => {
       if (process.env.NODE_ENV === 'development') {
         const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
         config.plugins.push(
