@@ -28,6 +28,7 @@ const PerformanceMonitor = React.lazy(() =>
 import 'animate.css';
 
 import './globals.scss';
+import clsx from 'clsx';
 
 export const metadata: Metadata = {
   title: {
@@ -85,29 +86,25 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={textFont.className}>
-        <Image
-          width={830}
-          height={830}
-          quality={75}
-          loading="eager"
-          alt="top-shine"
-          priority={true}
-          draggable={false}
-          src="/images/background.png"
-          sizes="(max-width: 768px) 400px, 830px"
+      <body className={clsx('site-top-shadow', textFont.className)}>
+        <div
+          style={{
+            width: 830,
+            height: 830,
+            maxWidth: '100%',
+            background: 'url(/images/background.png) no-repeat',
+            backgroundSize: 'contain'
+          }}
           className="shine-animation-top pointer-events-none fixed left-0 top-0 blur-md"
         />
-        <Image
-          width={830}
-          height={830}
-          quality={75}
-          loading="lazy"
-          priority={false}
-          draggable={false}
-          alt="bottom-shine"
-          src="/images/background.png"
-          sizes="(max-width: 768px) 400px, 830px"
+        <div
+          style={{
+            width: 830,
+            height: 830,
+            maxWidth: '100%',
+            background: 'url(/images/background.png) no-repeat',
+            backgroundSize: 'contain'
+          }}
           className="shine-animation-bottom pointer-events-none fixed -bottom-6 right-0 rotate-180 blur-lg"
         />
 

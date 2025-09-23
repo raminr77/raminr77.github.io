@@ -6,20 +6,22 @@ const THEMES = { light: 'light', dark: 'dark' } as const;
 type Theme = keyof typeof THEMES;
 
 export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boolean }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return THEMES.dark;
+  const [theme, setTheme] = useState<Theme>(THEMES.dark);
 
-    const localTheme = localStorage.theme as Theme | undefined;
-    if (localTheme) return localTheme;
-
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? THEMES.dark : THEMES.light;
-  });
+  // useEffect(() => {
+  //   const previousTheme = localStorage.getItem('theme') as Theme | null;
+  //   if (previousTheme) {
+  //     setTheme(previousTheme);
+  //   }
+  // }, []);
 
   useEffect(() => {
+    // document.documentElement.classList.remove(THEMES.light, THEMES.dark);
+    // document.documentElement.classList.add(theme);
+    // localStorage.setItem('theme', theme);
     document.documentElement.classList.remove(THEMES.light, THEMES.dark);
-    document.documentElement.classList.add(theme);
-    localStorage.theme = theme;
+    document.documentElement.classList.add(THEMES.dark);
+    localStorage.setItem('theme', THEMES.dark);
   }, [theme]);
 
   // const handleThemeChange = () => {

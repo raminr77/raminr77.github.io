@@ -67,7 +67,10 @@ export function Header() {
               </Link>
             </li>
           ))}
-          <li className={clsx('ml-4', animator({ name: 'fadeIn', delay: '3s' }))}>
+          <li
+            key="theme-toggle-desktop"
+            className={clsx('ml-4', animator({ name: 'fadeIn', delay: '3s' }))}
+          >
             <ToggleThemeButton />
           </li>
         </ul>
