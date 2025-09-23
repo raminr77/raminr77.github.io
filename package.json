@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "private": true,
   "scripts": {
     "check-all": "npm run check-format && npm run check-lint && npm run check-types",
@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/third-parties": "^15.5.2",
-    "@sentry/nextjs": "^10.10.0",
+    "@next/third-parties": "^15.5.4",
+    "@sentry/nextjs": "^10.14.0",
     "@vercel/speed-insights": "^1.2.0",
     "animate.css": "^4.1.1",
     "clsx": "^2.1.1",
@@ -25,12 +25,12 @@
     "gray-matter": "^4.0.3",
     "gsap": "^3.13.0",
     "markdown-to-jsx": "^7.7.13",
-    "motion": "^12.23.12",
-    "next": "^15.5.2",
+    "motion": "^12.23.19",
+    "next": "^15.5.4",
     "qs": "^6.14.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-hook-form": "^7.62.0",
+    "react-hook-form": "^7.63.0",
     "react-toastify": "^11.0.5"
   },
   "lint-staged": {
@@ -41,23 +41,23 @@
     ]
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^15.5.2",
+    "@next/eslint-plugin-next": "^15.5.4",
     "@tailwindcss/postcss": "^4.1.13",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^24.3.1",
+    "@types/node": "^24.5.2",
     "@types/qs": "^6.14.0",
-    "@types/react": "^19.1.12",
+    "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
-    "eslint": "^9.34.0",
-    "eslint-config-next": "15.5.2",
+    "eslint": "^9.36.0",
+    "eslint-config-next": "15.5.4",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.6",
+    "lint-staged": "^16.2.0",
     "postcss": "^8.5.6",
     "prettier": "3.6.2",
     "prettier-plugin-sort-imports": "^1.8.8",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "sass": "^1.92.0",
+    "sass": "^1.93.1",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2"
   }
