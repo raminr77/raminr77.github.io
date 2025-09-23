@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -7,11 +7,23 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import Image from 'next/image';
 
-import { CustomCursor } from '@/shared/components/custom-cursor';
-// import { AiButton } from '@/layout/components/ai-bot';
-import { Header } from '@/layout/components/header';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
+
+// Lazy load components for better performance
+const CustomCursor = React.lazy(() =>
+  import('@/shared/components/custom-cursor').then((module) => ({
+    default: module.CustomCursor
+  }))
+);
+const Header = React.lazy(() =>
+  import('@/layout/components/header').then((module) => ({ default: module.Header }))
+);
+const PerformanceMonitor = React.lazy(() =>
+  import('@/shared/components/performance-monitor').then((module) => ({
+    default: module.PerformanceMonitor
+  }))
+);
 
 import 'animate.css';
 
@@ -77,36 +89,56 @@ export default function RootLayout({
         <Image
           width={830}
           height={830}
-          loading="lazy"
+          quality={75}
+          loading="eager"
           alt="top-shine"
-          priority={false}
+          priority={true}
           draggable={false}
           src="/images/background.png"
+          sizes="(max-width: 768px) 400px, 830px"
           className="shine-animation-top pointer-events-none fixed left-0 top-0 blur-md"
         />
         <Image
           width={830}
           height={830}
+          quality={75}
           loading="lazy"
           priority={false}
           draggable={false}
           alt="bottom-shine"
           src="/images/background.png"
+          sizes="(max-width: 768px) 400px, 830px"
           className="shine-animation-bottom pointer-events-none fixed -bottom-6 right-0 rotate-180 blur-lg"
         />
-        <CustomCursor />
 
-        <Header />
+        <Suspense fallback={<div className="cursor-default" />}>
+          <CustomCursor />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-16 w-full" />}>
+          <Header />
+        </Suspense>
+
         {children}
 
         {/* <AiButton /> */}
 
-        <ToastContainer limit={4} newestOnTop theme="dark" position="bottom-center" />
+        <ToastContainer
+          limit={4}
+          newestOnTop
+          theme="dark"
+          position="bottom-center"
+          progressClassName="!bg-orange-500"
+          toastClassName="!bg-gray-800 !text-white"
+        />
 
         <SpeedInsights />
 
-        <Script src="/click-spark.js" defer />
-        <Script src="/service-worker.js" defer />
+        <PerformanceMonitor />
+
+        {/* Optimized script loading */}
+        <Script src="/click-spark.js" strategy="lazyOnload" />
+        <Script src="/service-worker.js" strategy="afterInteractive" />
 
         {process.env.GOOGLE_ANALYTICS_CODE && (
           <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_CODE} />

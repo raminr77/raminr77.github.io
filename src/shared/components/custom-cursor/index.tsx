@@ -1,11 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-
-import { clsx } from 'clsx';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useIsClient } from '@/shared/hooks';
-import { animator } from '@/shared/helpers';
 
 const MINIMUM_SCREEN_SIZE = 1100;
 
@@ -20,12 +17,15 @@ export function CustomCursor() {
         }
       : { x: 0, y: 0 }
   );
-  const params = {
-    pointsNumber: 10,
-    widthFactor: 0.3,
-    friction: 0.4,
-    spring: 0.5
-  };
+  const params = useMemo(
+    () => ({
+      pointsNumber: 10,
+      widthFactor: 0.3,
+      friction: 0.4,
+      spring: 0.5
+    }),
+    []
+  );
 
   const trailRef = useRef(
     new Array(params.pointsNumber).fill('').map(() => ({
@@ -47,9 +47,9 @@ export function CustomCursor() {
     const handleMouseMove = (event: MouseEvent) => {
       updateMousePosition(event.clientX, event.clientY);
       if (event.target instanceof HTMLElement) {
-        canvas.style.display = event.target.closest('a, button, .no-custom-cursor')
-          ? 'none'
-          : 'block';
+        canvas.style.opacity = event.target.closest('a, button, .no-custom-cursor')
+          ? '10%'
+          : '100%';
       }
     };
 
@@ -105,16 +105,13 @@ export function CustomCursor() {
       window.cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [pointer]);
+  }, [pointer, params, trail]);
 
   return (
     <>
       <canvas
         ref={canvasRef}
-        className={clsx(
-          'pointer-events-none fixed left-0 top-0 z-30',
-          animator({ name: 'fadeIn', delay: '1s' })
-        )}
+        className="pointer-events-none fixed left-0 top-0 z-30 duration-500 opacity-0"
       />
       {/* @ts-expect-error: Unreachable code error */}
       <click-spark />

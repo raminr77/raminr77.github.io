@@ -1,12 +1,15 @@
 {
   "name": "raminrezaei",
-  "version": "4.6.1",
+  "version": "4.7.0",
   "private": true,
   "scripts": {
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
     "check-all": "npm run check-format && npm run check-lint && npm run check-types",
+    "performance": "npm run build && npm run start & sleep 5 && npm run lighthouse",
     "check-lint": "eslint ./src/* --ext ts --ext tsx --ext js",
-    "dev-https": "next dev --experimental-https",
     "check-types": "tsc --pretty --noEmit --project ./",
+    "dev-https": "next dev --experimental-https",
+    "build:analyze": "ANALYZE=true next build",
     "check-format": "prettier . --check",
     "format": "prettier --write .",
     "dev": "next dev --turbopack",
@@ -52,6 +55,7 @@
     "eslint-config-next": "15.5.4",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
+    "lighthouse": "^12.8.2",
     "lint-staged": "^16.2.0",
     "postcss": "^8.5.6",
     "prettier": "3.6.2",
@@ -59,6 +63,7 @@
     "prettier-plugin-tailwindcss": "^0.6.14",
     "sass": "^1.93.1",
     "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }
