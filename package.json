@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "4.7.0",
+  "version": "4.7.1",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@next/third-parties": "^15.5.4",
-    "@sentry/nextjs": "^10.14.0",
+    "@sentry/nextjs": "^10.17.0",
     "@vercel/speed-insights": "^1.2.0",
     "animate.css": "^4.1.1",
     "clsx": "^2.1.1",
@@ -28,7 +28,7 @@
     "gray-matter": "^4.0.3",
     "gsap": "^3.13.0",
     "markdown-to-jsx": "^7.7.13",
-    "motion": "^12.23.19",
+    "motion": "^12.23.22",
     "next": "^15.5.4",
     "qs": "^6.14.0",
     "react": "^19.1.1",
@@ -47,9 +47,9 @@
     "@next/eslint-plugin-next": "^15.5.4",
     "@tailwindcss/postcss": "^4.1.13",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^24.5.2",
+    "@types/node": "^24.6.1",
     "@types/qs": "^6.14.0",
-    "@types/react": "^19.1.13",
+    "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "eslint": "^9.36.0",
@@ -57,14 +57,15 @@
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "lighthouse": "^12.8.2",
-    "lint-staged": "^16.2.0",
+    "lint-staged": "^16.2.3",
     "postcss": "^8.5.6",
     "prettier": "3.6.2",
     "prettier-plugin-sort-imports": "^1.8.8",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "sass": "^1.93.1",
+    "sass": "^1.93.2",
     "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2",
+    "typescript": "^5.9.3",
     "webpack-bundle-analyzer": "^4.10.2"
-  }
+  },
+  "packageManager": "pnpm@10.17.0+sha512.fce8a3dd29a4ed2ec566fb53efbb04d8c44a0f05bc6f24a73046910fb9c3ce7afa35a0980500668fa3573345bd644644fa98338fa168235c80f4aa17aa17fbef"
 }
