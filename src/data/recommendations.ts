@@ -24,6 +24,16 @@ export const RECOMMENDATION_PAGE_DATA = {
 
 export const RECOMMENDATIONS: RecommendationItem[] = [
   {
+    id: 18,
+    fullName: 'Hamed Kabiri',
+    title: 'Senior Front-End Engineer',
+    text: 'I had the pleasure of working with Ramin for around two years, first as a teammate and later as his manager. From the start, he demonstrated a strong eagerness to learn new technologies and consistently took on challenging tasks, delivering them on time with great quality. Ramin stood out as a bold and influential member of the team, actively contributing to technical initiatives and bringing fresh ideas to the table. Over time, he showed remarkable growth, improving both his technical expertise and soft skills by embracing feedback and acting on it thoughtfully. A truly valuable team player.',
+    date: 'October 1, 2025',
+    caption: 'Hamed managed Ramin directly',
+    url: 'https://www.linkedin.com/in/hamed-kabiri-774997133/',
+    imageURL: '/images/linkedIn-profiles/hamed-kabiri.jpeg'
+  },
+  {
     id: 17,
     fullName: 'Lukas Tutkus',
     title: 'Team lead at Boozt Technology Baltics',
