@@ -9,11 +9,16 @@ import { Tooltip } from '@/shared/components/tooltip';
 
 export const renderContent = (index: number, content: AboutMeContentItem): ReactNode => {
   if (content.type === ABOUT_ME_CONTENT_TYPE.text) {
-    return <p key={index} dangerouslySetInnerHTML={{ __html: content.data }} />;
+    return (
+      <p
+        key={`render-content-text-${index}`}
+        dangerouslySetInnerHTML={{ __html: content.data }}
+      />
+    );
   }
   if (content.type === ABOUT_ME_CONTENT_TYPE.image) {
     return (
-      <Tooltip text={content.tooltip}>
+      <Tooltip key={`render-content-tooltip-${index}`} text={content.tooltip}>
         <Image
           key={index}
           draggable={false}
@@ -30,7 +35,7 @@ export const renderContent = (index: number, content: AboutMeContentItem): React
 
   if (content.type === ABOUT_ME_CONTENT_TYPE.list) {
     return (
-      <div key={index}>
+      <div key={`render-content-list-${index}`}>
         <p>{content.title}</p>
         <ul className="ml-5 mt-2">
           {content.data.map((listItemContent: string, listItemIndex: number) => (
@@ -44,5 +49,5 @@ export const renderContent = (index: number, content: AboutMeContentItem): React
     );
   }
 
-  return <div />;
+  return <div key={`render-content-none-${index}`} />;
 };

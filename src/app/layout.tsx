@@ -1,11 +1,13 @@
 import { ToastContainer } from 'react-toastify';
 import React, { Suspense } from 'react';
+import clsx from 'clsx';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 
+import { ENV } from '@/shared/constants';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
@@ -29,10 +31,8 @@ const PerformanceMonitor = React.lazy(() =>
   }))
 );
 
-import 'animate.css';
-
 import './globals.scss';
-import clsx from 'clsx';
+import 'animate.css';
 
 export const metadata: Metadata = {
   title: {
@@ -122,17 +122,17 @@ export default function RootLayout({
 
         <SpeedInsights />
 
-        {process.env.ANALYZE === 'true' && <PerformanceMonitor />}
+        {ENV.ANALYZE_MODE && <PerformanceMonitor />}
 
         {/* Optimized script loading */}
         <Script src="/click-spark.js" strategy="lazyOnload" />
         <Script src="/service-worker.js" strategy="afterInteractive" />
 
-        {process.env.GOOGLE_ANALYTICS_CODE && (
-          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_CODE} />
+        {ENV.GOOGLE_ANALYTICS_CODE && (
+          <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
         )}
-        {process.env.GOOGLE_TAG_MANAGER_CODE && (
-          <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_CODE} />
+        {ENV.GOOGLE_TAG_MANAGER_CODE && (
+          <GoogleTagManager gtmId={ENV.GOOGLE_TAG_MANAGER_CODE} />
         )}
       </body>
     </html>

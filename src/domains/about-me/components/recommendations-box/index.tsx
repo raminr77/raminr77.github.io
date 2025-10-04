@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 export function RecommendationsBox() {
   return (
-    <div className="w-full flex flex-col mt-5 items-center">
+    <div key="RecommendationsBox" className="w-full flex flex-col mt-5 items-center">
       <p
         className="w-full mb-4"
         dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.aboutMeDescription }}

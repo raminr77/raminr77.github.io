@@ -1,3 +1,5 @@
+import { ENV } from '@/shared/constants';
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -7,22 +9,19 @@ export async function GET(request: Request) {
       searchParams.get('userId') ||
       `user-${new Date().getTime()}-${Math.floor(Math.random() * 1000)}`;
 
-    const AI_URL = process.env.D_AI_ENDPOINT;
-    const AI_TOKEN = process.env.D_AI_SECRET_KEY;
-
-    if (!AI_URL || !AI_TOKEN) {
+    if (!ENV.AI_ENDPOINT || !ENV.AI_TOKEN) {
       return Response.json({
         success: false,
         message: 'The AI is Unavailable!'
       });
     }
 
-    const aiRequest = await fetch(AI_URL, {
+    const aiRequest = await fetch(ENV.AI_ENDPOINT, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${AI_TOKEN}`
+        Authorization: `Bearer ${ENV.AI_TOKEN}`
       },
       body: JSON.stringify({
         user,
