@@ -10,8 +10,8 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
 import { TextInput } from '@/shared/components/text-input';
 import { Button } from '@/shared/components/button';
+import { animator, notify } from '@/shared/helpers';
 import { sendEmail } from '@/shared/services';
-import { animator } from '@/shared/helpers';
 
 interface ContactMeForm {
   email: string;
@@ -42,21 +42,22 @@ export function ContactForm() {
 
   const onSubmit = async () => {
     if (!executeRecaptcha) {
+      notify.error({ message: 'Error: reCAPTCHA not detected.' });
       return;
     }
     setLoading(true);
     sendGTMEvent(GTM_EVENTS.SEND_MESSAGE);
-
     try {
       const recaptchaToken = await executeRecaptcha('contact_form_submit');
 
-      await sendEmail({
+      sendEmail({
         ...getValues(),
         recaptchaToken
-      });
-      reset();
-    } catch (error) {
-      console.error(error);
+      })
+        .then(() => reset())
+        .finally(() => setLoading(false));
+    } catch {
+      notify.error({ message: 'We could not handle your reCAPTCHA element now!' });
     } finally {
       setLoading(false);
     }
