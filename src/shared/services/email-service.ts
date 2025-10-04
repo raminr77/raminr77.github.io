@@ -15,6 +15,7 @@ export const sendEmail = (data: requestData) => {
       notify.error({ message: 'Missing reCAPTCHA token.' });
       reject();
     }
+
     const isValidReCaptcha = await isValidGoogleReCaptcha({ token: data.recaptchaToken });
 
     if (isValidReCaptcha) {
