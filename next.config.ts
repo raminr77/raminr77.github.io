@@ -1,5 +1,5 @@
+import type { Configuration, WebpackPluginInstance } from 'webpack';
 import { withSentryConfig } from '@sentry/nextjs';
-import type { Configuration } from 'webpack';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
@@ -36,16 +36,15 @@ const nextConfig: NextConfig = {
   },
 
   // Bundle analyzer in development
-  ...(process.env.ANALYZE === 'true' && {
+  ...(process.env.NEXT_PUBLIC_ANALYZE_MODE === 'true' && {
     webpack: async (config: Configuration) => {
       if (process.env.NODE_ENV === 'development') {
         const { BundleAnalyzerPlugin } = await import('webpack-bundle-analyzer');
-        config.plugins?.push(
-          new BundleAnalyzerPlugin({
-            analyzerMode: 'server',
-            openAnalyzer: true
-          })
-        );
+        const analyzer = new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          openAnalyzer: true
+        }) as unknown as WebpackPluginInstance;
+        config.plugins?.push(analyzer);
       }
       return config;
     }

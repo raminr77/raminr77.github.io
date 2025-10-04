@@ -8,6 +8,8 @@ export type PixelCanvasProps = {
 };
 
 declare global {
+  module '*.css';
+  module '*.scss';
   namespace JSX {
     interface IntrinsicElements {
       'pixel-canvas': React.DetailedHTMLProps<

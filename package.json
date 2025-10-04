@@ -33,7 +33,7 @@
     "qs": "^6.14.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-google-recaptcha": "^3.1.0",
+    "react-google-recaptcha-v3": "^1.11.0",
     "react-hook-form": "^7.64.0",
     "react-toastify": "^11.0.5"
   },
@@ -45,6 +45,8 @@
     ]
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.37.0",
     "@next/eslint-plugin-next": "^15.5.4",
     "@tailwindcss/postcss": "^4.1.14",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
@@ -66,6 +68,7 @@
     "sass": "^1.93.2",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3",
+    "webpack": "^5.102.0",
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "packageManager": "pnpm@10.17.0+sha512.fce8a3dd29a4ed2ec566fb53efbb04d8c44a0f05bc6f24a73046910fb9c3ce7afa35a0980500668fa3573345bd644644fa98338fa168235c80f4aa17aa17fbef"

@@ -3,6 +3,8 @@
  * Performance optimization utilities
  */
 
+import { ENV } from '@/shared/constants';
+
 // Web Vitals thresholds
 export const WEB_VITALS_THRESHOLDS = {
   LCP: { good: 2500, poor: 4000 }, // Largest Contentful Paint
@@ -158,7 +160,7 @@ export const optimizeMemoryUsage = () => {
   });
 
   // Monitor memory usage in development
-  if (process.env.NODE_ENV === 'development') {
+  if (ENV.NODE_ENV === 'development') {
     setInterval(() => {
       if ('memory' in performance) {
         const memory = (performance as any).memory;

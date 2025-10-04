@@ -1,56 +1,18 @@
 'use client';
 
-import { useForm, Controller } from 'react-hook-form';
-import { useState } from 'react';
-
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Link from 'next/link';
-
-import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
 import { ContentContainer } from '@/layout/components/content-container';
-import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
-import { TextInput } from '@/shared/components/text-input';
-import { Button } from '@/shared/components/button';
-import { sendEmail } from '@/shared/services';
+import { ContactForm } from './components/contact-form';
 import { animator } from '@/shared/helpers';
+import { ENV } from '@/shared/constants';
 import { CONTACT_ME_DATA } from '@/data';
 
-interface ContactMeForm {
-  email: string;
-  subject: string;
-  message: string;
-}
+const GOOGLE_RECAPTCHA_ELEMENT_ID = 'g-recaptcha-container';
 
 export function ContactMePage() {
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const {
-    formState: { errors },
-    reset,
-    control,
-    register,
-    getValues,
-    handleSubmit
-  } = useForm<ContactMeForm>({
-    mode: 'onChange',
-    reValidateMode: 'onChange',
-    values: {
-      email: '',
-      subject: '',
-      message: ''
-    }
-  });
-
-  const onSubmit = () => {
-    setLoading(true);
-    sendGTMEvent(GTM_EVENTS.SEND_MESSAGE);
-
-    sendEmail(getValues())
-      .then(() => reset())
-      .finally(() => setLoading(false));
-  };
-
   return (
     <ContentContainer title="Contact Me" className="z-40">
       <div className="flex gap-5 max-lg:flex-wrap">
@@ -120,83 +82,17 @@ export function ContactMePage() {
         </div>
       </div>
 
-      <form
-        className={clsx(
-          'mt-5 flex flex-col gap-4',
-          animator({ name: 'fadeIn', delay: '2s' }),
-          {
-            'pointer-events-none': loading
-          }
-        )}
-        onSubmit={handleSubmit(onSubmit)}
+      <GoogleReCaptchaProvider
+        scriptProps={{ async: true, defer: true }}
+        reCaptchaKey={ENV.GOOGLE_RECAPTCHA_SITE_KEY!}
+        container={{
+          element: GOOGLE_RECAPTCHA_ELEMENT_ID,
+          parameters: { badge: 'bottomright' }
+        }}
       >
-        <TextInput
-          required
-          type="text"
-          id="subject"
-          label="Subject"
-          placeholder="Enter your subject"
-          error={errors.subject?.message}
-          {...register('subject', {
-            required: {
-              value: true,
-              message: 'You must to enter a subject!'
-            },
-            minLength: {
-              value: 10,
-              message: 'Your subject should be more than 10 characters'
-            }
-          })}
-        />
-        <TextInput
-          required
-          id="email"
-          type="email"
-          label="Email"
-          error={errors.email?.message}
-          placeholder="Enter your email address"
-          {...register('email', {
-            pattern: {
-              value: EMAIL_VALIDATION_REGEX,
-              message: 'Your email address is invalid!'
-            },
-            required: {
-              value: true,
-              message: 'You must to enter your email address!'
-            }
-          })}
-        />
-
-        <Controller
-          name="message"
-          control={control}
-          rules={{
-            minLength: {
-              value: 30,
-              message: 'Your message should be more than 30 characters'
-            },
-            required: {
-              value: true,
-              message: 'You must to enter your message!'
-            }
-          }}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              required
-              id="message"
-              value={value}
-              type="textarea"
-              label="Message"
-              onChange={onChange}
-              placeholder="Enter your message"
-              error={errors.message?.message}
-            />
-          )}
-        />
-        <div className="mt-2 flex w-full justify-end">
-          <Button label="Submit" type="submit" loading={loading} />
-        </div>
-      </form>
+        <ContactForm />
+        <div id={GOOGLE_RECAPTCHA_ELEMENT_ID} />
+      </GoogleReCaptchaProvider>
     </ContentContainer>
   );
 }
