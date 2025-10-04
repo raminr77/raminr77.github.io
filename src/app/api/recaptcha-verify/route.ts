@@ -19,26 +19,37 @@ export async function POST(request: Request) {
       });
     }
 
-    const googleRequest = await fetch(ENDPOINTS.googleVerifyReCaptcha, {
+    const url = new URL(ENDPOINTS.googleVerifyReCaptcha);
+    url.searchParams.append('response', token);
+    url.searchParams.append('secret', ENV.GOOGLE_RECAPTCHA_SECRET_KEY);
+
+    const googleRequest = await fetch(url, {
       method: 'POST',
-      cache: 'no-store',
-      body: JSON.stringify({
-        response: token,
-        secret: ENV.GOOGLE_RECAPTCHA_SECRET_KEY!
-      }),
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      cache: 'no-store'
     });
 
     const googleResponse = await googleRequest.json();
 
     if (!googleResponse.success) {
-      return Response.json({ success: false, message: 'reCAPTCHA failed.' });
+      return Response.json({
+        success: false,
+        details: googleResponse,
+        message: 'reCAPTCHA failed.'
+      });
     }
     if (typeof googleResponse.score === 'number' && googleResponse.score < 0.5) {
-      return Response.json({ success: false, message: 'Low reCAPTCHA score!' });
+      return Response.json({
+        success: false,
+        details: googleResponse,
+        message: 'Low reCAPTCHA score!'
+      });
     }
     if (googleResponse.action && googleResponse.action !== 'contact_form_submit') {
-      return Response.json({ success: false, message: 'Invalid reCAPTCHA action!' });
+      return Response.json({
+        success: false,
+        details: googleResponse,
+        message: 'Invalid reCAPTCHA action!'
+      });
     }
 
     return Response.json({
