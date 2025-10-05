@@ -5,10 +5,12 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   trailingSlash: true,
+
   reactStrictMode: true,
 
   // Performance optimizations
   compress: true,
+
   poweredByHeader: false,
   generateEtags: true,
 
@@ -24,15 +26,7 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['react-icons', 'date-fns', 'clsx'],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js'
-        }
-      }
-    }
+    optimizePackageImports: ['react-icons', 'date-fns', 'clsx']
   },
 
   // Bundle analyzer in development
@@ -49,6 +43,7 @@ const nextConfig: NextConfig = {
       return config;
     }
   }),
+
   async headers() {
     return [
       {
@@ -69,6 +64,7 @@ const nextConfig: NextConfig = {
       }
     ];
   },
+
   async redirects() {
     return [
       {
@@ -103,8 +99,18 @@ const nextConfig: NextConfig = {
       }
     ];
   },
+
   sassOptions: {
     silenceDeprecations: ['legacy-js-api']
+  },
+
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js'
+      }
+    }
   }
 };
 
