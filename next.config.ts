@@ -41,7 +41,6 @@ const config: NextConfig = {
     });
 
     if (process.env.NEXT_PUBLIC_ANALYZE_MODE === 'true' && dev) {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
       const analyzer = new BundleAnalyzerPlugin({
         analyzerMode: 'server',

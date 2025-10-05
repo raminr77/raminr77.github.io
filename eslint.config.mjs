@@ -16,5 +16,14 @@ export default defineConfig([
   {
     extends: compat.extends('prettier', 'next/typescript', 'next/core-web-vitals')
   },
-  globalIgnores(['.next/*', '**/node_modules/', '.git/', 'public/', 'next-env.d.ts'])
+  globalIgnores([
+    '.git/',
+    '.husky',
+    '.next/*',
+    'public/',
+    '.github',
+    '*.config.ts',
+    'next-env.d.ts',
+    '**/node_modules/'
+  ])
 ]);
