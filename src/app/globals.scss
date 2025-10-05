@@ -1,10 +1,12 @@
-@use 'tailwindcss';
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --primary: #ff8f00;
   --background: #0a0a0a;
   --foreground: #ededed;
   --blog-title-background: #282c34;
+  --code-block-background: rgb(40, 44, 52);
 }
 
 .light {
@@ -12,6 +14,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --blog-title-background: #f1f5f9;
+  --code-block-background: rgb(40, 44, 52);
 }
 
 body {
@@ -23,24 +26,24 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (max-width: 768px) {
-  .site-top-shadow::after {
-    top: 0;
-    left: 0;
-    opacity: 1;
-    width: 100%;
-    content: '';
-    height: 360px;
-    position: fixed;
-    pointer-events: none;
-    transition-duration: 500ms;
-    background: radial-gradient(
-      circle at 50% -120%,
-      var(--background) 60%,
-      transparent 90%
-    );
-  }
-}
+// @media (max-width: 768px) {
+//   .site-top-shadow::after {
+//     top: 0;
+//     left: 0;
+//     opacity: 1;
+//     width: 100%;
+//     content: '';
+//     height: 360px;
+//     position: fixed;
+//     pointer-events: none;
+//     transition-duration: 500ms;
+//     background: radial-gradient(
+//       circle at 50% -120%,
+//       var(--background) 60%,
+//       transparent 90%
+//     );
+//   }
+// }
 
 button {
   cursor: pointer;

@@ -31,8 +31,8 @@ export function ProjectCard({
           className={clsx(
             'inline-block whitespace-nowrap rounded px-2 py-0 text-sm leading-6 text-white',
             {
-              'bg-green-800': !isPrivate,
-              'dark:bg-red-600/50 bg-red-600': isPrivate
+              'dark:bg-green-800 bg-green-500': !isPrivate,
+              'dark:bg-red-600/50 bg-red-700': isPrivate
             }
           )}
         >

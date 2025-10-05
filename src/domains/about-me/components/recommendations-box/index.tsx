@@ -28,7 +28,7 @@ export function RecommendationsBox() {
                     alt={fullName}
                     src={imageURL}
                     loading="lazy"
-                    className="grayscale hover:grayscale-0 duration-500 rounded-md w-[100px] h-[100px]"
+                    className="dark:grayscale hover:grayscale-0 duration-500 rounded-md w-[100px] h-[100px]"
                   />
                 </Link>
               </Tooltip>

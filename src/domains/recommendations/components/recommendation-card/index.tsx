@@ -28,7 +28,7 @@ export function RecommendationCard({
       id={`item-${data.id}`}
       style={{ animationDelay }}
       className={clsx(
-        'w-full flex flex-col items-start gap-2 bg-white scroll-mt-[100px] p-4 dark:bg-black/50',
+        'w-full flex flex-col items-start gap-2 bg-white/50 scroll-mt-[100px] p-4 dark:bg-black/50',
         animator({ name: 'fadeIn' }),
         styles['recommendation-card']
       )}
@@ -43,7 +43,7 @@ export function RecommendationCard({
               src={imageURL}
               loading="lazy"
               className={clsx(
-                'rounded-md grayscale duration-500',
+                'rounded-md dark:grayscale duration-500',
                 styles['recommendation-card__profile-image']
               )}
             />

@@ -1,6 +1,5 @@
 import { ToastContainer } from 'react-toastify';
 import React, { Suspense } from 'react';
-import clsx from 'clsx';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -90,7 +89,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={clsx('site-top-shadow', textFont.className)}>
+      <body className={textFont.className}>
         <Suspense
           fallback={
             <div className="fixed pointer-events-none top-0 left-0 w-full h-screen" />
