@@ -4,8 +4,8 @@
       transition: filter 500ms;
     }
 
-    &:has(:hover) :not(:hover) {
-      filter: blur(1px);
-    }
+    // &:has(:hover) :not(:hover) {
+    //   filter: blur(1px);
+    // }
   }
 }
