@@ -1,6 +1,8 @@
 'use client';
-import { Icons } from '@/shared/components/icons';
 import { useEffect, useState } from 'react';
+
+import { FEATURE_FLAGS } from '@/shared/constants';
+import { Icons } from '@/shared/components/icons';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
 type Theme = keyof typeof THEMES;
@@ -28,7 +30,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
 
   const buttonText = `Switch to ${theme === THEMES.light ? 'dark' : 'light'} mode`;
 
-  return (
+  return FEATURE_FLAGS.TOGGLE_THEME_BUTTON ? (
     <button
       type="button"
       title={buttonText}
@@ -39,5 +41,5 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
       {isBurgerMenu && buttonText}
       <Icons name={theme === THEMES.light ? 'moon' : 'sun'} />
     </button>
-  );
+  ) : null;
 }
