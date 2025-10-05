@@ -50,12 +50,14 @@ export function ContactForm() {
     try {
       const recaptchaToken = await executeRecaptcha('contact_form_submit');
 
-      sendEmail({
+      const emailResponse = await sendEmail({
         ...getValues(),
         recaptchaToken
-      })
-        .then(() => reset())
-        .finally(() => setLoading(false));
+      });
+
+      if (emailResponse) {
+        reset();
+      }
     } catch {
       notify.error({ message: 'We could not handle your reCAPTCHA element now!' });
     } finally {

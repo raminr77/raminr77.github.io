@@ -2,17 +2,15 @@ import type { Configuration, WebpackPluginInstance } from 'webpack';
 import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const config: NextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
 
-  // Performance optimizations
+  // Performance
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
 
-  // Image optimization
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -22,33 +20,40 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
 
-  // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['react-icons', 'date-fns', 'clsx'],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js'
-        }
-      }
-    }
+    optimizePackageImports: ['react-icons', 'date-fns', 'clsx']
   },
 
-  // Bundle analyzer in development
-  ...(process.env.NEXT_PUBLIC_ANALYZE_MODE === 'true' && {
-    webpack: async (config: Configuration) => {
-      if (process.env.NODE_ENV === 'development') {
-        const { BundleAnalyzerPlugin } = await import('webpack-bundle-analyzer');
-        const analyzer = new BundleAnalyzerPlugin({
-          analyzerMode: 'server',
-          openAnalyzer: true
-        }) as unknown as WebpackPluginInstance;
-        config.plugins?.push(analyzer);
-      }
-      return config;
+  webpack(config: Configuration, { dev }) {
+    config.module = config.module || { rules: [] };
+    config.module.rules = config.module.rules || [];
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            icon: true
+          }
+        }
+      ]
+    });
+
+    if (process.env.NEXT_PUBLIC_ANALYZE_MODE === 'true' && dev) {
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+      const analyzer = new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        openAnalyzer: true
+      }) as unknown as WebpackPluginInstance;
+
+      config.plugins = config.plugins || [];
+      config.plugins.push(analyzer);
     }
-  }),
+
+    return config;
+  },
+
   async headers() {
     return [
       {
@@ -69,28 +74,13 @@ const nextConfig: NextConfig = {
       }
     ];
   },
+
   async redirects() {
     return [
-      {
-        permanent: true,
-        source: '/skills',
-        destination: '/journey'
-      },
-      {
-        permanent: true,
-        source: '/experiences',
-        destination: '/journey'
-      },
-      {
-        permanent: true,
-        source: '/educations',
-        destination: '/journey'
-      },
-      {
-        permanent: true,
-        destination: '/',
-        source: '/resume.pdf'
-      },
+      { permanent: true, source: '/skills', destination: '/journey' },
+      { permanent: true, source: '/experiences', destination: '/journey' },
+      { permanent: true, source: '/educations', destination: '/journey' },
+      { permanent: true, source: '/resume.pdf', destination: '/' },
       {
         permanent: true,
         source: '/random-sex-position',
@@ -103,12 +93,13 @@ const nextConfig: NextConfig = {
       }
     ];
   },
+
   sassOptions: {
     silenceDeprecations: ['legacy-js-api']
   }
 };
 
-export default withSentryConfig(nextConfig, {
+export default withSentryConfig(config, {
   org: 'ramin-zone',
   disableLogger: true,
   silent: !process.env.CI,
@@ -116,5 +107,3 @@ export default withSentryConfig(nextConfig, {
   widenClientFileUpload: true,
   automaticVercelMonitors: true
 });
-
-module.exports = nextConfig;

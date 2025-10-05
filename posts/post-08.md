@@ -90,7 +90,6 @@ const userProfile = getUserProfile();
 - **Comments:** Explain “why” the code exists, not just “what” it does.
 - **Documentation:** Updated and correct, especially for new APIs or modules.
 
-
 ## 3️⃣ Performance & Efficiency
 
 Performance matters in every project.
@@ -113,7 +112,6 @@ const set = new Set(arr);
 - **Resources:** Optimize CPU and memory usage.
 - **Caching:** Reuse results to speed things up where appropriate.
 - **Compatibility:** Works across supported browsers, devices, and platforms.
-
 
 ## 4️⃣ Security & Stability
 

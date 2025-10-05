@@ -74,13 +74,13 @@ export function PostsSearch() {
         <div
           onClick={handleCloseSearch}
           className={clsx(
-            'flex justify-center fixed left-0 right-0 top-0 bottom-0 z-10 bg-black/80 w-full h-full overflow-hidden',
+            'flex justify-center fixed left-0 right-0 top-0 bottom-0 z-10 bg-white/90 dark:bg-black/80 w-full h-full overflow-hidden',
             animator({ name: 'fadeIn', speed: 'faster' })
           )}
         >
           <div
             onClick={(event) => event.stopPropagation()}
-            className="w-full mx-5 p-4 max-w-3xl mt-40 overflow-hidden h-fit bg-white/80 dark:bg-black/80 border border-slate-300/40 relative"
+            className="w-full mx-5 p-4 max-w-3xl mt-40 overflow-hidden h-fit bg-white dark:bg-black border border-slate-500 dark:border-slate-300 relative"
           >
             <button
               type="button"
@@ -100,7 +100,7 @@ export function PostsSearch() {
               label="Search Posts"
               placeholder="Search..."
               onChange={handleSearchChange}
-              className="w-full bg-transparent mb-5 mt-4"
+              className="w-full bg-transparent mb-5 mt-4 placeholder-black dark:placeholder-white"
             />
 
             <ul

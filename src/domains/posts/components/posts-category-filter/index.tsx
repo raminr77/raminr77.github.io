@@ -31,7 +31,7 @@ export function PostsCategoryFilter({
       <select
         value={activeFilters?.category ?? ''}
         onChange={handleCategoryChange}
-        className="h-9 px-3 text-md border text-black appearance-none outline-none cursor-pointer bg-white dark:bg-black duration-300 hover:border-amber-500 dark:text-white dark:border-white"
+        className="h-9 px-3 text-md border text-black appearance-none outline-none cursor-pointer bg-transparent dark:bg-black/90 duration-300 hover:border-amber-500 dark:text-white dark:border-white"
       >
         <option value="">Select a category ...</option>
         {categories.map((item) => (

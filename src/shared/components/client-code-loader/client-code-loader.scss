@@ -15,7 +15,7 @@ pre {
   position: relative;
   border-radius: 8px;
   transition-duration: 500ms;
-  background-color: rgb(40, 44, 52);
+  background-color: var(--code-block-background);
 }
 
 .expand-button-overlay {
@@ -30,7 +30,7 @@ pre {
     position: absolute;
     align-items: flex-end;
     justify-content: center;
-    background: linear-gradient(transparent, rgb(40, 44, 52) 95%);
+    background: linear-gradient(transparent, var(--code-block-background) 95%);
   }
 
   &--collapsed {

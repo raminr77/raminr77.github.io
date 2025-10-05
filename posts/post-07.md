@@ -105,14 +105,14 @@ const { rows: users } = await client.query(`
 
 ## Key Comparison Table
 
-| Aspect                 | Prisma | TypeORM | Direct DB Client |
-|------------------------|--------|---------|------------------|
-| **Performance**        | 8/10 – Strong; small overhead from Rust-based query engine ([details](https://www.prisma.io/docs/orm/prisma-client/performance)) | 9/10 – Very close to raw SQL | 10/10 – Fastest; no ORM overhead |
-| **Type Safety**        | 10/10 – End-to-end compile-time safety | 7/10 – Good for entities, weaker for custom queries | 3/10 – None without extra tooling |
-| **Developer Experience** | 9/10 – Schema-first, Prisma Studio | 7/10 – Familiar ORM patterns | 5/10 – Manual work |
-| **Flexibility**        | 8/10 – Raw SQL escape hatch | 9/10 – Full query builder | 10/10 – Unlimited |
-| **Migrations**         | 9/10 – Prisma Migrate | 8/10 – CLI-based | 5/10 – Manual |
-| **Community Support**  | 9/10 – Fast-growing ([stats](https://npmtrends.com/prisma-vs-typeorm)) | 9/10 – Established | 7/10 – Relies on DB community |
+| Aspect                   | Prisma                                                                                                                           | TypeORM                                             | Direct DB Client                  |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | --------------------------------- |
+| **Performance**          | 8/10 – Strong; small overhead from Rust-based query engine ([details](https://www.prisma.io/docs/orm/prisma-client/performance)) | 9/10 – Very close to raw SQL                        | 10/10 – Fastest; no ORM overhead  |
+| **Type Safety**          | 10/10 – End-to-end compile-time safety                                                                                           | 7/10 – Good for entities, weaker for custom queries | 3/10 – None without extra tooling |
+| **Developer Experience** | 9/10 – Schema-first, Prisma Studio                                                                                               | 7/10 – Familiar ORM patterns                        | 5/10 – Manual work                |
+| **Flexibility**          | 8/10 – Raw SQL escape hatch                                                                                                      | 9/10 – Full query builder                           | 10/10 – Unlimited                 |
+| **Migrations**           | 9/10 – Prisma Migrate                                                                                                            | 8/10 – CLI-based                                    | 5/10 – Manual                     |
+| **Community Support**    | 9/10 – Fast-growing ([stats](https://npmtrends.com/prisma-vs-typeorm))                                                           | 9/10 – Established                                  | 7/10 – Relies on DB community     |
 
 ## When to Choose What
 

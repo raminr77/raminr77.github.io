@@ -83,7 +83,7 @@ export const ABOUT_ME_DATA: {
       type: ABOUT_ME_CONTENT_TYPE.image,
       url: '/images/personal-images/boozt.jpg',
       tooltip: 'Last Day in Boozt Company - 2025',
-      title: 'Ramin Rezaei - Last week in Boozt Company - Senior Software Engineer',
+      title: 'Ramin Rezaei - Last week in Boozt Company - Senior Software Engineer'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.component,

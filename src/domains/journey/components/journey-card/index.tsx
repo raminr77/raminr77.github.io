@@ -96,7 +96,9 @@ export function JourneyCard({
           {items && (
             <ul className="ml-4 mt-2 list-disc leading-8">
               {items.map((item: string, index: number) => (
-                <li key={index}>{item}</li>
+                <li key={index}>
+                  <div dangerouslySetInnerHTML={{ __html: item }} />
+                </li>
               ))}
             </ul>
           )}

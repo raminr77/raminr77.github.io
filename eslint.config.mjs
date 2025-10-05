@@ -1,5 +1,5 @@
+import { defineConfig, globalIgnores } from 'eslint/config';
 import { FlatCompat } from '@eslint/eslintrc';
-import { defineConfig } from 'eslint/config';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import js from '@eslint/js';
@@ -15,5 +15,15 @@ const compat = new FlatCompat({
 export default defineConfig([
   {
     extends: compat.extends('prettier', 'next/typescript', 'next/core-web-vitals')
-  }
+  },
+  globalIgnores([
+    '.git/',
+    '.husky',
+    '.next/*',
+    'public/',
+    '.github',
+    '*.config.ts',
+    'next-env.d.ts',
+    '**/node_modules/'
+  ])
 ]);

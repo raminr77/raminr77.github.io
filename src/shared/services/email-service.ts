@@ -9,11 +9,11 @@ type requestData = {
   recaptchaToken: string;
 };
 
-export const sendEmail = (data: requestData) => {
+export const sendEmail = (data: requestData): Promise<boolean> => {
   return new Promise(async (resolve, reject) => {
     if (!data.recaptchaToken) {
       notify.error({ message: 'Missing reCAPTCHA token.' });
-      reject();
+      reject(false);
     }
 
     const isValidReCaptcha = await isValidGoogleReCaptcha({ token: data.recaptchaToken });
@@ -33,20 +33,20 @@ export const sendEmail = (data: requestData) => {
             notify.success({
               message: response.message || 'Your message has been sent successfully.'
             });
-            resolve(response);
+            resolve(response.success);
           } else {
             notify.error({
               message: response.message || 'We could not send your message now!'
             });
-            reject();
+            reject(false);
           }
         })
         .catch(() => {
           notify.error({ message: 'We could not send your message now!' });
-          reject();
+          reject(false);
         });
     } else {
-      reject();
+      reject(false);
     }
   });
 };
