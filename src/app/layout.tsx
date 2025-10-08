@@ -1,5 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import React, { Suspense } from 'react';
+import Image from 'next/image';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -18,11 +19,6 @@ const CustomCursor = React.lazy(() =>
 );
 const Header = React.lazy(() =>
   import('@/layout/components/header').then((module) => ({ default: module.Header }))
-);
-const BackgroundImage = React.lazy(() =>
-  import('@/layout/components/background-image').then((module) => ({
-    default: module.BackgroundImage
-  }))
 );
 const PerformanceMonitor = React.lazy(() =>
   import('@/shared/components/performance-monitor').then((module) => ({
@@ -90,13 +86,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={textFont.className}>
-        <Suspense
-          fallback={
-            <div className="fixed pointer-events-none top-0 left-0 w-full h-screen" />
-          }
-        >
-          <BackgroundImage />
-        </Suspense>
+        <Image
+          alt=""
+          width={830}
+          height={830}
+          quality={20}
+          loading="lazy"
+          fetchPriority="high"
+          src="/images/background.png"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="shine-animation-top blur-sm fixed top-0 left-0 pointer-events-none"
+        />
 
         <Suspense fallback={<div className="cursor-default" />}>
           <CustomCursor />
