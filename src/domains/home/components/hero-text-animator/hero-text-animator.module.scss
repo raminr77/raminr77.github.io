@@ -1,7 +1,7 @@
 .hero-text-animator {
   &__character {
     &:last-child {
-      color: var(--background);
+      color: transparent;
     }
     &:before {
       top: 0;

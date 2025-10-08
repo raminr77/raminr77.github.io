@@ -7,9 +7,11 @@ const config: NextConfig = {
   reactStrictMode: true,
 
   // Performance
+  swcMinify: true,
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
+  productionBrowserSourceMaps: true,
 
   images: {
     formats: ['image/avif', 'image/webp'],

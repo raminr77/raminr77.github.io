@@ -22,6 +22,7 @@ import { PostTags } from './components/post-tags';
 import { PostDate } from './components/post-date';
 
 import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
+import { PERSONAL_DATA } from '@/data';
 
 import styles from './post-detail-page.module.scss';
 
@@ -34,7 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post: Post | null = getPostContent(Number(postId));
 
   return {
-    title: post?.title ?? 'Post Not Found'
+    title: post?.title ?? 'Post Not Found',
+    description: post?.description ?? PERSONAL_DATA.pageDescription
   };
 }
 
