@@ -32,19 +32,19 @@ export function PostCard({
   return (
     <div
       className={clsx(
-        'flex flex-col bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 justify-between border border-slate-300/40',
+        'group flex flex-col bg-transparent p-4 shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 justify-between border border-slate-300/40 overflow-hidden',
         !disabledAnimation && animator({ name: 'fadeIn' }),
         styles['post-card']
       )}
       style={{ animationDelay: `${animationDelay}s` }}
     >
       {/* 
-      TODO: Post Cover
+      TODO: Thinking about Post cover :D
       <img
         alt={title}
         src="/images/screenshot-02.png"
-        className='w-full h-full absolute top-1/2 left-1/2 -translate-1/2 z-20 duration-300 opacity-100 object-cover'
-      />
+        className="w-full h-full absolute opacity-0 -top-1/2 group-hover:top-1/2 left-1/2 -translate-1/2 z-20 duration-500 group-hover:opacity-100 object-cover"
+      /> 
       */}
 
       <div className="flex flex-col gap-2 z-10">
