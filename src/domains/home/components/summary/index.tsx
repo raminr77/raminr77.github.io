@@ -2,7 +2,8 @@ import Link from 'next/link';
 
 import { clsx } from 'clsx';
 
-import { ROUTES } from '@/shared/constants';
+import { sendGTMEvent } from '@next/third-parties/google';
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { PERSONAL_DATA } from '@/data';
 
@@ -26,7 +27,11 @@ export function Summary() {
         dangerouslySetInnerHTML={{ __html: PERSONAL_DATA.shortSummary }}
       />
 
-      <Link href={ROUTES.ABOUT_ME} className="border-b px-3 pb-1 duration-200 hover:px-5">
+      <Link
+        href={ROUTES.ABOUT_ME}
+        className="border-b px-3 pb-1 duration-200 hover:px-5"
+        onClick={() => sendGTMEvent(GTM_EVENTS.MORE_ABOUT_ME)}
+      >
         More About {PERSONAL_DATA.firstName}
       </Link>
     </div>

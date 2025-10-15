@@ -10,7 +10,7 @@ import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ContentContainer } from '@/layout/components/content-container';
 import { PostCard } from '@/domains/posts/components/post-card';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
-import { ROUTES } from '@/shared/constants';
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
@@ -24,6 +24,7 @@ import { PostDate } from './components/post-date';
 import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
 import { PERSONAL_DATA } from '@/data';
 
+import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './post-detail-page.module.scss';
 
 interface Props {
@@ -110,6 +111,7 @@ export async function PostDetailPage({ params }: Props) {
       <div className="my-10 flex items-center justify-between border-t border-slate-300/40 pt-4">
         <Link
           href={ROUTES.POSTS}
+          onClick={() => sendGTMEvent(GTM_EVENTS.POST_CARD('Back to Post List Page'))}
           className="border-b border-amber-500 px-4 pb-1 duration-300 hover:text-amber-500"
         >
           Back To All Posts

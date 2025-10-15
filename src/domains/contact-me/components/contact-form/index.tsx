@@ -46,7 +46,6 @@ export function ContactForm() {
       return;
     }
     setLoading(true);
-    sendGTMEvent(GTM_EVENTS.SEND_MESSAGE);
     try {
       const recaptchaToken = await executeRecaptcha('contact_form_submit');
 
@@ -56,9 +55,11 @@ export function ContactForm() {
       });
 
       if (emailResponse) {
+        sendGTMEvent(GTM_EVENTS.SEND_MESSAGE('success'));
         reset();
       }
     } catch {
+      sendGTMEvent(GTM_EVENTS.SEND_MESSAGE('error'));
       notify.error({ message: 'We could not handle your reCAPTCHA element now!' });
     } finally {
       setLoading(false);

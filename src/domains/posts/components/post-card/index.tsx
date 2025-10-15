@@ -4,13 +4,14 @@ import { clsx } from 'clsx';
 
 import { PostTags } from '@/domains/posts/components/post-tags';
 import type { PostMetadata } from '@/shared/types/post';
-import { ROUTES } from '@/shared/constants';
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
 import { PostCategory } from '../post-category';
 import { PostDate } from '../post-date';
 
+import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './post-card.module.scss';
 
 export function PostCard({
@@ -50,6 +51,7 @@ export function PostCard({
       <div className="flex flex-col gap-2 z-10">
         <Link
           href={postDetailUrl}
+          onClick={() => sendGTMEvent(GTM_EVENTS.POST_CARD(`Title: ${title}`))}
           className={clsx('text-lg font-bold text-amber-500', titleFont.className)}
         >
           {title}
@@ -67,7 +69,11 @@ export function PostCard({
 
         <div className="flex select-none items-center justify-between">
           <PostDate date={date} />
-          <Link href={postDetailUrl} className="text-amber-500">
+          <Link
+            href={postDetailUrl}
+            className="text-amber-500"
+            onClick={() => sendGTMEvent(GTM_EVENTS.POST_CARD(`Read More: ${title}`))}
+          >
             [ Read More ]
           </Link>
         </div>

@@ -27,6 +27,7 @@ export function PostsSearch() {
 
   const handleCloseSearch = () => {
     setShowSearch(false);
+    sendGTMEvent(GTM_EVENTS.CLOSE_SEACH_MODAL);
   };
   const handleOpenSearch = () => {
     setShowSearch(true);
@@ -46,7 +47,7 @@ export function PostsSearch() {
     }
 
     setLoading(true);
-    sendGTMEvent(GTM_EVENTS.SUBMIT_POST_SEARCH);
+    sendGTMEvent(GTM_EVENTS.SUBMIT_POST_SEARCH(trimmedValue));
     searchPosts(trimmedValue)
       .then((result) => {
         setPosts((result as PostMetadata[]) ?? []);
