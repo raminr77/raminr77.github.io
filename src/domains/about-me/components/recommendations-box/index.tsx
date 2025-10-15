@@ -1,10 +1,12 @@
+'use client';
 import {
   RECOMMENDATIONS,
   RECOMMENDATION_PAGE_DATA,
   type RecommendationItem
 } from '@/data';
+import { sendGTMEvent } from '@next/third-parties/google';
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { Tooltip } from '@/shared/components/tooltip';
-import { ROUTES } from '@/shared/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -21,7 +23,14 @@ export function RecommendationsBox() {
           ({ id, fullName, imageURL }: RecommendationItem) =>
             imageURL && (
               <Tooltip key={id} text={fullName}>
-                <Link href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}>
+                <Link
+                  href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}
+                  onClick={() =>
+                    sendGTMEvent(
+                      GTM_EVENTS.CHECK_RECOMMENDATION(`Check - ${fullName} Avatar`)
+                    )
+                  }
+                >
                   <Image
                     width={100}
                     height={100}
@@ -38,6 +47,7 @@ export function RecommendationsBox() {
 
       <Link
         href={ROUTES.RECOMMENDATIONS}
+        onClick={() => sendGTMEvent(GTM_EVENTS.CHECK_RECOMMENDATION('See All Action'))}
         className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 my-5"
       >
         See all recommendations

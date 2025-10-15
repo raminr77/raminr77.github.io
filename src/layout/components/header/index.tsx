@@ -6,12 +6,13 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
+import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { animator, pageTitleGenerator } from '@/shared/helpers';
-import { MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { BurgerMenu } from '@/layout/components/burger-menu';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
+import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './header.module.scss';
 
 export function Header() {
@@ -61,6 +62,7 @@ export function Header() {
             >
               <Link
                 href={url}
+                onClick={() => sendGTMEvent(GTM_EVENTS.MENU(title))}
                 className="border-b border-transparent bg-transparent px-4 py-3 duration-200 hover:border-orange-500"
               >
                 {title}

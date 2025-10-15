@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { ContentContainer } from '@/layout/components/content-container';
+import { sendGTMEvent } from '@next/third-parties/google';
 import { ContactForm } from './components/contact-form';
+import { ENV, GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { ENV } from '@/shared/constants';
 import { CONTACT_ME_DATA } from '@/data';
 
 const GOOGLE_RECAPTCHA_ELEMENT_ID = 'g-recaptcha-container';
@@ -38,6 +39,7 @@ export function ContactMePage() {
             )}
           >
             <Link
+              onClick={() => sendGTMEvent(GTM_EVENTS.GOOGLE_CALENDAR)}
               href={CONTACT_ME_DATA.googleCalendar}
               className="text-amber-500"
               target="_blank"
@@ -46,6 +48,7 @@ export function ContactMePage() {
             </Link>
             <span>|</span>
             <Link
+              onClick={() => sendGTMEvent(GTM_EVENTS.ADP_CALENDAR)}
               href={CONTACT_ME_DATA.mentorCalendar}
               className="text-amber-500"
               target="_blank"
@@ -71,6 +74,7 @@ export function ContactMePage() {
               <Link
                 href={url}
                 target="_blank"
+                onClick={() => sendGTMEvent(GTM_EVENTS.CONTACT_LINK(actionLabel))}
                 className={clsx('text-md whitespace-nowrap text-amber-500', {
                   'pointer-events-none': !url
                 })}

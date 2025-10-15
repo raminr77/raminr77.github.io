@@ -1,10 +1,10 @@
 import Markdown, { RuleType } from 'markdown-to-jsx';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { clsx } from 'clsx';
 import React from 'react';
 
+import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
 import { ClientCodeLoader } from '@/shared/components/client-code-loader';
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ContentContainer } from '@/layout/components/content-container';
@@ -13,16 +13,15 @@ import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
+import { PERSONAL_DATA } from '@/data';
 
+import { BackToPostButton } from './components/back-to-posts-button';
 import { PostReadTime } from './components/post-read-time';
 import { PostCategory } from './components/post-category';
 import { PostAuthor } from './components/post-author';
 import { PostShare } from './components/post-share';
 import { PostTags } from './components/post-tags';
 import { PostDate } from './components/post-date';
-
-import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
-import { PERSONAL_DATA } from '@/data';
 
 import styles from './post-detail-page.module.scss';
 
@@ -108,12 +107,7 @@ export async function PostDetailPage({ params }: Props) {
       <PostTags postId={post.id} tags={post.tags} />
 
       <div className="my-10 flex items-center justify-between border-t border-slate-300/40 pt-4">
-        <Link
-          href={ROUTES.POSTS}
-          className="border-b border-amber-500 px-4 pb-1 duration-300 hover:text-amber-500"
-        >
-          Back To All Posts
-        </Link>
+        <BackToPostButton />
         <PostDate date={post.date} />
       </div>
 

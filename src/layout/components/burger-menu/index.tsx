@@ -8,11 +8,12 @@ import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
-import { MENU_ITEM_ROUTES } from '@/shared/constants';
+import { GTM_EVENTS, MENU_ITEM_ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
 import { BurgerMenuToolsAnimation } from './burger-menu-tools-animation';
+import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './burger-menu.module.scss';
 
 const MENU_OUT_ANIMATION_CLASSES: string[] = animator({
@@ -44,6 +45,8 @@ export function BurgerMenu() {
   };
 
   const handleToggle = () => {
+    sendGTMEvent(GTM_EVENTS.MENU(`TOGGLE BURGER MENU: ${!isActive}`));
+
     if (isActive) {
       handleClose();
       return;
@@ -80,6 +83,7 @@ export function BurgerMenu() {
                   animator({ name: 'fadeInLeft', speed: 'fast' }),
                   'relative w-4/5 text-left text-4xl font-bold tracking-widest duration-200 lg:text-6xl'
                 )}
+                onClick={() => sendGTMEvent(GTM_EVENTS.MENU(`BURGER: ${title}`))}
               >
                 {title.toUpperCase()}
               </Link>

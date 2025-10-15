@@ -1,11 +1,16 @@
 'use client';
 
+import { sendGTMEvent } from '@next/third-parties/google';
 import { Icons } from '@/shared/components/icons';
+import { GTM_EVENTS } from '@/shared/constants';
 import { notify } from '@/shared/helpers';
 
 export function PostShare({ postId }: { postId: number }) {
   const handleCopyShareLink = () => {
     const shareLink = `${window.location.origin}/posts/${postId}/`;
+
+    sendGTMEvent(GTM_EVENTS.POST_CARD(`Shared: ${postId}`));
+
     navigator.clipboard
       .writeText(shareLink)
       .then(() => {

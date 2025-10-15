@@ -10,7 +10,9 @@ import { JourneyItem } from '@/data/journey';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 
+import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './journey-card.module.scss';
+import { GTM_EVENTS } from '@/shared/constants';
 
 const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
   ssr: false
@@ -76,6 +78,7 @@ export function JourneyCard({
                 TITLE_CLASSES,
                 'flex items-center gap-2 hover:text-amber-500 flex-wrap'
               )}
+              onClick={() => sendGTMEvent(GTM_EVENTS.CHECK_EXPERIENCE(title))}
             >
               <span>{title}</span>
               <Icons name="share" />

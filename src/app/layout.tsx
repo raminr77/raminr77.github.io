@@ -1,11 +1,11 @@
 import { ToastContainer } from 'react-toastify';
 import React, { Suspense } from 'react';
+import type { Metadata } from 'next';
+import Script from 'next/script';
 import Image from 'next/image';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from 'next';
-import Script from 'next/script';
 
 import { ENV } from '@/shared/constants';
 import { textFont } from '@/app/fonts';
@@ -58,9 +58,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(PERSONAL_DATA.url),
   alternates: {
     canonical: '/'
-    // languages: {
-    //   'en-US': '/en',
-    // },
   },
   openGraph: {
     type: 'website',
@@ -107,8 +104,6 @@ export default function RootLayout({
         </Suspense>
 
         {children}
-
-        {/* <AiButton /> */}
 
         <ToastContainer
           limit={4}

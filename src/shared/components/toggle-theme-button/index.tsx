@@ -1,11 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import { FEATURE_FLAGS } from '@/shared/constants';
+import { FEATURE_FLAGS, GTM_EVENTS } from '@/shared/constants';
+import { sendGTMEvent } from '@next/third-parties/google';
 import { Icons } from '@/shared/components/icons';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
-type Theme = keyof typeof THEMES;
+export type Theme = keyof typeof THEMES;
 
 export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boolean }) {
   const [theme, setTheme] = useState<Theme>(THEMES.dark);
@@ -25,6 +26,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
 
   const handleThemeChange = () => {
     const newTheme = theme === THEMES.light ? THEMES.dark : THEMES.light;
+    sendGTMEvent(GTM_EVENTS.TOGGLE_THEME(newTheme));
     setTheme(newTheme);
   };
 
