@@ -12,6 +12,7 @@ import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import { PostsCategoryFilter } from './components/posts-category-filter';
+import { EmptyPostBlock } from './components/empty-post-block';
 import { PostsSearch } from './components/posts-search';
 
 interface PostListPageProps {
@@ -40,22 +41,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
       </h1>
 
       {posts.length === 0 ? (
-        <div
-          className={clsx(
-            'flex items-center flex-col gap-2 justify-center w-full mt-10',
-            animator({ name: 'bounceInUp' })
-          )}
-        >
-          <p className={clsx('text-center text-xl font-bold', titleFont.className)}>
-            No posts found.
-          </p>
-          <p>There are no posts that match your search or filters.</p>
-          {!!filters && (
-            <Link className="text-amber-500 mt-3" href={ROUTES.POSTS}>
-              Clear Your Filter
-            </Link>
-          )}
-        </div>
+        <EmptyPostBlock hasFilter={!!filters} />
       ) : (
         <div className="flex items-center justify-between flex-wrap gap-4">
           <PostsCategoryFilter activeFilters={filters} categories={categories} />
