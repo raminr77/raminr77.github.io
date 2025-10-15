@@ -9,8 +9,8 @@ const config: NextConfig = {
   // Performance
   swcMinify: true,
   compress: true,
-  poweredByHeader: false,
   generateEtags: true,
+  poweredByHeader: false,
   productionBrowserSourceMaps: true,
 
   images: {
@@ -23,7 +23,12 @@ const config: NextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ['date-fns', 'clsx']
+    optimizePackageImports: [
+      'require-in-the-middle',
+      'import-in-the-middle',
+      'date-fns',
+      'clsx'
+    ]
   },
 
   webpack(config: Configuration, { dev }) {
