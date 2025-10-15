@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",

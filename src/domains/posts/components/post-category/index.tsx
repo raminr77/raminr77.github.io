@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 
 import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';

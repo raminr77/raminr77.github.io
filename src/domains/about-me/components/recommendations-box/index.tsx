@@ -1,3 +1,4 @@
+'use client';
 import {
   RECOMMENDATIONS,
   RECOMMENDATION_PAGE_DATA,
