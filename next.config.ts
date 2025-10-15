@@ -23,7 +23,7 @@ const config: NextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ['react-icons', 'date-fns', 'clsx']
+    optimizePackageImports: ['date-fns', 'clsx']
   },
 
   webpack(config: Configuration, { dev }) {
