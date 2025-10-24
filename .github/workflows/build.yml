@@ -18,22 +18,25 @@ jobs:
       contents: read
       security-events: write
     env:
-      NEXT_TELEMETRY_DISABLED: '1'
-      SENTRY_SKIP_UPLOAD: '1'
+      NEXT_TELEMETRY_DISABLED: "1"
+      SENTRY_SKIP_UPLOAD: "1"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        name: Setup pnpm
+        with:
+          version: 10
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
           cache-dependency-path: pnpm-lock.yaml
-
-      - name: Enable Corepack
-        run: corepack enable
 
       - name: Restore Next.js cache
         uses: actions/cache@v4
