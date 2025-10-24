@@ -9,11 +9,17 @@ type requestData = {
   recaptchaToken: string;
 };
 
+interface SendEmailResponse {
+  success: boolean;
+  message: string;
+}
+
 export const sendEmail = (data: requestData): Promise<boolean> => {
+  // eslint-disable-next-line no-async-promise-executor, @typescript-eslint/no-misused-promises
   return new Promise(async (resolve, reject) => {
     if (!data.recaptchaToken) {
       notify.error({ message: 'Missing reCAPTCHA token.' });
-      reject(false);
+      reject(new Error('Missing reCAPTCHA token.'));
     }
 
     const isValidReCaptcha = await isValidGoogleReCaptcha({ token: data.recaptchaToken });
@@ -28,7 +34,7 @@ export const sendEmail = (data: requestData): Promise<boolean> => {
         body: JSON.stringify(data)
       })
         .then((rawResponse) => rawResponse.json())
-        .then((response) => {
+        .then((response: SendEmailResponse) => {
           if (response.success) {
             notify.success({
               message: response.message || 'Your message has been sent successfully.'
@@ -38,15 +44,15 @@ export const sendEmail = (data: requestData): Promise<boolean> => {
             notify.error({
               message: response.message || 'We could not send your message now!'
             });
-            reject(false);
+            reject(new Error('We could not send your message now!'));
           }
         })
         .catch(() => {
           notify.error({ message: 'We could not send your message now!' });
-          reject(false);
+          reject(new Error('We could not send your message now!'));
         });
     } else {
-      reject(false);
+      reject(new Error('Your reCAPTCHA verification failed.'));
     }
   });
 };

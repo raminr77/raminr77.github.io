@@ -24,7 +24,8 @@ export function getPosts(
   const postsMetadata = posts
     .map((file) => {
       const fileContent = fs.readFileSync(`${POSTT_FOLTER_PATH}/${file}`, 'utf-8');
-      const { data } = matter(fileContent);
+      const matterData = matter(fileContent);
+      const data = matterData.data as PostMetadata;
 
       if (data.category) {
         categories[data.category] = true;

@@ -3,9 +3,9 @@ import { useEffect, useState, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { sendGTMEvent } from 'node_modules/@next/third-parties/dist/google/gtm';
 import { TextInput } from '@/shared/components/text-input';
 import { useDebounce } from '@/shared/hooks/use-debounce';
+import { sendGTMEvent } from '@next/third-parties/google';
 import type { PostMetadata } from '@/shared/types/post';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { Icons } from '@/shared/components/icons';
@@ -38,7 +38,7 @@ export function PostsSearch() {
     setSearchValue(target.value);
   };
 
-  const handleSubmit = async (value: string) => {
+  const handleSubmit = (value: string) => {
     const trimmedValue = value.trim();
 
     if (trimmedValue === '') {
@@ -51,6 +51,9 @@ export function PostsSearch() {
     searchPosts(trimmedValue)
       .then((result) => {
         setPosts((result as PostMetadata[]) ?? []);
+      })
+      .catch(() => {
+        setPosts([]);
       })
       .finally(() => setLoading(false));
   };

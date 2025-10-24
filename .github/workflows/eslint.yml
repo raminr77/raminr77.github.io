@@ -2,7 +2,7 @@ name: ESLint Check
 
 on:
   push:
-    branches: ['master', 'dev']
+    branches: ["master", "dev"]
   workflow_dispatch:
 
 concurrency:
@@ -21,25 +21,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        name: Setup pnpm
+        with:
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-          cache-dependency-path: |
-            package-lock.json
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Ensure ESLint + SARIF formatter
-        run: npm i -D eslint @microsoft/eslint-formatter-sarif
+        run: pnpm install --frozen-lockfile
 
       - name: Run ESLint (produce SARIF)
         env:
-          SARIF_ESLINT_IGNORE_SUPPRESSED: 'true'
+          SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          npx eslint . \
+          pnpm exec eslint . \
             --ext .js,.jsx,.ts,.tsx \
             --cache --cache-location .eslintcache \
             --format @microsoft/eslint-formatter-sarif \
@@ -51,9 +52,10 @@ jobs:
         with:
           sarif_file: eslint-results.sarif
           wait-for-processing: true
+
       - name: Fail build on warnings (PR only)
         if: github.event_name == 'pull_request'
         run: |
-          npx eslint . \
+          pnpm exec eslint . \
             --ext .js,.jsx,.ts,.tsx \
             --max-warnings=0

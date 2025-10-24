@@ -75,6 +75,7 @@ export function ContactForm() {
           'pointer-events-none': loading
         }
       )}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSubmit={handleSubmit(onSubmit)}
     >
       <TextInput

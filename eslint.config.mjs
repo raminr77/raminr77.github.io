@@ -1,29 +1,40 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
-import { FlatCompat } from '@eslint/eslintrc';
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
+import nextPlugin from '@next/eslint-plugin-next';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 import js from '@eslint/js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-});
-
-export default defineConfig([
+export default defineConfig(
   {
-    extends: compat.extends('prettier', 'next/typescript', 'next/core-web-vitals')
+    ignores: [
+      '.git/',
+      '.husky/',
+      '.next/',
+      'public/',
+      '.github/',
+      'next-env.d.ts',
+      '**/node_modules/',
+      '*.config.ts'
+    ]
   },
-  globalIgnores([
-    '.git/',
-    '.husky',
-    '.next/*',
-    'public/',
-    '.github',
-    '*.config.ts',
-    'next-env.d.ts',
-    '**/node_modules/'
-  ])
-]);
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  nextPlugin.configs['core-web-vitals'],
+  ...tseslint.configs.recommendedTypeChecked,
+  {
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.json'],
+        tsconfigRootDir: import.meta.dirname
+      }
+    }
+  },
+  {
+    rules: {},
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module'
+      }
+    }
+  }
+);

@@ -7,7 +7,6 @@ const config: NextConfig = {
   reactStrictMode: true,
 
   // Performance
-  swcMinify: true,
   compress: true,
   generateEtags: true,
   poweredByHeader: false,
