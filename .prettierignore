@@ -1,5 +1,9 @@
 *.svg
 *.png
 *.jpg
+*.d.ts
+.next/
+node_modules/
+pnpm-lock.yaml
 /src/**/*.html
 /src/**/*.webmanifest

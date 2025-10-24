@@ -2,7 +2,7 @@ name: TypeScript Check
 
 on:
   push:
-    branches: ["master", "dev"]
+    branches: ['master', 'dev']
   workflow_dispatch:
 
 concurrency:
@@ -24,13 +24,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"
-          cache: "pnpm"
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
