@@ -1,6 +1,12 @@
 import { ENDPOINTS } from '@/shared/api/constants';
 import { notify } from '@/shared/helpers';
 
+interface ReCaptchaResponse {
+  score?: number;
+  success: boolean;
+  message?: string;
+}
+
 export const isValidGoogleReCaptcha = ({
   token
 }: {
@@ -17,22 +23,22 @@ export const isValidGoogleReCaptcha = ({
       }
     })
       .then((rawResponse) => rawResponse.json())
-      .then((response) => {
+      .then((response: ReCaptchaResponse) => {
         if (response.success) {
           resolve(true);
         } else {
           notify.error({
             message:
-              response.message || 'Error: We could verify your reCAPTCHA token now!'
+              response.message ?? 'Error: We could verify your reCAPTCHA token now!'
           });
-          reject(false);
+          reject(new Error('We could not handle your request now!'));
         }
       })
-      .catch((error) => {
+      .catch((error: { message?: string }) => {
         notify.error({
-          message: error.message || "Error: We couldn't handle your reCAPTCHA now!"
+          message: error.message ?? "Error: We couldn't handle your reCAPTCHA now!"
         });
-        reject(false);
+        reject(new Error('We could not handle your request now!'));
       });
   });
 };

@@ -88,7 +88,7 @@ export function ContactMePage() {
 
       <GoogleReCaptchaProvider
         scriptProps={{ async: true, defer: true }}
-        reCaptchaKey={ENV.GOOGLE_RECAPTCHA_SITE_KEY!}
+        reCaptchaKey={ENV.GOOGLE_RECAPTCHA_SITE_KEY}
         container={{
           element: GOOGLE_RECAPTCHA_ELEMENT_ID,
           parameters: { badge: 'bottomright' }

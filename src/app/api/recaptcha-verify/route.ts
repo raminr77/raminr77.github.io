@@ -1,9 +1,15 @@
 import { ENDPOINTS } from '@/shared/api/constants';
 import { ENV } from '@/shared/constants';
 
+interface GoogleResponse {
+  score?: number;
+  action?: string;
+  success: boolean;
+}
+
 export async function POST(request: Request) {
   try {
-    const { token } = await request.json();
+    const { token } = (await request.json()) as { token: string };
 
     if (!ENV.GOOGLE_RECAPTCHA_SECRET_KEY) {
       return Response.json({
@@ -28,7 +34,7 @@ export async function POST(request: Request) {
       cache: 'no-store'
     });
 
-    const googleResponse = await googleRequest.json();
+    const googleResponse = (await googleRequest.json()) as GoogleResponse;
 
     if (!googleResponse.success) {
       return Response.json({

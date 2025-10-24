@@ -32,7 +32,9 @@ export default function PixelCanvas({
   const isClient = useIsClient();
 
   if (isClient) {
-    import('../../libs/pixel-canvas');
+    import('../../libs/pixel-canvas').catch(() => {
+      console.error('Failed to load pixel-canvas');
+    });
   }
 
   return (

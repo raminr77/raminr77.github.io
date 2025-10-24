@@ -1,6 +1,6 @@
 import { getPosts, type Posts } from '@/shared/helpers/posts/get-posts';
 
-export async function GET(request: Request) {
+export function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const query: string = searchParams.get('q') || '';

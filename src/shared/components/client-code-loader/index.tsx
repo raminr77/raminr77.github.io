@@ -52,15 +52,21 @@ export function ClientCodeLoader() {
       containerElement.append(expandButton);
     });
 
-    import('../../../../public/highlight.min.js').then((hljs) => {
-      hljs.addPlugin(
-        new CopyButtonPlugin({
-          autohide: false,
-          callback: () => notify.success({ message: 'Copied to clipboard.' })
-        })
-      );
-      hljs.highlightAll();
-    });
+    import('../../../../public/highlight.min.js')
+      .then(
+        (hljs: { addPlugin: (plugin: unknown) => void; highlightAll: () => void }) => {
+          hljs.addPlugin(
+            new CopyButtonPlugin({
+              autohide: false,
+              callback: () => notify.success({ message: 'Copied to clipboard.' })
+            })
+          );
+          hljs.highlightAll();
+        }
+      )
+      .catch(() => {
+        console.error('Failed to load highlight.js');
+      });
   }, []);
 
   return null;

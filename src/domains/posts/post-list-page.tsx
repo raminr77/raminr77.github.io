@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { ContentContainer } from '@/layout/components/content-container';
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
 import { PostCard } from '@/domains/posts/components/post-card';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
-import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';

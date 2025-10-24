@@ -21,7 +21,7 @@ const FAKE_DATA = [
   { id: 10, name: 'Hannah Montana', age: 21 }
 ];
 
-export async function GET() {
+export function GET() {
   return new Response(
     JSON.stringify({
       success: true,
@@ -36,7 +36,10 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const { username, password } = await request.json();
+  const { username, password } = (await request.json()) as {
+    username: string;
+    password: string;
+  };
   if (username !== 'admin' || password !== 'admin') {
     return new Response(JSON.stringify({ success: false, message: 'Invalid request' }), {
       status: 400,
