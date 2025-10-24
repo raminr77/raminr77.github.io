@@ -3,6 +3,7 @@ import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
 const config: NextConfig = {
+  reactCompiler: true,
   trailingSlash: true,
   reactStrictMode: true,
 
