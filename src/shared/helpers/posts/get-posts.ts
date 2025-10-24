@@ -13,11 +13,11 @@ export type Posts = {
 };
 
 // ONLY FOR SERVER SIDE
+// TODO: Optimize with caching mechanism
 export function getPosts(
   filters: PostFilters | null = null,
   searchValue: string | null = null
 ): Posts {
-  'use cache';
   const files = fs.readdirSync(POSTT_FOLTER_PATH);
   const posts = files.filter((file) => file.endsWith('.md'));
 
