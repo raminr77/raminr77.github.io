@@ -3,6 +3,9 @@ import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
 const config: NextConfig = {
+  // reactCompiler: true,
+  // cacheComponents: true,
+
   trailingSlash: true,
   reactStrictMode: true,
 

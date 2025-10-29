@@ -13,6 +13,7 @@ export type Posts = {
 };
 
 // ONLY FOR SERVER SIDE
+// TODO: Optimize with caching mechanism
 export function getPosts(
   filters: PostFilters | null = null,
   searchValue: string | null = null

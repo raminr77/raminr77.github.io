@@ -82,17 +82,21 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <title>{`${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`}</title>
+        <meta name="description" content={PERSONAL_DATA.pageDescription} />
+      </head>
       <body className={textFont.className}>
         <Image
           alt=""
           width={830}
           height={830}
-          quality={20}
-          loading="lazy"
+          quality={50}
+          draggable={false}
           fetchPriority="high"
           src="/images/background.png"
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="shine-animation-top blur-sm fixed top-0 left-0 pointer-events-none"
+          className="shine-animation-top fixed top-0 left-0 pointer-events-none"
         />
 
         <Suspense fallback={<div className="cursor-default" />}>
