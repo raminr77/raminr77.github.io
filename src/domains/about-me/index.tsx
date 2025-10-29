@@ -19,8 +19,9 @@ import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import { RecommendationsBox } from './components/recommendations-box';
-import styles from './about-me.module.scss';
 import { renderContent } from './helper';
+
+import styles from './about-me.module.scss';
 
 const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
   ssr: false

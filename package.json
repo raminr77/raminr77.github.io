@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/third-parties": "^16.0.0",
+    "@next/third-parties": "^16.0.1",
     "@sentry/nextjs": "^10.22.0",
     "@vercel/speed-insights": "^1.2.0",
     "animate.css": "^4.1.1",
@@ -27,9 +27,9 @@
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "gsap": "^3.13.0",
-    "markdown-to-jsx": "^7.7.17",
+    "markdown-to-jsx": "^8.0.0",
     "motion": "^12.23.24",
-    "next": "^16.0.0",
+    "next": "^16.0.1",
     "qs": "^6.14.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -47,10 +47,10 @@
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.0.0",
+    "@next/eslint-plugin-next": "^16.0.1",
     "@tailwindcss/postcss": "^4.1.16",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^24.9.1",
+    "@types/node": "^24.9.2",
     "@types/qs": "^6.14.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
@@ -71,5 +71,19 @@
     "webpack": "^5.102.1",
     "webpack-bundle-analyzer": "^4.10.2"
   },
-  "packageManager": "pnpm@10.18.3+sha512.bbd16e6d7286fd7e01f6b3c0b3c932cda2965c06a908328f74663f10a9aea51f1129eea615134bf992831b009eabe167ecb7008b597f40ff9bc75946aadfb08d"
+  "browserslist": {
+    "production": [
+      "chrome >= 109",
+      "edge >= 109",
+      "firefox >= 102",
+      "safari >= 16",
+      "ios_saf >= 16"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "pnpm@10.20.0"
 }
