@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, type ChangeEvent } from 'react';
+import { Activity, useEffect, useState, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 
@@ -74,7 +74,7 @@ export function PostsSearch() {
         <Icons name="search" />
       </button>
 
-      {showSearch && (
+      <Activity mode={showSearch ? 'visible' : 'hidden'}>
         <div
           onClick={handleCloseSearch}
           className={clsx(
@@ -113,11 +113,17 @@ export function PostsSearch() {
                 'max-h-[60vh]': posts.length > 0 && !loading
               })}
             >
-              {loading && <li className="text-center text-gray-500">Loading...</li>}
+              <Activity mode={loading ? 'visible' : 'hidden'}>
+                <li className="text-center text-gray-500">Loading...</li>
+              </Activity>
 
-              {!loading && posts.length === 0 && searchValue && (
+              <Activity
+                mode={
+                  !loading && posts.length === 0 && searchValue ? 'visible' : 'hidden'
+                }
+              >
                 <li className="text-center text-gray-500">No posts found.</li>
-              )}
+              </Activity>
 
               {posts.map((post: PostMetadata) => {
                 const postDetailUrl = `${ROUTES.POSTS}${post.id}?slug=${post.slug}`;
@@ -140,7 +146,7 @@ export function PostsSearch() {
             </ul>
           </div>
         </div>
-      )}
+      </Activity>
     </div>
   );
 }
