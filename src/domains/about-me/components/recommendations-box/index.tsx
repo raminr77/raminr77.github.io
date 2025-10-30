@@ -6,7 +6,6 @@ import {
 } from '@/data';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
-import { Tooltip } from '@/shared/components/tooltip';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -22,25 +21,23 @@ export function RecommendationsBox() {
         {RECOMMENDATIONS.slice(0, 17).map(
           ({ id, fullName, imageURL }: RecommendationItem) =>
             imageURL && (
-              <Tooltip key={id} text={fullName}>
-                <Link
-                  href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}
-                  onClick={() =>
-                    sendGTMEvent(
-                      GTM_EVENTS.CHECK_RECOMMENDATION(`Check - ${fullName} Avatar`)
-                    )
-                  }
-                >
-                  <Image
-                    width={100}
-                    height={100}
-                    alt={fullName}
-                    src={imageURL}
-                    loading="lazy"
-                    className="dark:grayscale hover:grayscale-0 duration-500 rounded-md w-[100px] h-[100px]"
-                  />
-                </Link>
-              </Tooltip>
+              <Link
+                href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}
+                onClick={() =>
+                  sendGTMEvent(
+                    GTM_EVENTS.CHECK_RECOMMENDATION(`Check - ${fullName} Avatar`)
+                  )
+                }
+              >
+                <Image
+                  width={100}
+                  height={100}
+                  alt={fullName}
+                  src={imageURL}
+                  loading="lazy"
+                  className="dark:grayscale hover:grayscale-0 duration-500 rounded-md w-[100px] h-[100px]"
+                />
+              </Link>
             )
         )}
       </div>

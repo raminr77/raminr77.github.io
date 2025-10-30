@@ -22,7 +22,7 @@ export function JourneyPage() {
         className={clsx(
           'select-none text-center text-2xl font-bold',
           titleFont.className,
-          animator({ name: 'fadeInUp' })
+          animator({ name: 'fadeIn' })
         )}
         dangerouslySetInnerHTML={{ __html: JOURNEY_DATA.title }}
       />
