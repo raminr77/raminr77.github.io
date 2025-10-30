@@ -162,14 +162,13 @@ export function ProgressBar({
     };
 
     document.addEventListener('click', onClickCapture, { capture: true });
-    return () =>
-      document.removeEventListener('click', onClickCapture, { capture: true } as any);
+    return () => document.removeEventListener('click', onClickCapture, { capture: true });
   }, [startOnClick, startPosition, nearCompleteTarget, easeRate]);
 
   useEffect(() => {
     if (containerRef.current) {
-      (containerRef.current.style as any).setProperty('--bar-color', color);
-      (containerRef.current.style as any).setProperty('--bar-height', `${height}px`);
+      containerRef.current.style.setProperty('--bar-color', color);
+      containerRef.current.style.setProperty('--bar-height', `${height}px`);
     }
 
     if (!startedRef.current) start();
