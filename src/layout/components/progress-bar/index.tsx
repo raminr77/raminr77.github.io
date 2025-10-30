@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
@@ -9,65 +9,192 @@ import styles from './progress-bar.module.scss';
 type ProgressBarProps = {
   color?: string;
   height?: number;
+  easeRate?: number;
   className?: string;
   finishDelay?: number;
+  startOnClick?: boolean;
   startPosition?: number;
+  completeEaseRate?: number;
+  nearCompleteTarget?: number;
 };
 
 export function ProgressBar({
   className,
   height = 1,
+  easeRate = 0.06,
   color = '#ff8f00',
   finishDelay = 200,
-  startPosition = 0.2
+  startOnClick = true,
+  startPosition = 0.2,
+  completeEaseRate = 0.15,
+  nearCompleteTarget = 0.9
 }: ProgressBarProps) {
   const pathname = usePathname();
-  const [progress, setProgress] = useState<number>(0);
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const barRef = useRef<HTMLDivElement | null>(null);
+  const pegRef = useRef<HTMLDivElement | null>(null);
+
+  const progressRef = useRef(0); // 0..1
+  const startedRef = useRef(false);
+  const animIdRef = useRef<number>(0);
+  const rafRef = useRef<number | null>(null);
+  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const finishTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const cancelRAF = () => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+  };
+
+  const clearTimers = () => {
+    if (finishTimerRef.current) {
+      clearTimeout(finishTimerRef.current);
+      finishTimerRef.current = null;
+    }
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = null;
+    }
+  };
+
+  const applyProgress = (p: number) => {
+    const clamped = Math.max(0, Math.min(1, p));
+    if (barRef.current) barRef.current.style.transform = `scaleX(${clamped})`;
+    if (pegRef.current) {
+      const fadeStart = 0.985;
+      const opacity =
+        clamped < fadeStart
+          ? 1
+          : Math.max(0, 1 - (clamped - fadeStart) / (1 - fadeStart));
+      pegRef.current.style.opacity = `${opacity}`;
+    }
+  };
+
+  const animateTo = (target: number, rate: number) => {
+    cancelRAF();
+    const myAnimId = ++animIdRef.current;
+    const tick = () => {
+      if (myAnimId !== animIdRef.current) return;
+
+      const current = progressRef.current;
+      const delta = target - current;
+      const next = current + delta * rate;
+      progressRef.current = next;
+      applyProgress(next);
+
+      if (Math.abs(delta) > 0.002) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        progressRef.current = target;
+        applyProgress(target);
+        rafRef.current = null;
+      }
+    };
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  const start = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    clearTimers();
+    cancelRAF();
+    ++animIdRef.current;
+
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setIsVisible(false);
+      progressRef.current = 1;
+      applyProgress(1);
+      return;
+    }
+
+    setIsVisible(true);
+    progressRef.current = startPosition;
+    applyProgress(progressRef.current);
+    animateTo(nearCompleteTarget, easeRate);
+  };
+
+  const finish = () => {
+    clearTimers();
+    cancelRAF();
+    ++animIdRef.current;
+    progressRef.current = 1;
+    applyProgress(1);
+
+    finishTimerRef.current = setTimeout(() => {
+      setIsVisible(false);
+      hideTimerRef.current = setTimeout(() => {
+        cancelRAF();
+        ++animIdRef.current;
+        progressRef.current = 0;
+        applyProgress(0);
+        startedRef.current = false;
+      }, 300);
+    }, finishDelay);
+  };
 
   useEffect(() => {
-    setIsVisible(true);
-    setProgress(startPosition * 100);
+    if (!startOnClick) return;
 
-    const increment = () => {
-      setProgress((prev) => (prev < 90 ? prev + Math.random() * 10 : prev));
+    const onClickCapture = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      const aTag = target?.closest?.('a[href]') as HTMLAnchorElement | null;
+
+      if (!aTag) return;
+      if (event.defaultPrevented) return;
+      if (aTag.target && aTag.target !== '_self') return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      const from = new URL(window.location.href);
+      const to = new URL(aTag.href, window.location.href);
+
+      const sameOrigin = to.origin === from.origin;
+
+      const samePathAndQuery =
+        sameOrigin && to.pathname === from.pathname && to.search === from.search;
+
+      if (samePathAndQuery) return;
+
+      start();
     };
 
-    const interval = setInterval(increment, 200);
+    document.addEventListener('click', onClickCapture, { capture: true });
+    return () =>
+      document.removeEventListener('click', onClickCapture, { capture: true } as any);
+  }, [startOnClick, startPosition, nearCompleteTarget, easeRate]);
 
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      clearInterval(interval);
-      setProgress(100);
+  useEffect(() => {
+    if (containerRef.current) {
+      (containerRef.current.style as any).setProperty('--bar-color', color);
+      (containerRef.current.style as any).setProperty('--bar-height', `${height}px`);
+    }
 
-      setTimeout(() => {
-        setIsVisible(false);
-        setProgress(0);
-      }, finishDelay);
-    }, 800);
+    if (!startedRef.current) start();
+
+    clearTimers();
+    finishTimerRef.current = setTimeout(finish, 0);
 
     return () => {
-      clearInterval(interval);
-      if (timerRef.current) clearTimeout(timerRef.current);
+      cancelRAF();
+      clearTimers();
     };
-  }, [pathname, startPosition, finishDelay]);
+  }, [pathname, color, height, completeEaseRate, finishDelay]);
 
   return (
     <div
-      className={clsx(styles['progress-bar__container'], className)}
-      style={
-        {
-          '--bar-color': color,
-          '--bar-height': `${height}px`,
-          '--bar-progress': `${progress}%`,
-          opacity: isVisible ? 1 : 0
-        } as React.CSSProperties
-      }
+      aria-hidden
+      ref={containerRef}
+      className={clsx(
+        styles['progress-bar__container'],
+        isVisible ? 'opacity-100' : 'opacity-0',
+        className
+      )}
     >
-      <div className={styles['progress-bar__bar']} />
-      <div className={styles['progress-bar__peg']} />
+      <div ref={barRef} className={styles['progress-bar__bar']} />
+      <div ref={pegRef} className={styles['progress-bar__peg']} />
     </div>
   );
 }

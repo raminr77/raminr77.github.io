@@ -1,3 +1,8 @@
+:root {
+  --bar-color: #ff8f00;
+  --bar-height: 1px;
+}
+
 .progress-bar {
   &__container {
     top: 0;
@@ -6,24 +11,28 @@
     z-index: 1031;
     position: fixed;
     pointer-events: none;
+    contain: layout paint;
     height: var(--bar-height);
     transition: opacity 0.3s ease-out;
   }
 
   &__bar {
     height: 100%;
-    width: var(--bar-progress);
-    transition: width 0.25s ease;
-    background: linear-gradient(to right, var(--background), var(--bar-color));
+    transform: scaleX(0);
+    will-change: transform;
+    transform-origin: 0 50%;
+    transition: transform 0.2s ease;
+    background: linear-gradient(to right, transparent, var(--bar-color));
   }
 
   &__peg {
+    top: 0;
     right: 0;
     opacity: 1;
-    height: 100%;
     width: 100px;
-    display: block;
+    height: 100%;
     position: absolute;
+    pointer-events: none;
     box-shadow:
       0 0 100px var(--bar-color),
       0 0 10px var(--bar-color);
