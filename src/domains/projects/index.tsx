@@ -20,7 +20,7 @@ export function ProjectsPage() {
         className={clsx(
           'select-none text-center text-2xl font-bold',
           titleFont.className,
-          animator({ name: 'fadeInUp' })
+          animator({ name: 'fadeIn' })
         )}
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.title }}
       />
@@ -42,7 +42,7 @@ export function ProjectsPage() {
       <div
         className={clsx(
           'mt-10 flex flex-col items-center justify-center gap-3 pt-4',
-          animator({ name: 'fadeInUp', delay: '1s' })
+          animator({ name: 'fadeIn', delay: '1s' })
         )}
       >
         <p>{PROJECTS_DATA.footer}</p>

@@ -62,6 +62,16 @@ export function PostsSearch() {
     handleSubmit(debouncedSearchValue);
   }, [debouncedSearchValue]);
 
+  useEffect(() => {
+    const handleCloseSeach = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowSearch(false);
+      }
+    };
+    document.addEventListener('keyup', handleCloseSeach);
+    return () => document.removeEventListener('keyup', handleCloseSeach);
+  }, []);
+
   return (
     <div className="flex items-center">
       <button

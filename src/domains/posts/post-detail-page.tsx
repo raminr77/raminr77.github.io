@@ -59,7 +59,7 @@ export async function PostDetailPage({ params }: Props) {
         className={clsx(
           titleFont.className,
           'mb-12 text-center text-2xl ',
-          animator({ name: 'fadeInUp' })
+          animator({ name: 'fadeIn' })
         )}
       >
         {post.title}

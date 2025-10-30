@@ -32,7 +32,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
         className={clsx(
           'mb-4 text-center text-2xl font-bold',
           titleFont.className,
-          animator({ name: 'fadeInUp' })
+          animator({ name: 'fadeIn' })
         )}
       >
         {`${PERSONAL_DATA.firstName}'s Post`}
@@ -41,7 +41,12 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
       {posts.length === 0 ? (
         <EmptyPostBlock hasFilter={!!filters} />
       ) : (
-        <div className="flex items-center justify-between flex-wrap gap-4">
+        <div
+          className={clsx(
+            'flex items-center justify-between flex-wrap gap-4',
+            animator({ name: 'fadeIn', delay: '1s' })
+          )}
+        >
           <PostsCategoryFilter activeFilters={filters} categories={categories} />
           <PostsSearch />
         </div>
