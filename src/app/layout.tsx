@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
+import { ProgressBar } from '@/layout/components/progress-bar';
 import { ENV } from '@/shared/constants';
 import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
@@ -92,6 +93,8 @@ export default function RootLayout({
         ></script>
       </head>
       <body className={textFont.className}>
+        <ProgressBar />
+
         <Image
           alt=""
           width={830}

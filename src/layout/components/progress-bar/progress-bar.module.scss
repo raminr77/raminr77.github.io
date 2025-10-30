@@ -1,0 +1,32 @@
+.progress-bar {
+  &__container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1031;
+    position: fixed;
+    pointer-events: none;
+    height: var(--bar-height);
+    transition: opacity 0.3s ease-out;
+  }
+
+  &__bar {
+    height: 100%;
+    width: var(--bar-progress);
+    transition: width 0.25s ease;
+    background: linear-gradient(to right, var(--background), var(--bar-color));
+  }
+
+  &__peg {
+    right: 0;
+    opacity: 1;
+    height: 100%;
+    width: 100px;
+    display: block;
+    position: absolute;
+    box-shadow:
+      0 0 100px var(--bar-color),
+      0 0 10px var(--bar-color);
+    transform: rotate(3deg) translate(0, -4px);
+  }
+}
