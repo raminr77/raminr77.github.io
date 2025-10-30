@@ -85,6 +85,7 @@ export default function RootLayout({
       <head>
         <title>{`${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`}</title>
         <meta name="description" content={PERSONAL_DATA.pageDescription} />
+        <meta name="google-adsense-account" content="ca-pub-9929947588063788" />
       </head>
       <body className={textFont.className}>
         <Image
