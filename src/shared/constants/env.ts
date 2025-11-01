@@ -1,9 +1,6 @@
 export const ENV = {
   NODE_ENV: process.env.NODE_ENV ?? 'development',
 
-  AI_TOKEN: process.env.NEXT_PUBLIC_AI_TOKEN,
-  AI_ENDPOINT: process.env.NEXT_PUBLIC_AI_ENDPOINT,
-
   NEXT_RUNTIME: process.env.NEXT_RUNTIME,
 
   ANALYZE_MODE: process.env.NEXT_PUBLIC_ANALYZE_MODE === 'true',
