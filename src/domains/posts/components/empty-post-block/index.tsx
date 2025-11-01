@@ -14,8 +14,8 @@ export function EmptyPostBlock({ hasFilter }: EmptyPostBlockProps) {
   return (
     <div
       className={clsx(
-        'flex items-center flex-col gap-2 justify-center w-full mt-10',
-        animator({ name: 'bounceInUp' })
+        'flex items-center flex-col gap-2 justify-center w-full mt-4 min-h-[400px] border-t border-slate-300/40',
+        animator({ name: 'fadeIn' })
       )}
     >
       <p className={clsx('text-center text-xl font-bold', titleFont.className)}>
