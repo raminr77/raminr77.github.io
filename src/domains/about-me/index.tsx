@@ -59,6 +59,7 @@ export function AboutMePage() {
           width={384}
           height={480}
           loading="lazy"
+          fetchPriority="high"
           className={clsx(
             'pointer-events-none z-20 w-4/5 max-w-96',
             animator({ name: 'fadeIn', speed: 'slow' })

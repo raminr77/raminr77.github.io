@@ -22,6 +22,7 @@ export function RecommendationsBox() {
           ({ id, fullName, imageURL }: RecommendationItem) =>
             imageURL && (
               <Link
+                key={`recommendation-item-${id}`}
                 href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}
                 onClick={() =>
                   sendGTMEvent(
