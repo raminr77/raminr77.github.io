@@ -10,8 +10,8 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
 import { TextInput } from '@/shared/components/text-input';
 import { Button } from '@/shared/components/button';
-import { animator, notify } from '@/shared/helpers';
 import { sendEmail } from '@/shared/services';
+import { notify } from '@/shared/helpers';
 
 interface ContactMeForm {
   email: string;
@@ -68,13 +68,9 @@ export function ContactForm() {
 
   return (
     <form
-      className={clsx(
-        'mt-5 flex flex-col gap-4',
-        animator({ name: 'fadeIn', delay: '2s' }),
-        {
-          'pointer-events-none': loading
-        }
-      )}
+      className={clsx('mt-5 flex flex-col gap-4', {
+        'pointer-events-none': loading
+      })}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSubmit={handleSubmit(onSubmit)}
     >
