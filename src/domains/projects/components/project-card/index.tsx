@@ -40,13 +40,14 @@ export function ProjectCard({
         </span>
 
         {url && (
-          <Link
+          <a
             href={url}
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-block whitespace-nowrap rounded bg-sky-700 px-2 py-0 text-sm leading-6 text-white"
           >
             Demo
-          </Link>
+          </a>
         )}
       </div>
       <p className="my-3 grow">{description}</p>

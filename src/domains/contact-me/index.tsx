@@ -26,23 +26,25 @@ export function ContactMePage() {
 
           <p>You can book a meeting with me:</p>
           <div className="text-md flex items-center gap-2">
-            <Link
+            <a
               onClick={() => sendGTMEvent(GTM_EVENTS.GOOGLE_CALENDAR)}
               href={CONTACT_ME_DATA.googleCalendar}
               className="text-amber-500"
+              rel="noopener noreferrer"
               target="_blank"
             >
               Personal Calendar
-            </Link>
+            </a>
             <span>|</span>
-            <Link
+            <a
               onClick={() => sendGTMEvent(GTM_EVENTS.ADP_CALENDAR)}
               href={CONTACT_ME_DATA.mentorCalendar}
               className="text-amber-500"
+              rel="noopener noreferrer"
               target="_blank"
             >
               Mentorship Calendar
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -62,6 +64,7 @@ export function ContactMePage() {
               <Link
                 href={url}
                 target="_blank"
+                prefetch={false}
                 onClick={() => sendGTMEvent(GTM_EVENTS.CONTACT_LINK(actionLabel))}
                 className={clsx('text-md whitespace-nowrap text-amber-500', {
                   'pointer-events-none': !url

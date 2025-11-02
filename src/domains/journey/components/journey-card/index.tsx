@@ -71,9 +71,10 @@ export function JourneyCard({
       >
         <div className="flex select-none flex-col">
           {url ? (
-            <Link
+            <a
               href={url}
               target="_blank"
+              rel="noopener noreferrer"
               className={clsx(
                 TITLE_CLASSES,
                 'flex items-center gap-2 hover:text-amber-500 flex-wrap'
@@ -82,7 +83,7 @@ export function JourneyCard({
             >
               <span>{title}</span>
               <Icons name="share" />
-            </Link>
+            </a>
           ) : (
             <p className={clsx(TITLE_CLASSES)}>{title}</p>
           )}
