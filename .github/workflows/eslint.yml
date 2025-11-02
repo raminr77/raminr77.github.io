@@ -2,7 +2,7 @@ name: ESLint Check
 
 on:
   push:
-    branches: ["master", "dev"]
+    branches: ['master', 'dev']
   workflow_dispatch:
 
 concurrency:
@@ -29,8 +29,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"
-          cache: "pnpm"
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
@@ -38,7 +38,7 @@ jobs:
 
       - name: Run ESLint (produce SARIF)
         env:
-          SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
+          SARIF_ESLINT_IGNORE_SUPPRESSED: 'true'
         run: |
           pnpm exec eslint . \
             --ext .js,.jsx,.ts,.tsx \

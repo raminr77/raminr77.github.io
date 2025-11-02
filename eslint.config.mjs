@@ -13,6 +13,7 @@ export default defineConfig(
       '.github/',
       'next-env.d.ts',
       '**/node_modules/',
+      '*.config.mjs',
       '*.config.ts'
     ]
   },

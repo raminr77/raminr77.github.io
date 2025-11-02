@@ -1,5 +1,6 @@
 'use client';
 import { Activity, useEffect, useState, type ChangeEvent } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import clsx from 'clsx';
 
@@ -12,7 +13,6 @@ import { Icons } from '@/shared/components/icons';
 import { searchPosts } from '@/shared/services';
 import { animator } from '@/shared/helpers';
 
-import { createPortal } from 'react-dom';
 import { PostDate } from '../post-date';
 
 const BUTTON_CLASSES =
