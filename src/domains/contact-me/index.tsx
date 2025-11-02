@@ -17,27 +17,15 @@ export function ContactMePage() {
   return (
     <ContentContainer title="Contact Me" className="z-40">
       <div className="flex gap-5 max-lg:flex-wrap">
-        <div className={clsx('w-full text-xl leading-7', animator({ name: 'fadeIn' }))}>
+        <div className="w-full text-xl leading-7">
           {CONTACT_ME_DATA.texts.map((text: string, index: number) => (
-            <p
-              key={index}
-              className={animator({ name: 'fadeInUp' })}
-              style={{ animationDelay: `${(index + 1) * 0.3}s` }}
-            >
-              {text}
-            </p>
+            <p key={index}>{text}</p>
           ))}
 
           <br />
-          <p className={animator({ name: 'fadeIn', delay: '2s' })}>
-            You can book a meeting with me:
-          </p>
-          <div
-            className={clsx(
-              'text-md flex items-center gap-2',
-              animator({ name: 'fadeIn', delay: '2s' })
-            )}
-          >
+
+          <p>You can book a meeting with me:</p>
+          <div className="text-md flex items-center gap-2">
             <Link
               onClick={() => sendGTMEvent(GTM_EVENTS.GOOGLE_CALENDAR)}
               href={CONTACT_ME_DATA.googleCalendar}
@@ -67,7 +55,7 @@ export function ContactMePage() {
           {CONTACT_ME_DATA.links.map(({ title, actionLabel, url }, index: number) => (
             <div
               key={title}
-              className={clsx('flex items-center gap-2', animator({ name: 'fadeInUp' }))}
+              className={clsx('flex items-center gap-2', animator({ name: 'fadeIn' }))}
               style={{ animationDelay: `${(index + 1) * 0.3}s` }}
             >
               <span>{title}:</span>

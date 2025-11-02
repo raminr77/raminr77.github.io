@@ -27,7 +27,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
   const { data: posts, categories } = getPosts(filters);
 
   return (
-    <ContentContainer animationName="fadeIn">
+    <ContentContainer animationName="fadeIn" className="relative">
       <h1
         className={clsx(
           'mb-4 text-center text-2xl font-bold',
@@ -38,21 +38,19 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
         {`${PERSONAL_DATA.firstName}'s Post`}
       </h1>
 
-      {posts.length === 0 ? (
-        <EmptyPostBlock hasFilter={!!filters} />
-      ) : (
-        <div
-          className={clsx(
-            'flex items-center justify-between flex-wrap gap-4',
-            animator({ name: 'fadeIn', delay: '1s' })
-          )}
-        >
-          <PostsCategoryFilter activeFilters={filters} categories={categories} />
-          <PostsSearch />
-        </div>
-      )}
+      <div
+        className={clsx(
+          'flex items-center justify-between flex-wrap gap-4',
+          animator({ name: 'fadeIn', delay: '1s' })
+        )}
+      >
+        <PostsCategoryFilter activeFilters={filters} categories={categories} />
+        <PostsSearch />
+      </div>
 
-      <div className="mt-4 overflow-hidden grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-2">
+      {posts.length === 0 && <EmptyPostBlock hasFilter={!!filters} />}
+
+      <div className="mt-4 overflow-hidden grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-2 z-0">
         {posts.map((post: PostMetadata, index: number) => (
           <PostCard key={post.id} data={post} animationDelay={(index + 1) * 0.3} />
         ))}

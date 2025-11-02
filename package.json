@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -34,7 +34,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-google-recaptcha-v3": "^1.11.0",
-    "react-hook-form": "^7.65.0",
+    "react-hook-form": "^7.66.0",
     "react-toastify": "^11.0.5"
   },
   "lint-staged": {
@@ -45,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@eslint/js": "^9.38.0",
+    "@eslint/js": "^9.39.0",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@next/eslint-plugin-next": "^16.0.1",
     "@tailwindcss/postcss": "^4.1.16",
@@ -55,7 +55,7 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "lighthouse": "^13.0.1",
@@ -64,7 +64,7 @@
     "prettier": "3.6.2",
     "prettier-plugin-sort-imports": "^1.8.8",
     "prettier-plugin-tailwindcss": "^0.7.1",
-    "sass": "^1.93.2",
+    "sass": "^1.93.3",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2",

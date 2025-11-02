@@ -18,8 +18,8 @@ jobs:
       contents: read
       security-events: write
     env:
-      NEXT_TELEMETRY_DISABLED: "1"
-      SENTRY_SKIP_UPLOAD: "1"
+      NEXT_TELEMETRY_DISABLED: '1'
+      SENTRY_SKIP_UPLOAD: '1'
 
     steps:
       - name: Checkout
@@ -33,8 +33,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"
-          cache: "pnpm"
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Restore Next.js cache

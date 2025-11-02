@@ -85,12 +85,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="description" content={PERSONAL_DATA.pageDescription} />
-        <meta name="google-adsense-account" content="ca-pub-9929947588063788" />
-        <script
-          async
-          crossOrigin="anonymous"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9929947588063788"
-        ></script>
+        {!!ENV.GOOGLE_ADSENSE && (
+          <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />
+        )}
       </head>
       <body className={textFont.className}>
         <ProgressBar />
@@ -102,7 +99,7 @@ export default function RootLayout({
           quality={75}
           draggable={false}
           fetchPriority="high"
-          src="/images/background.png"
+          src="/images/background.webp"
           sizes="(max-width: 768px) 100vw, 50vw"
           className="shine-animation-top fixed top-0 left-0 pointer-events-none"
         />
@@ -134,10 +131,17 @@ export default function RootLayout({
         <Script src="/click-spark.js" strategy="lazyOnload" />
         <Script src="/service-worker.js" strategy="afterInteractive" />
 
-        {ENV.GOOGLE_ANALYTICS_CODE && (
+        {!!ENV.GOOGLE_ADSENSE && (
+          <Script
+            async
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ENV.GOOGLE_ADSENSE}`}
+          />
+        )}
+        {!!ENV.GOOGLE_ANALYTICS_CODE && (
           <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
         )}
-        {ENV.GOOGLE_TAG_MANAGER_CODE && (
+        {!!ENV.GOOGLE_TAG_MANAGER_CODE && (
           <GoogleTagManager gtmId={ENV.GOOGLE_TAG_MANAGER_CODE} />
         )}
       </body>

@@ -1,12 +1,11 @@
 export const ENV = {
   NODE_ENV: process.env.NODE_ENV ?? 'development',
 
-  AI_TOKEN: process.env.NEXT_PUBLIC_AI_TOKEN,
-  AI_ENDPOINT: process.env.NEXT_PUBLIC_AI_ENDPOINT,
-
   NEXT_RUNTIME: process.env.NEXT_RUNTIME,
 
   ANALYZE_MODE: process.env.NEXT_PUBLIC_ANALYZE_MODE === 'true',
+
+  GOOGLE_ADSENSE: process.env.NEXT_PUBLIC_GOOGLE_ADSENSE ?? '',
 
   GOOGLE_ANALYTICS_CODE: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE ?? '',
   GOOGLE_TAG_MANAGER_CODE: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE ?? '',

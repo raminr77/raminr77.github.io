@@ -1,4 +1,7 @@
 'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import {
   RECOMMENDATIONS,
   RECOMMENDATION_PAGE_DATA,
@@ -6,8 +9,6 @@ import {
 } from '@/data';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
-import Image from 'next/image';
-import Link from 'next/link';
 
 export function RecommendationsBox() {
   return (
@@ -22,6 +23,7 @@ export function RecommendationsBox() {
           ({ id, fullName, imageURL }: RecommendationItem) =>
             imageURL && (
               <Link
+                key={`recommendation-item-${id}`}
                 href={`${ROUTES.RECOMMENDATIONS}#item-${id}`}
                 onClick={() =>
                   sendGTMEvent(
