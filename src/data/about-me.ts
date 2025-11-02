@@ -91,11 +91,11 @@ export const ABOUT_ME_DATA: {
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: "Prior to this, I spent three impactful years at <Link href='https://www.linkedin.com/company/digikala/' target='_blank'>Digikala</Link>, where I contributed to rebuilding their e-commerce platforms, designing reusable components, implementing analytics services, and optimizing marketing platforms through <strong>A/B testing</strong> and <strong>automated testing pipelines</strong>."
+      data: "Prior to this, I spent three impactful years at <a href='https://www.linkedin.com/company/digikala/' target='_blank' rel='noopener noreferrer'>Digikala</a>, where I contributed to rebuilding their e-commerce platforms, designing reusable components, implementing analytics services, and optimizing marketing platforms through <strong>A/B testing</strong> and <strong>automated testing pipelines</strong>."
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: "At <Link href='https://www.linkedin.com/company/snapp.ir/' target='_blank'>Snapp!</Link>, I led a frontend team, spearheading projects like migrating systems from WordPress to modern frameworks, creating reusable component libraries, and dramatically improving user experiences."
+      data: "At <a href='https://www.linkedin.com/company/snapp.ir/' target='_blank' rel='noopener noreferrer'>Snapp!</a>, I led a frontend team, spearheading projects like migrating systems from WordPress to modern frameworks, creating reusable component libraries, and dramatically improving user experiences."
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,

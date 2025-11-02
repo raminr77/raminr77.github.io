@@ -35,7 +35,7 @@ export function RecommendationCard({
     >
       <div className="mb-2 flex w-full gap-3 text-left duration-500">
         {imageURL && (
-          <Link href={url} onClick={sendEvent} target="_blank" rel="noopener noreferrer">
+          <a href={url} target="_blank" onClick={sendEvent} rel="noopener noreferrer">
             <Image
               width={100}
               height={100}
@@ -47,10 +47,10 @@ export function RecommendationCard({
                 styles['recommendation-card__profile-image']
               )}
             />
-          </Link>
+          </a>
         )}
         <div className="flex w-full flex-col gap-1 text-left">
-          <Link
+          <a
             href={url}
             target="_blank"
             onClick={sendEvent}
@@ -58,7 +58,7 @@ export function RecommendationCard({
             className={clsx(titleFont.className, 'text-xl font-bold text-amber-500')}
           >
             {fullName.toUpperCase()}
-          </Link>
+          </a>
           <p>{title}</p>
           <div className="flex flex-wrap items-center gap-2">
             <span>{caption}</span>
@@ -72,6 +72,7 @@ export function RecommendationCard({
       <Link
         href={url}
         target="_blank"
+        prefetch={false}
         onClick={sendEvent}
         rel="noopener noreferrer"
         className="text-amber-500"
