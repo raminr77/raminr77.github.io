@@ -33,9 +33,9 @@ const ABOUT_ME_COMPONENTS = {
   ),
   [ABOUT_ME_COMPONENT_NAMES.competition]: (
     <div
+      style={{ maxHeight: 575 }}
       key={ABOUT_ME_COMPONENT_NAMES.competition}
       className="flex items-center justify-center px-5 relative select-none py-5 overflow-hidden"
-      style={{ maxHeight: 575 }}
     >
       <Image
         width={400}
@@ -72,6 +72,7 @@ export function AboutMePage() {
 
         <PixelCanvas
           playOnes
+          autoPlay
           color="green"
           className="absolute z-0 h-full w-full grayscale invert duration-500 hover:grayscale-0 dark:invert-0"
         />
