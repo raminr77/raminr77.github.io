@@ -107,7 +107,7 @@ export const ABOUT_ME_DATA: {
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'In <strong>2024</strong>, I proudly took <strong>1st place</strong> in the <strong>Code in the Dark</strong> competition hosted by <strong>Mpya Digital</strong> in Malmö — a fast-paced front-end challenge with no previews, just raw coding under pressure. It was an unforgettable and rewarding experience that reflects my commitment to precision, creativity, and performance under pressure.'
+      data: 'In <strong>2024</strong>, I proudly took <strong>1st place</strong> in the <strong>Code in the Dark</strong> competition hosted by <strong>Mpya Digital</strong> in Malmö, a fast-paced front-end challenge with no previews, just raw coding under pressure. It was an unforgettable and rewarding experience that reflects my commitment to precision, creativity, and performance under pressure.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.component,
