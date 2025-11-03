@@ -6,7 +6,7 @@ const config: NextConfig = {
   // reactCompiler: true,
   // cacheComponents: true,
 
-  trailingSlash: true,
+  // trailingSlash: true,
   reactStrictMode: true,
 
   // Performance
