@@ -28,7 +28,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
 
   return (
     <ContentContainer animationName="fadeIn" className="relative">
-      <h1
+      <h3
         className={clsx(
           'mb-4 text-center text-2xl font-bold',
           titleFont.className,
@@ -36,7 +36,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
         )}
       >
         {`${PERSONAL_DATA.firstName}'s Post`}
-      </h1>
+      </h3>
 
       <div
         className={clsx(
