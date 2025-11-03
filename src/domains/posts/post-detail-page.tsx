@@ -55,7 +55,7 @@ export async function PostDetailPage({ params }: Props) {
 
   return (
     <ContentContainer animationName="fadeIn">
-      <h1
+      <h3
         className={clsx(
           titleFont.className,
           'mb-12 text-center text-2xl ',
@@ -63,7 +63,7 @@ export async function PostDetailPage({ params }: Props) {
         )}
       >
         {post.title}
-      </h1>
+      </h3>
 
       <div className="mb-4 flex gap-2 justify-between items-center border-b border-slate-300/40 pb-3 max-md:flex-col max-md:items-start">
         <div className="flex gap-5 max-md:flex-wrap max-md:gap-2">

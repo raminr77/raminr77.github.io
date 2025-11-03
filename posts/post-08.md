@@ -162,13 +162,13 @@ Link to documentation, examples, or patterns that support your feedback.
 
 A short version for quick checks in pull requests:
 
-- [ ] Meets requirements without breaking existing features
-- [ ] Clear and consistent naming, style, and documentation
-- [ ] Efficient algorithms and resource usage
-- [ ] Scalable and free of performance bottlenecks
-- [ ] Secure input handling and data protection
-- [ ] Proper error handling and observability in place
-- [ ] PR is small, focused, and well-documented
+- Meets requirements without breaking existing features
+- Clear and consistent naming, style, and documentation
+- Efficient algorithms and resource usage
+- Scalable and free of performance bottlenecks
+- Secure input handling and data protection
+- Proper error handling and observability in place
+- PR is small, focused, and well-documented
 
 ---
 

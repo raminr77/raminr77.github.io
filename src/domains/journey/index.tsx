@@ -18,7 +18,7 @@ const JOURNEY_ITEMS = JOURNEY_DATA.items.reverse();
 export function JourneyPage() {
   return (
     <ContentContainer>
-      <h1
+      <h3
         className={clsx(
           'select-none text-center text-2xl font-bold',
           titleFont.className,

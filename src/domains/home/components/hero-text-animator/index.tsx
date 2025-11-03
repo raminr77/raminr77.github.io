@@ -5,11 +5,11 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { clsx } from 'clsx';
 
+import { DecryptedText } from '@/shared/components/decrypted-text';
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
-import { DecryptedText } from '@/shared/components/decrypted-text';
 import styles from './hero-text-animator.module.scss';
 
 export function HeroTextAnimator() {
@@ -18,8 +18,10 @@ export function HeroTextAnimator() {
   useEffect(() => {
     if (titleRef.current) {
       const titleElement = titleRef.current;
-      const textCharacters = titleElement.querySelectorAll('h1');
-      const replaceCharacters = titleElement.querySelectorAll('h1:not([data-text="."])');
+      const textCharacters = titleElement.querySelectorAll('span');
+      const replaceCharacters = titleElement.querySelectorAll(
+        'span:not([data-text="."])'
+      );
 
       const timeline = gsap.timeline();
       timeline.set(titleElement, { autoAlpha: 1 });
@@ -45,7 +47,7 @@ export function HeroTextAnimator() {
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      <div
+      <h1
         ref={titleRef}
         className={clsx(
           'invisible mt-10 flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl font-extrabold',
@@ -53,15 +55,15 @@ export function HeroTextAnimator() {
         )}
       >
         {HETO_TEXT_CHARACTERS.map(({ id, text, replaceText }) => (
-          <h1
+          <span
             className={styles['hero-text-animator__character']}
             data-text={replaceText}
             key={id}
           >
             {text}
-          </h1>
+          </span>
         ))}
-      </div>
+      </h1>
       <DecryptedText
         sequential
         speed={80}

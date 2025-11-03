@@ -35,7 +35,7 @@ export function Header() {
             'max-md:hidden': pathname === ROUTES.HOME
           })}
         >
-          <h1
+          <h3
             className={clsx(
               'text-2xl font-bold',
               titleFont.className,
@@ -43,7 +43,7 @@ export function Header() {
             )}
           >
             {PERSONAL_DATA.fullName}
-          </h1>
+          </h3>
           <p className={clsx('text-lg', animator({ name: 'fadeIn', delay: '1s' }))}>
             {pageTitle}
           </p>

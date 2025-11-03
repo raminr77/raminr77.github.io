@@ -17,7 +17,7 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: `11 Jan 1999 ( ${new Date().getFullYear() - 1999} years )`,
     title: 'Birthday',
     description:
-      '<p>I was born on <strong>11th January 1999</strong> in the beautiful and historic city of <em>Isfahan, Iran</em> 🇮🇷. This marked the very beginning of my journey, laying the foundation for an exciting and ambitious career path that would take me across industries and countries.</p>'
+      '<p>I was born on <strong>January 11, 1999</strong> in <em>Isfahan, Iran</em> 🇮🇷, a beautiful city with rich history and culture. This was the start of my journey and the path that later took me across fields and countries.</p>'
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: 'Nov 2013 - Nov 2017',
     title: 'High School Graduation',
     description:
-      '<p>I successfully completed my high school education in <strong>Mathematics and Physics</strong>, a rigorous and analytical field that instilled in me a passion for problem-solving and logical thinking. These years played a key role in preparing me for the technical challenges of my future education and career.</p>'
+      '<p>I finished high school in <strong>Mathematics and Physics</strong>. These years taught me logical thinking and problem solving, and prepared me for the technical work I do today.</p>'
   },
   {
     id: 3,
@@ -35,10 +35,10 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: 'Nov 2017 - Nov 2021',
     title: 'University Graduation',
     description:
-      '<p>After four enriching years at <strong>Azad University of Najafabad</strong>, I graduated with a Bachelor’s degree in <strong>Software Engineering</strong>. During this time, I honed my technical skills, engaged in innovative research projects, and stood out as a top student in several key courses, earning recognition from my professors for my academic excellence and contributions.</p>',
+      '<p>I earned a Bachelor’s degree in <strong>Software Engineering</strong> from <strong>Azad University of Najafabad</strong>. I learned how to build real systems, explore new ideas, and work with teams to solve hard problems.</p>',
     items: [
-      'Professor’s assistant and top student in Graphic and database design courses.',
-      'Professor’s assistance and research of more than 2 semesters about the effects of hidden elements on the web page and improving user behavior by changing the UI of the components or elements.'
+      'Professor’s assistant and top student in Graphic and Database Design courses.',
+      'Assisted research for more than two semesters on how hidden elements on a web page affect user behavior, and how small UI changes can improve the experience.'
     ]
   },
   {
@@ -48,10 +48,10 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: 'Jan 2019 ( 1 year 2 months )',
     title: 'Freelancer - Software Engineer',
     description:
-      '<p>My career officially began as a <strong>Freelance Software Engineer</strong>. Working remotely, I developed full-scale solutions for diverse clients, showcasing my ability to independently handle projects from system requirements gathering to deployment. This experience helped me build a solid foundation in scalable API design and performance optimization.</p>',
+      '<p>I started my career as a <strong>Freelance Software Engineer</strong>. I worked remotely and owned projects end to end, from gathering requirements to deployment and support.</p>',
     items: [
-      'Designed and implemented scalable RESTful APIs using Python (Django) and PHP (Laravel) for managing proprietary licenses, handling peak loads of 500 requests per second and, ensuring 99.9% uptime.',
-      'Led the development of several products E2E, from identifying system requirements and partner dependencies to workload balancing, software implementation, engineering, testing, and configuring metrics, alarms, monitors, and dashboards.'
+      'Designed and built scalable REST APIs with Python (Django) and PHP (Laravel) for license management, handled 500 requests per second, kept 99.9% uptime.',
+      'Led several products E2E, from defining system needs and partner dependencies to implementation, testing, and setting up metrics, alerts, monitors, and dashboards.'
     ]
   },
   {
@@ -62,12 +62,12 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     title: 'SnappCarFix - Software Engineer',
     url: 'https://www.linkedin.com/company/snapp.ir/',
     description:
-      '<p>At <strong>SnappCarFix</strong>, I stepped into a leadership role as a <strong>Frontend Team Lead</strong>. My role involved guiding a team of talented engineers while delivering high-performance web platforms. I spearheaded platform migrations, developed reusable component libraries, and introduced optimizations that significantly enhanced user experience and performance.</p>',
+      '<p>At <strong>SnappCarFix</strong>, I worked as a frontend engineer and also led the frontend team. I helped the team deliver fast and reliable web platforms and improved the user experience with better performance and reusable parts.</p>',
     items: [
-      'Team Leadership and Mentorship: Mentored 5+ engineers, enhancing their technical and soft skills while managing cross-functional project delivery.',
-      'Platform Migration: Transitioned a WordPress platform to a modern JavaScript and React-based system, achieving a 90% improvement in user experience.',
-      'Reusable Components: Developed a general layout and component library as an installable package, reducing project setup time by 40%.',
-      'Performance Enhancements: Built high-performance timers for advertisements and discount banners, reducing page load times by 2 seconds.'
+      'Mentored 5+ engineers and managed cross-functional delivery.',
+      'Migrated a WordPress platform to a modern JavaScript and React stack, improved user experience by about 90%.',
+      'Built a general layout and component library as an installable package, reduced project setup time by 40%.',
+      'Implemented high-performance timers for ads and discount banners, reduced page load time by 2 seconds.'
     ]
   },
   {
@@ -78,15 +78,15 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     title: 'Digikala - Software Engineer',
     url: 'https://www.linkedin.com/company/digikala/',
     description:
-      '<p>Joining <strong>Digikala</strong> as a <strong>Senior Frontend Engineer</strong> marked a pivotal moment in my career. I contributed to large-scale e-commerce platforms, collaborating within agile teams to deliver high-impact features and improvements. My work on analytics, dynamic landing pages, and system optimization helped redefine the digital shopping experience for millions of users.</p>',
+      '<p>I joined <strong>Digikala</strong> as a <strong>Senior Frontend Engineer</strong>. I worked on large e-commerce products with millions of visits per day, focused on speed, quality, and flexible features.</p>',
     items: [
-      'E-commerce Platform Development: Rebuilt two e-commerce platforms with JavaScript, ReactJS, Next.js, and TypeScript in agile teams using the Spotify Squad Framework.',
-      'Data and Analytics Integration: Implemented Google Analytics services, including DataLayer and over 20 A/B tests. Leveraged tools like Big-Data Tracker and Google Tag Manager to collect and analyze user behavior.',
-      'Dynamic Landing Pages: Designed and implemented dynamic landing pages with over 30 reusable modules, reducing development time for promotional pages.',
-      'Testing and QA: Wrote unit and E2E tests using Jest, React Testing Library, and Cypress, ensuring high-quality code. Utilized Storybook to streamline component reuse.',
-      'Monorepository Expertise: Worked on a PHP monorepository using the Symfony framework, while integrating micro-frontend architecture with NX, enhancing code quality and structure adherence by 80%. Also developed and maintained backend services, improving API response times by 10% and reducing database query load by 20% through efficient caching strategies.',
-      'Automated and optimized business logic for the core marketing experiments, including A/B, Auto-Targeting, and Multivariate Testing.',
-      "Completely automated the marketing platforms' user-experience testing process by integrating Nightwatch Selenium."
+      'Rebuilt two e-commerce platforms with JavaScript, React, Next.js, and TypeScript in agile teams using the Spotify Squad model.',
+      'Integrated Google Analytics, set up DataLayer, and ran 20+ A/B tests. Used Big-Data Tracker and Google Tag Manager to study user behavior.',
+      'Built dynamic landing pages with 30+ reusable modules, cut development time for promo pages.',
+      'Wrote unit and E2E tests using Jest, React Testing Library, and Cypress. Used Storybook to improve component reuse.',
+      'Worked in a PHP monorepo with Symfony, and used micro frontends with NX. Improved code quality and structure, sped up APIs by 10% and reduced DB load by 20% with caching.',
+      'Automated core marketing experiments including A/B, Auto-Targeting, and Multivariate Testing.',
+      'Automated UX testing for marketing platforms by integrating Nightwatch Selenium.'
     ]
   },
   {
@@ -96,7 +96,7 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     location: 'Malmö, Sweden',
     title: 'Relocation to Sweden',
     description:
-      '<p>In August 2023, I made the exciting decision to relocate to <strong>Malmö, Sweden</strong> 🇸🇪. This marked the beginning of an international chapter in my career, where I embraced new challenges and opportunities in the global tech industry.</p>'
+      '<p>In <strong>August 2023</strong>, I moved to <strong>Malmö, Sweden</strong> 🇸🇪. This started my international chapter, with new challenges and chances to grow in the global tech scene.</p>'
   },
   {
     id: 8,
@@ -106,15 +106,15 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     url: 'https://www.linkedin.com/company/boozt-fashion/',
     title: 'Boozt - Senior Frontend Developer',
     description:
-      '<p>As a <strong>Senior Frontend Developer</strong> at <strong>Boozt</strong>, I am driving innovation in e-commerce solutions. My work includes building CMS platforms for multiple countries, optimizing system performance, and leading projects to improve the overall user experience across web and mobile platforms.</p>',
+      '<p>At <strong>Boozt</strong>, the largest Nordic online department store, I worked as a <strong>Senior Frontend Developer</strong>. I built tools and features that made content, campaigns, and user experience faster and easier to manage across web and mobile.</p>',
     items: [
-      'Continuous Integration/Deployment Pipeline Integration, pull requests, code reviews, unit/integration/e2e testing',
-      'Developed and Optimized CMS: Built a CMS for generating dynamic web pages, promotions, and campaign pages for 17 countries, enabling seamless integration with the mobile app and eliminating the need for updates by supporting all web elements.',
-      'Enhanced Data Efficiency: Optimized CMS data structure using efficient algorithms and data structures to improve speed, updates, and storage. Eliminated redundant loops by implementing hash maps, reducing unnecessary computation',
-      'Brand Asset Management: Designed an internal system with Google Cloud Functions and Google Storage to store brand assets and logos, reducing costs by eliminating external services.',
-      'Google Cloud Project (GCP): Developed serverless functions using GCP Cloud Functions to automate background tasks, reducing operational overhead by 20%.',
-      'React and TypeScript Migration: Migrated and redesigned website features from the legacy platform, adapting them to meet evolving business requirements while improving performance.',
-      'Performance Optimization: Refactored state management and component architecture to minimize unnecessary re-renders, achieving faster load times and smoother user experience.'
+      'Worked with CI/CD pipelines, pull requests, code reviews, and unit, integration, and E2E tests.',
+      'Built a CMS to create dynamic pages, promotions, and campaign pages for 17 countries, integrated with the mobile app, no app updates needed.',
+      'Improved CMS data structure with better algorithms and data structures. Used hash maps to remove redundant loops and reduce extra computation.',
+      'Built an internal brand asset system with Google Cloud Functions and Google Storage, cut costs by removing external services.',
+      'Created serverless functions on GCP to automate background tasks, reduced operational overhead by 20%.',
+      'Migrated and redesigned website features from the legacy platform to React and TypeScript, improved performance.',
+      'Refactored state management and component architecture to reduce re-renders, improved load times and overall UX.'
     ]
   },
   {
@@ -125,24 +125,23 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     url: 'https://www.linkedin.com/company/sinch/',
     title: 'Sinch - Senior Software Engineer',
     description:
-      '<p>As a <strong>Senior Software Engineer</strong> at <strong>Sinch</strong>, I’m shaping the architecture and frontend infrastructure of complex systems powering global-scale communications. My work involves defining and implementing scalable project structures, integrating with more than 10 <strong>micro frontends</strong>, and ensuring optimal performance and maintainability across platforms. I actively collaborate on full-stack projects, combining <strong>React</strong>, <strong>NX monorepos</strong>, and <strong>Kotlin microservices</strong> — all deployed via <strong>Kubernetes</strong> and managed using <strong>Istio service mesh</strong>.</p>',
+      '<p>At <strong>Sinch</strong>, I work as a <strong>Senior Software Engineer</strong>. I help design the architecture and frontend infrastructure for systems that power global communications. I work across teams to keep things fast, stable, and easy to maintain.</p>',
     items: [
-      'Micro Frontend Architecture: Designed and maintained a highly modular architecture consisting of over 10 micro frontends, ensuring consistent communication, isolation, and performance across teams and domains.',
-      'NX Monorepo Strategy: Defined scalable project structure using Nx for a multi-team environment, enabling efficient dependency management, caching, and unified development pipelines.',
-      'Module Federation & Federated Testing: Implemented dynamic module federation strategies and developed isolated testing strategies across micro frontends, including unit, integration, and E2E tests using Cypress and Playwright.',
-      'Performance Optimization: Introduced advanced performance patterns such as lazy loading, route prefetching, and bundle splitting to reduce time-to-interactive and improve Lighthouse scores across critical flows.',
-      'CI/CD & Configuration Management: Led frontend build configuration efforts including linting, formatting, test coverage enforcement, and automated checks using GitHub Actions and internal tools.',
-      'DevOps Integration: Actively working with <strong>Kubernetes</strong> and <strong>Istio</strong> for deployment, traffic management, and observability. Implemented custom routing rules and fault tolerance strategies within the service mesh.',
-      'Backend Collaboration: Contributing to <strong>Spring Boot</strong> microservices written in <strong>Kotlin</strong>, with data exchange handled via <strong>gRPC</strong> and <strong>Protocol Buffers</strong>. Helped define service contracts and improved interoperability between frontend and backend teams.',
-      'Cross-functional Leadership: Act as a bridge between product, design, and engineering teams to ensure delivery of scalable, maintainable, and user-centric features.'
+      'Designed and maintained a modular setup with more than 10 micro frontends, with clear contracts and performance goals.',
+      'Defined a scalable Nx monorepo structure for multi-team development, with good dependency management and caching.',
+      'Implemented dynamic module federation and set up isolated testing across micro frontends, using Cypress and Playwright.',
+      'Improved speed with lazy loading, route prefetching, and bundle splitting, better time-to-interactive and Lighthouse scores.',
+      'Led frontend build and quality checks, including linting, formatting, coverage rules, and automated pipelines with GitLab and internal tools.',
+      'Worked with <strong>Kubernetes</strong> and <strong>Istio</strong> for deployment, traffic control, and observability. Set custom routing rules and fault tolerance strategies.',
+      'Contributed to <strong>Spring Boot</strong> microservices in <strong>Kotlin</strong>, used <strong>gRPC</strong> and <strong>Protocol Buffers</strong> for data exchange, helped define service contracts.',
+      'Worked closely with product, design, and engineering to deliver scalable, maintainable, user-focused features.'
     ]
   }
 ];
 
 export const JOURNEY_DATA = {
-  title: 'The Adventure Started ...',
-  footer:
-    'Everything began on a cold winter morning, just eleven days into the year 1999.',
-  description: 'On a journey to <span className="text-2xl font-bold">Google</span>',
+  title: 'The Journey So Far',
+  footer: 'It all started on a cold winter morning in January 1999.',
+  description: 'On a path toward <span className="text-2xl font-bold">Google</span>',
   items: JOURNEY_ITEM_DATA
 } as const;

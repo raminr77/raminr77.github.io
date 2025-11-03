@@ -14,7 +14,7 @@ export interface RecommendationItem {
 export const RECOMMENDATION_PAGE_DATA = {
   title: 'Recommendations',
   description:
-    'I have had the pleasure of working with many talented individuals throughout my career. <br /> Here are some of the recommendations I have received from my colleagues and managers. <br /> You can also find more Recommendations on my LinkedIn profile.',
+    'I’ve been lucky to work with many great people during my career.<br /> Here are a few nice things my colleagues and managers have said about me.<br /> You can find more on my LinkedIn profile.',
   aboutMeDescription:
     'I have had the pleasure of working with many talented individuals throughout my career. <br /> Here are some of the recommendations I have received from them.',
   footer: 'If you would like to know more about me, feel free to reach out.',

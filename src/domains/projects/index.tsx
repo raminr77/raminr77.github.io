@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export function ProjectsPage() {
   return (
     <ContentContainer>
-      <h1
+      <h3
         className={clsx(
           'select-none text-center text-2xl font-bold',
           titleFont.className,

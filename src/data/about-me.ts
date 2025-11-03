@@ -51,29 +51,29 @@ export const ABOUT_ME_DATA: {
   content: [
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: "Hi, I’m <strong>Ramin Rezaei</strong>, a dedicated and ambitious <strong>Software Engineer</strong> with over seven years of professional experience in designing, developing, and optimizing web applications and systems. Currently, I’m based in <strong>Malmö, Sweden</strong>, where I work as a <strong>Senior Software Engineer</strong> at <a href='https://www.sinch.com' target='_blank'>Sinch AB</a>, a global leader in <strong>cloud communications</strong> and <strong>CPaaS</strong> powering billions of conversations around the world."
+      data: "Hi, I’m <strong>Ramin Rezaei</strong>. I’m a <strong>Software Engineer</strong> with over seven years of experience in building and improving web apps and systems. I live in <strong>Malmö, Sweden</strong>, and work as a <strong>Senior Software Engineer</strong> at <a href='https://www.sinch.com' target='_blank'>Sinch AB</a>, a global company in <strong>cloud communications</strong> that powers billions of conversations every day."
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'My professional journey has been a blend of technical challenges, impactful projects, and continuous learning. I specialize in <strong>frontend technologies</strong> such as <strong>JavaScript</strong>, <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Next.js</strong>, and I’ve also worked extensively on <strong>backend systems</strong> using <strong>Kotlin (Spring Boot)</strong>, <strong>Python (Django)</strong>, <strong>Node.js (NestJS)</strong>, and <strong>PHP (Laravel)</strong>. I thrive in <strong>agile environments</strong> and love working on scalable, reliable, and maintainable systems.'
+      data: 'My career has been full of challenges, learning, and growth. I work mostly with <strong>frontend technologies</strong> like <strong>JavaScript</strong>, <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Next.js</strong>, and I’ve also built many <strong>backend systems</strong> using <strong>Kotlin (Spring Boot)</strong>, <strong>Python (Django)</strong>, <strong>Node.js (NestJS)</strong>, and <strong>PHP (Laravel)</strong>. I enjoy working in <strong>agile teams</strong> and building systems that are fast, stable, and easy to maintain.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.list,
-      title: 'At Sinch, I’m involved in:',
+      title: 'At Sinch, I work on:',
       data: [
-        'Defining architecture and project structure for over 10 active <strong>micro frontends</strong> using <strong>NX monorepos</strong>, <strong>Module Federation</strong>, and scalable workspace setups.',
-        'Ensuring smooth integration, performance optimization, and E2E test strategies using <strong>Cypress</strong> and <strong>Playwright</strong> across distributed applications.',
-        'Collaborating on full-stack systems using <strong>Kotlin</strong>, <strong>Spring Boot</strong>, <strong>gRPC</strong>, and <strong>Protocol Buffers</strong> to build reliable APIs and services.',
-        'Working with <strong>Kubernetes</strong> and <strong>Istio Service Mesh</strong> to manage deployments, traffic routing, and observability in a complex microservices environment.'
+        'Defining structure and architecture for over 10 <strong>micro frontends</strong> using <strong>Nx monorepos</strong> and <strong>Module Federation</strong>.',
+        'Making sure everything works smoothly with good performance and strong testing using <strong>Cypress</strong> and <strong>Playwright</strong>.',
+        'Building and maintaining full-stack systems with <strong>Kotlin</strong>, <strong>Spring Boot</strong>, <strong>gRPC</strong>, and <strong>Protocol Buffers</strong>.',
+        'Managing deployment, routing, and observability with <strong>Kubernetes</strong> and <strong>Istio Service Mesh</strong>.'
       ]
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.list,
-      title: 'At Boozt, I have been instrumental in projects like:',
+      title: 'At Boozt, I worked on projects like:',
       data: [
-        'Building a robust <strong>content management system (CMS)</strong> that enables dynamic web pages, seamless mobile app integration, and improved operational efficiency.',
-        'Optimizing system performance by implementing advanced data structures and algorithms to improve speed, reduce computation, and enhance data storage.',
-        'Leading <strong>React and TypeScript migrations</strong>, ensuring legacy systems evolve to meet modern business needs with a focus on scalability and maintainability.'
+        'Building a strong <strong>content management system (CMS)</strong> for creating web pages, connecting with the mobile app, and improving daily workflows.',
+        'Making the system faster by using better algorithms and data structures to reduce computation and storage needs.',
+        'Leading <strong>React and TypeScript migrations</strong> to modernize legacy systems and make them more scalable.'
       ]
     },
     {
@@ -91,23 +91,23 @@ export const ABOUT_ME_DATA: {
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: "Prior to this, I spent three impactful years at <a href='https://www.linkedin.com/company/digikala/' target='_blank' rel='noopener noreferrer'>Digikala</a>, where I contributed to rebuilding their e-commerce platforms, designing reusable components, implementing analytics services, and optimizing marketing platforms through <strong>A/B testing</strong> and <strong>automated testing pipelines</strong>."
+      data: "Before that, I spent three great years at <a href='https://www.linkedin.com/company/digikala/' target='_blank' rel='noopener noreferrer'>Digikala</a>. I helped rebuild e-commerce platforms, designed reusable components, added analytics tools, and improved marketing platforms through <strong>A/B testing</strong> and <strong>automation</strong>."
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: "At <a href='https://www.linkedin.com/company/snapp.ir/' target='_blank' rel='noopener noreferrer'>Snapp!</a>, I led a frontend team, spearheading projects like migrating systems from WordPress to modern frameworks, creating reusable component libraries, and dramatically improving user experiences."
+      data: "At <a href='https://www.linkedin.com/company/snapp.ir/' target='_blank' rel='noopener noreferrer'>Snapp!</a>, I led the frontend team. We migrated from WordPress to modern frameworks, built reusable libraries, and improved the user experience across the platform."
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'Beyond my technical contributions, I’ve always been passionate about <strong>mentorship and leadership</strong>. I’ve guided junior engineers, conducted coding bootcamps, and actively shared my knowledge with aspiring developers. I believe in fostering a culture of collaboration, learning, and innovation within every team I work with.'
+      data: 'I really enjoy <strong>mentoring and teamwork</strong>. I’ve supported junior developers, helped with bootcamps, and shared my experience with others. I believe great teams are built on learning, collaboration, and openness.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'Outside of work, I actively explore emerging technologies, including <strong>machine learning</strong>, and recently completed a certification in <strong>Machine Learning in JavaScript with TensorFlow.js</strong>.'
+      data: 'Outside of work, I like exploring new technologies such as <strong>machine learning</strong>. I also earned a certificate in <strong>Machine Learning in JavaScript with TensorFlow.js</strong>.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'In <strong>2024</strong>, I proudly took <strong>1st place</strong> in the <strong>Code in the Dark</strong> competition hosted by <strong>Mpya Digital</strong> in Malmö — a fast-paced front-end challenge with no previews, just raw coding under pressure. It was an unforgettable and rewarding experience that reflects my commitment to precision, creativity, and performance under pressure.'
+      data: 'In <strong>2024</strong>, I proudly won <strong>1st place</strong> in the <strong>Code in the Dark</strong> competition hosted by <strong>Mpya Digital</strong> in Malmö. It was a live front-end challenge with no preview, just pure coding under pressure. It was fun, intense, and rewarding.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.component,
@@ -115,15 +115,15 @@ export const ABOUT_ME_DATA: {
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'I approach every project with curiosity and a drive to solve problems through elegant and efficient code. Whether it’s developing scalable APIs, optimizing complex systems, or creating user-friendly interfaces, I aim to deliver software that makes an impact.'
+      data: 'I approach every project with curiosity and care. Whether it’s building APIs, improving performance, or creating friendly user interfaces, my goal is to write code that works well and makes a real difference.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: 'When I’m not coding, I enjoy exploring the vibrant culture of Malmö, experimenting with personal projects, or connecting with other professionals to exchange ideas and insights.'
+      data: 'When I’m not coding, I enjoy life in Malmö, exploring the city, working on personal projects, or talking with other developers about new ideas.'
     },
     {
       type: ABOUT_ME_CONTENT_TYPE.text,
-      data: '<strong>Let’s collaborate</strong> to create software that not only meets technical demands but also inspires and empowers users around the globe.'
+      data: '<strong>Let’s build</strong> software that not only works but also inspires and helps people everywhere.'
     }
   ]
 } as const;
