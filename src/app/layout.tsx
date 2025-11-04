@@ -1,11 +1,10 @@
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ToastContainer } from 'react-toastify';
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import Image from 'next/image';
-
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { ProgressBar } from '@/layout/components/progress-bar';
 import { ENV } from '@/shared/constants';
@@ -20,6 +19,11 @@ const CustomCursor = React.lazy(() =>
 );
 const Header = React.lazy(() =>
   import('@/layout/components/header').then((module) => ({ default: module.Header }))
+);
+const CookiesModal = React.lazy(() =>
+  import('@/layout/components/cookies-modal').then((module) => ({
+    default: module.CookiesModal
+  }))
 );
 const PerformanceMonitor = React.lazy(() =>
   import('@/shared/components/performance-monitor').then((module) => ({
@@ -115,6 +119,8 @@ export default function RootLayout({
         </Suspense>
 
         {children}
+
+        <CookiesModal />
 
         <ToastContainer
           limit={4}
