@@ -13,7 +13,6 @@ import {
 } from '@/data';
 import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-button';
 import { ContentContainer } from '@/layout/components/content-container';
-import { DecryptedText } from '@/shared/components/decrypted-text';
 import { animator } from '@/shared/helpers';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
@@ -24,6 +23,10 @@ import { renderContent } from './helper';
 import styles from './about-me.module.scss';
 
 const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
+  ssr: false
+});
+
+const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
   ssr: false
 });
 

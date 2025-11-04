@@ -1,11 +1,14 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
-
 import { clsx } from 'clsx';
 
-import { DecryptedText } from '@/shared/components/decrypted-text';
 import { titleFont } from '@/app/fonts';
+
+const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
+  ssr: false
+});
 
 export function ErrorPage({
   error,

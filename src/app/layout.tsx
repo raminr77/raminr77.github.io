@@ -85,6 +85,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="description" content={PERSONAL_DATA.pageDescription} />
+        <link rel="preload" as="image" href="/images/background.webp" />
         {!!ENV.GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />
         )}
@@ -97,6 +98,7 @@ export default function RootLayout({
           width={830}
           height={830}
           quality={75}
+          loading="lazy"
           draggable={false}
           fetchPriority="high"
           src="/images/background.webp"
