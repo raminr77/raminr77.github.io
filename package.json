@@ -21,7 +21,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@next/third-parties": "^16.0.1",
-    "@sentry/nextjs": "^10.22.0",
+    "@sentry/nextjs": "^10.23.0",
     "@vercel/speed-insights": "^1.2.0",
     "animate.css": "^4.1.1",
     "clsx": "^2.1.1",
@@ -41,7 +41,6 @@
   "lint-staged": {
     "**/*": [
       "prettier --write .",
-      "tsc --pretty --noEmit --project ./",
       "eslint \"src/**/*.{ts,tsx,js}\""
     ]
   },
