@@ -1,2 +1,6 @@
 ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
+  - '@sentry/cli'
+  - '@parcel/watcher'
   - '@vercel/speed-insights'

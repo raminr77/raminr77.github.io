@@ -4,9 +4,8 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import Image from 'next/image';
 
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-
+import { ServiceWorkerRegistrar } from '@/layout/components/service-worker-registrar';
+import { ThirdPartyScripts } from '@/layout/components/third-party-scripts';
 import { ProgressBar } from '@/layout/components/progress-bar';
 import { ENV } from '@/shared/constants';
 import { textFont } from '@/app/fonts';
@@ -21,9 +20,9 @@ const CustomCursor = React.lazy(() =>
 const Header = React.lazy(() =>
   import('@/layout/components/header').then((module) => ({ default: module.Header }))
 );
-const PerformanceMonitor = React.lazy(() =>
-  import('@/shared/components/performance-monitor').then((module) => ({
-    default: module.PerformanceMonitor
+const CookiesModal = React.lazy(() =>
+  import('@/layout/components/cookies-modal').then((module) => ({
+    default: module.CookiesModal
   }))
 );
 
@@ -71,7 +70,7 @@ export const metadata: Metadata = {
       {
         width: 1200,
         height: 630,
-        url: '/social-banner.png',
+        url: '/images/social-banner.png',
         alt: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`
       }
     ]
@@ -85,6 +84,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="description" content={PERSONAL_DATA.pageDescription} />
+        <link rel="preload" as="image" href="/images/background.webp" />
         {!!ENV.GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />
         )}
@@ -97,6 +97,7 @@ export default function RootLayout({
           width={830}
           height={830}
           quality={75}
+          loading="lazy"
           draggable={false}
           fetchPriority="high"
           src="/images/background.webp"
@@ -114,6 +115,10 @@ export default function RootLayout({
 
         {children}
 
+        <Suspense fallback={null}>
+          <CookiesModal />
+        </Suspense>
+
         <ToastContainer
           limit={4}
           newestOnTop
@@ -123,27 +128,11 @@ export default function RootLayout({
           toastClassName="!bg-gray-800 !text-white"
         />
 
-        <SpeedInsights />
-
-        {ENV.ANALYZE_MODE && <PerformanceMonitor />}
-
         {/* Optimized script loading */}
         <Script src="/click-spark.js" strategy="lazyOnload" />
-        <Script src="/service-worker.js" strategy="afterInteractive" />
+        <ServiceWorkerRegistrar />
 
-        {!!ENV.GOOGLE_ADSENSE && (
-          <Script
-            async
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ENV.GOOGLE_ADSENSE}`}
-          />
-        )}
-        {!!ENV.GOOGLE_ANALYTICS_CODE && (
-          <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
-        )}
-        {!!ENV.GOOGLE_TAG_MANAGER_CODE && (
-          <GoogleTagManager gtmId={ENV.GOOGLE_TAG_MANAGER_CODE} />
-        )}
+        <ThirdPartyScripts />
       </body>
     </html>
   );

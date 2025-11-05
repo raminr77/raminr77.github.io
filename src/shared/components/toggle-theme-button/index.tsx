@@ -1,8 +1,8 @@
 'use client';
+import { sendGTMEvent } from '@next/third-parties/google';
 import { useEffect, useState } from 'react';
 
-import { FEATURE_FLAGS, GTM_EVENTS } from '@/shared/constants';
-import { sendGTMEvent } from '@next/third-parties/google';
+import { FEATURE_FLAGS, GTM_EVENTS, LOCAL_STORAGE_KEYS } from '@/shared/constants';
 import { Icons } from '@/shared/components/icons';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
@@ -12,7 +12,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
   const [theme, setTheme] = useState<Theme>(THEMES.dark);
 
   useEffect(() => {
-    const previousTheme = localStorage.getItem('theme') as Theme | null;
+    const previousTheme = localStorage.getItem(LOCAL_STORAGE_KEYS.THEME) as Theme | null;
     if (previousTheme) {
       setTheme(previousTheme);
     }
@@ -21,7 +21,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
   useEffect(() => {
     document.documentElement.classList.remove(THEMES.light, THEMES.dark);
     document.documentElement.classList.add(theme);
-    localStorage.setItem('theme', theme);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.THEME, theme);
   }, [theme]);
 
   const handleThemeChange = () => {

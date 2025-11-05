@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { clsx } from 'clsx';
 
 import { animator } from '@/shared/helpers';

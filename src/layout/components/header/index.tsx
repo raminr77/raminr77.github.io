@@ -1,8 +1,8 @@
 'use client';
 
+import { sendGTMEvent } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-
 import { clsx } from 'clsx';
 
 import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
@@ -12,7 +12,6 @@ import { BurgerMenu } from '@/layout/components/burger-menu';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
-import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './header.module.scss';
 
 export function Header() {

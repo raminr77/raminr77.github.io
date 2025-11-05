@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -15,12 +15,14 @@
     "dev": "next dev --turbopack",
     "lint": "eslint . --fix",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky",
+    "test": "jest"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@next/third-parties": "^16.0.1",
-    "@sentry/nextjs": "^10.22.0",
+    "@sentry/nextjs": "^10.23.0",
     "@vercel/speed-insights": "^1.2.0",
     "animate.css": "^4.1.1",
     "clsx": "^2.1.1",
@@ -40,24 +42,30 @@
   "lint-staged": {
     "**/*": [
       "prettier --write .",
-      "tsc --pretty --noEmit --project ./",
-      "eslint \"src/**/*.{ts,tsx,js}\""
+      "eslint . --fix"
     ]
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.0",
+    "@eslint/js": "^9.39.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@next/eslint-plugin-next": "^16.0.1",
     "@tailwindcss/postcss": "^4.1.16",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^24.9.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.0",
     "@types/qs": "^6.14.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "eslint": "^9.39.0",
+    "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
     "lighthouse": "^13.0.1",
     "lint-staged": "^16.2.6",
     "postcss": "^8.5.6",
@@ -65,9 +73,12 @@
     "prettier-plugin-sort-imports": "^1.8.8",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "sass": "^1.93.3",
+    "sharp": "^0.34.4",
     "tailwindcss": "^4.1.16",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.2",
+    "typescript-eslint": "^8.46.3",
     "webpack": "^5.102.1",
     "webpack-bundle-analyzer": "^4.10.2"
   },

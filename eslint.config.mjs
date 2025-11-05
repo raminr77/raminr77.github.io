@@ -11,9 +11,11 @@ export default defineConfig(
       '.next/',
       'public/',
       '.github/',
+      '.github/**/*.yml',
       'next-env.d.ts',
       '**/node_modules/',
       '*.config.mjs',
+      '*.config.js',
       '*.config.ts'
     ]
   },

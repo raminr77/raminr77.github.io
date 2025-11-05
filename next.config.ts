@@ -13,7 +13,7 @@ const config: NextConfig = {
   compress: true,
   generateEtags: true,
   poweredByHeader: false,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
 
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -43,13 +43,25 @@ const config: NextConfig = {
         {
           loader: '@svgr/webpack',
           options: {
-            icon: true
+            icon: true,
+            svgoConfig: {
+              plugins: [
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      removeViewBox: false
+                    }
+                  }
+                }
+              ]
+            }
           }
         }
       ]
     });
 
-    if (process.env.NEXT_PUBLIC_ANALYZE_MODE === 'true' && dev) {
+    if (process.env.ANALYZE === 'true') {
       const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
       const analyzer = new BundleAnalyzerPlugin({
         analyzerMode: 'server',

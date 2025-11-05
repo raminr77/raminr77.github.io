@@ -2,15 +2,19 @@
 
 import { useEffect, useRef } from 'react';
 
+import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { clsx } from 'clsx';
 
-import { DecryptedText } from '@/shared/components/decrypted-text';
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
 import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import styles from './hero-text-animator.module.scss';
+
+const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
+  ssr: false
+});
 
 export function HeroTextAnimator() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -58,6 +62,7 @@ export function HeroTextAnimator() {
           <span
             className={styles['hero-text-animator__character']}
             data-text={replaceText}
+            aria-hidden="true"
             key={id}
           >
             {text}
