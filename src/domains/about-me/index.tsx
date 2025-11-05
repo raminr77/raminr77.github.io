@@ -75,7 +75,6 @@ export function AboutMePage() {
 
         <PixelCanvas
           playOnes
-          autoPlay
           color="green"
           className="absolute z-0 h-full w-full grayscale invert duration-500 hover:grayscale-0 dark:invert-0"
         />

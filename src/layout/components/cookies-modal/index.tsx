@@ -40,19 +40,30 @@ export function CookiesModal() {
   return (
     <div
       className={clsx(
-        'fixed flex flex-col gap-2 bottom-5 left-5 max-md:left-1/2 max-md:-translate-x-1/2 transform border p-4 w-11/12 max-w-sm select-none shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 border-slate-300/40 bg-transparent z-50',
+        'w-full flex items-center justify-between gap-4 flex-wrap fixed bottom-0 left-0 z-50 p-4 lg:py-2 select-none backdrop-blur-sm duration-500 hover:bg-slate-300/10 border-t border-slate-300/40 bg-transparent',
         animator({ name: 'fadeInUp' })
       )}
     >
-      <p>We use cookies</p>
-      <p>
-        We use our own and third-party cookies to personalize content and to analyze web
-        traffic.
-      </p>
-
-      <div className="w-full flex items-center gap-4 mt-2">
-        <Button label="Accept" type="button" className="w-full" onClick={handleAccept} />
-        <Button label="Reject" type="button" onClick={handleReject} />
+      <div className="flex flex-col">
+        <p className="text-xl text-bold">We use cookies</p>
+        <p className="text-md">
+          We use our own and third-party cookies to personalize content and to analyze web
+          traffic.
+        </p>
+      </div>
+      <div className="flex items-center gap-4 justify-end max-md:w-full max-[370px]:flex-col">
+        <Button
+          label="Reject"
+          type="button"
+          onClick={handleReject}
+          className="max-[370px]:w-full"
+        />
+        <Button
+          label="Accept"
+          type="button"
+          onClick={handleAccept}
+          className="max-sm:w-full"
+        />
       </div>
     </div>
   );
