@@ -13,7 +13,9 @@ export function ResumeDownloaderButton() {
     <a
       target="_blank"
       href={RESUME_FILE.url}
+      rel="noopener noreferrer"
       download={RESUME_FILE.fileName}
+      aria-label={`Download ${RESUME_FILE.fileName}`}
       onClick={() => sendGTMEvent(GTM_EVENTS.DOWNLOAD_RESUME)}
       className={clsx(
         'relative block rounded px-4 text-xl leading-10 duration-500',

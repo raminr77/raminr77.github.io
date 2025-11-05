@@ -1,17 +1,18 @@
 'use client';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import React, { useEffect, useState, Suspense } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { useEffect, useState, Suspense } from 'react';
 import Script from 'next/script';
 
 import { getCookiesModalStatus, type CookiesModalStatus } from '@/shared/helpers';
 import { COOKIES_MODAL_STATUS, ENV } from '@/shared/constants';
 
-const PerformanceMonitor = () =>
+const PerformanceMonitor = React.lazy(() =>
   import('@/shared/components/performance-monitor').then((module) => ({
     default: module.PerformanceMonitor
-  }));
+  }))
+);
 
 export function ThirdPartyScripts() {
   const [status, setStatus] = useState<CookiesModalStatus>(COOKIES_MODAL_STATUS.NONE);
@@ -28,7 +29,6 @@ export function ThirdPartyScripts() {
 
       {ENV.ANALYZE_MODE && (
         <Suspense fallback={null}>
-          {/* @ts-expect-error async component for lazy import */}
           <PerformanceMonitor />
         </Suspense>
       )}

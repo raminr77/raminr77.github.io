@@ -62,6 +62,7 @@ export function HeroTextAnimator() {
           <span
             className={styles['hero-text-animator__character']}
             data-text={replaceText}
+            aria-hidden="true"
             key={id}
           >
             {text}
