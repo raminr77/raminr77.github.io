@@ -40,7 +40,7 @@ export function CookiesModal() {
   return (
     <div
       className={clsx(
-        'fixed flex flex-col gap-2 bottom-5 left-5 max-md:left-1/2 max-md:-translate-x-1/2 transform border p-4 w-11/12 max-w-sm select-none shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 border-slate-300/40 bg-transparent',
+        'fixed flex flex-col gap-2 bottom-5 left-5 max-md:left-1/2 max-md:-translate-x-1/2 transform border p-4 w-11/12 max-w-sm select-none shadow backdrop-blur-sm duration-500 hover:bg-slate-300/10 border-slate-300/40 bg-transparent z-50',
         animator({ name: 'fadeInUp' })
       )}
     >
