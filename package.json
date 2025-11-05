@@ -42,7 +42,7 @@
   "lint-staged": {
     "**/*": [
       "prettier --write .",
-      "eslint \"src/**/*.{ts,tsx,js}\""
+      "eslint . --fix"
     ]
   },
   "devDependencies": {
