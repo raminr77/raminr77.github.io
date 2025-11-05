@@ -2,7 +2,7 @@ name: Tests
 
 on:
   push:
-    branches: ['master', 'dev']
+    branches: ["master", "dev"]
   workflow_dispatch:
 
 concurrency:
@@ -28,8 +28,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
@@ -37,15 +37,14 @@ jobs:
 
       - name: Run tests with coverage
         env:
-          CI: 'true'
-        run: |
-          pnpm test -- --coverage --ci
+          CI: "true"
+        run: pnpm test --ci
 
-      - name: Upload coverage artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: |
-            coverage/**
-          if-no-files-found: ignore
+      # - name: Upload coverage artifact
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: coverage
+      #     path: |
+      #       coverage/**
+      #     if-no-files-found: ignore
