@@ -20,11 +20,11 @@ const CustomCursor = React.lazy(() =>
 const Header = React.lazy(() =>
   import('@/layout/components/header').then((module) => ({ default: module.Header }))
 );
-// const CookiesModal = React.lazy(() =>
-//   import('@/layout/components/cookies-modal').then((module) => ({
-//     default: module.CookiesModal
-//   }))
-// );
+const CookiesModal = React.lazy(() =>
+  import('@/layout/components/cookies-modal').then((module) => ({
+    default: module.CookiesModal
+  }))
+);
 const PerformanceMonitor = React.lazy(() =>
   import('@/shared/components/performance-monitor').then((module) => ({
     default: module.PerformanceMonitor
@@ -120,7 +120,7 @@ export default function RootLayout({
 
         {children}
 
-        {/* <CookiesModal /> */}
+        <CookiesModal />
 
         <ToastContainer
           limit={4}
