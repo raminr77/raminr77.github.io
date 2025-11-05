@@ -58,12 +58,14 @@ export function CookiesModal() {
           onClick={handleReject}
           className="max-[370px]:w-full"
         />
-        <Button
-          label="Accept"
-          type="button"
-          onClick={handleAccept}
-          className="max-sm:w-full"
-        />
+        <div className="max-sm:w-full min-w-50">
+          <Button
+            label="Accept"
+            type="button"
+            className="w-full"
+            onClick={handleAccept}
+          />
+        </div>
       </div>
     </div>
   );
