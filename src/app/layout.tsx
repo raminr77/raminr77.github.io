@@ -1,11 +1,11 @@
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ToastContainer } from 'react-toastify';
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import Image from 'next/image';
 
+import { ServiceWorkerRegistrar } from '@/layout/components/service-worker-registrar';
+import { ThirdPartyScripts } from '@/layout/components/third-party-scripts';
 import { ProgressBar } from '@/layout/components/progress-bar';
 import { ENV } from '@/shared/constants';
 import { textFont } from '@/app/fonts';
@@ -23,11 +23,6 @@ const Header = React.lazy(() =>
 const CookiesModal = React.lazy(() =>
   import('@/layout/components/cookies-modal').then((module) => ({
     default: module.CookiesModal
-  }))
-);
-const PerformanceMonitor = React.lazy(() =>
-  import('@/shared/components/performance-monitor').then((module) => ({
-    default: module.PerformanceMonitor
   }))
 );
 
@@ -75,7 +70,7 @@ export const metadata: Metadata = {
       {
         width: 1200,
         height: 630,
-        url: '/social-banner.png',
+        url: '/images/social-banner.png',
         alt: `${PERSONAL_DATA.fullName} | ${PERSONAL_DATA.title}`
       }
     ]
@@ -120,7 +115,9 @@ export default function RootLayout({
 
         {children}
 
-        <CookiesModal />
+        <Suspense fallback={null}>
+          <CookiesModal />
+        </Suspense>
 
         <ToastContainer
           limit={4}
@@ -131,27 +128,11 @@ export default function RootLayout({
           toastClassName="!bg-gray-800 !text-white"
         />
 
-        <SpeedInsights />
-
-        {ENV.ANALYZE_MODE && <PerformanceMonitor />}
-
         {/* Optimized script loading */}
         <Script src="/click-spark.js" strategy="lazyOnload" />
-        <Script src="/service-worker.js" strategy="afterInteractive" />
+        <ServiceWorkerRegistrar />
 
-        {!!ENV.GOOGLE_ADSENSE && (
-          <Script
-            async
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ENV.GOOGLE_ADSENSE}`}
-          />
-        )}
-        {!!ENV.GOOGLE_ANALYTICS_CODE && (
-          <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
-        )}
-        {!!ENV.GOOGLE_TAG_MANAGER_CODE && (
-          <GoogleTagManager gtmId={ENV.GOOGLE_TAG_MANAGER_CODE} />
-        )}
+        <ThirdPartyScripts />
       </body>
     </html>
   );
