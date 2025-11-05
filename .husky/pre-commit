@@ -1,19 +1,5 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+pnpm run check-all
 
-echo '- Checking your Typescript code ...'
-pnpm run check-types ||
-(
-    echo '❌ Typescript Check Failed.';
-    false;
-)
+pnpm test
 
-echo '- Running your tests ...'
-pnpm test ||
-(
-    echo '❌ Your Tests Failed.';
-    false;
-)
-
-echo '- Checking your code ...'
 pnpm lint-staged

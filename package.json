@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -16,6 +16,7 @@
     "lint": "eslint . --fix",
     "build": "next build",
     "start": "next start",
+    "prepare": "husky",
     "test": "jest"
   },
   "dependencies": {
