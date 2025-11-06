@@ -1,3 +1,5 @@
+pnpm run format
+
 pnpm run check-all
 
 pnpm test
