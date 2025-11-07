@@ -14,7 +14,7 @@
     "format": "prettier --write .",
     "dev": "next dev --turbopack",
     "lint": "eslint . --fix",
-    "build": "next build --webpack",
+    "build": "next build",
     "start": "next start",
     "prepare": "husky",
     "test": "jest"
