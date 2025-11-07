@@ -2,6 +2,10 @@ import type { Configuration, WebpackPluginInstance } from 'webpack';
 import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+});
+
 const config: NextConfig = {
   // reactCompiler: true,
   // cacheComponents: true,
@@ -61,17 +65,6 @@ const config: NextConfig = {
       ]
     });
 
-    if (process.env.ANALYZE === 'true') {
-      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-      const analyzer = new BundleAnalyzerPlugin({
-        analyzerMode: 'server',
-        openAnalyzer: true
-      }) as unknown as WebpackPluginInstance;
-
-      config.plugins = config.plugins || [];
-      config.plugins.push(analyzer);
-    }
-
     return config;
   },
 
@@ -120,7 +113,7 @@ const config: NextConfig = {
   }
 };
 
-export default withSentryConfig(config, {
+export default withSentryConfig(withBundleAnalyzer(config), {
   org: 'ramin-zone',
   disableLogger: true,
   silent: !process.env.CI,

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-
+import { useGSAP } from '@gsap/react';
 import dynamic from 'next/dynamic';
-import { gsap } from 'gsap';
+import { useRef } from 'react';
 import { clsx } from 'clsx';
+import gsap from 'gsap';
 
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
 import { titleFont } from '@/app/fonts';
@@ -19,35 +19,38 @@ const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text')
 export function HeroTextAnimator() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
 
-  useEffect(() => {
-    if (titleRef.current) {
-      const titleElement = titleRef.current;
-      const textCharacters = titleElement.querySelectorAll('span');
-      const replaceCharacters = titleElement.querySelectorAll(
-        'span:not([data-text="."])'
-      );
+  useGSAP(
+    () => {
+      if (titleRef.current) {
+        const titleElement = titleRef.current;
+        const textCharacters = titleElement.querySelectorAll('span');
+        const replaceCharacters = titleElement.querySelectorAll(
+          'span:not([data-text="."])'
+        );
 
-      const timeline = gsap.timeline();
-      timeline.set(titleElement, { autoAlpha: 1 });
-      timeline.set(textCharacters, { yPercent: -110 });
-      timeline.to(textCharacters, {
-        duration: 1,
-        yPercent: 0,
-        stagger: 0.1,
-        ease: 'expo.inOut'
-      });
-      timeline.to(replaceCharacters, {
-        delay: 6,
-        yoyo: true,
-        repeat: -1,
-        duration: 1,
-        stagger: 0.1,
-        yPercent: 110,
-        repeatDelay: 6,
-        ease: 'expo.inOut'
-      });
-    }
-  }, []);
+        const timeline = gsap.timeline();
+        timeline.set(titleElement, { autoAlpha: 1 });
+        timeline.set(textCharacters, { yPercent: -110 });
+        timeline.to(textCharacters, {
+          duration: 1,
+          yPercent: 0,
+          stagger: 0.1,
+          ease: 'expo.inOut'
+        });
+        timeline.to(replaceCharacters, {
+          delay: 6,
+          yoyo: true,
+          repeat: -1,
+          duration: 1,
+          stagger: 0.1,
+          yPercent: 110,
+          repeatDelay: 6,
+          ease: 'expo.inOut'
+        });
+      }
+    },
+    { scope: titleRef }
+  );
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
