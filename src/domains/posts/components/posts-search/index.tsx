@@ -147,6 +147,8 @@ export function PostsSearch() {
     </Activity>
   );
 
+  if (typeof window === 'undefined') return null;
+
   return (
     <div className="flex items-center">
       <button
