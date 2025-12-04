@@ -97,7 +97,6 @@ export default function RootLayout({
           width={830}
           height={830}
           quality={75}
-          loading="lazy"
           draggable={false}
           fetchPriority="high"
           src="/images/background.webp"
