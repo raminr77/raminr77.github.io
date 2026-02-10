@@ -2,7 +2,6 @@ import Markdown, { RuleType } from 'markdown-to-jsx';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { clsx } from 'clsx';
-import React from 'react';
 
 import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
 import { ClientCodeLoader } from '@/shared/components/client-code-loader';
@@ -12,7 +11,6 @@ import { PostCard } from '@/domains/posts/components/post-card';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import { BackToPostButton } from './components/back-to-posts-button';
@@ -57,8 +55,7 @@ export async function PostDetailPage({ params }: Props) {
     <ContentContainer animationName="fadeIn">
       <h3
         className={clsx(
-          titleFont.className,
-          'mb-12 text-center text-2xl ',
+          'mb-12 text-center text-2xl font-title',
           animator({ name: 'fadeIn' })
         )}
       >

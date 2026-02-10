@@ -6,7 +6,6 @@ import { PostTags } from '@/domains/posts/components/post-tags';
 import type { PostMetadata } from '@/shared/types/post';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 import { PostCategory } from '../post-category';
 import { PostDate } from '../post-date';
@@ -50,7 +49,7 @@ export function PostCard({
       <div className="flex flex-col gap-2 z-10">
         <Link
           href={postDetailUrl}
-          className={clsx('text-lg font-bold text-amber-500', titleFont.className)}
+          className="text-lg font-bold text-amber-500 font-title"
         >
           {title}
         </Link>

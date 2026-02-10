@@ -3,11 +3,9 @@
 import { useGSAP } from '@gsap/react';
 import dynamic from 'next/dynamic';
 import { useRef } from 'react';
-import { clsx } from 'clsx';
 import gsap from 'gsap';
 
 import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
-import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import styles from './hero-text-animator.module.scss';
@@ -56,10 +54,7 @@ export function HeroTextAnimator() {
     <div className="flex w-full flex-col items-center justify-center">
       <h1
         ref={titleRef}
-        className={clsx(
-          'invisible mt-10 flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl font-extrabold',
-          titleFont.className
-        )}
+        className="invisible mt-10 flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl font-extrabold font-title"
       >
         {HETO_TEXT_CHARACTERS.map(({ id, text, replaceText }) => (
           <span

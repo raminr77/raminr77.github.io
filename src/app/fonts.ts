@@ -1,14 +1,18 @@
 import { Gantari, Hubballi } from 'next/font/google';
 
-export const textFont = Hubballi({
+const textFont = Hubballi({
   preload: true,
   weight: '400',
   display: 'swap',
-  subsets: ['latin']
+  subsets: ['latin'],
+  variable: '--font-text'
 });
 
-export const titleFont = Gantari({
+const titleFont = Gantari({
   preload: true,
   display: 'swap',
-  subsets: ['latin']
+  subsets: ['latin'],
+  variable: '--font-title'
 });
+
+export { textFont, titleFont };

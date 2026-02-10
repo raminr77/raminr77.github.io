@@ -2,7 +2,6 @@ import { clsx } from 'clsx';
 
 import { animator } from '@/shared/helpers';
 import type { ProjectItem } from '@/data';
-import { titleFont } from '@/app/fonts';
 
 export function ProjectCard({
   data,
@@ -21,7 +20,7 @@ export function ProjectCard({
       style={{ animationDelay: `${animationDelay}s` }}
     >
       <div className="mb-3 flex flex-col gap-2">
-        <p className={titleFont.className}>{title}</p>
+        <p className="font-title">{title}</p>
         <span>{role}</span>
       </div>
       <div className="flex select-none flex-wrap gap-3">

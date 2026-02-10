@@ -8,7 +8,6 @@ import { clsx } from 'clsx';
 
 import type { PixelCanvasColor } from '@/shared/components/pixel-canvas';
 import { type AnimationNames, animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
   ssr: false
@@ -43,8 +42,7 @@ export function PixelCard({
         <div className="pointer-events-none z-10 flex w-full flex-col items-center justify-center gap-1 px-5 py-6">
           <h3
             className={clsx(
-              'text-2xl font-bold leading-10',
-              titleFont.className,
+              'text-2xl font-bold leading-10 font-title',
               animator({ name: 'fadeInUp' })
             )}
           >

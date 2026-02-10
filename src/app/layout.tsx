@@ -7,8 +7,8 @@ import Image from 'next/image';
 import { ServiceWorkerRegistrar } from '@/layout/components/service-worker-registrar';
 import { ThirdPartyScripts } from '@/layout/components/third-party-scripts';
 import { ProgressBar } from '@/layout/components/progress-bar';
+import { textFont, titleFont } from '@/app/fonts';
 import { ENV } from '@/shared/constants';
-import { textFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 // Lazy load components for better performance
@@ -81,7 +81,7 @@ export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${textFont.variable} ${titleFont.variable}`}>
       <head>
         <meta name="description" content={PERSONAL_DATA.pageDescription} />
         <link rel="preload" as="image" href="/images/background.webp" />
@@ -89,7 +89,7 @@ export default function RootLayout({
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />
         )}
       </head>
-      <body className={textFont.className}>
+      <body className="font-text">
         <ProgressBar />
 
         <Image

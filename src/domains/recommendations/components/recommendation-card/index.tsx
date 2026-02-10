@@ -8,7 +8,6 @@ import { clsx } from 'clsx';
 import type { RecommendationItem } from '@/data';
 import { GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 import styles from './recommendation-card.module.scss';
 
@@ -55,7 +54,7 @@ export function RecommendationCard({
             target="_blank"
             onClick={sendEvent}
             rel="noopener noreferrer"
-            className={clsx(titleFont.className, 'text-xl font-bold text-amber-500')}
+            className="text-xl font-bold text-amber-500 font-title"
           >
             {fullName.toUpperCase()}
           </a>

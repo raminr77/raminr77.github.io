@@ -6,7 +6,6 @@ import type { PostMetadata, PostFilters } from '@/shared/types/post';
 import { PostCard } from '@/domains/posts/components/post-card';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import { PostsCategoryFilter } from './components/posts-category-filter';
@@ -30,8 +29,7 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
     <ContentContainer animationName="fadeIn" className="relative">
       <h3
         className={clsx(
-          'mb-4 text-center text-2xl font-bold',
-          titleFont.className,
+          'mb-4 text-center text-2xl font-bold font-title',
           animator({ name: 'fadeIn' })
         )}
       >

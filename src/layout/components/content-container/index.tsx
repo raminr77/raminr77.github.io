@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { clsx } from 'clsx';
 
 import { type AnimationNames, animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 interface ContentContainerProps {
   title?: string;
@@ -30,9 +29,8 @@ export function ContentContainer({
         {title && (
           <h1
             className={clsx(
-              'mb-5 text-2xl font-bold',
-              animator({ name: 'fadeIn' }),
-              titleFont.className
+              'mb-5 text-2xl font-bold font-title',
+              animator({ name: 'fadeIn' })
             )}
           >
             {title}
