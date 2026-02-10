@@ -2,9 +2,6 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
-import { clsx } from 'clsx';
-
-import { titleFont } from '@/app/fonts';
 
 const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
   ssr: false
@@ -25,7 +22,7 @@ export function ErrorPage({
   return (
     <div className="flex h-dvh w-full select-none flex-col items-center justify-center gap-10">
       <DecryptedText
-        parentClassName={clsx('text-4xl font-extrabold', titleFont.className)}
+        parentClassName="text-4xl font-extrabold font-title"
         text="Something went wrong!"
         speed={100}
       />
@@ -44,10 +41,7 @@ export function ErrorPage({
       </div>
 
       <button
-        className={clsx(
-          'cursor-pointer border-b px-4 leading-10 duration-300 hover:px-8',
-          titleFont.className
-        )}
+        className="cursor-pointer border-b px-4 leading-10 duration-300 hover:px-8 font-title"
         onClick={() => reset()}
       >
         Try again

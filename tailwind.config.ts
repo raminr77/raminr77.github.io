@@ -5,6 +5,10 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        text: ['var(--font-text)'],
+        title: ['var(--font-title)']
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)'

@@ -7,7 +7,6 @@ import { ProjectCard } from '@/domains/projects/components/project-card';
 import { ContentContainer } from '@/layout/components/content-container';
 import { PROJECTS_DATA, type ProjectItem } from '@/data';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: 'Projects'
@@ -18,16 +17,14 @@ export function ProjectsPage() {
     <ContentContainer>
       <h3
         className={clsx(
-          'select-none text-center text-2xl font-bold',
-          titleFont.className,
+          'select-none text-center text-2xl font-bold font-title',
           animator({ name: 'fadeIn' })
         )}
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.title }}
       />
       <p
         className={clsx(
-          titleFont.className,
-          'mt-4 select-none text-center',
+          'mt-4 select-none text-center font-title',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}

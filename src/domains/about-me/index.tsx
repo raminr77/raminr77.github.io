@@ -14,7 +14,6 @@ import {
 import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-button';
 import { ContentContainer } from '@/layout/components/content-container';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import { RecommendationsBox } from './components/recommendations-box';
@@ -83,9 +82,8 @@ export function AboutMePage() {
         sequential
         speed={150}
         parentClassName={clsx(
-          'w-full text-left text-4xl font-extrabold',
-          animator({ name: 'fadeInUp', delay: '1s' }),
-          titleFont.className
+          'w-full text-left text-4xl font-extrabold font-title',
+          animator({ name: 'fadeInUp', delay: '1s' })
         )}
         text={`About ${PERSONAL_DATA.firstName}`}
       />

@@ -9,7 +9,6 @@ import {
 } from '@/data';
 import { ContentContainer } from '@/layout/components/content-container';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 import { RecommendationCard } from './components/recommendation-card';
 
@@ -22,16 +21,14 @@ export function RecommendationsPage() {
     <ContentContainer>
       <h3
         className={clsx(
-          'select-none text-center text-2xl font-bold',
-          titleFont.className,
+          'select-none text-center text-2xl font-bold font-title',
           animator({ name: 'fadeInUp' })
         )}
         dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.title }}
       />
       <p
         className={clsx(
-          titleFont.className,
-          'mt-4 select-none text-center text-lg',
+          'mt-4 select-none text-center text-lg font-title',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
         dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.description }}

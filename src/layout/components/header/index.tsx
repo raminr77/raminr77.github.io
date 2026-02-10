@@ -9,7 +9,6 @@ import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
 import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { animator, pageTitleGenerator } from '@/shared/helpers';
 import { BurgerMenu } from '@/layout/components/burger-menu';
-import { titleFont } from '@/app/fonts';
 import { PERSONAL_DATA } from '@/data';
 
 import styles from './header.module.scss';
@@ -36,8 +35,7 @@ export function Header() {
         >
           <h3
             className={clsx(
-              'text-2xl font-bold',
-              titleFont.className,
+              'text-2xl font-bold font-title',
               animator({ name: 'fadeInLeft' })
             )}
           >

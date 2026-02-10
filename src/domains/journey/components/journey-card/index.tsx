@@ -6,7 +6,6 @@ import { clsx } from 'clsx';
 import { Icons } from '@/shared/components/icons';
 import { JourneyItem } from '@/data/journey';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './journey-card.module.scss';
@@ -18,8 +17,7 @@ const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
 
 const TITLE_CLASSES = clsx(
   styles['journey-card__title'],
-  'text-xl tracking-wide pb-2 border-b border-slate-300/40 mb-3 duration-500',
-  titleFont.className
+  'text-xl tracking-wide pb-2 border-b border-slate-300/40 mb-3 duration-500 font-title'
 );
 export function JourneyCard({
   data,
@@ -50,9 +48,8 @@ export function JourneyCard({
         <span
           style={{ animationDelay }}
           className={clsx(
-            'pointer-events-none absolute text-xl font-extrabold tracking-wide',
-            animator({ name: 'fadeIn' }),
-            titleFont.className
+            'pointer-events-none absolute text-xl font-extrabold tracking-wide font-title',
+            animator({ name: 'fadeIn' })
           )}
         >
           {year}

@@ -2,7 +2,6 @@
 import { sendGTMEvent } from '@next/third-parties/google';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 import Link from 'next/link';
 import clsx from 'clsx';
 
@@ -18,9 +17,7 @@ export function EmptyPostBlock({ hasFilter }: EmptyPostBlockProps) {
         animator({ name: 'fadeIn' })
       )}
     >
-      <p className={clsx('text-center text-xl font-bold', titleFont.className)}>
-        No posts found.
-      </p>
+      <p className="text-center text-xl font-bold font-title">No posts found.</p>
       <p>There are no posts that match your search or filters.</p>
       {hasFilter && (
         <Link

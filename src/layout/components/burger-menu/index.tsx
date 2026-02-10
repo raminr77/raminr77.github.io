@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -10,7 +10,6 @@ import { clsx } from 'clsx';
 import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
 import { GTM_EVENTS, MENU_ITEM_ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { titleFont } from '@/app/fonts';
 
 import { BurgerMenuToolsAnimation } from './burger-menu-tools-animation';
 import { sendGTMEvent } from '@next/third-parties/google';
@@ -78,10 +77,9 @@ export function BurgerMenu() {
                   animationDelay: `${index * 0.1}s`
                 }}
                 className={clsx(
-                  titleFont.className,
                   styles['burger-menu__link'],
                   animator({ name: 'fadeInLeft', speed: 'fast' }),
-                  'relative w-4/5 text-left text-4xl font-bold tracking-widest duration-200 lg:text-6xl'
+                  'relative w-4/5 text-left text-4xl font-bold tracking-widest duration-200 lg:text-6xl font-title'
                 )}
                 onClick={() => sendGTMEvent(GTM_EVENTS.MENU(`BURGER: ${title}`))}
               >
