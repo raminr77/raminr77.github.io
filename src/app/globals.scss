@@ -25,11 +25,19 @@ body {
   min-height: 100dvh;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-text), Arial, Helvetica, sans-serif;
 }
 
 button {
   cursor: pointer;
+}
+
+.font-text {
+  font-family: var(--font-text), Arial, Helvetica, sans-serif;
+}
+
+.font-title {
+  font-family: var(--font-title), Arial, Helvetica, sans-serif;
 }
 
 ::-webkit-scrollbar {
