@@ -44,6 +44,7 @@ export function getPosts(
         author: data.author ?? PERSONAL_DATA.firstName
       };
     })
+    .filter((postItem: PostMetadata) => postItem.isActive)
     .filter((postItem: PostMetadata) => filterPostsByKey(postItem, filters))
     .filter((postItem: PostMetadata) => searchPosts(postItem, searchValue))
     .sort(postSorter);
