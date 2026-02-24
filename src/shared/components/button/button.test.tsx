@@ -80,4 +80,10 @@ describe('<Button />', () => {
     await user.keyboard(' ');
     expect(onClick).toHaveBeenCalledTimes(2);
   });
+
+  test('testId is set correctly', () => {
+    render(<Button label="Test" type="button" testId="test-button" />);
+    const btn = screen.getByTestId('test-button');
+    expect(btn).toBeInTheDocument();
+  });
 });

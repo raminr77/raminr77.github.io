@@ -2,11 +2,11 @@ import { ENDPOINTS } from '@/shared/api/constants';
 import { PostMetadata } from '@/shared/types/post';
 import { notify } from '@/shared/helpers';
 
-interface Response {
+export type SearchPostsResponse = {
   success: boolean;
   message?: string;
   data?: PostMetadata[];
-}
+};
 
 export const searchPosts = (value: string) => {
   return new Promise((resolve, reject) => {
@@ -18,7 +18,7 @@ export const searchPosts = (value: string) => {
       }
     })
       .then((rawResponse) => rawResponse.json())
-      .then((response: Response) => {
+      .then((response: SearchPostsResponse) => {
         if (response.success) {
           resolve(response?.data ?? []);
         } else {
