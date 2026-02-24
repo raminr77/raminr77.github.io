@@ -17,7 +17,9 @@
     "build": "next build",
     "start": "next start",
     "prepare": "husky",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

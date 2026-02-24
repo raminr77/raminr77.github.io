@@ -30,6 +30,9 @@ export function readingTime(text: string) {
 }
 
 export function generateFilteredPostUrl(filters: { tag?: string; category?: string }) {
+  if (!filters.tag && !filters.category) {
+    return ROUTES.POSTS;
+  }
   return `${ROUTES.POSTS}?${stringify(filters)}`;
 }
 
