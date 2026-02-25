@@ -79,6 +79,7 @@ export function ContactForm() {
         type="text"
         id="subject"
         label="Subject"
+        testId="subject-input"
         placeholder="Enter your subject"
         error={errors.subject?.message}
         {...register('subject', {
@@ -97,6 +98,7 @@ export function ContactForm() {
         id="email"
         type="email"
         label="Email"
+        testId="email-input"
         error={errors.email?.message}
         placeholder="Enter your email address"
         {...register('email', {
@@ -132,13 +134,14 @@ export function ContactForm() {
             type="textarea"
             label="Message"
             onChange={onChange}
+            testId="message-input"
             placeholder="Enter your message"
             error={errors.message?.message}
           />
         )}
       />
       <div className="mt-2 flex w-full justify-end">
-        <Button label="Submit" type="submit" loading={loading} />
+        <Button testId="submit-button" label="Submit" type="submit" loading={loading} />
       </div>
     </form>
   );

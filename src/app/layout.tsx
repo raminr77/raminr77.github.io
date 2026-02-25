@@ -7,9 +7,9 @@ import Image from 'next/image';
 import { ServiceWorkerRegistrar } from '@/layout/components/service-worker-registrar';
 import { ThirdPartyScripts } from '@/layout/components/third-party-scripts';
 import { ProgressBar } from '@/layout/components/progress-bar';
+import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
 import { textFont, titleFont } from '@/app/fonts';
 import { ENV } from '@/shared/constants';
-import { PERSONAL_DATA } from '@/data';
 
 // Lazy load components for better performance
 const CustomCursor = React.lazy(() =>
@@ -57,7 +57,18 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(PERSONAL_DATA.url),
   alternates: {
-    canonical: '/'
+    canonical: PERSONAL_DATA.url
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large'
+    }
   },
   openGraph: {
     type: 'website',
@@ -132,6 +143,24 @@ export default function RootLayout({
         <ServiceWorkerRegistrar />
 
         <ThirdPartyScripts />
+
+        {/* JSON Data */}
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: PERSONAL_DATA.fullName,
+              url: PERSONAL_DATA.url,
+              sameAs: CONTACT_ME_DATA.links
+                .map((link) => link.url)
+                .filter((url) => url.startsWith('http'))
+            })
+          }}
+        />
       </body>
     </html>
   );

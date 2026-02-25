@@ -5,6 +5,7 @@ import { Spinner } from '@/shared/components/spinner';
 
 interface ButtonProps {
   label: string;
+  testId?: string;
   loading?: boolean;
   className?: string;
   disabled?: boolean;
@@ -15,6 +16,7 @@ interface ButtonProps {
 export function Button({
   type = 'button',
   label,
+  testId,
   onClick,
   className,
   loading = false,
@@ -26,6 +28,7 @@ export function Button({
       title={label}
       onClick={onClick}
       aria-label={label}
+      data-testid={testId}
       disabled={loading || disabled}
       className={clsx(
         'flex min-w-36 items-center justify-center gap-2 border px-5 leading-10 shadow backdrop-blur-md duration-300 hover:border-amber-500 hover:shadow-amber-500/50',

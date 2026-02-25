@@ -9,6 +9,7 @@ interface TextInputProps {
   name?: string;
   value?: string;
   label?: string;
+  testId?: string;
   tabIndex?: number;
   required?: boolean;
   className?: string;
@@ -25,6 +26,7 @@ export function TextInput({
   label,
   value,
   error,
+  testId,
   onChange,
   tabIndex,
   className,
@@ -58,6 +60,7 @@ export function TextInput({
           onChange={onChange}
           autoFocus={autoFocus}
           placeholder={placeholder}
+          data-testid={testId ?? id}
           className={clsx(INPUT_CLASSES, {
             'border-red-500': !!error
           })}
@@ -73,6 +76,7 @@ export function TextInput({
           required={required}
           onChange={onChange}
           placeholder={placeholder}
+          data-testid={testId ?? id}
           className={clsx(INPUT_CLASSES, 'min-h-48 px-4 py-2', {
             'border-red-500': !!error
           })}

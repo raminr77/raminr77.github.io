@@ -47,6 +47,7 @@ export function PostsCategoryFilter({
       {!!activeFilters && (
         <Link
           href={ROUTES.POSTS}
+          data-testid="clear-filter-link"
           onClick={() => sendGTMEvent(GTM_EVENTS.CLEAR_FILTERS)}
           className="px-2 py-1 text-md bg-transparent backdrop-blur-sm hover:text-amber-500 duration-300"
         >
