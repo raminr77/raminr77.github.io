@@ -15,7 +15,11 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
     const previousTheme = localStorage.getItem(LOCAL_STORAGE_KEYS.THEME) as Theme | null;
     if (previousTheme) {
       setTheme(previousTheme);
+      return;
     }
+    // default to dark for first-time visitors
+    setTheme(THEMES.dark);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.THEME, THEMES.dark);
   }, []);
 
   useEffect(() => {
