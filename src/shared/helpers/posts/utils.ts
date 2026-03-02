@@ -1,6 +1,6 @@
-import { ROUTES } from '@/shared/constants';
 import { compareDesc } from 'date-fns';
-import { stringify } from 'qs';
+
+import { ROUTES } from '@/shared/constants';
 
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
 
@@ -33,7 +33,13 @@ export function generateFilteredPostUrl(filters: { tag?: string; category?: stri
   if (!filters.tag && !filters.category) {
     return ROUTES.POSTS;
   }
-  return `${ROUTES.POSTS}?${stringify(filters)}`;
+
+  const params = new URLSearchParams();
+  if (filters.tag) params.set('tag', filters.tag);
+  if (filters.category) params.set('category', filters.category);
+
+  const query = params.toString();
+  return query ? `${ROUTES.POSTS}?${query}` : ROUTES.POSTS;
 }
 
 export function searchPosts(postItem: PostMetadata, searchValue: string | null) {

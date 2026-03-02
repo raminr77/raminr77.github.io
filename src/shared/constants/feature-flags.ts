@@ -1,3 +1,3 @@
 export const FEATURE_FLAGS = {
-  TOGGLE_THEME_BUTTON: false
+  TOGGLE_THEME_BUTTON: true
 } as const;

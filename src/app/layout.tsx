@@ -92,7 +92,7 @@ export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${textFont.variable} ${titleFont.variable}`}>
+    <html lang="en" className={`${textFont.variable} ${titleFont.variable} dark`}>
       <head>
         <meta name="description" content={PERSONAL_DATA.pageDescription} />
         <link rel="preload" as="image" href="/images/background.webp" />
