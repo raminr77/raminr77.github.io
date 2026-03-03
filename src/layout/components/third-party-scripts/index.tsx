@@ -21,7 +21,9 @@ export function ThirdPartyScripts() {
     setStatus(getCookiesModalStatus());
   }, []);
 
-  if (status !== COOKIES_MODAL_STATUS.ACCEPT) return null;
+  if (status !== COOKIES_MODAL_STATUS.ACCEPT) {
+    return <SpeedInsights />;
+  }
 
   return (
     <>
