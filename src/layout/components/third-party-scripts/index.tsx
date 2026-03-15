@@ -18,6 +18,16 @@ export function ThirdPartyScripts() {
   const [status, setStatus] = useState<CookiesModalStatus>(COOKIES_MODAL_STATUS.NONE);
 
   useEffect(() => {
+    // Developer signiture
+    console.log(
+      '%cHi, curious developer 👋',
+      'color:#fff; background:#111827; padding:10px 16px; font-size:20px; font-weight:bold; margin:16px; border-radius:4px;'
+    );
+    console.log(
+      "%cWelcome to Ramin's personal website.\nIf you're interested in web development, feel free to explore the source code and reach out!\nGithub: https://github.com/raminr77/raminr77.github.io",
+      `color:#60a5fa; font-size:16px; padding:16px; line-height:1.5;`
+    );
+
     setStatus(getCookiesModalStatus());
   }, []);
 
