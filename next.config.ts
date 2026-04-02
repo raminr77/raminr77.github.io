@@ -74,7 +74,6 @@ const config: NextConfig = {
         source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Credentials', value: 'true' },
           {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT'
@@ -115,9 +114,11 @@ const config: NextConfig = {
 
 export default withSentryConfig(withBundleAnalyzer(config), {
   org: 'ramin-zone',
-  disableLogger: true,
   silent: !process.env.CI,
   project: 'personal-site',
   widenClientFileUpload: true,
-  automaticVercelMonitors: true
+  webpack: {
+    automaticVercelMonitors: true,
+    treeshake: { removeDebugLogging: true }
+  }
 });

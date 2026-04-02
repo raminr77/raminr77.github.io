@@ -29,7 +29,8 @@ describe('ContactForm', () => {
     const submitButton = await screen.findByTestId('submit-button');
     await user.click(submitButton);
 
-    expect(true).toBe(true);
+    // Submit button should remain in the document after submission
+    expect(submitButton).toBeInTheDocument();
   });
 
   it('should show validation errors', async () => {

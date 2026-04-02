@@ -1,7 +1,7 @@
 import matter from 'gray-matter';
 import fs from 'fs';
 
-import type { PostFilters, PostMetadata } from '@/shared/types/post';
+import type { PostMetadata } from '@/shared/types/post';
 import { getPosts } from './get-posts';
 
 jest.mock('fs', () => ({
@@ -12,7 +12,7 @@ jest.mock('fs', () => ({
 jest.mock('gray-matter', () => jest.fn());
 
 jest.mock('./constants', () => ({
-  POSTT_FOLTER_PATH: '/virtual/posts'
+  POST_FOLDER_PATH: '/virtual/posts'
 }));
 
 jest.mock('@/data', () => ({
@@ -83,7 +83,7 @@ describe('getPosts', () => {
   });
 
   it('should filter by category', () => {
-    const res = getPosts({ category: 'react' } as PostFilters);
+    const res = getPosts({ category: 'react' });
 
     expect(res.data.length).toBe(1);
     expect(res.data[0].category).toBe('react');
@@ -91,7 +91,7 @@ describe('getPosts', () => {
   });
 
   it('should filter by tag', () => {
-    const res = getPosts({ tag: 'design' } as PostFilters);
+    const res = getPosts({ tag: 'design' });
 
     expect(res.data.length).toBe(1);
     expect(res.data[0].tags.includes('design')).toBe(true);
@@ -102,6 +102,32 @@ describe('getPosts', () => {
     const res = getPosts();
 
     expect(res.categories.sort()).toEqual(['react', 'system'].sort());
+  });
+
+  it('should not include categories from inactive posts', () => {
+    // Post 2 is inactive with a unique category 'inactive-only'; it must not appear in the list
+    matterMock
+      .mockReset()
+      .mockReturnValueOnce(
+        asMatter({ id: 1, isActive: true, category: 'react', tags: [] })
+      )
+      .mockReturnValueOnce(
+        asMatter({ id: 2, isActive: false, category: 'inactive-only', tags: [] })
+      )
+      .mockReturnValueOnce(
+        asMatter({ id: 3, isActive: true, category: 'system', tags: [] })
+      );
+
+    const res = getPosts();
+    expect(res.categories).not.toContain('inactive-only');
+  });
+
+  it('should return all active categories even when a filter is active', () => {
+    // When filtering by category, the returned categories should still include all active ones
+    const res = getPosts({ category: 'react' });
+
+    expect(res.categories.sort()).toEqual(['react', 'system'].sort());
+    expect(res.data.length).toBe(1); // only react posts in data
   });
 
   it('should sort by date desc', () => {

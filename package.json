@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "5.3.2",
+  "version": "5.4.0",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -27,24 +27,24 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.1.6",
-    "@next/third-parties": "^16.1.6",
-    "@sentry/nextjs": "^10.43.0",
-    "@tailwindcss/postcss": "^4.2.1",
+    "@next/bundle-analyzer": "^16.2.2",
+    "@next/third-parties": "^16.2.2",
+    "@sentry/nextjs": "^10.47.0",
+    "@tailwindcss/postcss": "^4.2.2",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "gsap": "^3.14.2",
-    "markdown-to-jsx": "^9.7.9",
-    "motion": "^12.36.0",
-    "next": "^16.1.6",
+    "markdown-to-jsx": "^9.7.13",
+    "motion": "^12.38.0",
+    "next": "^16.2.1",
     "qs": "^6.15.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-google-recaptcha-v3": "^1.11.0",
-    "react-hook-form": "^7.71.2",
+    "react-hook-form": "^7.72.0",
     "react-toastify": "^11.0.5"
   },
   "lint-staged": {
@@ -56,8 +56,8 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.1.6",
-    "@playwright/test": "^1.58.2",
+    "@next/eslint-plugin-next": "^16.2.1",
+    "@playwright/test": "^1.59.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -69,7 +69,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "eslint": "^10.0.3",
+    "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "jest": "^30.3.0",
@@ -82,13 +82,13 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "sass": "^1.98.0",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1",
-    "ts-jest": "^29.4.6",
+    "tailwindcss": "^4.2.2",
+    "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.0",
     "webpack": "^5.105.4",
-    "webpack-bundle-analyzer": "^5.2.0"
+    "webpack-bundle-analyzer": "^5.3.0"
   },
   "browserslist": {
     "production": [
@@ -104,5 +104,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@10.32.1"
+  "packageManager": "pnpm@10.33.0"
 }

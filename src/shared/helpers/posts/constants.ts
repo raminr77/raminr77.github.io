@@ -1,3 +1,3 @@
 import path from 'path';
 
-export const POSTT_FOLTER_PATH = path.join(process.cwd(), 'posts');
+export const POST_FOLDER_PATH = path.join(process.cwd(), 'posts');

@@ -2,12 +2,13 @@ import Markdown, { RuleType } from 'markdown-to-jsx';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { clsx } from 'clsx';
+import React from 'react';
 
-import type { Post, PostFilters, PostMetadata } from '@/shared/types/post';
 import { ClientCodeLoader } from '@/shared/components/client-code-loader';
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ContentContainer } from '@/layout/components/content-container';
 import { PostCard } from '@/domains/posts/components/post-card';
+import type { Post, PostMetadata } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
@@ -40,16 +41,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function PostDetailPage({ params }: Props) {
   const { id: postId } = await params;
   const post: Post | null = getPostContent(Number(postId));
-  const { data: sameCategoryPosts = [] } = getPosts(
-    post ? ({ category: post.category } as PostFilters) : null
-  );
-  const recommendedPosts = sameCategoryPosts
-    .filter(({ id }) => id !== Number(postId))
-    .slice(0, 3);
 
   if (!post) {
     redirect(ROUTES.POSTS);
   }
+
+  const { data: sameCategoryPosts = [] } = getPosts({ category: post.category });
+  const recommendedPosts = sameCategoryPosts
+    .filter(({ id }) => id !== Number(postId))
+    .slice(0, 3);
 
   return (
     <ContentContainer animationName="fadeIn">
@@ -72,34 +72,41 @@ export async function PostDetailPage({ params }: Props) {
         <PostShare postId={post.id} />
       </div>
 
-      <Markdown className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl">
-        {post.description}
-      </Markdown>
+      <div className="mb-5 [&>*]:mb-3 [&>*:last-child]:mb-0 text-xl">
+        <Markdown options={{ createElement: React.createElement, wrapper: null }}>
+          {post.description}
+        </Markdown>
+      </div>
 
-      <Markdown
+      <div
         className={clsx(
           'text-xl leading-8 [&>*]:mb-3 [&>*:last-child]:mb-4',
           styles['post-detail-page__text']
         )}
-        options={{
-          renderRule: (next, node, ـ, state) => {
-            if (node.type === RuleType.table) {
-              return (
-                <div
-                  className={styles['post-detail-page__table-container']}
-                  key={state.key}
-                >
-                  {next()}
-                </div>
-              );
-            }
-
-            return next();
-          }
-        }}
       >
-        {post.content}
-      </Markdown>
+        <Markdown
+          options={{
+            createElement: React.createElement,
+            wrapper: null,
+            renderRule: (next, node, ـ, state) => {
+              if (node.type === RuleType.table) {
+                return (
+                  <div
+                    className={styles['post-detail-page__table-container']}
+                    key={state.key}
+                  >
+                    {next()}
+                  </div>
+                );
+              }
+
+              return next();
+            }
+          }}
+        >
+          {post.content}
+        </Markdown>
+      </div>
 
       <PostTags postId={post.id} tags={post.tags} />
 

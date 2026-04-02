@@ -34,7 +34,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
     setTheme(newTheme);
   };
 
-  const buttonText = `Switch to ${theme === THEMES.light ? 'dark' : 'light'} mode`;
+  const buttonText = `Switch to ${theme === THEMES.light ? 'Dark' : 'Light'} Mode`;
 
   return FEATURE_FLAGS.TOGGLE_THEME_BUTTON ? (
     <button
@@ -42,7 +42,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
       title={buttonText}
       aria-label="Toggle theme"
       onClick={handleThemeChange}
-      className="cursor-pointer text-2xl"
+      className="flex items-center gap-4 cursor-pointer text-2xl"
     >
       {isBurgerMenu && buttonText}
       <Icons name={theme === THEMES.light ? 'moon' : 'sun'} />
