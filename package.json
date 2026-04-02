@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "5.3.3",
+  "version": "5.4.0",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.2.1",
-    "@next/third-parties": "^16.2.1",
+    "@next/bundle-analyzer": "^16.2.2",
+    "@next/third-parties": "^16.2.2",
     "@sentry/nextjs": "^10.47.0",
     "@tailwindcss/postcss": "^4.2.2",
     "@vercel/speed-insights": "^2.0.0",
@@ -57,7 +57,7 @@
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@next/eslint-plugin-next": "^16.2.1",
-    "@playwright/test": "^1.58.2",
+    "@playwright/test": "^1.59.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -83,7 +83,7 @@
     "sass": "^1.98.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2",
-    "ts-jest": "^29.4.6",
+    "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.0",
