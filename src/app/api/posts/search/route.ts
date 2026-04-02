@@ -18,9 +18,9 @@ export function GET(request: Request) {
       }
     );
   } catch {
-    return Response.json({
-      success: false,
-      message: 'An error occurred while searching for posts.'
-    });
+    return Response.json(
+      { success: false, message: 'An error occurred while searching for posts.' },
+      { status: 500 }
+    );
   }
 }

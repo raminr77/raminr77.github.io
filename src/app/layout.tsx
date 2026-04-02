@@ -94,7 +94,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${textFont.variable} ${titleFont.variable} dark`}>
       <head>
-        <meta name="description" content={PERSONAL_DATA.pageDescription} />
         <link rel="preload" as="image" href="/images/background.webp" />
         {!!ENV.GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />

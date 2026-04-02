@@ -24,7 +24,7 @@ export function PostsSearch() {
   const [searchValue, setSearchValue] = useState<string>('');
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
-  const debouncedSearchValue = useDebounce(searchValue, 300) as string;
+  const debouncedSearchValue = useDebounce(searchValue, 300);
 
   const handleCloseSearch = () => {
     setShowSearch(false);

@@ -1,5 +1,5 @@
 export type PostFilterKeys = 'tag' | 'category';
-export type PostFilters = Record<PostFilterKeys, string>;
+export type PostFilters = Partial<Record<PostFilterKeys, string>>;
 
 export type PostMetadata = {
   id: number;
