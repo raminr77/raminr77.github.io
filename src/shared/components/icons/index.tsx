@@ -12,7 +12,14 @@ const ICONS = {
   author: lazy(() => import('./author').then((module) => ({ default: module.Author }))),
   category: lazy(() =>
     import('./category').then((module) => ({ default: module.Category }))
-  )
+  ),
+  'arrow-left': lazy(() =>
+    import('./arrow-left').then((module) => ({ default: module.ArrowLeft }))
+  ),
+  'arrow-right': lazy(() =>
+    import('./arrow-right').then((module) => ({ default: module.ArrowRight }))
+  ),
+  play: lazy(() => import('./play').then((module) => ({ default: module.Play })))
 } as const;
 
 type IconsProps = {

@@ -1,4 +1,4 @@
-import { GalleryPage } from '@/domains/gallery';
+import { GalleryPage, metadata } from '@/domains/gallery';
 
-export { metadata } from '@/domains/gallery';
+export { metadata };
 export default GalleryPage;
