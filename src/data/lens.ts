@@ -1,4 +1,4 @@
-export type GalleryItem = {
+export type LensItem = {
   id: string;
   src: string;
   alt: string;
@@ -9,9 +9,9 @@ export type GalleryItem = {
   description: string;
 };
 
-export const GALLERY_DATA = {
-  title: 'Gallery',
+export const LENS_DATA = {
+  title: 'Lens',
   description: 'A collection of moments, memories, and creative captures'
 } as const;
 
-export const GALLERY_ITEMS: GalleryItem[] = [];
+export const LENS_ITEMS: LensItem[] = [];
