@@ -38,6 +38,7 @@ export function LensCard({
         tabIndex={0}
         role="button"
         onClick={handleOpen}
+        data-testid="lens-card"
         aria-label={`Open lens: ${data.title}`}
         style={{ animationDelay: `${animationDelay}s` }}
         onKeyDown={({ key }) => key === 'Enter' && handleOpen()}

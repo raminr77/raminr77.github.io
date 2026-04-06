@@ -69,7 +69,9 @@ export function LensGalleryModal({
         className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-4 z-10 bg-gradient-to-b from-black/60 to-transparent"
       >
         <div className="text-white">
-          <h3 className="font-bold text-lg leading-tight">{item.title}</h3>
+          <h3 data-testid="lens-item-title" className="font-bold text-lg leading-tight">
+            {item.title}
+          </h3>
           <span className="text-sm text-white/50">
             {currentIndex + 1} / {total}
           </span>
@@ -77,6 +79,7 @@ export function LensGalleryModal({
         <button
           onClick={onClose}
           aria-label="Close"
+          data-testid="close-button"
           className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors outline-none"
         >
           <Icons name="close" size={24} />
@@ -101,10 +104,10 @@ export function LensGalleryModal({
         <div className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center gap-4">
           {current.isVideo ? (
             <video
-              key={currentIndex}
               controls
               autoPlay
               playsInline
+              key={currentIndex}
               poster={current.cover}
               className="max-h-[70vh] w-auto rounded-sm select-none"
             >
@@ -125,7 +128,10 @@ export function LensGalleryModal({
           )}
 
           {item.description && (
-            <p className="text-lg mb-2 text-center max-w-2xl leading-relaxed">
+            <p
+              data-testid="lens-item-description"
+              className="text-lg mb-2 text-center max-w-2xl leading-relaxed"
+            >
               {item.description}
             </p>
           )}
