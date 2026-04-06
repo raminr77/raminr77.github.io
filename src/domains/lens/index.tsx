@@ -33,8 +33,10 @@ export function LensPage() {
       {LENS_ITEMS.length === 0 && <LensEmptyBlock />}
 
       <div className="mt-4 overflow-hidden grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-2 z-0">
-        {LENS_ITEMS.map((item: LensItem) => (
-          <LensCard key={item.id} data={item} />
+        {LENS_ITEMS.sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        ).map((item: LensItem, index: number) => (
+          <LensCard key={item.id} data={item} animationDelay={(index + 1) * 0.3} />
         ))}
       </div>
     </ContentContainer>
