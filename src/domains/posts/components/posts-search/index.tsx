@@ -28,7 +28,7 @@ export function PostsSearch() {
 
   const handleCloseSearch = () => {
     setShowSearch(false);
-    sendGTMEvent(GTM_EVENTS.CLOSE_SEACH_MODAL);
+    sendGTMEvent(GTM_EVENTS.CLOSE_SEARCH_MODAL);
   };
   const handleOpenSearch = () => {
     setShowSearch(true);

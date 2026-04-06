@@ -26,10 +26,8 @@ const LINK_ITEM_OUT_ANIMATION_CLASSES: string[] = animator({
 }).split(' ');
 
 export function BurgerMenu() {
-  const pagePath: string = usePathname();
-  const [isActive, setIsActive] = useState<boolean>(false);
-
   const pathname: string = usePathname();
+  const [isActive, setIsActive] = useState<boolean>(false);
   const pageTitle = pageTitleGenerator(pathname);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -59,7 +57,7 @@ export function BurgerMenu() {
 
   useEffect(() => {
     handleClose();
-  }, [pagePath]);
+  }, [pathname]);
 
   return (
     <>
