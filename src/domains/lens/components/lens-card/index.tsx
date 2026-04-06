@@ -26,7 +26,6 @@ export function LensCard({
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const totalSlides = 1 + (data.slides?.length ?? 0);
-  const hasSlides = totalSlides > 1;
 
   function handleOpen() {
     setCurrentIndex(0);
@@ -55,15 +54,15 @@ export function LensCard({
           fetchPriority="high"
           alt={data.alt || data.title}
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover group-hover:scale-105 duration-500 transition-transform"
+          className="object-cover group-hover:scale-105 duration-300 transition-transform opacity-60 dark:opacity-70 group-hover:opacity-100"
         />
 
-        <div className="min-h-[200px] p-4 group-hover:pb-8 duration-300 flex flex-col justify-end gap-1 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent text-white z-10">
+        <div className="text-white min-h-[200px] p-4 group-hover:pb-8 duration-300 flex flex-col justify-end gap-1 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent z-10">
           <h3 className="font-bold text-xl leading-tight">{data.title}</h3>
-          <p className="text-sm text-white/70 line-clamp-2">{data.description}</p>
-          {hasSlides && (
-            <span className="text-xs text-white/40 mt-1">{totalSlides} Items</span>
-          )}
+          <p className="text-md text-white/90 line-clamp-2">{data.description}</p>
+          <span className="text-sm text-white/70 mt-1">
+            {totalSlides} Items - {data.createdAt}
+          </span>
         </div>
       </div>
 

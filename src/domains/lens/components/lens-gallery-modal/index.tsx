@@ -98,7 +98,7 @@ export function LensGalleryModal({
           </button>
         )}
 
-        <div className="relative max-w-5xl w-full h-full flex items-center justify-center">
+        <div className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center gap-4">
           {current.isVideo ? (
             <video
               key={currentIndex}
@@ -123,6 +123,12 @@ export function LensGalleryModal({
               className="object-contain max-h-[70vh] w-auto rounded-sm select-none"
             />
           )}
+
+          {item.description && (
+            <p className="text-lg mb-2 text-center max-w-2xl leading-relaxed">
+              {item.description}
+            </p>
+          )}
         </div>
 
         {total > 1 && (
@@ -141,12 +147,6 @@ export function LensGalleryModal({
         onClick={(event) => event.stopPropagation()}
         className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-3 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent"
       >
-        {item.description && (
-          <p className="text-lg mb-2 text-center max-w-2xl leading-relaxed">
-            {item.description}
-          </p>
-        )}
-
         {total > 1 && (
           <div className="flex items-center justify-center gap-1 overflow-x-auto w-full">
             {allSlides.map((slide, index) => (

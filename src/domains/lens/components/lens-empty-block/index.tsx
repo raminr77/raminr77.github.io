@@ -1,5 +1,6 @@
-import { animator } from '@/shared/helpers';
 import clsx from 'clsx';
+
+import { animator } from '@/shared/helpers';
 
 export function LensEmptyBlock() {
   return (
