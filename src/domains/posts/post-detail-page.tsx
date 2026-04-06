@@ -34,7 +34,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: post?.title ?? 'Post Not Found',
-    description: post?.description ?? PERSONAL_DATA.pageDescription
+    description: post?.description ?? PERSONAL_DATA.pageDescription,
+    openGraph: post
+      ? {
+          title: post.title,
+          description: post.description,
+          images: [{ url: '/images/social-banner.png', width: 1200, height: 630 }]
+        }
+      : undefined,
+    twitter: post
+      ? {
+          card: 'summary_large_image',
+          title: post.title,
+          description: post.description,
+          images: ['/images/social-banner.png']
+        }
+      : undefined
   };
 }
 

@@ -10,7 +10,7 @@ export const GTM_EVENTS = {
   ADP_CALENDAR: { event: 'google-calendar-clicked', value: 'ADP' },
   GOOGLE_CALENDAR: { event: 'google-calendar-clicked', value: 'Google' },
   DOWNLOAD_RESUME: { event: 'download-resume-clicked', value: '' },
-  CLOSE_SEACH_MODAL: { event: 'close-seach-modal-clicked', value: '' },
+  CLOSE_SEARCH_MODAL: { event: 'close-search-modal-clicked', value: '' },
   CONTACT_LINK: (value: string) => ({ event: 'contact-lint-clicked', value }),
   SUBMIT_POST_SEARCH: (value: string) => ({ event: 'submit-post-search', value }),
   MORE_ABOUT_ME: { event: 'more-about-me-clicked', value: '' },

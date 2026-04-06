@@ -8,7 +8,7 @@ import * as Sentry from '@sentry/nextjs';
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
-    if (!!location && !location.host.includes('localhost')) {
+    if (typeof window !== 'undefined' && !window.location.host.includes('localhost')) {
       Sentry.captureException(error);
     }
   }, [error]);
