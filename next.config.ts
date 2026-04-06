@@ -1,5 +1,5 @@
-import type { Configuration, WebpackPluginInstance } from 'webpack';
 import { withSentryConfig } from '@sentry/nextjs';
+import type { Configuration } from 'webpack';
 import type { NextConfig } from 'next';
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -35,6 +35,10 @@ const config: NextConfig = {
       'date-fns',
       'clsx'
     ]
+  },
+
+  turbopack: {
+    root: __dirname
   },
 
   webpack(config: Configuration, { dev }) {
