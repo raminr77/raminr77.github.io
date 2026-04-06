@@ -24,7 +24,7 @@ export function LensPage() {
       />
       <p
         className={clsx(
-          'mt-4 select-none text-center font-title',
+          'mt-4 mb-10 select-none text-center font-title',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
         dangerouslySetInnerHTML={{ __html: LENS_DATA.description }}
