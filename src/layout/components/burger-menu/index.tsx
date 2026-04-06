@@ -29,9 +29,9 @@ export function BurgerMenu() {
   const pagePath: string = usePathname();
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  const menuRef = useRef<HTMLDivElement | null>(null);
   const pathname: string = usePathname();
   const pageTitle = pageTitleGenerator(pathname);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const handleClose = () => {
     if (menuRef.current) {
