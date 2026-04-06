@@ -34,7 +34,7 @@ export function LensPage() {
 
       <div className="mt-4 overflow-hidden grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-2 z-0">
         {LENS_ITEMS.map((item: LensItem) => (
-          <LensCard key={item.id} />
+          <LensCard key={item.id} data={item} />
         ))}
       </div>
     </ContentContainer>
