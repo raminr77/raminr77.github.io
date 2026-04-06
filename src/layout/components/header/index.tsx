@@ -7,15 +7,13 @@ import { clsx } from 'clsx';
 
 import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
 import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
-import { animator, pageTitleGenerator } from '@/shared/helpers';
 import { BurgerMenu } from '@/layout/components/burger-menu';
-import { PERSONAL_DATA } from '@/data';
+import { animator } from '@/shared/helpers';
 
 import styles from './header.module.scss';
 
 export function Header() {
   const pathname: string = usePathname();
-  const pageTitle = pageTitleGenerator(pathname);
 
   return (
     <header
@@ -28,23 +26,6 @@ export function Header() {
     >
       <nav className="flex w-11/12 flex-row-reverse items-center justify-between p-3">
         <BurgerMenu />
-        <div
-          className={clsx('hidden flex-col justify-center max-md:flex', {
-            'max-md:hidden': pathname === ROUTES.HOME
-          })}
-        >
-          <h3
-            className={clsx(
-              'text-2xl font-bold font-title',
-              animator({ name: 'fadeInLeft' })
-            )}
-          >
-            {PERSONAL_DATA.fullName}
-          </h3>
-          <p className={clsx('text-lg', animator({ name: 'fadeIn', delay: '1s' }))}>
-            {pageTitle}
-          </p>
-        </div>
         <ul
           className={clsx(
             'flex w-full items-center justify-center gap-2 text-xl max-md:hidden',
