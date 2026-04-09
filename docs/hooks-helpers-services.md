@@ -329,7 +329,7 @@ async function sendEmail(data: {
 
 **Returns:** `true` if the email was sent successfully, `false` otherwise.
 
-**Endpoint:** `https://email-api.ramiin.workers.dev/`
+**Endpoint:** `https://email-api.ramiin.se`
 
 ---
 
