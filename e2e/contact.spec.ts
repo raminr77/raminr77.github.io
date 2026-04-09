@@ -26,7 +26,7 @@ test('contact form submits (mocked recaptcha + email)', async ({ page }) => {
     });
   });
 
-  await page.route('https://email-api.ramiin.workers.dev/**', async (route) => {
+  await page.route('https://email-api.ramiin.se/**', async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',

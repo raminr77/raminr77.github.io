@@ -130,7 +130,7 @@ The contact form on `/contact-me` works like this:
 2. Google reCAPTCHA v3 runs invisibly and generates a token.
 3. The form data and token are sent to the `/api/recaptcha-verify` endpoint.
 4. That endpoint verifies the token with Google's API.
-5. If the token is valid (score ≥ 0.5), the email is sent through a **Cloudflare Worker** at `email-api.ramiin.workers.dev`.
+5. If the token is valid (score ≥ 0.5), the email is sent through a **Cloudflare Worker** at `email-api.ramiin.se`.
 6. The user sees a success or error toast notification.
 
 ---

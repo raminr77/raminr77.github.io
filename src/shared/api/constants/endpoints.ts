@@ -1,6 +1,6 @@
 export const ENDPOINTS = {
-  sendMessage: 'https://email-api.ramiin.workers.dev/',
   verifyReCaptcha: '/api/recaptcha-verify',
+  sendMessage: 'https://email-api.ramiin.se',
   googleVerifyReCaptcha: 'https://www.google.com/recaptcha/api/siteverify',
   searchPosts: (query: string) => `/api/posts/search?q=${encodeURIComponent(query)}`
 } as const;
