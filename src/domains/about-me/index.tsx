@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { clsx } from 'clsx';
 
 import {
+  PERSONAL_DATA,
   ABOUT_ME_DATA,
   ABOUT_ME_CONTENT_TYPE,
   ABOUT_ME_COMPONENT_NAMES,
@@ -15,7 +16,6 @@ import {
 import { ResumeDownloaderButton } from '@/shared/components';
 import { ContentContainer } from '@/layout/components';
 import { animator } from '@/shared/helpers';
-import { PERSONAL_DATA } from '@/data';
 
 import { RecommendationsBox } from './components';
 import { renderContent } from './helper';
