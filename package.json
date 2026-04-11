@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
-    "check-all": "npm run check-format && npm run check-lint && npm run check-types",
-    "performance": "npm run build && npm run start & sleep 5 && npm run lighthouse",
+    "check-all": "pnpm run check-format && pnpm run check-lint && pnpm run check-types",
+    "performance": "pnpm run build && pnpm run start & sleep 5 && pnpm run lighthouse",
     "check-lint": "eslint \"src/**/*.{ts,tsx,js}\" --max-warnings=0",
     "check-types": "tsc --pretty --noEmit --project ./",
     "dev-https": "next dev --experimental-https",
