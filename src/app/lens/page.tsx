@@ -1,4 +1,11 @@
 import { LensPage, metadata } from '@/domains/lens';
 
 export { metadata };
-export default LensPage;
+
+interface Props {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default function Page({ searchParams }: Props) {
+  return <LensPage searchParams={searchParams} />;
+}
