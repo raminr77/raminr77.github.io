@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import { clsx } from 'clsx';
 
 import { ContentContainer } from '@/layout/components/content-container';
 import { Pagination, PAGE_SIZE } from '@/shared/components/pagination';
 import { LensEmptyBlock } from './components/lens-empty-block';
 import { LENS_DATA, LENS_ITEMS, type LensItem } from '@/data';
+import { PageHeader } from '@/shared/components/page-header';
 import { LensCard } from './components/lens-card';
 import { ROUTES } from '@/shared/constants';
-import { animator } from '@/shared/helpers';
 
 export const metadata: Metadata = {
   title: LENS_DATA.title
@@ -32,19 +31,10 @@ export async function LensPage({ searchParams }: LensPageProps) {
 
   return (
     <ContentContainer className="text-center">
-      <h3
-        className={clsx(
-          'select-none text-center text-2xl font-bold font-title',
-          animator({ name: 'fadeIn' })
-        )}
-        dangerouslySetInnerHTML={{ __html: LENS_DATA.title }}
-      />
-      <p
-        className={clsx(
-          'mt-2 mb-10 select-none text-center font-title',
-          animator({ name: 'fadeIn', delay: '1s' })
-        )}
-        dangerouslySetInnerHTML={{ __html: LENS_DATA.description }}
+      <PageHeader
+        title={LENS_DATA.title}
+        descriptionClassName="mb-10"
+        description={LENS_DATA.description}
       />
 
       {SORTED_LENS_ITEMS.length === 0 && <LensEmptyBlock />}

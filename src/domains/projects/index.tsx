@@ -5,6 +5,7 @@ import { clsx } from 'clsx';
 import { ProjectCard } from '@/domains/projects/components/project-card';
 import { ContentContainer } from '@/layout/components/content-container';
 import { Pagination, PAGE_SIZE } from '@/shared/components/pagination';
+import { PageHeader } from '@/shared/components/page-header';
 import { PROJECTS_DATA, type ProjectItem } from '@/data';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
@@ -33,20 +34,7 @@ export async function ProjectsPage({ searchParams }: ProjectsPageProps) {
 
   return (
     <ContentContainer>
-      <h3
-        className={clsx(
-          'select-none text-center text-2xl font-bold font-title',
-          animator({ name: 'fadeIn' })
-        )}
-        dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.title }}
-      />
-      <p
-        className={clsx(
-          'mt-2 select-none text-center font-title',
-          animator({ name: 'fadeIn', delay: '1s' })
-        )}
-        dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}
-      />
+      <PageHeader title={PROJECTS_DATA.title} description={PROJECTS_DATA.description} />
 
       <div className="mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1">
         {projects.map((item: ProjectItem, index: number) => (
