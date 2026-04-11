@@ -22,11 +22,13 @@ const TITLE_CLASSES = clsx(
 export function JourneyCard({
   data,
   className,
-  order = 1
+  order = 1,
+  disableAnimation = false
 }: {
   order?: number;
   data: JourneyItem;
   className?: string;
+  disableAnimation?: boolean;
 }) {
   const animationDelay = `${order * 0.3}s`;
   const { title, description, date, year, url, items, location } = data;
@@ -46,10 +48,10 @@ export function JourneyCard({
         )}
       >
         <span
-          style={{ animationDelay }}
+          style={disableAnimation ? undefined : { animationDelay }}
           className={clsx(
             'pointer-events-none absolute text-xl font-extrabold tracking-wide font-title',
-            animator({ name: 'fadeIn' })
+            !disableAnimation && animator({ name: 'fadeIn' })
           )}
         >
           {year}
@@ -58,10 +60,10 @@ export function JourneyCard({
       </div>
 
       <div
-        style={{ animationDelay }}
+        style={disableAnimation ? undefined : { animationDelay }}
         className={clsx(
           'relative flex w-full flex-col gap-3',
-          animator({ name: 'fadeIn' })
+          !disableAnimation && animator({ name: 'fadeIn' })
         )}
       >
         <div className="flex select-none flex-col">

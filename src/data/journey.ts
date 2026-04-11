@@ -141,7 +141,6 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
 
 export const JOURNEY_DATA = {
   title: 'The Journey So Far',
-  footer: 'It all started on a cold winter morning in January 1999.',
   description: 'On a path toward <span className="text-2xl font-bold">Google</span>',
   items: JOURNEY_ITEM_DATA
 } as const;

@@ -42,7 +42,7 @@ export async function ProjectsPage({ searchParams }: ProjectsPageProps) {
       />
       <p
         className={clsx(
-          'mt-4 select-none text-center font-title',
+          'mt-2 select-none text-center font-title',
           animator({ name: 'fadeIn', delay: '1s' })
         )}
         dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}
