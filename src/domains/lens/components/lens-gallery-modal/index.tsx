@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { clsx } from 'clsx';
@@ -23,6 +23,8 @@ export function LensGalleryModal({
   onNavigate,
   currentIndex
 }: LensGalleryModalProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
   const allSlides: Slide[] = [
     { src: item.src, alt: item.alt, isVideo: item.isVideo, cover: item.cover },
     ...(item.slides ?? [])
@@ -30,6 +32,10 @@ export function LensGalleryModal({
 
   const total = allSlides.length;
   const current = allSlides[currentIndex];
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [currentIndex]);
 
   const prev = useCallback(() => {
     onNavigate((currentIndex - 1 + total) % total);
@@ -101,36 +107,49 @@ export function LensGalleryModal({
           </button>
         )}
 
-        <div className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center gap-4">
-          {current.isVideo ? (
-            <video
-              controls
-              autoPlay
-              playsInline
-              key={currentIndex}
-              poster={current.cover}
-              className="max-h-[70vh] w-auto rounded-sm select-none"
-            >
-              <source src={current.src} />
-            </video>
-          ) : (
-            <Image
-              priority
-              width={1400}
-              height={900}
-              quality={90}
-              src={current.src}
-              alt={current.alt}
-              draggable={false}
-              key={currentIndex}
-              className="object-contain max-h-[70vh] w-auto rounded-sm select-none"
-            />
-          )}
+        <div className="relative max-w-5xl w-full h-full flex flex-col items-center gap-4">
+          <div className="relative flex-1 w-full flex items-center justify-center min-h-0">
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full border-2 border-white/20 border-t-white/60 animate-spin" />
+              </div>
+            )}
+
+            {current.isVideo ? (
+              <video
+                controls
+                autoPlay
+                playsInline
+                key={currentIndex}
+                poster={current.cover}
+                onLoadedData={() => setIsLoading(false)}
+                className="max-h-[65vh] w-auto rounded-sm select-none"
+              >
+                <source src={current.src} />
+              </video>
+            ) : (
+              <Image
+                priority
+                width={1400}
+                height={900}
+                quality={90}
+                src={current.src}
+                alt={current.alt}
+                draggable={false}
+                key={currentIndex}
+                onLoad={() => setIsLoading(false)}
+                className={clsx(
+                  'object-contain max-h-[65vh] w-auto rounded-sm select-none transition-opacity duration-300',
+                  isLoading ? 'opacity-0' : 'opacity-100'
+                )}
+              />
+            )}
+          </div>
 
           {item.description && (
             <p
               data-testid="lens-item-description"
-              className="text-lg mb-2 text-center max-w-2xl leading-relaxed"
+              className="shrink-0 text-lg mb-2 text-center max-w-2xl leading-relaxed"
             >
               {item.description}
             </p>
