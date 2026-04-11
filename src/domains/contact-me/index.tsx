@@ -1,7 +1,6 @@
 'use client';
 
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
@@ -9,17 +8,11 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import { ContentContainer } from '@/layout/components';
 import { ENV, GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { ContactForm } from './components';
 import { CONTACT_ME_DATA } from '@/data';
-import { PERSONAL_DATA } from '@/data';
+
+import { ContactForm } from './components';
 
 const GOOGLE_RECAPTCHA_ELEMENT_ID = 'g-recaptcha-container';
-
-export const metadata: Metadata = {
-  title: {
-    absolute: `Contact With ${PERSONAL_DATA.fullName}`
-  }
-};
 
 export function ContactMePage() {
   return (

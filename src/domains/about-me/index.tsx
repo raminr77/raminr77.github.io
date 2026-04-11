@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
@@ -21,12 +20,6 @@ import { RecommendationsBox } from './components';
 import { renderContent } from './helper';
 
 import styles from './about-me.module.scss';
-
-export const metadata: Metadata = {
-  title: {
-    absolute: `About ${PERSONAL_DATA.fullName}`
-  }
-};
 
 const PixelCanvas = dynamic(
   () =>
