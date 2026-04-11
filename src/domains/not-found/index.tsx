@@ -2,9 +2,13 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
-  ssr: true
-});
+const DecryptedText = dynamic(
+  () =>
+    import('@/shared/components/decrypted-text').then((m) => ({
+      default: m.DecryptedText
+    })),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: 'Not Found Page'

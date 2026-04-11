@@ -7,11 +7,11 @@ import {
   RECOMMENDATIONS,
   type RecommendationItem
 } from '@/data';
-import { ContentContainer } from '@/layout/components/content-container';
-import { PageHeader } from '@/shared/components/page-header';
+import { ContentContainer } from '@/layout/components';
+import { PageHeader } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
-import { RecommendationCard } from './components/recommendation-card';
+import { RecommendationCard } from './components';
 
 export const metadata: Metadata = {
   title: 'Recommendations'

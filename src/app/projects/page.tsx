@@ -1,11 +1,5 @@
-import { ProjectsPage } from '@/domains/projects';
+import { ProjectsPage, metadata } from '@/domains/projects';
 
-export { metadata } from '@/domains/projects';
+export { metadata };
 
-interface Props {
-  searchParams: Promise<{ page?: string }>;
-}
-
-export default function Page({ searchParams }: Props) {
-  return <ProjectsPage searchParams={searchParams} />;
-}
+export default ProjectsPage;

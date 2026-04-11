@@ -1,5 +1,5 @@
 import { readingTime } from '@/shared/helpers/posts/utils';
-import { Icons } from '@/shared/components/icons';
+import { Icons } from '@/shared/components';
 
 export function PostReadTime({ words }: { words: string }) {
   return (

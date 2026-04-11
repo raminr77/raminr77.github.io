@@ -1,18 +1,15 @@
 import type { Metadata } from 'next';
 import { clsx } from 'clsx';
 
-import { ContentContainer } from '@/layout/components/content-container';
-import { Pagination, PAGE_SIZE } from '@/shared/components/pagination';
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
-import { PostCard } from '@/domains/posts/components/post-card';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
+import { Pagination, PAGE_SIZE } from '@/shared/components';
+import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { PERSONAL_DATA } from '@/data';
 
-import { PostsCategoryFilter } from './components/posts-category-filter';
-import { EmptyPostBlock } from './components/empty-post-block';
-import { PostsSearch } from './components/posts-search';
+import { PostCard, PostsCategoryFilter, EmptyPostBlock, PostsSearch } from './components';
 
 type PostsSearchParams = PostFilters & { page?: string };
 

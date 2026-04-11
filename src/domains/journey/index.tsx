@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
-import { PageHeader } from '@/shared/components/page-header';
+import { PageHeader } from '@/shared/components';
 import { JOURNEY_DATA } from '@/data';
 
-import { JourneyScroller } from './components/journey-scroller';
+import { JourneyScroller } from './components';
 
 export const metadata: Metadata = {
   title: 'Journey'

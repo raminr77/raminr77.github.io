@@ -10,9 +10,13 @@ import { PERSONAL_DATA } from '@/data';
 
 import styles from './hero-text-animator.module.scss';
 
-const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
-  ssr: false
-});
+const DecryptedText = dynamic(
+  () =>
+    import('@/shared/components/decrypted-text').then((m) => ({
+      default: m.DecryptedText
+    })),
+  { ssr: false }
+);
 
 export function HeroTextAnimator() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);

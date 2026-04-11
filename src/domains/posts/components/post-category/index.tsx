@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
 import { sendGTMEvent } from '@next/third-parties/google';
-import { Icons } from '@/shared/components/icons';
 import { GTM_EVENTS } from '@/shared/constants';
+import { Icons } from '@/shared/components';
 
 export function PostCategory({
   category,

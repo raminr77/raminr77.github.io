@@ -4,12 +4,11 @@ import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { TextInput } from '@/shared/components/text-input';
 import { useDebounce } from '@/shared/hooks/use-debounce';
 import { sendGTMEvent } from '@next/third-parties/google';
 import type { PostMetadata } from '@/shared/types/post';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
-import { Icons } from '@/shared/components/icons';
+import { TextInput, Icons } from '@/shared/components';
 import { searchPosts } from '@/shared/services';
 import { animator } from '@/shared/helpers';
 

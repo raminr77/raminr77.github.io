@@ -1,4 +1,5 @@
-import { NotFoundPage } from '@/domains/not-found';
+import { NotFoundPage, metadata } from '@/domains/not-found';
 
-export { metadata } from '@/domains/not-found';
+export { metadata };
+
 export default NotFoundPage;

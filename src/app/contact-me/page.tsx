@@ -1,11 +1,5 @@
-import type { Metadata } from 'next';
+import { ContactMePage, metadata } from '@/domains/contact-me';
 
-import { ContactMePage } from '@/domains/contact-me';
-import { PERSONAL_DATA } from '@/data';
+export { metadata };
 
-export const metadata: Metadata = {
-  title: {
-    absolute: `Contact With ${PERSONAL_DATA.fullName}`
-  }
-};
 export default ContactMePage;

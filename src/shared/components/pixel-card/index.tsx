@@ -9,9 +9,11 @@ import { clsx } from 'clsx';
 import type { PixelCanvasColor } from '@/shared/components/pixel-canvas';
 import { type AnimationNames, animator } from '@/shared/helpers';
 
-const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
-  ssr: false
-});
+const PixelCanvas = dynamic(
+  () =>
+    import('@/shared/components/pixel-canvas').then((m) => ({ default: m.PixelCanvas })),
+  { ssr: false }
+);
 
 interface PixelCardProps {
   title: string;

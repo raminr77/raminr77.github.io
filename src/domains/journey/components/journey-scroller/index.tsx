@@ -12,8 +12,9 @@ interface JourneyScrollerProps {
 
 export function JourneyScroller({ items }: JourneyScrollerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
 
   const syncActive = useCallback(() => {
@@ -71,8 +72,8 @@ export function JourneyScroller({ items }: JourneyScrollerProps) {
           return (
             <div
               key={item.id}
-              ref={(el) => {
-                slotRefs.current[index] = el;
+              ref={(element) => {
+                slotRefs.current[index] = element;
               }}
               className="flex h-[60dvh] items-start [scroll-snap-align:start]"
             >
@@ -94,7 +95,7 @@ export function JourneyScroller({ items }: JourneyScrollerProps) {
       {/* Bottom gradient */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-[10dvh] bg-gradient-to-t from-[#0a0a0a] to-transparent"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-[20dvh] bg-gradient-to-t dark:from-black from-white to-transparent"
       />
     </div>
   );

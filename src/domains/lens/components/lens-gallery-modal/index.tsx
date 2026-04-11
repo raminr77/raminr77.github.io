@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { clsx } from 'clsx';
 
 import type { LensItem, LensSlideItem } from '@/data';
-import { Icons } from '@/shared/components/icons';
+import { Icons } from '@/shared/components';
 
 type Slide = Pick<LensSlideItem, 'src' | 'alt' | 'isVideo' | 'cover'>;
 

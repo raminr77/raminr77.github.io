@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
-import { ProjectCard } from '@/domains/projects/components/project-card';
-import { ContentContainer } from '@/layout/components/content-container';
-import { Pagination, PAGE_SIZE } from '@/shared/components/pagination';
-import { PageHeader } from '@/shared/components/page-header';
+import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import { PROJECTS_DATA, type ProjectItem } from '@/data';
+import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
+
+import { ProjectCard } from './components';
 
 export const metadata: Metadata = {
   title: 'Projects'

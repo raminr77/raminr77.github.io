@@ -1,4 +1,5 @@
-import { PostDetailPage } from '@/domains/posts';
+import { PostDetailPage, generateMetadata } from '@/domains/posts';
 
-export { generateMetadata } from '@/domains/posts';
+export { generateMetadata };
+
 export default PostDetailPage;

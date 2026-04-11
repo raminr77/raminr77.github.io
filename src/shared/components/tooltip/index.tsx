@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, ReactNode, Activity } from 'react';
 
 interface TooltipProps {

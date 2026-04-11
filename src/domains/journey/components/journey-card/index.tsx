@@ -3,17 +3,19 @@
 import dynamic from 'next/dynamic';
 import { clsx } from 'clsx';
 
-import { Icons } from '@/shared/components/icons';
 import { JourneyItem } from '@/data/journey';
+import { Icons } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './journey-card.module.scss';
 import { GTM_EVENTS } from '@/shared/constants';
 
-const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
-  ssr: false
-});
+const PixelCanvas = dynamic(
+  () =>
+    import('@/shared/components/pixel-canvas').then((m) => ({ default: m.PixelCanvas })),
+  { ssr: false }
+);
 
 const TITLE_CLASSES = clsx(
   styles['journey-card__title'],

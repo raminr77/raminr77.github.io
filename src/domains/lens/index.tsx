@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 
-import { ContentContainer } from '@/layout/components/content-container';
-import { Pagination, PAGE_SIZE } from '@/shared/components/pagination';
-import { LensEmptyBlock } from './components/lens-empty-block';
+import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import { LENS_DATA, LENS_ITEMS, type LensItem } from '@/data';
-import { PageHeader } from '@/shared/components/page-header';
-import { LensCard } from './components/lens-card';
+import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
+
+import { LensEmptyBlock, LensCard } from './components';
 
 export const metadata: Metadata = {
   title: LENS_DATA.title

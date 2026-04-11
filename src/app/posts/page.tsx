@@ -1,4 +1,5 @@
-import { PostListPage } from '@/domains/posts';
+import { PostListPage, metadata } from '@/domains/posts';
 
-export { metadata } from '@/domains/posts';
+export { metadata };
+
 export default PostListPage;
