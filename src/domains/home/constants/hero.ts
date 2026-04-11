@@ -1,4 +1,4 @@
-export const HETO_TEXT_CHARACTERS = [
+export const HERO_TEXT_CHARACTERS = [
   { id: 1, text: 'R', replaceText: '.' },
   { id: 2, text: 'a', replaceText: 'e' },
   { id: 3, text: 'm', replaceText: 'z' },

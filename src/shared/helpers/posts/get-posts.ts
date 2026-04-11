@@ -13,15 +13,16 @@ export type Posts = {
 };
 
 // ONLY FOR SERVER SIDE
-// TODO: Optimize with caching mechanism
-export function getPosts(
-  filters: PostFilters | null = null,
-  searchValue: string | null = null
-): Posts {
+// Parsed post data is static — cache it for the lifetime of the process
+let allPostsCache: PostMetadata[] | null = null;
+
+function getAllPosts(): PostMetadata[] {
+  if (allPostsCache) return allPostsCache;
+
   const files = fs.readdirSync(POST_FOLDER_PATH);
   const posts = files.filter((file) => file.endsWith('.md'));
 
-  const allParsed = posts.map((file) => {
+  allPostsCache = posts.map((file) => {
     const fileContent = fs.readFileSync(`${POST_FOLDER_PATH}/${file}`, 'utf-8');
     const matterData = matter(fileContent);
     const data = matterData.data as PostMetadata;
@@ -39,7 +40,15 @@ export function getPosts(
     };
   });
 
-  const activePosts = allParsed.filter((postItem: PostMetadata) => postItem.isActive);
+  return allPostsCache;
+}
+
+export function getPosts(
+  filters: PostFilters | null = null,
+  searchValue: string | null = null
+): Posts {
+  const allParsed = getAllPosts();
+  const activePosts = allParsed.filter((postItem) => postItem.isActive);
 
   // Categories from all active posts so the filter dropdown stays complete even when a filter is active
   const categories: Record<string, true> = {};
@@ -48,8 +57,8 @@ export function getPosts(
   }
 
   const postsMetadata = activePosts
-    .filter((postItem: PostMetadata) => filterPostsByKey(postItem, filters))
-    .filter((postItem: PostMetadata) => searchPosts(postItem, searchValue))
+    .filter((postItem) => filterPostsByKey(postItem, filters))
+    .filter((postItem) => searchPosts(postItem, searchValue))
     .sort(postSorter);
 
   return {

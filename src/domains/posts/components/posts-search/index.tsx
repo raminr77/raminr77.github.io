@@ -1,5 +1,5 @@
 'use client';
-import { Activity, useEffect, useState, type ChangeEvent } from 'react';
+import { Activity, useCallback, useEffect, useState, type ChangeEvent } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -39,7 +39,7 @@ export function PostsSearch() {
     setSearchValue(target.value);
   };
 
-  const handleSubmit = (value: string) => {
+  const handleSubmit = useCallback((value: string) => {
     const trimmedValue = value.trim();
 
     if (trimmedValue === '') {
@@ -51,26 +51,26 @@ export function PostsSearch() {
     sendGTMEvent(GTM_EVENTS.SUBMIT_POST_SEARCH(trimmedValue));
     searchPosts(trimmedValue)
       .then((result) => {
-        setPosts((result as PostMetadata[]) ?? []);
+        setPosts(result);
       })
       .catch(() => {
         setPosts([]);
       })
       .finally(() => setLoading(false));
-  };
+  }, []);
 
   useEffect(() => {
     handleSubmit(debouncedSearchValue);
-  }, [debouncedSearchValue]);
+  }, [debouncedSearchValue, handleSubmit]);
 
   useEffect(() => {
-    const handleCloseSeach = (event: KeyboardEvent) => {
+    const handleCloseSearch = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setShowSearch(false);
       }
     };
-    document.addEventListener('keyup', handleCloseSeach);
-    return () => document.removeEventListener('keyup', handleCloseSeach);
+    document.addEventListener('keyup', handleCloseSearch);
+    return () => document.removeEventListener('keyup', handleCloseSearch);
   }, []);
 
   const SearchModal = (
