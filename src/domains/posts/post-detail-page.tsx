@@ -4,23 +4,25 @@ import type { Metadata } from 'next';
 import { clsx } from 'clsx';
 import React from 'react';
 
-import { ClientCodeLoader } from '@/shared/components/client-code-loader';
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
-import { ContentContainer } from '@/layout/components/content-container';
-import { PostCard } from '@/domains/posts/components/post-card';
 import type { Post, PostMetadata } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
+import { ClientCodeLoader } from '@/shared/components';
+import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { PERSONAL_DATA } from '@/data';
 
-import { BackToPostButton } from './components/back-to-posts-button';
-import { PostReadTime } from './components/post-read-time';
-import { PostCategory } from './components/post-category';
-import { PostAuthor } from './components/post-author';
-import { PostShare } from './components/post-share';
-import { PostTags } from './components/post-tags';
-import { PostDate } from './components/post-date';
+import {
+  PostCard,
+  BackToPostButton,
+  PostReadTime,
+  PostCategory,
+  PostAuthor,
+  PostShare,
+  PostTags,
+  PostDate
+} from './components';
 
 import styles from './post-detail-page.module.scss';
 

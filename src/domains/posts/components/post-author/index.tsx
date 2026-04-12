@@ -1,4 +1,4 @@
-import { Icons } from '@/shared/components/icons';
+import { Icons } from '@/shared/components';
 import { PERSONAL_DATA } from '@/data';
 
 export function PostAuthor({ author }: { author: string }) {

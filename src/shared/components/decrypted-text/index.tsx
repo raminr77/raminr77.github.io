@@ -16,7 +16,7 @@ interface DecryptedTextProps extends HTMLMotionProps<'span'> {
   revealDirection?: 'start' | 'end' | 'center';
 }
 
-export default function DecryptedText({
+export function DecryptedText({
   text,
   speed = 50,
   className = '',

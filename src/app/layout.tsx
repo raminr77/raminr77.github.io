@@ -4,9 +4,11 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import Image from 'next/image';
 
-import { ServiceWorkerRegistrar } from '@/layout/components/service-worker-registrar';
-import { ThirdPartyScripts } from '@/layout/components/third-party-scripts';
-import { ProgressBar } from '@/layout/components/progress-bar';
+import {
+  ServiceWorkerRegistrar,
+  ThirdPartyScripts,
+  ProgressBar
+} from '@/layout/components';
 import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
 import { textFont, titleFont } from '@/app/fonts';
 import { ENV } from '@/shared/constants';

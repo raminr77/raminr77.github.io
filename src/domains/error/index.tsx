@@ -3,9 +3,13 @@
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 
-const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
-  ssr: false
-});
+const DecryptedText = dynamic(
+  () =>
+    import('@/shared/components/decrypted-text').then((m) => ({
+      default: m.DecryptedText
+    })),
+  { ssr: false }
+);
 
 export function ErrorPage({
   error,

@@ -8,4 +8,5 @@ export const metadata: Metadata = {
     absolute: `Contact With ${PERSONAL_DATA.fullName}`
   }
 };
+
 export default ContactMePage;

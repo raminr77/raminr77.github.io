@@ -21,7 +21,7 @@ interface PixelCanvasProps {
   color?: PixelCanvasColor;
 }
 
-export default function PixelCanvas({
+export function PixelCanvas({
   gap = 10,
   className,
   speed = 25,

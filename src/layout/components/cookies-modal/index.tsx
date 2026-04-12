@@ -9,7 +9,7 @@ import {
   updateCookiesModalStatus
 } from '@/shared/helpers';
 import { COOKIES_MODAL_STATUS } from '@/shared/constants';
-import { Button } from '@/shared/components/button';
+import { Button } from '@/shared/components';
 
 export function CookiesModal() {
   const [cookiesModalStatus, setCookiesModalStatus] = useState<CookiesModalStatus>(

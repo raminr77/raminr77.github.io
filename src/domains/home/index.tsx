@@ -1,6 +1,5 @@
-import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-button';
-import { HeroTextAnimator } from '@/domains/home/components/hero-text-animator';
-import { Summary } from '@/domains/home/components/summary';
+import { HeroTextAnimator, Summary } from '@/domains/home/components';
+import { ResumeDownloaderButton } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
 export function HomePage() {
