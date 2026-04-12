@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { clsx } from 'clsx';
 
 import { ABOUT_ME_CONTENT_TYPE, type AboutMeContentItem } from '@/data';
-import { Tooltip } from '@/shared/components/tooltip';
+import { Tooltip } from '@/shared/components';
 
 export const renderContent = (index: number, content: AboutMeContentItem): ReactNode => {
   if (content.type === ABOUT_ME_CONTENT_TYPE.text) {

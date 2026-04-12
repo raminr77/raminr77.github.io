@@ -1,4 +1,4 @@
-import { Theme } from '@/shared/components/toggle-theme-button';
+import type { Theme } from '@/shared/components';
 
 export const GTM_EVENTS = {
   MENU: (value: string) => ({ event: 'menu-clicked', value }),

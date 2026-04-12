@@ -6,28 +6,34 @@ import Image from 'next/image';
 import { clsx } from 'clsx';
 
 import {
+  PERSONAL_DATA,
   ABOUT_ME_DATA,
   ABOUT_ME_CONTENT_TYPE,
   ABOUT_ME_COMPONENT_NAMES,
   type AboutMeContentItem
 } from '@/data';
-import { ResumeDownloaderButton } from '@/shared/components/resume-downloader-button';
-import { ContentContainer } from '@/layout/components/content-container';
+import { ResumeDownloaderButton } from '@/shared/components';
+import { ContentContainer } from '@/layout/components';
 import { animator } from '@/shared/helpers';
-import { PERSONAL_DATA } from '@/data';
 
-import { RecommendationsBox } from './components/recommendations-box';
+import { RecommendationsBox } from './components';
 import { renderContent } from './helper';
 
 import styles from './about-me.module.scss';
 
-const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
-  ssr: false
-});
+const PixelCanvas = dynamic(
+  () =>
+    import('@/shared/components/pixel-canvas').then((m) => ({ default: m.PixelCanvas })),
+  { ssr: false }
+);
 
-const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
-  ssr: false
-});
+const DecryptedText = dynamic(
+  () =>
+    import('@/shared/components/decrypted-text').then((m) => ({
+      default: m.DecryptedText
+    })),
+  { ssr: false }
+);
 
 const ABOUT_ME_COMPONENTS = {
   [ABOUT_ME_COMPONENT_NAMES.recommendations]: (

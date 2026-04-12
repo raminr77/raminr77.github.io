@@ -8,8 +8,7 @@ import { clsx } from 'clsx';
 import { sendGTMEvent } from '@next/third-parties/google';
 
 import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
-import { TextInput } from '@/shared/components/text-input';
-import { Button } from '@/shared/components/button';
+import { TextInput, Button } from '@/shared/components';
 import { sendEmail } from '@/shared/services';
 import { notify } from '@/shared/helpers';
 

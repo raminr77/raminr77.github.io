@@ -1,4 +1,5 @@
-import { ProjectsPage } from '@/domains/projects';
+import { ProjectsPage, metadata } from '@/domains/projects';
 
-export { metadata } from '@/domains/projects';
+export { metadata };
+
 export default ProjectsPage;

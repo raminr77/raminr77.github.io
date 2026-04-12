@@ -7,10 +7,11 @@ import {
   RECOMMENDATIONS,
   type RecommendationItem
 } from '@/data';
-import { ContentContainer } from '@/layout/components/content-container';
+import { ContentContainer } from '@/layout/components';
+import { PageHeader } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
-import { RecommendationCard } from './components/recommendation-card';
+import { RecommendationCard } from './components';
 
 export const metadata: Metadata = {
   title: 'Recommendations'
@@ -19,19 +20,10 @@ export const metadata: Metadata = {
 export function RecommendationsPage() {
   return (
     <ContentContainer>
-      <h3
-        className={clsx(
-          'select-none text-center text-2xl font-bold font-title',
-          animator({ name: 'fadeInUp' })
-        )}
-        dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.title }}
-      />
-      <p
-        className={clsx(
-          'mt-4 select-none text-center text-lg font-title',
-          animator({ name: 'fadeIn', delay: '1s' })
-        )}
-        dangerouslySetInnerHTML={{ __html: RECOMMENDATION_PAGE_DATA.description }}
+      <PageHeader
+        descriptionClassName="mt-4 text-lg"
+        title={RECOMMENDATION_PAGE_DATA.title}
+        description={RECOMMENDATION_PAGE_DATA.description}
       />
 
       <div className="mt-10 flex flex-col gap-6 overflow-hidden">

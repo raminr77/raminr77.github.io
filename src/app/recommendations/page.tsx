@@ -1,4 +1,5 @@
-import { RecommendationsPage } from '@/domains/recommendations';
+import { RecommendationsPage, metadata } from '@/domains/recommendations';
 
-export { metadata } from '@/domains/recommendations';
+export { metadata };
+
 export default RecommendationsPage;

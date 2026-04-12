@@ -5,14 +5,18 @@ import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 import gsap from 'gsap';
 
-import { HETO_TEXT_CHARACTERS } from '@/domains/home/constants';
+import { HERO_TEXT_CHARACTERS } from '@/domains/home/constants';
 import { PERSONAL_DATA } from '@/data';
 
 import styles from './hero-text-animator.module.scss';
 
-const DecryptedText = dynamic(() => import('@/shared/components/decrypted-text'), {
-  ssr: false
-});
+const DecryptedText = dynamic(
+  () =>
+    import('@/shared/components/decrypted-text').then((m) => ({
+      default: m.DecryptedText
+    })),
+  { ssr: false }
+);
 
 export function HeroTextAnimator() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -56,7 +60,7 @@ export function HeroTextAnimator() {
         ref={titleRef}
         className="invisible mt-10 flex w-11/12 select-none items-center justify-center overflow-hidden text-8xl font-extrabold font-title"
       >
-        {HETO_TEXT_CHARACTERS.map(({ id, text, replaceText }) => (
+        {HERO_TEXT_CHARACTERS.map(({ id, text, replaceText }) => (
           <span
             className={styles['hero-text-animator__character']}
             data-text={replaceText}

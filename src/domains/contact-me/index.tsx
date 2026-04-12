@@ -4,12 +4,13 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
-import { ContentContainer } from '@/layout/components/content-container';
 import { sendGTMEvent } from '@next/third-parties/google';
-import { ContactForm } from './components/contact-form';
+import { ContentContainer } from '@/layout/components';
 import { ENV, GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { CONTACT_ME_DATA } from '@/data';
+
+import { ContactForm } from './components';
 
 const GOOGLE_RECAPTCHA_ELEMENT_ID = 'g-recaptcha-container';
 

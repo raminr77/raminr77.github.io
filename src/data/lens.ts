@@ -27,6 +27,18 @@ export const LENS_ITEMS: LensItem[] = [
   {
     id: 1,
     isVideo: false,
+    createdAt: '2019-02-10',
+    title: 'Motosel Seminar at Isfahan',
+    alt: 'Motosel Seminar at Isfahan City Center - Ramin Rezaei',
+    src: '/images/lens/MOTOSEL.webp',
+    cover: '/images/lens/MOTOSEL.webp',
+    description:
+      'Motosel seminar at Isfahan City Center, For sellers and buyers in the car industry, sharing our application and our platform with the audience.',
+    slides: []
+  },
+  {
+    id: 2,
+    isVideo: false,
     createdAt: '2021-01-11',
     title: 'Birthday at Digikala',
     alt: 'Birthday Celebration at Digikala - Ramin Rezaei',
@@ -37,7 +49,31 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 2,
+    id: 3,
+    isVideo: false,
+    createdAt: '2022-08-01',
+    title: 'Digistyle Team',
+    alt: 'Digistyle Team - Ramin Rezaei',
+    src: '/images/lens/DIGISTYLE.webp',
+    cover: '/images/lens/DIGISTYLE.webp',
+    description:
+      'Digistyle team, a group of amazing people together to create a fashion e-commerce experience within Digikala.',
+    slides: []
+  },
+  {
+    id: 4,
+    isVideo: false,
+    createdAt: '2022-11-25',
+    title: 'Black Friday at Digikala',
+    alt: 'Black Friday at Digikala - Ramin Rezaei',
+    src: '/images/lens/DIGIKALA-BLACK-FRIDAY.webp',
+    cover: '/images/lens/DIGIKALA-BLACK-FRIDAY.webp',
+    description:
+      'Black Friday Promotion at Digikala with with more than 10 million visitors and 600,000orders in a single day, showcasing the scale and impact of our work.',
+    slides: []
+  },
+  {
+    id: 5,
     isVideo: false,
     createdAt: '2023-08-01',
     title: 'Last Day at Digikala',
@@ -49,7 +85,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 3,
+    id: 6,
     isVideo: false,
     createdAt: '2024-01-01',
     src: '/images/lens/AR-01.jpg',
@@ -83,7 +119,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 4,
+    id: 7,
     isVideo: false,
     createdAt: '2024-03-01',
     src: '/images/lens/BEAUTY-IN-CODE-2024-01.jpg',
@@ -95,7 +131,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 5,
+    id: 8,
     isVideo: false,
     createdAt: '2024-06-01',
     title: 'Boozt Club, Scaling to 1M Users',
@@ -107,7 +143,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 6,
+    id: 9,
     isVideo: false,
     createdAt: '2024-06-10',
     src: '/images/lens/VISITOR-GOOGLE-01.webp',
@@ -127,7 +163,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 7,
+    id: 10,
     isVideo: false,
     createdAt: '2024-11-01',
     title: 'Google AI Day 2024',
@@ -161,7 +197,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 8,
+    id: 11,
     isVideo: false,
     createdAt: '2024-11-01',
     title: 'Code in the Dark 2024, 1st Place',
@@ -188,7 +224,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 9,
+    id: 12,
     isVideo: false,
     createdAt: '2025-03-01',
     src: '/images/lens/BEAUTY-IN-CODE-2025-01.jpg',
@@ -200,7 +236,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 10,
+    id: 13,
     isVideo: false,
     createdAt: '2025-05-01',
     title: 'Last Day at Boozt',
@@ -220,7 +256,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 11,
+    id: 14,
     isVideo: false,
     createdAt: '2025-11-01',
     title: 'Google AI Day 2025',

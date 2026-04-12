@@ -1,40 +1,48 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-
 import { clsx } from 'clsx';
 
-import { ProjectCard } from '@/domains/projects/components/project-card';
-import { ContentContainer } from '@/layout/components/content-container';
+import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import { PROJECTS_DATA, type ProjectItem } from '@/data';
+import { ContentContainer } from '@/layout/components';
+import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
+
+import { ProjectCard } from './components';
 
 export const metadata: Metadata = {
   title: 'Projects'
 };
 
-export function ProjectsPage() {
+// Sorted by id descending so the highest id (most recently added) appears first
+const SORTED_PROJECTS = [...PROJECTS_DATA.items].sort((a, b) => b.id - a.id);
+
+interface ProjectsPageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export async function ProjectsPage({ searchParams }: ProjectsPageProps) {
+  const params = await searchParams;
+  const page = Math.max(1, Number(params.page) || 1);
+
+  const totalPages = Math.ceil(SORTED_PROJECTS.length / PAGE_SIZE);
+  const safePage = Math.min(page, Math.max(1, totalPages));
+  const projects = SORTED_PROJECTS.slice(
+    (safePage - 1) * PAGE_SIZE,
+    safePage * PAGE_SIZE
+  );
+
   return (
     <ContentContainer>
-      <h3
-        className={clsx(
-          'select-none text-center text-2xl font-bold font-title',
-          animator({ name: 'fadeIn' })
-        )}
-        dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.title }}
-      />
-      <p
-        className={clsx(
-          'mt-4 select-none text-center font-title',
-          animator({ name: 'fadeIn', delay: '1s' })
-        )}
-        dangerouslySetInnerHTML={{ __html: PROJECTS_DATA.description }}
-      />
+      <PageHeader title={PROJECTS_DATA.title} description={PROJECTS_DATA.description} />
 
       <div className="mt-8 grid grid-cols-3 gap-4 overflow-hidden max-lg:grid-cols-2 max-md:grid-cols-1">
-        {PROJECTS_DATA.items.map((item: ProjectItem, index: number) => (
-          <ProjectCard key={index} data={item} animationDelay={(index + 1) * 0.3} />
+        {projects.map((item: ProjectItem, index: number) => (
+          <ProjectCard key={item.id} data={item} animationDelay={(index + 1) * 0.3} />
         ))}
       </div>
+
+      <Pagination page={safePage} totalPages={totalPages} basePath={ROUTES.PROJECTS} />
 
       <div
         className={clsx(

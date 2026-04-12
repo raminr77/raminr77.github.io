@@ -8,4 +8,5 @@ export const metadata: Metadata = {
     absolute: `About ${PERSONAL_DATA.fullName}`
   }
 };
+
 export default AboutMePage;

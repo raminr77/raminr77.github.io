@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
-import { ToggleThemeButton } from '@/shared/components/toggle-theme-button';
 import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { BurgerMenu } from '@/layout/components/burger-menu';
+import { ToggleThemeButton } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
 import styles from './header.module.scss';

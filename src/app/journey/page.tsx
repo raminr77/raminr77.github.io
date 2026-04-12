@@ -1,4 +1,5 @@
-import { JourneyPage } from '@/domains/journey';
+import { JourneyPage, metadata } from '@/domains/journey';
 
-export { metadata } from '@/domains/journey';
+export { metadata };
+
 export default JourneyPage;

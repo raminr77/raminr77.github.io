@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import { Icons } from '@/shared/components/icons';
+import { Icons } from '@/shared/components';
 
 export function PostDate({ date }: { date: Date }) {
   return (

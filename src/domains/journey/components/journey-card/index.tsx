@@ -3,17 +3,19 @@
 import dynamic from 'next/dynamic';
 import { clsx } from 'clsx';
 
-import { Icons } from '@/shared/components/icons';
 import { JourneyItem } from '@/data/journey';
+import { Icons } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './journey-card.module.scss';
 import { GTM_EVENTS } from '@/shared/constants';
 
-const PixelCanvas = dynamic(() => import('@/shared/components/pixel-canvas'), {
-  ssr: false
-});
+const PixelCanvas = dynamic(
+  () =>
+    import('@/shared/components/pixel-canvas').then((m) => ({ default: m.PixelCanvas })),
+  { ssr: false }
+);
 
 const TITLE_CLASSES = clsx(
   styles['journey-card__title'],
@@ -22,11 +24,13 @@ const TITLE_CLASSES = clsx(
 export function JourneyCard({
   data,
   className,
-  order = 1
+  order = 1,
+  disableAnimation = false
 }: {
   order?: number;
   data: JourneyItem;
   className?: string;
+  disableAnimation?: boolean;
 }) {
   const animationDelay = `${order * 0.3}s`;
   const { title, description, date, year, url, items, location } = data;
@@ -46,10 +50,10 @@ export function JourneyCard({
         )}
       >
         <span
-          style={{ animationDelay }}
+          style={disableAnimation ? undefined : { animationDelay }}
           className={clsx(
             'pointer-events-none absolute text-xl font-extrabold tracking-wide font-title',
-            animator({ name: 'fadeIn' })
+            !disableAnimation && animator({ name: 'fadeIn' })
           )}
         >
           {year}
@@ -58,10 +62,10 @@ export function JourneyCard({
       </div>
 
       <div
-        style={{ animationDelay }}
+        style={disableAnimation ? undefined : { animationDelay }}
         className={clsx(
           'relative flex w-full flex-col gap-3',
-          animator({ name: 'fadeIn' })
+          !disableAnimation && animator({ name: 'fadeIn' })
         )}
       >
         <div className="flex select-none flex-col">
