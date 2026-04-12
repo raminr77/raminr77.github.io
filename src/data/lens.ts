@@ -63,6 +63,18 @@ export const LENS_ITEMS: LensItem[] = [
   {
     id: 4,
     isVideo: false,
+    createdAt: '2022-11-25',
+    title: 'Black Friday at Digikala',
+    alt: 'Black Friday at Digikala - Ramin Rezaei',
+    src: '/images/lens/DIGIKALA-BLACK-FRIDAY.webp',
+    cover: '/images/lens/DIGIKALA-BLACK-FRIDAY.webp',
+    description:
+      'Black Friday Promotion at Digikala with with more than 10 million visitors and 600,000orders in a single day, showcasing the scale and impact of our work.',
+    slides: []
+  },
+  {
+    id: 5,
+    isVideo: false,
     createdAt: '2023-08-01',
     title: 'Last Day at Digikala',
     alt: 'Last Day at Digikala - Ramin Rezaei',
@@ -73,7 +85,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 5,
+    id: 6,
     isVideo: false,
     createdAt: '2024-01-01',
     src: '/images/lens/AR-01.jpg',
@@ -107,7 +119,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     isVideo: false,
     createdAt: '2024-03-01',
     src: '/images/lens/BEAUTY-IN-CODE-2024-01.jpg',
@@ -119,7 +131,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 7,
+    id: 8,
     isVideo: false,
     createdAt: '2024-06-01',
     title: 'Boozt Club, Scaling to 1M Users',
@@ -131,7 +143,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 8,
+    id: 9,
     isVideo: false,
     createdAt: '2024-06-10',
     src: '/images/lens/VISITOR-GOOGLE-01.webp',
@@ -151,7 +163,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 9,
+    id: 10,
     isVideo: false,
     createdAt: '2024-11-01',
     title: 'Google AI Day 2024',
@@ -185,7 +197,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 10,
+    id: 11,
     isVideo: false,
     createdAt: '2024-11-01',
     title: 'Code in the Dark 2024, 1st Place',
@@ -212,7 +224,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     isVideo: false,
     createdAt: '2025-03-01',
     src: '/images/lens/BEAUTY-IN-CODE-2025-01.jpg',
@@ -224,7 +236,7 @@ export const LENS_ITEMS: LensItem[] = [
     slides: []
   },
   {
-    id: 12,
+    id: 13,
     isVideo: false,
     createdAt: '2025-05-01',
     title: 'Last Day at Boozt',
@@ -244,7 +256,7 @@ export const LENS_ITEMS: LensItem[] = [
     ]
   },
   {
-    id: 13,
+    id: 14,
     isVideo: false,
     createdAt: '2025-11-01',
     title: 'Google AI Day 2025',
