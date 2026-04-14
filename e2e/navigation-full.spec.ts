@@ -33,7 +33,9 @@ for (const { name, url } of NAV_LINKS) {
     await link.click();
     // Wait for page to finish loading before checking URL — dev server (Turbopack)
     // compiles pages on-demand and can take longer than the default 5s timeout.
-    await page.waitForLoadState('networkidle');
+    // Using 'load' instead of 'networkidle' — pages with dynamic imports (e.g. About Me)
+    // keep network activity alive indefinitely and never reach networkidle on CI.
+    await page.waitForLoadState('load');
     await expect(page).toHaveURL(url, { timeout: 15000 });
   });
 }
