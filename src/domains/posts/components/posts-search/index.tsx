@@ -39,7 +39,7 @@ export function PostsSearch() {
   };
 
   const handleSubmit = useCallback((value: string) => {
-    const trimmedValue = value.trim();
+    const trimmedValue = value.trim().toLowerCase();
 
     if (trimmedValue === '') {
       setPosts([]);

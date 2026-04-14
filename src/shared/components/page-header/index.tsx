@@ -5,7 +5,8 @@ import { animator } from '@/shared/helpers';
 interface PageHeaderProps {
   title: string;
   className?: string;
-  description: string;
+  description?: string;
+  headerClassName?: string;
   descriptionClassName?: string;
 }
 
@@ -13,6 +14,7 @@ export function PageHeader({
   title,
   className,
   description,
+  headerClassName,
   descriptionClassName
 }: PageHeaderProps) {
   return (
@@ -20,7 +22,8 @@ export function PageHeader({
       <h3
         className={clsx(
           'select-none text-center text-2xl font-bold font-title',
-          animator({ name: 'fadeIn' })
+          animator({ name: 'fadeIn' }),
+          headerClassName
         )}
         dangerouslySetInnerHTML={{ __html: title }}
       />
