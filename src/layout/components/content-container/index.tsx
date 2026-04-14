@@ -5,14 +5,12 @@ import { clsx } from 'clsx';
 import { type AnimationNames, animator } from '@/shared/helpers';
 
 interface ContentContainerProps {
-  title?: string;
   children: ReactNode;
   className?: string;
   animationName?: AnimationNames;
 }
 
 export function ContentContainer({
-  title,
   children,
   className,
   animationName = 'fadeIn'
@@ -26,16 +24,6 @@ export function ContentContainer({
           className
         )}
       >
-        {title && (
-          <h1
-            className={clsx(
-              'mb-5 text-2xl font-bold font-title',
-              animator({ name: 'fadeIn' })
-            )}
-          >
-            {title}
-          </h1>
-        )}
         {children}
       </div>
     </main>

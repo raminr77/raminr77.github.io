@@ -7,6 +7,7 @@ import { clsx } from 'clsx';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { ContentContainer } from '@/layout/components';
 import { ENV, GTM_EVENTS } from '@/shared/constants';
+import { PageHeader } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 import { CONTACT_ME_DATA } from '@/data';
 
@@ -16,7 +17,8 @@ const GOOGLE_RECAPTCHA_ELEMENT_ID = 'g-recaptcha-container';
 
 export function ContactMePage() {
   return (
-    <ContentContainer title="Contact Me" className="z-40">
+    <ContentContainer className="z-40">
+      <PageHeader title="Contact Me" className="mb-5" />
       <div className="flex gap-5 max-lg:flex-wrap">
         <div className="w-full text-xl leading-7">
           {CONTACT_ME_DATA.texts.map((text: string, index: number) => (
