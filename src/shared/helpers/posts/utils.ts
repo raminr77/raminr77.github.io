@@ -17,10 +17,10 @@ export function filterPostsByKey(
   }
 
   if (filter.tag) {
-    return postItem.tags.includes(filter.tag);
+    return postItem.tags.some((tag) => tag.toLowerCase() === filter.tag!.toLowerCase());
   }
 
-  return postItem.category === filter.category;
+  return postItem.category.toLowerCase() === filter.category?.toLowerCase();
 }
 
 export function readingTime(text: string) {

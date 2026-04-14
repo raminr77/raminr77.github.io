@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { clsx } from 'clsx';
 
+import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
-import { Pagination, PAGE_SIZE } from '@/shared/components';
 import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
@@ -39,14 +39,10 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
 
   return (
     <ContentContainer animationName="fadeIn" className="relative">
-      <h3
-        className={clsx(
-          'mb-4 text-center text-2xl font-bold font-title',
-          animator({ name: 'fadeIn' })
-        )}
-      >
-        {`${PERSONAL_DATA.firstName}'s Post`}
-      </h3>
+      <PageHeader
+        className="mb-4 w-11/12 max-w-screen-lg"
+        title={`${PERSONAL_DATA.firstName}'s Post`}
+      />
 
       <div
         className={clsx(

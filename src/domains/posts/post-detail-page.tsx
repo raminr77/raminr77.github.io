@@ -5,12 +5,11 @@ import { clsx } from 'clsx';
 import React from 'react';
 
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
+import { ClientCodeLoader, PageHeader } from '@/shared/components';
 import type { Post, PostMetadata } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
-import { ClientCodeLoader } from '@/shared/components';
 import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
-import { animator } from '@/shared/helpers';
 import { PERSONAL_DATA } from '@/data';
 
 import {
@@ -70,14 +69,7 @@ export async function PostDetailPage({ params }: Props) {
 
   return (
     <ContentContainer animationName="fadeIn">
-      <h3
-        className={clsx(
-          'mb-12 text-center text-2xl font-title',
-          animator({ name: 'fadeIn' })
-        )}
-      >
-        {post.title}
-      </h3>
+      <PageHeader title={post.title} className="mb-12" />
 
       <div className="mb-4 flex gap-2 justify-between items-center border-b border-slate-300/40 pb-3 max-md:flex-col max-md:items-start">
         <div className="flex gap-5 max-md:flex-wrap max-md:gap-2">
