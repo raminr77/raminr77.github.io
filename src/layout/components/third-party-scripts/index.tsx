@@ -41,6 +41,11 @@ export function ThirdPartyScripts() {
     setStatus(getCookiesModalStatus());
   }, []);
 
+  // Skip loading third-party scripts in "redirected route" mode to ensure a clean testing environment
+  if (window.location.search.includes('random')) {
+    return;
+  }
+
   if (status !== COOKIES_MODAL_STATUS.ACCEPT) {
     return <SpeedInsights />;
   }
