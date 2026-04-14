@@ -11,6 +11,8 @@ import {
 import { COOKIES_MODAL_STATUS } from '@/shared/constants';
 import { Button } from '@/shared/components';
 
+import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
+
 export function CookiesModal() {
   const [cookiesModalStatus, setCookiesModalStatus] = useState<CookiesModalStatus>(
     COOKIES_MODAL_STATUS.NONE
@@ -28,11 +30,17 @@ export function CookiesModal() {
   const handleAccept = () => {
     setCookiesModalStatus(COOKIES_MODAL_STATUS.ACCEPT);
     updateCookiesModalStatus(COOKIES_MODAL_STATUS.ACCEPT);
+    window.dispatchEvent(
+      new CustomEvent(COOKIES_STATUS_CHANGE, { detail: COOKIES_MODAL_STATUS.ACCEPT })
+    );
   };
 
   const handleReject = () => {
     setCookiesModalStatus(COOKIES_MODAL_STATUS.REJECT);
     updateCookiesModalStatus(COOKIES_MODAL_STATUS.REJECT);
+    window.dispatchEvent(
+      new CustomEvent(COOKIES_STATUS_CHANGE, { detail: COOKIES_MODAL_STATUS.REJECT })
+    );
   };
 
   if (cookiesModalStatus !== COOKIES_MODAL_STATUS.NONE) return null;
