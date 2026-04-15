@@ -14,32 +14,28 @@ tags:
   - ContentLayer
 ---
 
-In this post, I’ll walk you through how these tools work together to streamline your workflow and give you full control over your content.
+When I decided to add a blog to my personal site, I didn't want to deal with a CMS or a database. I just wanted to write Markdown files, push them to Git, and have them show up as posts. The stack I landed on was Next.js + Contentlayer, and it worked well for a while.
 
-## Why This Stack?
+> **Note:** Contentlayer's repository was archived in 2024 and is no longer actively maintained. The core concepts in this post still hold, but you may want to look at alternatives like [Velite](https://velite.js.org/) or [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) for new projects.
 
-- **Next.js**: A React framework that provides server-side rendering, static site generation, and an excellent developer experience.
-- **Contentlayer**: A content management tool that turns your Markdown files into structured, type-safe data, seamlessly integrating with Next.js.
-- **Markdown**: A lightweight, human-readable format for writing content that’s easy to version control with Git.
+The idea is simple: Contentlayer reads your Markdown files and generates type-safe data you can import directly into your Next.js pages. No database, no API calls, just files on disk that become typed objects at build time. Git handles versioning, and you write posts in whatever editor you already use.
 
-This combination lets you write blog posts in Markdown, process them into a usable format with Contentlayer, and serve them efficiently with Next.js. Let’s dive into how it works.
+## Setting Up Your Next.js Project
 
-### Step 1: Setting Up Your Next.js Project
-
-First, create a new Next.js project if you don’t already have one:
+Start with a Next.js project if you don't have one:
 
 ```bash
 npx create-next-app@latest my-blog
 cd my-blog
 ```
 
-Install the necessary dependencies:
+Then install Contentlayer:
 
 ```bash
 npm install contentlayer next-contentlayer
 ```
 
-Wrap your Next.js configuration with Contentlayer by updating `next.config.js`:
+Wrap your Next.js config with Contentlayer in `next.config.js`:
 
 ```javascript
 const { withContentlayer } = require('next-contentlayer');
@@ -49,9 +45,9 @@ module.exports = withContentlayer({
 });
 ```
 
-### Step 2: Configuring Contentlayer
+## Configuring Contentlayer
 
-Create a `contentlayer.config.js` file in your project root to define how Contentlayer processes your Markdown files. Here’s a simple example:
+Create a `contentlayer.config.js` at your project root. This is where you tell Contentlayer where your Markdown files live and what fields to extract:
 
 ```javascript
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
@@ -78,11 +74,11 @@ export default makeSource({
 });
 ```
 
-This setup tells Contentlayer to look for Markdown files in a `content/posts` directory and extract fields like `title`, `date`, and `description`. The `slug` is automatically generated from the filename.
+The `slug` is computed from the filename automatically, so you don't have to set it in every post's frontmatter.
 
-### Step 3: Writing Your First Blog Post
+## Writing a Post
 
-Create a `content/posts` directory and add a Markdown file, like `my-first-post.md`:
+Create a `content/posts` directory and add a Markdown file like `my-first-post.md`:
 
 ```markdown
 ---
@@ -96,9 +92,9 @@ Welcome to my blog! This is my first post, written in Markdown and powered by Co
 
 The frontmatter (between `---`) defines metadata, while the content below is the body of your post.
 
-### Step 4: Fetching and Displaying Posts
+## Displaying Posts
 
-Contentlayer generates a data layer you can import into your Next.js pages. For example, create a blog index page at `pages/blog/index.js`:
+Contentlayer generates a data layer you can import directly. For the blog index page at `pages/blog/index.js`:
 
 ```javascript
 import { allPosts } from 'contentlayer/generated';
@@ -122,7 +118,7 @@ export default function Blog() {
 }
 ```
 
-For individual posts, create a dynamic route at `pages/blog/[slug].js`:
+For individual posts at `pages/blog/[slug].js`:
 
 ```javascript
 import { useMDXComponent } from 'next-contentlayer/hooks';
@@ -151,22 +147,14 @@ export async function getStaticProps({ params }) {
 }
 ```
 
-### Step 5: Deploy and Enjoy
+## Deploying
 
-**You have to build your project to generate the markdown files.**
-Run your project with `npm run dev` to see it in action.
-Once you’re happy, deploy it to Vercel or your preferred platform.
-Add more posts by creating new Markdown files in the `content/posts` directory—Contentlayer and Next.js handle the rest!
+Before running the dev server, keep in mind that **Contentlayer generates its data layer at build time**, so you need to build first or run `npm run dev` (which triggers the generation automatically on start).
 
-## Benefits of This Approach
+Once everything looks good, deploy to Vercel or your preferred platform. Adding a new post is as simple as creating a new Markdown file in the `content/posts` directory; Contentlayer and Next.js take care of the rest.
 
-- **Simplicity**: Write posts in Markdown without needing a database or complex CMS.
-- **Flexibility**: Customize the structure and styling however you like.
-- **Performance**: Next.js static generation ensures blazing-fast load times.
-- **Version Control**: Store your content in Git alongside your code.
+## Wrapping Up
 
-## Conclusion
-
-Using Next.js with Contentlayer and Markdown is a game-changer for developers who want a lightweight, maintainable blog. It’s perfect for personal sites, portfolios, or even small documentation projects.
+For a developer-owned blog, this stack hits a sweet spot: you write in Markdown, your content lives in Git alongside your code, and Next.js handles all the rendering. It works especially well for personal sites and portfolios where you don't need a full CMS.
 
 Read more on [contentlayer.dev](https://contentlayer.dev/)

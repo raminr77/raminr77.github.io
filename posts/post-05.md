@@ -12,30 +12,19 @@ tags:
   - SPA
 ---
 
-Modern web apps often rely on **client-side routing** to create fast, responsive experiences. However, one challenge remains: ensuring **smooth visual transitions** between pages or views without relying on heavy libraries or frameworks.
+Page transitions in SPAs have always been a bit awkward to get right. You either pull in a full animation library, write your own enter/leave logic with CSS classes, or just accept the abrupt content swap. The View Transitions API is a browser-native way to handle this — you wrap a DOM update in `document.startViewTransition()` and the browser captures the before/after states and animates between them.
 
-With the **View Transitions API**, now supported in Chromium-based browsers, you can animate DOM changes natively — offering sleek visual feedback with minimal code.
+It works differently from traditional CSS transitions. Instead of transitioning a property value over time, it takes a screenshot of the current state, makes your DOM change, then animates from the old screenshot to the new live state. The result is smooth even for complex layout changes.
 
-## ✨ What is the View Transitions API?
+## When It Makes Sense
 
-The View Transitions API enables **animated transitions between different DOM states**. Whether you're navigating between routes or toggling views in a single-page application (SPA), this API lets you animate the shift between “before” and “after” states.
+The API is most useful for route changes in SPAs, tab-based navigation, or any case where you're swapping out a significant chunk of content and want the change to feel less jarring. For small UI interactions like toggling a dropdown, regular CSS transitions are still the right tool.
 
-> ✅ Unlike traditional CSS transitions, this API handles **DOM updates and animations together** in a well-defined sequence.
+For multi-page apps (MPA), browsers handle the snapshots automatically when navigating between pages. For SPAs doing same-document navigation, you trigger it manually.
 
-## 🧠 When to Use It
+## A Minimal Example
 
-The API is especially useful for:
-
-- Navigating between routes in SPAs
-- Showing/hiding sections or modals
-- Tab-based navigation
-- Complex layout state changes
-
-For multi-page apps, the browser automatically captures the before/after snapshots. But for same-document navigation (e.g., SPAs), you **manually define** the DOM update within the transition.
-
-## 🔧 Basic Implementation Example
-
-Let’s build a minimal example with two views: `Home` and `About`.
+Here's a simple two-view demo with a fade transition:
 
 ```html
 <!DOCTYPE html>
@@ -115,18 +104,20 @@ Let’s build a minimal example with two views: `Home` and `About`.
 </html>
 ```
 
-## 📦 How It Works
+The key parts: you assign a `view-transition-name` to the element you want to animate, define `@keyframes` for the old and new states using the `::view-transition-old` and `::view-transition-new` pseudo-elements, then call `document.startViewTransition()` with your DOM update inside the callback.
 
-1. We assign a `view-transition-name` to the `main` element.
-2. We define animations using `@keyframes` for both the old and new views.
-3. On button click, we call `document.startViewTransition()` and update the DOM inside it.
-4. The browser handles the transition between the two visual states smoothly.
+The fallback on line `if (!document.startViewTransition)` handles browsers that don't support it — content still updates, just without the animation.
 
-## ⚠️ Browser Support
+## Browser Support
 
-This feature currently works in **Chromium-based browsers** like Chrome and Edge. For unsupported browsers, the fallback logic ensures the content is still updated — just without animation.
+As of 2024, same-document view transitions are supported in:
 
-You can check for support like this:
+- **Chrome** since v111
+- **Edge** since v111
+- **Safari** since v18 (September 2024)
+- **Firefox** not yet (as of early 2025, it's behind a flag)
+
+Always check for support before using the API:
 
 ```js
 if ('startViewTransition' in document) {
@@ -134,9 +125,9 @@ if ('startViewTransition' in document) {
 }
 ```
 
-## 🔗 References
+## References
 
-- 📘 [View Transitions API Overview](https://developer.chrome.com/docs/web-platform/view-transitions)
-- 📘 [Same-Document Transitions Guide](https://developer.chrome.com/docs/web-platform/view-transitions/same-document)
+- [View Transitions API Overview](https://developer.chrome.com/docs/web-platform/view-transitions)
+- [Same-Document Transitions Guide](https://developer.chrome.com/docs/web-platform/view-transitions/same-document)
 
-If you're building a modern SPA and want to add native-feeling polish with minimal effort, the View Transitions API is a fantastic tool to explore. Try it in your next project and let your UI breathe with smooth transitions!
+If you're building a modern SPA and want native-feeling transitions without pulling in an animation library, the View Transitions API is worth trying. The fallback behavior is safe, the setup is minimal, and when it works, it genuinely elevates the feel of navigation.
