@@ -13,76 +13,60 @@ tags:
   - Developer Mindset
 ---
 
-It often happens that a project becomes more complex than it really needs to be.  
-This complexity is not always caused by real business needs, but many times by wrong decisions about tools, architecture, or even team process.
+Projects don't usually start complicated. They get that way over time, sometimes because the problem genuinely grew, but more often because of decisions made along the way: the wrong tool, an architecture that didn't match the scale, a process that nobody questioned.
 
-In this article, I want to share my personal story and also highlight some practical lessons about software design, complexity, and the balance between technology and business knowledge.
+In this post, I want to share a personal story and a few lessons I've picked up about software design, complexity, and the often underrated role of business knowledge.
 
 ## The Story of the Setaregan Project
 
-The **Setaregan Project** is a real-world example of how complexity grows step by step.  
-It started in 2013 as a very small idea: my coach wanted a website for his sports club. At that time, I had zero knowledge of web development. I didn’t know HTML, CSS, or even the basic tools. But I decided to give it a try.
+The **Setaregan Project** is a project I've been maintaining for over a decade. It started in 2013 when my sports coach asked for a simple website for his club. At the time, I had zero web development experience — no HTML, no CSS, no idea where to even start. But I gave it a shot.
 
-The first version was a very simple static page. It only showed some text on a domain, and to update it I had to edit the files manually every time.  
-Over the years, this small page evolved:
+The first version was a static page. It showed some text on a domain and I edited the files by hand whenever something needed to change. Over the years, the system kept evolving:
 
 - **Year 2:** Rebuilt with Joomla.
 - **Year 3:** Migrated to a blogging platform.
 - **Year 4:** Recreated with WordPress, adding more features.
-- **Year 7:** A custom PHP MVC version (big, full of bugs, and very unstable).
-- **Year 8:** A complete rebuild using Laravel + React.
-- **Later:** A microservice architecture running on Docker and Kubernetes.
+- **Year 7:** A custom PHP MVC version — large, full of bugs, very unstable.
+- **Year 8:** A complete rebuild using Laravel and React.
+- **Later:** Microservices, Docker, Kubernetes.
 
-At first glance, this looks like a great progress story. But in reality, I noticed something interesting:  
-👉 **As my technical knowledge grew, the system became more complex, not always better.**
+On paper, that looks like steady progress. But the pattern I noticed was less encouraging: **as my technical knowledge grew, the system got more complex, not necessarily better.**
 
-## Three Main Causes of Complexity
+## Why Complexity Grows
 
-### 1. Developer Knowledge
+### Developer Knowledge
 
-Complexity often reflects the developer’s level of knowledge.  
-For example, when I built my own MVC framework in PHP, I thought I was improving the system. But because I didn’t know basic principles like **SOLID**, **Design Patterns**, or **Clean Architecture**, the result was a system that was harder to maintain than WordPress.
+There's a trap that a lot of developers fall into, myself included. When you learn something new — a pattern, a framework, an architecture — you want to use it. When I built my own MVC framework in PHP, I genuinely thought I was improving the system. What I was actually doing was adding complexity I didn't yet have the skills to manage. I didn't know SOLID principles, I hadn't studied Design Patterns seriously, and Clean Architecture was just a book title at that point. The result was something harder to maintain than WordPress.
 
-As _The Pragmatic Programmer_ explains, the right tool in the wrong hands can easily lead to disaster.
+As _The Pragmatic Programmer_ puts it, the right tool in the wrong hands can lead to disaster.
 
-### 2. Technology Choices
+### Technology Choices
 
-The second cause of complexity is the choice of technology.  
-The newest technology is not always the best.
+The biggest mistake I made with the Setaregan project was introducing microservices, Docker, and Kubernetes into something that had no real reason to be distributed. A single well-structured monolith would have served the club perfectly.
 
-As Fred Brooks writes in _The Mythical Man-Month_: _“There is no silver bullet.”_  
-Using microservices, Docker, and Kubernetes in a project that could easily run as a monolith only added overhead and unnecessary complexity.
+Fred Brooks said it decades ago in _The Mythical Man-Month_: there is no silver bullet. Modern tools are genuinely powerful, but if your problem doesn't require them, you're not solving a problem — you're creating one.
 
-Modern tools are powerful, but if the problem is small, a simple solution usually works better.
+### Domain Knowledge
 
-### 3. Domain Knowledge
+This is the one that took me the longest to understand. I spent years optimizing the technical side of that project while having a pretty shallow understanding of what the club actually needed. I was solving the wrong problem, just increasingly well.
 
-The third cause, and maybe the most important, is **domain knowledge**.  
-Without a deep understanding of the business, even the most advanced technical team will build the wrong system.
+Eric Evans' _Domain-Driven Design_ makes this point clearly: the real value of software comes from connecting technical design with the business domain. I realized later that the club's actual needs were much simpler than anything I built. A more focused conversation with my coach earlier on would have saved a lot of wasted effort.
 
-As Eric Evans describes in _Domain-Driven Design_, the real value of software comes from connecting technical design with the business domain.  
-In my case, I realized much later that the club’s real needs were much simpler than the system I had created.
+**Domain knowledge is often more important than technical skill.** That's not a comfortable thing to admit, but it's been consistently true in my experience.
 
-👉 **Domain knowledge is often more important than technical knowledge.**
+## What I Try to Keep in Mind Now
 
-## Practical Principles for Reducing Complexity
-
-From this experience, I learned some practical principles that every developer and team should remember:
-
-- **KISS (Keep It Simple, Stupid):** Always choose the simplest solution that works.
-- **YAGNI (You Aren’t Gonna Need It):** Don’t add features until they are really needed.
-- **Continuous Refactoring:** Review and simplify code regularly, not only when problems appear.
-- **Testing Matters:** As Robert C. Martin says in _Clean Code_, good tests make your system easier to change and maintain.
-- **Balanced Teams:** A good team is not made of only senior developers. A mix of levels and perspectives often leads to better results.
+- **KISS:** Always choose the simplest solution that actually works.
+- **YAGNI:** Don't add it until you genuinely need it.
+- **Refactor continuously:** Don't wait until something breaks to simplify it.
+- **Write tests:** Not because it's best practice, but because they make future changes less scary.
+- **Talk to stakeholders early:** Understand the problem before designing the solution.
 
 ## Conclusion
 
-After more than 10 years with the same project, two big lessons became very clear to me:
+After more than a decade with the same project, two things became very clear to me. First, the more technical skill you have, the more discipline you need to avoid over-engineering things. Second, understanding the business is not optional — without it, the best code in the world won't solve the right problem.
 
-1. **Technical skills and correct technology choices directly affect complexity.** The more you know, the more careful you must be to avoid creating unnecessary complexity.
-2. **Domain knowledge is as important as technical skill—and sometimes even more.** Without understanding the business, the best code will not solve the right problem.
-
-In the end, successful software is not the one with the latest technologies, but the one that stays **simple, useful, and aligned with real business needs**.
+Successful software isn't the one with the newest tech stack. It's the one that stays simple, useful, and aligned with what people actually need.
 
 _References:_
 

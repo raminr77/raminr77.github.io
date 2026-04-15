@@ -13,70 +13,41 @@ tags:
   - Developer Mindset
 ---
 
-## Introduction
+A code review isn't just about finding bugs. Its main goal is **continuously improving code quality** — catching issues early, keeping the codebase consistent, and spreading knowledge across the team. Done well, it's one of the highest-leverage activities on a team. Done poorly, it's a bottleneck that nobody enjoys.
 
-A code review isn’t just about finding bugs — its main goal is **continuously improving code quality**.  
-A good code review should help you:
+This is the checklist I use, adapted from Neo Kim's CodeRabbit checklist and refined with things I've learned the hard way.
 
-- Catch performance and security issues before release.
-- Improve readability and maintainability.
-- Keep team standards consistent.
-- Prevent repeating the same mistakes.
-- Share knowledge across the team.
+## Before You Start Reviewing
 
-In this post, inspired by the Neo Kim + CodeRabbit checklist and enhanced with process-oriented best practices, we’ll walk through a **complete** and **practical** approach you can apply in your projects.
+**Read the PR description and linked tickets first.** Understanding _why_ the change was made changes how you review it. A fix for a production incident deserves a different lens than a routine feature.
 
-## 🛠 Pre-Review Best Practices
+**If you're the author:** review your own PR before requesting review. Remove debug code, commented-out blocks, and anything that crept in by accident. Run the tests locally. It sounds obvious but it saves everyone time.
 
-Before you start reviewing someone’s code, set yourself up for success.
+**Keep PRs small.** A 500-line PR gets skimmed. A 100-line PR gets read. If you're waiting on a big feature to be "done" before opening a PR, you're probably doing it wrong.
 
-### 1. Understand the Context
+## Functionality
 
-- Read the PR description, linked issues, and related documentation.
-- Understand **why** this change was made, not just **what** was changed.
+Does the code actually do what it's supposed to?
 
-### 2. Self-Review (For Authors)
-
-- Review your own PR before asking others.
-- Remove unnecessary changes, debug code, and commented-out blocks.
-- Ensure tests pass locally.
-
-### 3. Keep PRs Small
-
-- Smaller PRs are easier to review thoroughly and faster to merge.
-- If possible, break large features into smaller, reviewable chunks.
-
-## 1️⃣ Functionality & Correctness
-
-Ensures the code does exactly what it’s supposed to.
-
-**Checklist:**
-
-- **Requirements:** Does the code fulfill all feature and business requirements?
-- **Logic:** Works for all expected inputs, including edge cases.
+- Does it meet the requirements in the ticket?
+- Does it handle edge cases: null, undefined, empty arrays, large inputs?
+- Does it break anything that was already working?
 
 ```ts
 // Correct
 if (user && user.isAdmin) { ... }
 
-// Risky - may throw if user is null
+// Risky — throws if user is null
 if (user.isAdmin) { ... }
 ```
 
-- **Integration:** Works without breaking existing features.
-- **Testing:**
-  - All unit tests pass.
-  - Integration tests run successfully with real or mocked data.
-- **Edge Cases:** Null, undefined, empty arrays, large datasets, unusual scenarios handled.
+Check the happy path, check the failure path, and check the weird inputs that nobody tested but definitely exist in production.
 
-## 2️⃣ Readability & Clarity
+## Readability
 
-Readable code is easier to maintain and less prone to bugs.
+Code is read far more often than it's written. If you have to read a function twice to understand it, that's a problem.
 
-**Checklist:**
-
-- **Clarity:** Easy to read and understand.
-- **Naming:** Variables, functions, and classes have meaningful, descriptive names.
+- Are names descriptive enough to understand without comments?
 
 ```ts
 // Bad
@@ -86,43 +57,30 @@ const a = getData();
 const userProfile = getUserProfile();
 ```
 
-- **Style:** Consistent formatting (Prettier, ESLint, etc.).
-- **Comments:** Explain “why” the code exists, not just “what” it does.
-- **Documentation:** Updated and correct, especially for new APIs or modules.
+- Is the formatting consistent with the rest of the codebase? (If you have Prettier and ESLint, this should be automatic.)
+- Do comments explain _why_, not just _what_? A comment that says `// increment counter` is noise. One that says `// user sessions expire after 24h per compliance requirement` is useful.
 
-## 3️⃣ Performance & Efficiency
+## Performance
 
-Performance matters in every project.
-
-**Checklist:**
-
-- **Algorithms:** Use efficient algorithms and data structures.
+- Are there obvious algorithmic problems?
 
 ```ts
-// Bad - O(n^2)
+// Bad — O(n²)
 arr.forEach(a => arr.forEach(b => { ... }));
 
-// Good - O(n)
+// Good — O(n)
 const set = new Set(arr);
 ```
 
-- **Scalability:** Efficient with growing data size or user base.
-- **Bottlenecks:** Avoid repeated computations or unnecessary operations.
-- **Reuse:** Avoid code duplication; use shared functions/modules.
-- **Resources:** Optimize CPU and memory usage.
-- **Caching:** Reuse results to speed things up where appropriate.
-- **Compatibility:** Works across supported browsers, devices, and platforms.
+- Does it do unnecessary work? Duplicate API calls, redundant computations inside loops, missing memoization?
+- Does it scale reasonably? A query that works fine for 100 records might time out at 100,000.
 
-## 4️⃣ Security & Stability
+## Security
 
-Security should never be skipped.
-
-**Checklist:**
-
-- **Validation:** Sanitize and validate all inputs.
-- **Vulnerabilities:** Guard against SQL injection, XSS, CSRF, and similar.
-- **Data:** Handle sensitive information (passwords, tokens, PII) securely.
-- **Error Handling:** Fail gracefully with clear, logged errors.
+- Are inputs validated and sanitized before use?
+- Are there any SQL injection, XSS, or CSRF vectors?
+- Is sensitive data (passwords, tokens, PII) handled correctly — not logged, not exposed in responses?
+- Does error handling fail gracefully without leaking internals?
 
 ```ts
 try {
@@ -133,50 +91,33 @@ try {
 }
 ```
 
-- **Observability:** Sufficient logging and monitoring in place.
-- **Compatibility:** Works with older versions or required environments.
-- **API Design:** Consistent, predictable, and easy to use.
-- **Dependencies:** Use only safe and necessary libraries, updated to secure versions.
+- Are any new dependencies necessary? Are they maintained and up to date?
 
-## 💬 Code Review Process Tips
+## Giving Feedback
 
-### Focus on Critical Issues First
+A few things that make a real difference in how reviews land:
 
-Prioritize bugs, security risks, and performance issues before nitpicks.
+**Fix the important stuff first.** Security issues and broken logic matter. Missing semicolons don't. Save the nitpicks for after the real problems are sorted.
 
-### Use a Constructive Tone
+**Ask questions instead of making demands.** "What do you think about extracting this into a helper?" reads differently than "extract this into a helper." The code author usually knows things you don't.
 
-- Suggest improvements, don’t demand them.
-- Use phrases like “What do you think about…?” or “Could we consider…?”
+**Be specific.** Link to docs, point to examples, explain why. Vague feedback ("this doesn't look right") creates friction without value.
 
-### Be Specific
+**Follow up.** After the author addresses your comments, check that nothing new was introduced in the process.
 
-Link to documentation, examples, or patterns that support your feedback.
+## Quick Checklist
 
-### Follow Up
-
-- After changes, verify all issues are resolved.
-- Make sure no new issues have been introduced.
-
-## 📋 Quick PR Review Checklist
-
-A short version for quick checks in pull requests:
-
-- Meets requirements without breaking existing features
-- Clear and consistent naming, style, and documentation
-- Efficient algorithms and resource usage
-- Scalable and free of performance bottlenecks
-- Secure input handling and data protection
-- Proper error handling and observability in place
-- PR is small, focused, and well-documented
+- Meets requirements and doesn't break existing behavior
+- Names and formatting are consistent with the codebase
+- No obvious performance bottlenecks
+- Inputs are validated, sensitive data is handled safely
+- Error handling is in place
+- PR is focused and small enough to review properly
 
 ---
 
-## Conclusion
+A good code review isn't a bug hunt competition. It's an opportunity for team learning, quality improvement, and building trust in the codebase.
 
-A good code review isn’t a **bug hunt competition**.  
-It’s an opportunity for **team learning, quality improvement, and building trust in the codebase**.
-
-> Remember: Code reviews are about progress, not perfection.
+> Code reviews are about progress, not perfection.
 
 – Ramin ✌️

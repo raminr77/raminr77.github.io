@@ -15,26 +15,17 @@ tags:
   - Database
 ---
 
-## Introduction
+Picking a data access layer in a TypeScript + PostgreSQL project is one of those decisions that's easy to undo early on and painful to change later. I've used all three approaches across different projects, and they each have a clear place. Here's how they actually compare.
 
-The **data access layer** is one of the most critical parts of any backend application. It serves as the bridge between your business logic and your database. In modern **Node.js + TypeScript** projects using **PostgreSQL**, the choice of data access tool impacts:
+The three options:
 
-- **Performance** (query speed, startup times, resource usage)
-- **Developer Experience** (type safety, learning curve, tooling)
-- **Flexibility** (custom SQL, advanced DB features)
-- **Community Support** (help, ecosystem, long-term viability)
+1. **[Prisma](https://www.prisma.io/docs)** — schema-first, type-safe ORM with great DX
+2. **[TypeORM](https://typeorm.io/)** — decorator-based ORM, closer to SQL, more flexible
+3. **[Direct DB Client](https://node-postgres.com/)** — raw `node-postgres`, maximum control
 
-Three main options dominate the ecosystem:
+## The Same Query, Three Ways
 
-1. **[Prisma](https://www.prisma.io/docs)** – A schema-first, type-safe ORM with exceptional developer experience.
-2. **[TypeORM](https://typeorm.io/)** – A flexible, mature ORM that stays close to SQL and supports multiple patterns.
-3. **[Direct Database Clients](https://node-postgres.com/)** – Low-level drivers like `node-postgres` for ultimate control.
-
----
-
-## Example: Fetching Users with Posts
-
-Below is the same query implemented in all three approaches.
+Fetching users with their posts:
 
 ### Prisma
 
@@ -103,7 +94,7 @@ const { rows: users } = await client.query(`
 `);
 ```
 
-## Key Comparison Table
+## Comparison
 
 | Aspect                   | Prisma                                                                                                                           | TypeORM                                             | Direct DB Client                  |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | --------------------------------- |
@@ -114,22 +105,12 @@ const { rows: users } = await client.query(`
 | **Migrations**           | 9/10 – Prisma Migrate                                                                                                            | 8/10 – CLI-based                                    | 5/10 – Manual                     |
 | **Community Support**    | 9/10 – Fast-growing ([stats](https://npmtrends.com/prisma-vs-typeorm))                                                           | 9/10 – Established                                  | 7/10 – Relies on DB community     |
 
-## When to Choose What
+## My Take
 
-- **Choose Prisma if:**
+**Prisma** is my default for most projects. The schema-first workflow, auto-generated types, and `prisma studio` make the day-to-day faster. The Rust query engine adds a small startup overhead, but in practice you won't notice it.
 
-You value **developer productivity** and **type safety**. Great for teams moving fast and avoiding runtime errors.
+**TypeORM** is the right call when you need more control over queries or when your team already thinks in SQL. The decorator syntax takes some getting used to, but the query builder is genuinely powerful.
 
-- **Choose TypeORM if:**
-
-You want **more control** and **SQL familiarity** with a mature ecosystem.
-
-- **Choose Direct DB if:**
-
-You need **absolute performance** or **full control** and have strong SQL skills.
-
-## Conclusion
-
-For most **TypeScript + PostgreSQL** projects, [**Prisma**](https://www.prisma.io/) offers the best trade-off between **performance, safety, and community support**. [**TypeORM**](https://typeorm.io/) is ideal if SQL control and ORM flexibility matter most. **Direct DB** is unmatched in speed and freedom, but requires more work and expertise.
+**Direct DB client** is for when performance is the only thing that matters, or when the query is complex enough that an ORM would fight you. You'll write more code and maintain it manually, but you'll never wonder what SQL it's generating under the hood.
 
 – Ramin ✌️

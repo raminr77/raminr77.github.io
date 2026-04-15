@@ -11,13 +11,11 @@ tags:
   - CSS
 ---
 
-CSS has evolved significantly over the years, introducing powerful features that enhance styling capabilities. One such feature is @property, which allows developers to define custom properties (CSS variables) with specific types, default values, and inheritance behavior. This feature enables better performance and flexibility when working with dynamic styles, particularly in animations and transitions.
+If you've worked with CSS custom properties for a while, you've probably hit their limits, especially when trying to animate them. Plain CSS variables are opaque to the browser; it doesn't know if `--my-value` holds a color, a length, or a number, which means it can't interpolate between states. That's exactly the problem `@property` solves. It lets you define a custom property with an explicit type, a default value, and an inheritance rule, giving the browser the information it needs to handle transitions and animations properly.
 
 ## What is @property?
 
-`@property` is an at-rule in CSS that allows defining custom properties with additional metadata such as type, initial value, and inheritance. This helps CSS engines optimize animations and transitions, ensuring smooth and efficient rendering.
-
-### Syntax
+`@property` is a CSS at-rule that lets you declare a custom property with metadata: its expected type, whether child elements can inherit it, and what the default value is. Without this, the browser treats every custom property as just an opaque string.
 
 ```css
 @property --my-color {
@@ -27,21 +25,11 @@ CSS has evolved significantly over the years, introducing powerful features that
 }
 ```
 
-### Explanation:
+Three fields, all required. `syntax` tells the browser what kind of value to expect (things like `<color>`, `<length>`, `<number>`). `inherits` controls whether child elements pick up the value from their parent. `initial-value` is the fallback when nothing else is set.
 
-- `syntax`: Defines the expected data type for the property (e.g., `<color>`, `<length>`, `<number>`).
-- `inherits`: Specifies whether the property is inherited by child elements (`true` or `false`).
-- `initial-value`: Sets the default value of the property.
+## Animating a Custom Property
 
-## Benefits of Using @property
-
-1. **Improved Performance:** Helps browsers optimize animations by defining the expected type.
-2. **Better Maintainability:** Ensures properties have consistent types and default values.
-3. **Enhanced Animations:** Enables smooth transitions by providing structured data types.
-
-## Example: Animating a Custom Property
-
-With `@property`, we can animate CSS variables smoothly.
+This is where `@property` really shines. Normally, CSS can't animate a variable because it doesn't know what type it is. Once you declare it, that changes:
 
 ```css
 @property --main-bg-color {
@@ -60,18 +48,21 @@ button:hover {
 }
 ```
 
-### Explanation:
+The transition on `--main-bg-color` works because the browser now knows it's a color and can interpolate between two color values. Without the `@property` declaration, that transition would just snap between states with no animation at all.
 
-- The `@property` rule defines `--main-bg-color` as a `<color>` type.
-- The `body` element uses this variable for its background color.
-- The transition applies when `--main-bg-color` changes, ensuring smooth color transitions.
-- When hovering over the button, the background color changes to `lightblue` with a smooth transition.
+## Browser Support
 
-## Limitations
+As of 2024, `@property` is supported across all major browsers:
 
-- Currently, `@property` is supported in Chromium-based browsers (Chrome, Edge, Opera) but not in Firefox or Safari.
-- The `@property` rule only works with explicitly defined syntax; generic CSS variables (`--var`) do not automatically benefit from it.
+- **Chrome** since v85
+- **Edge** since v85
+- **Firefox** since v128 (July 2024)
+- **Safari** since v16.4 (March 2023)
+
+It's now safe to use in production without needing a fallback for modern browsers.
+
+One thing to keep in mind: `@property` only works with explicitly typed syntax. A generic untyped variable (`--my-var`) doesn't gain anything from it. You need to declare a proper `syntax` value for the browser to do anything meaningful with it.
 
 ## Conclusion
 
-The `@property` rule in CSS is a powerful feature for defining custom properties with additional metadata. It enhances performance, improves maintainability, and allows smooth animations. While browser support is limited, it remains a valuable tool for developers aiming to create dynamic and optimized web experiences.
+`@property` fills a real gap in CSS. It's not just a nice-to-have. For anything involving animated custom properties, it's the right way to do it. Now that browser support has caught up, there's little reason not to use it when you need it.
