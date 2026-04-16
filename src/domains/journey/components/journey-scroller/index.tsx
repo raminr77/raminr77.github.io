@@ -10,17 +10,18 @@ interface JourneyScrollerProps {
   items: JourneyItem[];
 }
 
-const PARTICLE_COUNT = 10;
+const PARTICLE_COUNT = 20;
 const PARTICLE_COLOR = 'rgb(245, 158, 11)'; // amber-500
 
 function spawnParticles(element: HTMLElement): void {
   const rect = element.getBoundingClientRect();
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const y = rect.top;
+    const y = 260;
     const x = rect.left + Math.random() * rect.width;
+
     const driftX = (Math.random() - 0.5) * 20;
-    const riseY = -(35 + Math.random() * 35);
+    const riseY = -(90 + Math.random() * 90);
     const size = 4 + Math.random() * 4;
 
     const particle = document.createElement('div');
@@ -45,7 +46,7 @@ function spawnParticles(element: HTMLElement): void {
         { transform: `translate(${driftX}px, ${riseY}px) scale(0)`, opacity: '0' }
       ],
       {
-        duration: 700 + Math.random() * 400,
+        duration: 700 + Math.random() * 2000,
         easing: 'ease-out',
         fill: 'forwards'
       }
@@ -60,11 +61,11 @@ function spawnParticles(element: HTMLElement): void {
 export function JourneyScroller({ items }: JourneyScrollerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const innerDivRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const prevActiveRef = useRef<number>(-1);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const innerDivRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const syncActive = useCallback(() => {
     const container = containerRef.current;
@@ -126,8 +127,7 @@ export function JourneyScroller({ items }: JourneyScrollerProps) {
         {items.map((item, index) => {
           const distance = Math.abs(index - activeIndex);
           const isActive = distance === 0;
-          const opacity = isActive ? 1 : Math.max(0.2, 1 - distance * 0.35);
-          const scale = isActive ? 1 : Math.max(0.82, 1 - distance * 0.07);
+          const opacity = isActive ? 1 : Math.max(0.2, 1 - distance * 0.8);
 
           return (
             <div
@@ -142,7 +142,6 @@ export function JourneyScroller({ items }: JourneyScrollerProps) {
                 className="w-full transition-all duration-700 ease-in-out"
                 style={{
                   opacity,
-                  transform: `scale(${scale})`,
                   pointerEvents: isActive ? 'auto' : 'none'
                 }}
               >
@@ -160,12 +159,6 @@ export function JourneyScroller({ items }: JourneyScrollerProps) {
           );
         })}
       </div>
-
-      {/* Bottom gradient */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-[20dvh] bg-gradient-to-t dark:from-black from-white to-transparent"
-      />
     </div>
   );
 }
