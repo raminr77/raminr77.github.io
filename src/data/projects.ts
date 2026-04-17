@@ -25,6 +25,24 @@ export const PROJECTS_DATA: {
   footer: 'We can create a idea and develop the future for everyone',
   items: [
     {
+      id: 9,
+      url: null,
+      isPrivate: true,
+      role: 'Software Engineer',
+      title: 'Falcon AI Platform - AI Drone',
+      stack: [
+        'Python',
+        'WebRTC',
+        'Streaming',
+        'TailScale VPN',
+        'YOLO Model',
+        'MediaMTX',
+        'Grafana'
+      ],
+      description:
+        'Falcon is a personal project where I built an AI-powered autonomous drone system capable of real-time video and audio streaming, obstacle detection, and automatic landing. The drone streams data via WebRTC to backend services where AI models like YOLO handle decision-making, all within a secure, distributed architecture with monitoring in place.'
+    },
+    {
       id: 1,
       title: 'Raven System',
       url: null,
@@ -104,7 +122,7 @@ export const PROJECTS_DATA: {
       role: 'Personal Project - Developer',
       stack: ['JavaScript', 'HTML', 'CSS', 'SASS'],
       description:
-        'CSV Row Printer is a small tool that helps you upload your CSV files to it and separate the information in each row and print it as a card or output it. you also can modify your cards and some actions like merge and groupBy your data.'
+        'CSV Row Printer is a small tool that helps you upload your CSV files to it and separate the information in each row and print it card or output it. you also can modify your cards and some actions like merge and groupBy your data.'
     },
     {
       id: 6,
@@ -144,7 +162,7 @@ export const PROJECTS_DATA: {
         'Cache UI'
       ],
       description:
-        'Khela is a fun side project I work on in my free time, mainly focused on improving and learning skills around building a Progressive Web App (PWA). My goal is to push a regular web app as close as possible to the experience of a native mobile app.'
+        'Khela is a fun side project I work on in my free time, mainly focused on improving and learning skills around building a Progressive Web App (PWA). My goal is to push a regular web app to the experience of a native mobile app.'
     },
     {
       id: 8,
