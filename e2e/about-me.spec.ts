@@ -13,7 +13,7 @@ test('about me page loads at the correct URL', async ({ page }) => {
 });
 
 test('resume download button is visible and has download attribute', async ({ page }) => {
-  // aria-label is "Download Software-Engineer-Ramin-Rezaei-CV-2025.pdf", not "Download Resume"
+  // aria-label is "Download Software-Engineer-Ramin-Rezaei-CV.pdf", not "Download Resume"
   const downloadLink = page.getByRole('link', { name: /download.*\.pdf/i });
   await expect(downloadLink).toBeVisible();
   await expect(downloadLink).toHaveAttribute('download');
