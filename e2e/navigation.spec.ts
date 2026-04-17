@@ -9,7 +9,7 @@ test('main navigation works', async ({ page }) => {
 
   await expect(
     page.getByRole('link', {
-      name: /download\s+software-engineer-ramin-rezaei-cv-2025\.pdf/i
+      name: /download\s+Software-Engineer-Ramin-Rezaei-CV\.pdf/i
     })
   ).toBeVisible();
 

@@ -44,7 +44,7 @@ test('desktop home page: resume download link is present', async ({ page }) => {
   await page.goto('/');
 
   // ResumeDownloaderButton is in the home page content, not inside <nav>
-  // Its aria-label is "Download Software-Engineer-Ramin-Rezaei-CV-2025.pdf"
+  // Its aria-label is "Download Software-Engineer-Ramin-Rezaei-CV.pdf"
   const downloadLink = page.getByRole('link', { name: /download.*\.pdf/i });
   await expect(downloadLink).toBeVisible();
   await expect(downloadLink).toHaveAttribute('download');
