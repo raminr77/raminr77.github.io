@@ -9,8 +9,6 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import { GTM_EVENTS } from '@/shared/constants';
 import { GENERAL_SITE_DATA } from '@/data';
 
-export const PAGE_SIZE = 9;
-
 interface PaginationProps {
   page: number;
   basePath: string;
