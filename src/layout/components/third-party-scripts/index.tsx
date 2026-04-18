@@ -1,6 +1,6 @@
 'use client';
 
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import React, { useEffect, useState, Suspense } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
@@ -17,12 +17,29 @@ const PerformanceMonitor = React.lazy(() =>
   }))
 );
 
+type WindowWithGtag = Window & { gtag?: (...args: unknown[]) => void };
+
+function updateGTMConsent(status: CookiesModalStatus) {
+  const w = window as WindowWithGtag;
+  if (!w.gtag) return;
+  const state = status === COOKIES_MODAL_STATUS.ACCEPT ? 'granted' : 'denied';
+  w.gtag('consent', 'update', {
+    analytics_storage: state,
+    ad_storage: state,
+    functionality_storage: state,
+    personalization_storage: state
+  });
+}
+
 export function ThirdPartyScripts() {
   const [status, setStatus] = useState<CookiesModalStatus>(COOKIES_MODAL_STATUS.NONE);
+  const isIrDomain = window.location.hostname.includes('.ir');
 
   useEffect(() => {
     const onCookiesChange = (e: Event) => {
-      setStatus((e as CustomEvent<CookiesModalStatus>).detail);
+      const newStatus = (e as CustomEvent<CookiesModalStatus>).detail;
+      setStatus(newStatus);
+      updateGTMConsent(newStatus);
     };
     window.addEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
     return () => window.removeEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
@@ -39,7 +56,11 @@ export function ThirdPartyScripts() {
       `color:#60a5fa; font-size:16px; padding:16px; line-height:1.5;`
     );
 
-    setStatus(getCookiesModalStatus());
+    const savedStatus = getCookiesModalStatus();
+    setStatus(savedStatus);
+    if (savedStatus !== COOKIES_MODAL_STATUS.NONE) {
+      updateGTMConsent(savedStatus);
+    }
   }, []);
 
   const isAccepted = status === COOKIES_MODAL_STATUS.ACCEPT;
@@ -62,15 +83,16 @@ export function ThirdPartyScripts() {
         />
       )}
 
-      {isAccepted && !!ENV.GOOGLE_ANALYTICS_CODE && (
+      {isAccepted && (
         <>
-          <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
+          {!!ENV.GOOGLE_ANALYTICS_CODE_SE_DOMAIN && !isIrDomain && (
+            <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE_SE_DOMAIN} />
+          )}
+          {!!ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN && isIrDomain && (
+            <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN} />
+          )}
           <GAPageView />
         </>
-      )}
-
-      {isAccepted && !!ENV.GOOGLE_TAG_MANAGER_CODE && (
-        <GoogleTagManager gtmId={ENV.GOOGLE_TAG_MANAGER_CODE} />
       )}
     </>
   );
