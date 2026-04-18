@@ -74,6 +74,9 @@ export const GENERAL_SITE_DATA = {
       clearFilter: 'Clear Filter'
     }
   },
+  projects: {
+    demoLinkText: 'Demo'
+  },
   lens: {
     emptyState: {
       title: 'No Lens Items Found',

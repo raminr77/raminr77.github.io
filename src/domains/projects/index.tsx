@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
@@ -8,7 +7,7 @@ import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 
-import { ProjectCard } from './components';
+import { ProjectsFooter, ProjectCard } from './components';
 
 export const metadata: Metadata = {
   title: 'Projects'
@@ -50,13 +49,7 @@ export async function ProjectsPage({ searchParams }: ProjectsPageProps) {
           animator({ name: 'fadeIn', delay: '1s' })
         )}
       >
-        <p>{PROJECTS_DATA.footer}</p>
-        <Link
-          href={PROJECTS_DATA.footerActionURL}
-          className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8"
-        >
-          {PROJECTS_DATA.footerActionLabel}
-        </Link>
+        <ProjectsFooter />
       </div>
     </ContentContainer>
   );

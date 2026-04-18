@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { clsx } from 'clsx';
 
 import {
@@ -11,7 +10,7 @@ import { ContentContainer } from '@/layout/components';
 import { PageHeader } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
-import { RecommendationCard } from './components';
+import { RecommendationCard, RecommendationsFooter } from './components';
 
 export const metadata: Metadata = {
   title: 'Recommendations'
@@ -42,13 +41,7 @@ export function RecommendationsPage() {
           animator({ name: 'fadeInUp', delay: '1s' })
         )}
       >
-        <p>{RECOMMENDATION_PAGE_DATA.footer}</p>
-        <Link
-          href={RECOMMENDATION_PAGE_DATA.footerActionURL}
-          className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8"
-        >
-          {RECOMMENDATION_PAGE_DATA.footerActionLabel}
-        </Link>
+        <RecommendationsFooter />
       </div>
     </ContentContainer>
   );

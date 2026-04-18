@@ -25,5 +25,19 @@ export const GTM_EVENTS = {
   CHECK_RECOMMENDATION: (value: string) => ({
     event: 'check-recommendation-clicked',
     value
-  })
+  }),
+  LENS_CARD: (value: string) => ({ event: 'lens-card-clicked', value }),
+  LENS_NAVIGATION: (value: 'previous' | 'next') => ({
+    event: 'lens-navigation-clicked',
+    value
+  }),
+  LENS_THUMBNAIL: (value: number) => ({
+    event: 'lens-thumbnail-clicked',
+    value: String(value)
+  }),
+  LENS_MODAL_CLOSE: { event: 'lens-modal-closed', value: '' },
+  PROJECT_DEMO: (value: string) => ({ event: 'project-demo-link-clicked', value }),
+  PROJECTS_FOOTER: { event: 'projects-footer-link-clicked', value: '' },
+  RECOMMENDATIONS_FOOTER: { event: 'recommendations-footer-link-clicked', value: '' },
+  PAGINATION: (value: string) => ({ event: 'pagination-clicked', value })
 } as const;

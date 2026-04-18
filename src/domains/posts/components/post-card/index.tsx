@@ -1,10 +1,13 @@
-import Link from 'next/link';
+'use client';
 
+import Link from 'next/link';
 import { clsx } from 'clsx';
+
+import { sendGTMEvent } from '@next/third-parties/google';
 
 import { PostTags } from '@/domains/posts/components/post-tags';
 import type { PostMetadata } from '@/shared/types/post';
-import { ROUTES } from '@/shared/constants';
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 
 import { PostCategory } from '../post-category';
@@ -50,6 +53,7 @@ export function PostCard({
         <Link
           href={postDetailUrl}
           className="text-lg font-bold text-amber-500 font-title"
+          onClick={() => sendGTMEvent(GTM_EVENTS.POST_CARD(title))}
         >
           {title}
         </Link>
@@ -66,7 +70,11 @@ export function PostCard({
 
         <div className="flex select-none items-center justify-between">
           <PostDate date={date} />
-          <Link href={postDetailUrl} className="text-amber-500">
+          <Link
+            href={postDetailUrl}
+            className="text-amber-500"
+            onClick={() => sendGTMEvent(GTM_EVENTS.POST_CARD(`Read More: ${title}`))}
+          >
             [ Read More ]
           </Link>
         </div>

@@ -4,6 +4,9 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { clsx } from 'clsx';
 
+import { sendGTMEvent } from '@next/third-parties/google';
+
+import { GTM_EVENTS } from '@/shared/constants';
 import { useIsClient } from '@/shared/hooks';
 import { animator } from '@/shared/helpers';
 import type { LensItem } from '@/data';
@@ -28,6 +31,7 @@ export function LensCard({
   const totalSlides = 1 + (data.slides?.length ?? 0);
 
   function handleOpen() {
+    sendGTMEvent(GTM_EVENTS.LENS_CARD(data.title));
     setCurrentIndex(0);
     setIsOpen(true);
   }
