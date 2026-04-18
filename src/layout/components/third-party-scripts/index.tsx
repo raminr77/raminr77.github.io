@@ -33,7 +33,7 @@ function updateGTMConsent(status: CookiesModalStatus) {
 
 export function ThirdPartyScripts() {
   const [status, setStatus] = useState<CookiesModalStatus>(COOKIES_MODAL_STATUS.NONE);
-  const isIrDomain = window.location.hostname.includes('.ir');
+  const [isIrDomain, setIsIrDomain] = useState(false);
 
   useEffect(() => {
     const onCookiesChange = (e: Event) => {
@@ -46,6 +46,7 @@ export function ThirdPartyScripts() {
   }, []);
 
   useEffect(() => {
+    setIsIrDomain(window.location.hostname.includes('.ir'));
     // Developer signiture
     console.log(
       '%cHi, curious developer 👋',
