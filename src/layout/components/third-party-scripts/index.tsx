@@ -9,6 +9,7 @@ import { getCookiesModalStatus, type CookiesModalStatus } from '@/shared/helpers
 import { COOKIES_MODAL_STATUS, ENV } from '@/shared/constants';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
+import { GAPageView } from './ga-page-view';
 
 const PerformanceMonitor = React.lazy(() =>
   import('@/shared/components/performance-monitor').then((module) => ({
@@ -41,9 +42,7 @@ export function ThirdPartyScripts() {
     setStatus(getCookiesModalStatus());
   }, []);
 
-  if (status !== COOKIES_MODAL_STATUS.ACCEPT) {
-    return <SpeedInsights />;
-  }
+  const isAccepted = status === COOKIES_MODAL_STATUS.ACCEPT;
 
   return (
     <>
@@ -55,7 +54,7 @@ export function ThirdPartyScripts() {
         </Suspense>
       )}
 
-      {!!ENV.GOOGLE_ADSENSE && (
+      {isAccepted && !!ENV.GOOGLE_ADSENSE && (
         <Script
           async
           crossOrigin="anonymous"
@@ -63,11 +62,14 @@ export function ThirdPartyScripts() {
         />
       )}
 
-      {!!ENV.GOOGLE_ANALYTICS_CODE && (
-        <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
+      {isAccepted && !!ENV.GOOGLE_ANALYTICS_CODE && (
+        <>
+          <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
+          <GAPageView />
+        </>
       )}
 
-      {!!ENV.GOOGLE_TAG_MANAGER_CODE && (
+      {isAccepted && !!ENV.GOOGLE_TAG_MANAGER_CODE && (
         <GoogleTagManager gtmId={ENV.GOOGLE_TAG_MANAGER_CODE} />
       )}
     </>
