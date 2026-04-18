@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import type { PostFilters } from '@/shared/types/post';
+import { GENERAL_SITE_DATA } from '@/data';
 
 interface PostsCategoryFilterProps {
   categories: string[];
@@ -17,6 +18,7 @@ export function PostsCategoryFilter({
   activeFilters = null
 }: PostsCategoryFilterProps) {
   const router = useRouter();
+  const { categoryFilter } = GENERAL_SITE_DATA.posts;
 
   const handleCategoryChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
     const value = target.value;
@@ -36,7 +38,7 @@ export function PostsCategoryFilter({
         value={activeFilters?.category ?? ''}
         className="h-9 px-3 text-md border text-black appearance-none outline-none cursor-pointer bg-transparent dark:bg-black/90 duration-300 hover:border-amber-500 dark:text-white dark:border-white"
       >
-        <option value="">Select a category ...</option>
+        <option value="">{categoryFilter.placeholder}</option>
         {categories.map((item) => (
           <option key={item} value={item}>
             {item}
@@ -51,7 +53,7 @@ export function PostsCategoryFilter({
           onClick={() => sendGTMEvent(GTM_EVENTS.CLEAR_FILTERS)}
           className="px-2 py-1 text-md bg-transparent backdrop-blur-sm hover:text-amber-500 duration-300"
         >
-          Clear Filter
+          {categoryFilter.clearFilter}
         </Link>
       )}
     </div>

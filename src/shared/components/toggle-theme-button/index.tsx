@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 
 import { FEATURE_FLAGS, GTM_EVENTS, LOCAL_STORAGE_KEYS } from '@/shared/constants';
 import { Icons } from '@/shared/components/icons';
+import { GENERAL_SITE_DATA } from '@/data';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
 export type Theme = keyof typeof THEMES;
 
 export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boolean }) {
+  const { switchToDark, switchToLight } = GENERAL_SITE_DATA.theme;
   const [theme, setTheme] = useState<Theme>(THEMES.dark);
 
   useEffect(() => {
@@ -17,7 +19,6 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
       setTheme(previousTheme);
       return;
     }
-    // default to dark for first-time visitors
     setTheme(THEMES.dark);
     localStorage.setItem(LOCAL_STORAGE_KEYS.THEME, THEMES.dark);
   }, []);
@@ -34,7 +35,7 @@ export function ToggleThemeButton({ isBurgerMenu = false }: { isBurgerMenu?: boo
     setTheme(newTheme);
   };
 
-  const buttonText = `Switch to ${theme === THEMES.light ? 'Dark' : 'Light'} Mode`;
+  const buttonText = theme === THEMES.light ? switchToDark : switchToLight;
 
   return FEATURE_FLAGS.TOGGLE_THEME_BUTTON ? (
     <button

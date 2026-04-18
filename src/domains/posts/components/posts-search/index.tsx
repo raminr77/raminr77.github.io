@@ -11,6 +11,7 @@ import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { TextInput, Icons } from '@/shared/components';
 import { searchPosts } from '@/shared/services';
 import { animator } from '@/shared/helpers';
+import { GENERAL_SITE_DATA } from '@/data';
 
 import { PostDate } from '../post-date';
 
@@ -18,6 +19,8 @@ const BUTTON_CLASSES =
   'border w-9 px-2 h-9 flex items-center justify-center hover:border-amber-500 bg-transparent shadow backdrop-blur-sm duration-500 hover:bg-slate-300/5 overflow-hidden';
 
 export function PostsSearch() {
+  const { search: searchTexts } = GENERAL_SITE_DATA.posts;
+
   const [loading, setLoading] = useState<boolean>(false);
   const [posts, setPosts] = useState<PostMetadata[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
@@ -87,9 +90,9 @@ export function PostsSearch() {
         >
           <button
             type="button"
-            title="Close Search"
-            aria-label="Close Search"
             onClick={handleCloseSearch}
+            title={searchTexts.closeTitle}
+            aria-label={searchTexts.closeAriaLabel}
             className={clsx(BUTTON_CLASSES, 'absolute top-4 right-4')}
           >
             <Icons name="close" />
@@ -100,9 +103,9 @@ export function PostsSearch() {
             type="text"
             id="search"
             value={searchValue}
-            label="Search Posts"
-            placeholder="Search..."
+            label={searchTexts.label}
             onChange={handleSearchChange}
+            placeholder={searchTexts.placeholder}
             className="w-full bg-transparent mb-5 mt-4 placeholder-black dark:placeholder-white"
           />
 
@@ -113,13 +116,13 @@ export function PostsSearch() {
             })}
           >
             <Activity mode={loading ? 'visible' : 'hidden'}>
-              <li className="text-center text-gray-500">Loading...</li>
+              <li className="text-center text-gray-500">{searchTexts.loading}</li>
             </Activity>
 
             <Activity
               mode={!loading && posts.length === 0 && searchValue ? 'visible' : 'hidden'}
             >
-              <li className="text-center text-gray-500">No posts found.</li>
+              <li className="text-center text-gray-500">{searchTexts.noResults}</li>
             </Activity>
 
             {posts.map((post: PostMetadata) => {
@@ -152,8 +155,8 @@ export function PostsSearch() {
     <div className="flex items-center">
       <button
         type="button"
-        title="Search Posts"
-        aria-label="Search Posts"
+        title={searchTexts.openAriaLabel}
+        aria-label={searchTexts.openAriaLabel}
         onClick={handleOpenSearch}
         className={BUTTON_CLASSES}
       >

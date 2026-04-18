@@ -17,6 +17,15 @@ jest.mock('@/shared/constants', () => ({
   LOCAL_STORAGE_KEYS: { THEME: 'theme' }
 }));
 
+jest.mock('@/data', () => ({
+  GENERAL_SITE_DATA: {
+    theme: {
+      switchToDark: 'Switch to Dark',
+      switchToLight: 'Switch to Light'
+    }
+  }
+}));
+
 beforeEach(() => {
   localStorage.clear();
   document.documentElement.className = '';

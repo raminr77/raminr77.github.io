@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
+import { GENERAL_SITE_DATA } from '@/data';
+
 export const PAGE_SIZE = 9;
 
 interface PaginationProps {
@@ -90,6 +92,8 @@ export function Pagination({
   totalPages,
   searchParams = {}
 }: PaginationProps) {
+  const { previousPage, nextPage, pageLabel } = GENERAL_SITE_DATA.pagination;
+
   if (totalPages <= 1) return null;
 
   const pageItems = getPageItems(page, totalPages);
@@ -101,9 +105,9 @@ export function Pagination({
       className="flex items-center justify-center gap-1 mt-8 flex-wrap"
     >
       <PageLink
-        href={buildPageHref(page - 1, basePath, searchParams)}
         disabled={page === 1}
-        aria-label="Previous page"
+        aria-label={previousPage}
+        href={buildPageHref(page - 1, basePath, searchParams)}
       >
         ←
       </PageLink>
@@ -121,7 +125,7 @@ export function Pagination({
           <PageLink
             key={item}
             active={item === page}
-            aria-label={`Page ${item}`}
+            aria-label={`${pageLabel} ${item}`}
             aria-current={item === page ? 'page' : undefined}
             href={buildPageHref(item, basePath, searchParams)}
           >
@@ -131,9 +135,9 @@ export function Pagination({
       )}
 
       <PageLink
+        aria-label={nextPage}
         href={buildPageHref(page + 1, basePath, searchParams)}
         disabled={page === totalPages}
-        aria-label="Next page"
       >
         →
       </PageLink>
