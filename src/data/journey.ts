@@ -17,7 +17,7 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: `11 Jan 1999 ( ${new Date().getFullYear() - 1999} years )`,
     title: 'Birthday',
     description:
-      '<p>I was born on <strong>January 11, 1999</strong> in <em>Isfahan, Iran</em> 🇮🇷, a beautiful city with rich history and culture. This was the start of my journey and the path that later took me across fields and countries.</p>'
+      '<p>I was born on <strong>January 11, 1999</strong> in <em>Isfahan, Iran</em> 🇮🇷. This was the beginning of my journey, which later took me through software engineering, large-scale systems, and international opportunities.</p>'
   },
   {
     id: 2,
@@ -26,67 +26,67 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: 'Nov 2013 - Nov 2017',
     title: 'High School Graduation',
     description:
-      '<p>I finished high school in <strong>Mathematics and Physics</strong>. These years taught me logical thinking and problem solving, and prepared me for the technical work I do today.</p>'
+      '<p>I finished high school in <strong>Mathematics and Physics</strong>. These years helped me build strong logical thinking and problem-solving skills, which later became the foundation of my engineering mindset.</p>'
   },
   {
     id: 3,
     year: 2021,
-    location: 'Najafabad, Isfahan, Iran',
+    location: 'Isfahan, Iran',
     date: 'Nov 2017 - Nov 2021',
     title: 'University Graduation',
     description:
-      '<p>I earned a Bachelor’s degree in <strong>Software Engineering</strong> from <strong>Azad University of Najafabad</strong>. I learned how to build real systems, explore new ideas, and work with teams to solve hard problems.</p>',
+      '<p>I earned a Bachelor’s degree in <strong>Computer Software Engineering</strong> from <strong>Azad University (IAUN)</strong>. During university, I focused on software fundamentals, user behavior, and practical system building.</p>',
     items: [
-      'Professor’s assistant and top student in Graphic and Database Design courses.',
-      'Assisted research for more than two semesters on how hidden elements on a web page affect user behavior, and how small UI changes can improve the experience.'
+      'Conducted research on user behavior and UI optimization.',
+      'Teaching Assistant for courses in Graphic Design and Database Systems.'
     ]
   },
   {
     id: 4,
     year: 2019,
-    location: 'Isfahan, Iran - Remote',
-    date: 'Jan 2019 ( 1 year 2 months )',
-    title: 'Freelancer - Software Engineer',
+    location: 'Isfahan, Iran',
+    date: 'Jan 2019 - Jan 2020',
+    title: 'Self-Employed - Freelance Software Engineer',
     description:
-      '<p>I started my career as a <strong>Freelance Software Engineer</strong>. I worked remotely and owned projects end to end, from gathering requirements to deployment and support.</p>',
+      '<p>I started my professional journey as a <strong>Freelance Software Engineer</strong>, leading product development from requirements and system design to implementation, testing, and production monitoring.</p>',
     items: [
-      'Designed and built scalable REST APIs with Python (Django) and PHP (Laravel) for license management, handled 500 requests per second, kept 99.9% uptime.',
-      'Led several products E2E, from defining system needs and partner dependencies to implementation, testing, and setting up metrics, alerts, monitors, and dashboards.'
+      'Led the development of several products, from identifying system requirements and partner dependencies to workload balancing, implementation, testing, and configuring metrics, alarms, monitors, and dashboards.',
+      'Designed and implemented scalable RESTful APIs using Python (Django) and PHP (Laravel) for managing proprietary licenses, handling peak loads of 500 requests per second, and ensuring 99.9% uptime.'
     ]
   },
   {
     id: 5,
     year: 2019,
     location: 'Isfahan, Iran',
-    date: 'Apr 2019 ( 1 year 4 months )',
-    title: 'SnappCarFix - Software Engineer',
+    date: 'Apr 2019 - Aug 2020',
+    title: 'Snapp, SnappCarFix - Software Engineer / Frontend Team Lead',
     url: 'https://www.linkedin.com/company/snapp.ir/',
     description:
-      '<p>At <strong>SnappCarFix</strong>, I worked as a frontend engineer and also led the frontend team. I helped the team deliver fast and reliable web platforms and improved the user experience with better performance and reusable parts.</p>',
+      '<p>At <strong>SnappCarFix</strong>, I worked as a frontend engineer and frontend team lead, helping deliver cross-functional products, modernize the frontend stack, and improve development speed and user experience.</p>',
     items: [
-      'Mentored 5+ engineers and managed cross-functional delivery.',
-      'Migrated a WordPress platform to a modern JavaScript and React stack, improved user experience by about 90%.',
-      'Built a general layout and component library as an installable package, reduced project setup time by 40%.',
-      'Implemented high-performance timers for ads and discount banners, reduced page load time by 2 seconds.'
+      'Led and mentored a team of 5+ engineers, driving delivery of cross-functional projects.',
+      'Migrated a legacy WordPress platform to a modern React-based architecture, significantly improving user experience.',
+      'Built a reusable component library, reducing development time and project setup by 40%.',
+      'Improved performance by optimizing frontend features, reducing page load time by up to 20%.'
     ]
   },
   {
     id: 6,
     year: 2020,
     location: 'Tehran, Iran',
-    date: 'Aug 2020 ( 3 years )',
-    title: 'Digikala - Software Engineer',
+    date: 'Aug 2020 - Aug 2023',
+    title: 'Digikala - Software Engineer / Senior Frontend Engineer',
     url: 'https://www.linkedin.com/company/digikala/',
     description:
-      '<p>I joined <strong>Digikala</strong> as a <strong>Senior Frontend Engineer</strong>. I worked on large e-commerce products with millions of visits per day, focused on speed, quality, and flexible features.</p>',
+      '<p>I joined <strong>Digikala</strong> and worked on large-scale e-commerce platforms with millions of users and daily visits. My focus was on performance, experimentation, frontend architecture, and platform reliability.</p>',
     items: [
-      'Rebuilt two e-commerce platforms with JavaScript, React, Next.js, and TypeScript in agile teams using the Spotify Squad model.',
-      'Integrated Google Analytics, set up DataLayer, and ran 20+ A/B tests. Used Big-Data Tracker and Google Tag Manager to study user behavior.',
-      'Built dynamic landing pages with 30+ reusable modules, cut development time for promo pages.',
-      'Wrote unit and E2E tests using Jest, React Testing Library, and Cypress. Used Storybook to improve component reuse.',
-      'Worked in a PHP monorepo with Symfony, and used micro frontends with NX. Improved code quality and structure, sped up APIs by 10% and reduced DB load by 20% with caching.',
-      'Automated core marketing experiments including A/B, Auto-Targeting, and Multivariate Testing.',
-      'Automated UX testing for marketing platforms by integrating Nightwatch Selenium.'
+      'Rebuilt two large-scale e-commerce platforms using React, Next.js, and TypeScript in agile teams.',
+      'Worked on products with more than 40 million active users and 12 million unique visits per day.',
+      'Led the campaign team for 1 year and developed a dynamic landing page system with 30+ reusable modules, reducing development time for campaigns.',
+      'Implemented analytics and experimentation systems including Google Analytics and A/B testing, running 20+ experiments to improve user behavior insights.',
+      'Improved backend performance by optimizing APIs and database queries, reducing response time by 10% and query load by 5%.',
+      'Contributed to a micro-frontend architecture using Nx and worked within a large PHP monorepo with Symfony.',
+      'Built and maintained automated testing pipelines with Jest and Cypress, improving code quality and reliability.'
     ]
   },
   {
@@ -96,25 +96,27 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     location: 'Malmö, Sweden',
     title: 'Relocation to Sweden',
     description:
-      '<p>In <strong>August 2023</strong>, I moved to <strong>Malmö, Sweden</strong> 🇸🇪. This started my international chapter, with new challenges and chances to grow in the global tech scene.</p>'
+      '<p>In <strong>August 2023</strong>, I moved to <strong>Malmö, Sweden</strong> 🇸🇪. This was the beginning of a new international chapter in my career, with bigger systems, broader impact, and new challenges.</p>'
   },
   {
     id: 8,
     year: 2023,
-    date: 'Aug 2023 - April 2025',
+    date: 'Aug 2023 - Apr 2025',
     location: 'Malmö, Sweden',
     url: 'https://www.linkedin.com/company/boozt-fashion/',
-    title: 'Boozt - Senior Frontend Developer',
+    title: 'Boozt - Senior Frontend Engineer',
     description:
-      '<p>At <strong>Boozt</strong>, the largest Nordic online department store, I worked as a <strong>Senior Frontend Developer</strong>. I built tools and features that made content, campaigns, and user experience faster and easier to manage across web and mobile.</p>',
+      '<p>At <strong>Boozt</strong>, I worked as a <strong>Senior Frontend Engineer</strong> on internal platforms and customer-facing systems, improving CMS capabilities, automation, localization, and frontend performance.</p>',
     items: [
-      'Worked with CI/CD pipelines, pull requests, code reviews, and unit, integration, and E2E tests.',
-      'Built a CMS to create dynamic pages, promotions, and campaign pages for 17 countries, integrated with the mobile app, no app updates needed.',
-      'Improved CMS data structure with better algorithms and data structures. Used hash maps to remove redundant loops and reduce extra computation.',
-      'Built an internal brand asset system with Google Cloud Functions and Google Storage, cut costs by removing external services.',
-      'Created serverless functions on GCP to automate background tasks, reduced operational overhead by 20%.',
-      'Migrated and redesigned website features from the legacy platform to React and TypeScript, improved performance.',
-      'Refactored state management and component architecture to reduce re-renders, improved load times and overall UX.'
+      'Built and scaled a CMS platform for generating dynamic web pages, promotions, and campaign pages for 17 countries, with seamless mobile app integration.',
+      'Built a translation service using Google AI tools to localize CMS content automatically across multiple stores and languages.',
+      'Improved performance by optimizing data structures and eliminating redundant computations.',
+      'Designed an internal asset management system using Google Cloud and a Node.js backend API, reducing dependency on external services.',
+      'Developed serverless solutions with GCP Cloud Functions, reducing operational overhead by around 10%, and implemented automation for tracking data changes and triggering downstream jobs.',
+      'Led migration to React and TypeScript, improving maintainability, performance, and frontend architecture.',
+      'Optimized rendering and reduced re-renders to improve load times and user experience.',
+      'Contributed to CI/CD, code reviews, and automated testing across unit, integration, and E2E layers.',
+      'Built an ML-powered image processing system using Google tools and TensorFlow.js to classify and cluster images, and automatically remove backgrounds for easier content usage.'
     ]
   },
   {
@@ -123,18 +125,19 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: 'May 2025 - Now',
     location: 'Malmö, Sweden',
     url: 'https://www.linkedin.com/company/sinch/',
-    title: 'Sinch - Senior Software Engineer',
+    title: 'Sinch - Software Engineer',
     description:
-      '<p>At <strong>Sinch</strong>, I work as a <strong>Senior Software Engineer</strong>. I help design the architecture and frontend infrastructure for systems that power global communications. I work across teams to keep things fast, stable, and easy to maintain.</p>',
+      '<p>At <strong>Sinch</strong>, I work on distributed systems, frontend platforms, backend services, observability, and infrastructure. My focus is on building scalable internal tools and improving reliability across complex architectures.</p>',
     items: [
-      'Designed and maintained a modular setup with more than 10 micro frontends, with clear contracts and performance goals.',
-      'Defined a scalable Nx monorepo structure for multi-team development, with good dependency management and caching.',
-      'Implemented dynamic module federation and set up isolated testing across micro frontends, using Cypress and Playwright.',
-      'Improved speed with lazy loading, route prefetching, and bundle splitting, better time-to-interactive and Lighthouse scores.',
-      'Led frontend build and quality checks, including linting, formatting, coverage rules, and automated pipelines with GitLab and internal tools.',
-      'Worked with <strong>Kubernetes</strong> and <strong>Istio</strong> for deployment, traffic control, and observability. Set custom routing rules and fault tolerance strategies.',
-      'Contributed to <strong>Spring Boot</strong> microservices in <strong>Kotlin</strong>, used <strong>gRPC</strong> and <strong>Protocol Buffers</strong> for data exchange, helped define service contracts.',
-      'Worked closely with product, design, and engineering to deliver scalable, maintainable, user-focused features.'
+      'Led development of MCP for the Account & Access domain, integrating with multiple internal tools and lovable, and winning an internal engineering competition.',
+      'Led an end-to-end E2E testing initiative and observability dashboards using Grafana with Prometheus data, improving system visibility and reliability.',
+      'Contributed to BFF services using Kotlin, integrating with large-scale microservices in a distributed architecture.',
+      'Improved dashboard performance by optimizing frontend code and reducing system overhead through backend caching and streaming strategies.',
+      'Enhanced frontend performance and Lighthouse scores across projects, and built and maintained shared UI libraries and packages.',
+      'Worked within a large-scale micro-frontend architecture with 100+ micro-frontends.',
+      'Designed and maintained CI/CD pipelines for automated testing and deployment workflows.',
+      'Developed Helm charts and managed deployments on Kubernetes clusters.',
+      'Worked with Istio, load balancing, scalable infrastructure patterns, and Kafka.'
     ]
   }
 ];

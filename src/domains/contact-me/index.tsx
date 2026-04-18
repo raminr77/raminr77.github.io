@@ -4,18 +4,20 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
+import { CONTACT_ME_DATA, GENERAL_SITE_DATA } from '@/data';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { ContentContainer } from '@/layout/components';
 import { ENV, GTM_EVENTS } from '@/shared/constants';
 import { PageHeader } from '@/shared/components';
 import { animator } from '@/shared/helpers';
-import { CONTACT_ME_DATA } from '@/data';
 
 import { ContactForm } from './components';
 
 const GOOGLE_RECAPTCHA_ELEMENT_ID = 'g-recaptcha-container';
 
 export function ContactMePage() {
+  const { bookMeeting, personalCalendar, mentorshipCalendar } =
+    GENERAL_SITE_DATA.contactMe;
   return (
     <ContentContainer className="z-40">
       <PageHeader title="Contact Me" className="mb-5" />
@@ -27,7 +29,7 @@ export function ContactMePage() {
 
           <br />
 
-          <p>You can book a meeting with me:</p>
+          <p>{bookMeeting}</p>
           <div className="text-md flex items-center gap-2">
             <a
               onClick={() => sendGTMEvent(GTM_EVENTS.GOOGLE_CALENDAR)}
@@ -36,7 +38,7 @@ export function ContactMePage() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Personal Calendar
+              {personalCalendar}
             </a>
             <span>|</span>
             <a
@@ -46,7 +48,7 @@ export function ContactMePage() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Mentorship Calendar
+              {mentorshipCalendar}
             </a>
           </div>
         </div>

@@ -40,7 +40,7 @@ export const PROJECTS_DATA: {
         'Grafana'
       ],
       description:
-        'Falcon is a personal project where I built an AI-powered autonomous drone system capable of real-time video and audio streaming, obstacle detection, and automatic landing. The drone streams data via WebRTC to backend services where AI models like YOLO handle decision-making, all within a secure, distributed architecture with monitoring in place.'
+        'Falcon is a personal project where I designed and built an AI-powered autonomous drone system capable of real-time video and audio streaming, obstacle detection, and automatic landing. The drone streams data via WebRTC to backend services, where models like YOLO handle decision-making. The system is built as a secure distributed architecture with monitoring and observability in place.'
     },
     {
       id: 1,
@@ -62,7 +62,7 @@ export const PROJECTS_DATA: {
       ],
       isPrivate: true,
       description:
-        'A complete accounting system for managing major purchases and sales with the ability to display graphs and calculate sales profit in different modes. Currently, I handle more than 1000 products in 2 stores. In this project, I am using Python (Django) and Javascript/Typescript (React)'
+        'A complete accounting system designed to manage large-scale purchase and sales workflows, with support for detailed analytics, visual reports, and flexible profit calculations. The system currently handles over 1000 products across two stores. Built using Python (Django) for the backend and React with TypeScript for the frontend.'
     },
     {
       id: 2,
@@ -82,7 +82,7 @@ export const PROJECTS_DATA: {
         'SASS'
       ],
       description:
-        'Develop a large-scale club management system with features like: payment, insurance, monthly payments, user system, and marketing. In this project, I am using PHP (Laravel) and Javascript/Typescript (React)'
+        'A large-scale club management platform covering core business operations such as payments, insurance handling, subscription management, user management, and marketing tools. Built with PHP (Laravel) on the backend and React on the frontend, focusing on reliability and scalability.'
     },
     {
       id: 3,
@@ -102,7 +102,7 @@ export const PROJECTS_DATA: {
         'Tailwind'
       ],
       description:
-        'This project includes detailed product introductions in a professional and multilingual format. One of the challenges in this project is handling the loading of a large number of high-resolution images and generating or editing images on the backend. I am using Python (Django) and Javascript/Typescript (React)'
+        'A product-focused platform with detailed, multilingual product presentations in a professional format. One of the main challenges was handling a large volume of high-resolution images, including backend processing for generating and editing media. Built using Django for backend services and React for the frontend.'
     },
     {
       id: 4,
@@ -112,7 +112,7 @@ export const PROJECTS_DATA: {
       role: 'Software Engineer | Full Stack',
       stack: ['React', 'HTML', 'CSS', 'SASS'],
       description:
-        'Online store of security products with the possibility of special authentication for sales representatives in the country and with support for more than 4 different modes of selling goods to representatives and ordinary people.'
+        'An online store for security products with a custom authentication system for sales representatives across the country. The platform supports multiple sales modes for both representatives and end users, with flexible pricing and access control logic.'
     },
     {
       id: 5,
@@ -122,7 +122,7 @@ export const PROJECTS_DATA: {
       role: 'Personal Project - Developer',
       stack: ['JavaScript', 'HTML', 'CSS', 'SASS'],
       description:
-        'CSV Row Printer is a small tool that helps you upload your CSV files to it and separate the information in each row and print it card or output it. you also can modify your cards and some actions like merge and groupBy your data.'
+        'CSV Row Printer is a lightweight tool that lets you upload CSV files, parse row data, and generate printable card-style outputs. It also supports basic data manipulation features such as grouping, merging, and customizing the generated cards.'
     },
     {
       id: 6,
@@ -142,7 +142,7 @@ export const PROJECTS_DATA: {
         'Cloudflare Workers'
       ],
       description:
-        'Built a modern personal website using the latest version of React, Next.js, Tailwind CSS, and GSAP, with Cloudflare Workers for serverless functions, ensuring high performance and smooth animations.'
+        'A modern personal website built with React, Next.js, Tailwind CSS, and GSAP for smooth animations. Cloudflare Workers are used for serverless functionality, resulting in a fast, responsive, and highly optimized experience.'
     },
     {
       id: 7,
@@ -162,7 +162,7 @@ export const PROJECTS_DATA: {
         'Cache UI'
       ],
       description:
-        'Khela is a fun side project I work on in my free time, mainly focused on improving and learning skills around building a Progressive Web App (PWA). My goal is to push a regular web app to the experience of a native mobile app.'
+        'Khela is a fun side project I work on in my free time, mainly focused on exploring and improving skills around building Progressive Web Apps. The goal is to push a traditional web application closer to a native mobile app experience in terms of performance, caching, and usability.'
     },
     {
       id: 8,
@@ -182,7 +182,7 @@ export const PROJECTS_DATA: {
         'React Sample Project'
       ],
       description:
-        'A simple and clean React + TypeScript + Vite starter project, configured with essential tools and structured with best practices gained from 7+ years of frontend development experience. It is a sample of the ReactJs project for starting easily and fast.'
+        'A clean and minimal React + TypeScript + Vite starter template, structured with best practices collected over years of frontend development. It is designed to help developers start new projects quickly with a solid and scalable foundation.'
     }
   ]
 } as const;

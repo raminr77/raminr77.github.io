@@ -10,6 +10,7 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
 import { TextInput, Button } from '@/shared/components';
 import { sendEmail } from '@/shared/services';
+import { GENERAL_SITE_DATA } from '@/data';
 import { notify } from '@/shared/helpers';
 
 interface ContactMeForm {
@@ -19,6 +20,9 @@ interface ContactMeForm {
 }
 
 export function ContactForm() {
+  const { contactForm } = GENERAL_SITE_DATA;
+  const { subject, email, message } = contactForm.fields;
+
   const [loading, setLoading] = useState<boolean>(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -41,7 +45,7 @@ export function ContactForm() {
 
   const onSubmit = async () => {
     if (!executeRecaptcha) {
-      notify.error({ message: 'Error: reCAPTCHA not detected.' });
+      notify.error({ message: contactForm.errors.recaptchaNotDetected });
       return;
     }
     setLoading(true);
@@ -59,7 +63,7 @@ export function ContactForm() {
       }
     } catch {
       sendGTMEvent(GTM_EVENTS.SEND_MESSAGE('error'));
-      notify.error({ message: 'We could not handle your reCAPTCHA element now!' });
+      notify.error({ message: contactForm.errors.recaptchaFailed });
     } finally {
       setLoading(false);
     }
@@ -77,18 +81,18 @@ export function ContactForm() {
         required
         type="text"
         id="subject"
-        label="Subject"
+        label={subject.label}
         testId="subject-input"
-        placeholder="Enter your subject"
+        placeholder={subject.placeholder}
         error={errors.subject?.message}
         {...register('subject', {
           required: {
             value: true,
-            message: 'You must to enter a subject!'
+            message: subject.validation.required
           },
           minLength: {
             value: 10,
-            message: 'Your subject should be more than 10 characters'
+            message: subject.validation.minLength
           }
         })}
       />
@@ -96,18 +100,18 @@ export function ContactForm() {
         required
         id="email"
         type="email"
-        label="Email"
+        label={email.label}
         testId="email-input"
         error={errors.email?.message}
-        placeholder="Enter your email address"
+        placeholder={email.placeholder}
         {...register('email', {
           pattern: {
             value: EMAIL_VALIDATION_REGEX,
-            message: 'Your email address is invalid!'
+            message: email.validation.pattern
           },
           required: {
             value: true,
-            message: 'You must to enter your email address!'
+            message: email.validation.required
           }
         })}
       />
@@ -118,11 +122,11 @@ export function ContactForm() {
         rules={{
           minLength: {
             value: 30,
-            message: 'Your message should be more than 30 characters'
+            message: message.validation.minLength
           },
           required: {
             value: true,
-            message: 'You must to enter your message!'
+            message: message.validation.required
           }
         }}
         render={({ field: { onChange, value } }) => (
@@ -131,16 +135,21 @@ export function ContactForm() {
             id="message"
             value={value}
             type="textarea"
-            label="Message"
             onChange={onChange}
+            label={message.label}
             testId="message-input"
-            placeholder="Enter your message"
+            placeholder={message.placeholder}
             error={errors.message?.message}
           />
         )}
       />
       <div className="mt-2 flex w-full justify-end">
-        <Button testId="submit-button" label="Submit" type="submit" loading={loading} />
+        <Button
+          type="submit"
+          loading={loading}
+          testId="submit-button"
+          label={contactForm.submitButton}
+        />
       </div>
     </form>
   );

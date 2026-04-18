@@ -1,7 +1,13 @@
+'use client';
+
+import { useCallback } from 'react';
 import Link from 'next/link';
 import { clsx } from 'clsx';
 
-export const PAGE_SIZE = 9;
+import { sendGTMEvent } from '@next/third-parties/google';
+
+import { GTM_EVENTS } from '@/shared/constants';
+import { GENERAL_SITE_DATA } from '@/data';
 
 interface PaginationProps {
   page: number;
@@ -50,13 +56,15 @@ interface PageLinkProps {
   href: string;
   active?: boolean;
   disabled?: boolean;
+  onClick?: () => void;
   'aria-label': string;
-  'aria-current'?: 'page' | undefined;
   children: React.ReactNode;
+  'aria-current'?: 'page' | undefined;
 }
 
 function PageLink({
   href,
+  onClick,
   active = false,
   disabled = false,
   'aria-label': ariaLabel,
@@ -66,6 +74,7 @@ function PageLink({
   return (
     <Link
       href={href}
+      onClick={onClick}
       aria-label={ariaLabel}
       aria-disabled={disabled}
       aria-current={ariaCurrent}
@@ -90,9 +99,15 @@ export function Pagination({
   totalPages,
   searchParams = {}
 }: PaginationProps) {
+  const { previousPage, nextPage, pageLabel } = GENERAL_SITE_DATA.pagination;
+
   if (totalPages <= 1) return null;
 
   const pageItems = getPageItems(page, totalPages);
+
+  const handlePaginationEvent = useCallback((label: string) => {
+    sendGTMEvent(GTM_EVENTS.PAGINATION(label));
+  }, []);
 
   return (
     <nav
@@ -101,9 +116,10 @@ export function Pagination({
       className="flex items-center justify-center gap-1 mt-8 flex-wrap"
     >
       <PageLink
-        href={buildPageHref(page - 1, basePath, searchParams)}
         disabled={page === 1}
-        aria-label="Previous page"
+        aria-label={previousPage}
+        onClick={() => handlePaginationEvent('previous')}
+        href={buildPageHref(page - 1, basePath, searchParams)}
       >
         ←
       </PageLink>
@@ -121,9 +137,10 @@ export function Pagination({
           <PageLink
             key={item}
             active={item === page}
-            aria-label={`Page ${item}`}
+            aria-label={`${pageLabel} ${item}`}
             aria-current={item === page ? 'page' : undefined}
             href={buildPageHref(item, basePath, searchParams)}
+            onClick={() => handlePaginationEvent(String(item))}
           >
             {item}
           </PageLink>
@@ -131,9 +148,10 @@ export function Pagination({
       )}
 
       <PageLink
+        aria-label={nextPage}
         href={buildPageHref(page + 1, basePath, searchParams)}
+        onClick={() => handlePaginationEvent('next')}
         disabled={page === totalPages}
-        aria-label="Next page"
       >
         →
       </PageLink>

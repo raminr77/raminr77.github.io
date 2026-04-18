@@ -8,6 +8,7 @@ import { clsx } from 'clsx';
 import {
   PERSONAL_DATA,
   ABOUT_ME_DATA,
+  GENERAL_SITE_DATA,
   ABOUT_ME_CONTENT_TYPE,
   ABOUT_ME_COMPONENT_NAMES,
   type AboutMeContentItem
@@ -60,6 +61,7 @@ const ABOUT_ME_COMPONENTS = {
 } as const;
 
 export function AboutMePage() {
+  const { resumeText } = GENERAL_SITE_DATA.aboutMe;
   return (
     <ContentContainer className="text-center">
       <div className="relative mb-10 flex w-full select-none justify-center">
@@ -116,7 +118,7 @@ export function AboutMePage() {
       </div>
 
       <div className="my-10 flex flex-col items-start gap-4">
-        <p className="text-xl">You can download my resume here:</p>
+        <p className="text-xl">{resumeText}</p>
         <ResumeDownloaderButton />
       </div>
 

@@ -189,6 +189,8 @@ Displays the short bio text under the hero heading.
 
 Shows a preview of one blog post in the posts list. Displays title, date, category, tags, and description.
 
+Fires `post-card-clicked` when the user clicks the post title or the "Read More" link (value contains the post title).
+
 #### PostsSearch
 
 A search input that filters posts as you type. Uses debouncing to avoid searching on every keystroke.
@@ -239,6 +241,8 @@ A back button that links to the `/posts` page.
 
 One card per project. Shows: project name, description, your role, tech stack (as badges), and links to the live site or GitHub.
 
+Fires `project-demo-link-clicked` (value: project title) when the user clicks the Demo link.
+
 ---
 
 ### Journey Domain
@@ -288,9 +292,17 @@ Uses `react-hook-form` for form state and validation.
 
 One card per photo in the gallery grid. Shows a thumbnail. Clicking it opens the modal.
 
+Fires `lens-card-clicked` (value: item title) when the user opens the gallery.
+
 #### LensGalleryModal
 
 A full-screen modal that shows the selected photo at full size. Supports keyboard navigation (arrow keys, Escape to close).
+
+Fires the following GTM events:
+
+- `lens-navigation-clicked` (value: `'previous'` or `'next'`) — arrow button or keyboard navigation
+- `lens-thumbnail-clicked` (value: slide number) — thumbnail click in the footer strip
+- `lens-modal-closed` — close button or Escape key or backdrop click
 
 #### LensEmptyBlock
 

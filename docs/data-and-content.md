@@ -156,7 +156,7 @@ Blog posts are written in **Markdown** and stored in the `posts/` folder at the 
 
 Each post is a `.md` file named `post-N.md` where `N` is the post's numeric ID.
 
-```
+```text
 posts/
 ├── post-1.md
 ├── post-2.md
@@ -286,14 +286,68 @@ Typed wrappers around `process.env`. See [environment-variables.md](./environmen
 
 ### GTM Events (`gtm-events.ts`)
 
-Named Google Tag Manager events used for analytics tracking.
+Named Google Tag Manager events used for analytics tracking. All events are sent via `sendGTMEvent` from `@next/third-parties/google`, which pushes to `window.dataLayer`.
 
 ```typescript
 GTM_EVENTS = {
-  MENU: (title: string) => ({ event: 'menu_click', title }),
-  SEND_MESSAGE: (status: string) => ({ event: 'send_message', status })
+  // Navigation
+  MENU: (value: string) => ({ event: 'menu-clicked', value }),
+  PAGINATION: (value: string) => ({ event: 'pagination-clicked', value }),
+
+  // Posts
+  POST_CARD: (value: string) => ({ event: 'post-card-clicked', value }),
+  FILTER_POSTS: (value: string) => ({ event: 'filter-posts-clicked', value }),
+  CLEAR_FILTERS: { event: 'clear-filters-clicked', value: '' },
+  SUBMIT_POST_SEARCH: (value: string) => ({ event: 'submit-post-search', value }),
+  CLOSE_SEARCH_MODAL: { event: 'close-search-modal-clicked', value: '' },
+
+  // Lens / Gallery
+  LENS_CARD: (value: string) => ({ event: 'lens-card-clicked', value }),
+  LENS_NAVIGATION: (value: 'previous' | 'next') => ({
+    event: 'lens-navigation-clicked',
+    value
+  }),
+  LENS_THUMBNAIL: (value: number) => ({
+    event: 'lens-thumbnail-clicked',
+    value: String(value)
+  }),
+  LENS_MODAL_CLOSE: { event: 'lens-modal-closed', value: '' },
+
+  // Projects
+  PROJECT_DEMO: (value: string) => ({ event: 'project-demo-link-clicked', value }),
+  PROJECTS_FOOTER: { event: 'projects-footer-link-clicked', value: '' },
+
+  // Recommendations
+  RECOMMENDATIONS_FOOTER: { event: 'recommendations-footer-link-clicked', value: '' },
+  LINKEDIN_RECOMMENDATION: (value: string) => ({
+    event: 'linkedIn-recommendation-clicked',
+    value
+  }),
+  CHECK_RECOMMENDATION: (value: string) => ({
+    event: 'check-recommendation-clicked',
+    value
+  }),
+
+  // Contact
+  CONTACT_LINK: (value: string) => ({ event: 'contact-link-clicked', value }),
+  GOOGLE_CALENDAR: { event: 'google-calendar-clicked', value: 'Google' },
+  ADP_CALENDAR: { event: 'google-calendar-clicked', value: 'ADP' },
+  SEND_MESSAGE: (value: 'success' | 'error') => ({
+    event: 'send-message-clicked',
+    value
+  }),
+
+  // About / Resume
+  MORE_ABOUT_ME: { event: 'more-about-me-clicked', value: '' },
+  DOWNLOAD_RESUME: { event: 'download-resume-clicked', value: '' },
+  CHECK_EXPERIENCE: (value: string) => ({ event: 'check-experience-clicked', value }),
+
+  // Theme
+  TOGGLE_THEME: (value: Theme) => ({ event: 'toggle-theme-clicked', value })
 };
 ```
+
+**Cookie consent gating:** GA and GTM scripts only load after the user accepts cookies via the `CookiesModal`. If the user rejects, no events reach GA or GTM — only Vercel Speed Insights (which is privacy-friendly) loads unconditionally.
 
 ---
 

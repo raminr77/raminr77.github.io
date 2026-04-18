@@ -10,10 +10,12 @@ import {
 } from '@/shared/helpers';
 import { COOKIES_MODAL_STATUS } from '@/shared/constants';
 import { Button } from '@/shared/components';
+import { GENERAL_SITE_DATA } from '@/data';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
 
 export function CookiesModal() {
+  const { cookiesModal } = GENERAL_SITE_DATA;
   const [cookiesModalStatus, setCookiesModalStatus] = useState<CookiesModalStatus>(
     COOKIES_MODAL_STATUS.NONE
   );
@@ -53,25 +55,22 @@ export function CookiesModal() {
       )}
     >
       <div className="flex flex-col">
-        <p className="text-xl text-bold">We use cookies</p>
-        <p className="text-md">
-          We use our own and third-party cookies to personalize content and to analyze web
-          traffic.
-        </p>
+        <p className="text-xl text-bold">{cookiesModal.title}</p>
+        <p className="text-md">{cookiesModal.description}</p>
       </div>
       <div className="flex items-center gap-4 justify-end max-md:w-full max-[370px]:flex-col">
         <Button
-          label="Reject"
           type="button"
           onClick={handleReject}
+          label={cookiesModal.reject}
           className="max-[370px]:w-full"
         />
         <div className="max-sm:w-full min-w-50">
           <Button
-            label="Accept"
             type="button"
             className="w-full"
             onClick={handleAccept}
+            label={cookiesModal.accept}
           />
         </div>
       </div>

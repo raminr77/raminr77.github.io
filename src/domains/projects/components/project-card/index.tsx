@@ -3,6 +3,8 @@ import { clsx } from 'clsx';
 import { animator } from '@/shared/helpers';
 import type { ProjectItem } from '@/data';
 
+import { ProjectCardDemoLink } from './project-card-demo-link';
+
 export function ProjectCard({
   data,
   animationDelay = 0
@@ -36,16 +38,7 @@ export function ProjectCard({
           {isPrivate ? 'Private' : 'Open Source'}
         </span>
 
-        {url && (
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block whitespace-nowrap rounded bg-sky-700 px-2 py-0 text-sm leading-6 text-white"
-          >
-            Demo
-          </a>
-        )}
+        {url && <ProjectCardDemoLink url={url} title={title} />}
       </div>
       <p className="my-3 grow">{description}</p>
       <div className="flex select-none flex-wrap gap-2">

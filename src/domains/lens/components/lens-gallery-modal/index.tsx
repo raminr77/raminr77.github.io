@@ -5,7 +5,10 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { clsx } from 'clsx';
 
+import { sendGTMEvent } from '@next/third-parties/google';
+
 import type { LensItem, LensSlideItem } from '@/data';
+import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
 
 type Slide = Pick<LensSlideItem, 'src' | 'alt' | 'isVideo' | 'cover'>;
@@ -38,16 +41,31 @@ export function LensGalleryModal({
   }, [currentIndex]);
 
   const prev = useCallback(() => {
+    sendGTMEvent(GTM_EVENTS.LENS_NAVIGATION('previous'));
     onNavigate((currentIndex - 1 + total) % total);
   }, [currentIndex, total, onNavigate]);
 
   const next = useCallback(() => {
+    sendGTMEvent(GTM_EVENTS.LENS_NAVIGATION('next'));
     onNavigate((currentIndex + 1) % total);
   }, [currentIndex, total, onNavigate]);
 
+  const handleClose = useCallback(() => {
+    sendGTMEvent(GTM_EVENTS.LENS_MODAL_CLOSE);
+    onClose();
+  }, [onClose]);
+
+  const handleThumbnailClick = useCallback(
+    (index: number) => {
+      sendGTMEvent(GTM_EVENTS.LENS_THUMBNAIL(index + 1));
+      onNavigate(index);
+    },
+    [onNavigate]
+  );
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') handleClose();
       if (e.key === 'ArrowLeft') prev();
       if (e.key === 'ArrowRight') next();
     };
@@ -59,13 +77,13 @@ export function LensGalleryModal({
       document.removeEventListener('keydown', handleKey);
       document.body.style.overflow = '';
     };
-  }, [onClose, prev, next]);
+  }, [handleClose, prev, next]);
 
   return createPortal(
     <div
       role="dialog"
-      onClick={onClose}
       aria-modal="true"
+      onClick={handleClose}
       aria-label={`Gallery: ${item.title}`}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-md"
     >
@@ -83,8 +101,8 @@ export function LensGalleryModal({
           </span>
         </div>
         <button
-          onClick={onClose}
           aria-label="Close"
+          onClick={handleClose}
           data-testid="close-button"
           className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors outline-none"
         >
@@ -167,7 +185,7 @@ export function LensGalleryModal({
         )}
       </div>
 
-      {/* Footer: description + thumbnails */}
+      {/* Footer: thumbnails */}
       <div
         onClick={(event) => event.stopPropagation()}
         className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-3 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent"
@@ -177,8 +195,8 @@ export function LensGalleryModal({
             {allSlides.map((slide, index) => (
               <button
                 key={index}
-                onClick={() => onNavigate(index)}
                 aria-label={`Go to slide ${index + 1}`}
+                onClick={() => handleThumbnailClick(index)}
                 className={clsx(
                   'scale-75 duration-300 border-transparent relative w-14 h-14 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all outline-none',
                   index === currentIndex
@@ -189,8 +207,8 @@ export function LensGalleryModal({
                 <Image
                   fill
                   sizes="56px"
-                  src={slide.cover}
                   alt={slide.alt}
+                  src={slide.cover}
                   className="object-cover"
                 />
                 {slide.isVideo && (
