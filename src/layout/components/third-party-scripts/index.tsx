@@ -1,6 +1,6 @@
 'use client';
 
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import React, { useEffect, useState, Suspense } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
@@ -10,24 +10,45 @@ import { COOKIES_MODAL_STATUS, ENV } from '@/shared/constants';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
 
+import { GAPageView } from './ga-page-view';
+
 const PerformanceMonitor = React.lazy(() =>
   import('@/shared/components/performance-monitor').then((module) => ({
     default: module.PerformanceMonitor
   }))
 );
 
+type WindowWithGtag = Window & { gtag?: (...args: unknown[]) => void };
+
+function updateGTMConsent(status: CookiesModalStatus) {
+  if (typeof window === 'undefined') return;
+  const w = window as WindowWithGtag;
+  if (!w.gtag) return;
+  const state = status === COOKIES_MODAL_STATUS.ACCEPT ? 'granted' : 'denied';
+  w.gtag('consent', 'update', {
+    ad_storage: state,
+    analytics_storage: state,
+    functionality_storage: state,
+    personalization_storage: state
+  });
+}
+
 export function ThirdPartyScripts() {
   const [status, setStatus] = useState<CookiesModalStatus>(COOKIES_MODAL_STATUS.NONE);
+  const [isIrDomain, setIsIrDomain] = useState(false);
 
   useEffect(() => {
     const onCookiesChange = (e: Event) => {
-      setStatus((e as CustomEvent<CookiesModalStatus>).detail);
+      const newStatus = (e as CustomEvent<CookiesModalStatus>).detail;
+      setStatus(newStatus);
+      updateGTMConsent(newStatus);
     };
     window.addEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
     return () => window.removeEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
   }, []);
 
   useEffect(() => {
+    setIsIrDomain(/\.ir$/.test(window.location.hostname));
     // Developer signiture
     console.log(
       '%cHi, curious developer 👋',
@@ -38,12 +59,14 @@ export function ThirdPartyScripts() {
       `color:#60a5fa; font-size:16px; padding:16px; line-height:1.5;`
     );
 
-    setStatus(getCookiesModalStatus());
+    const savedStatus = getCookiesModalStatus();
+    setStatus(savedStatus);
+    if (savedStatus !== COOKIES_MODAL_STATUS.NONE) {
+      updateGTMConsent(savedStatus);
+    }
   }, []);
 
-  if (status !== COOKIES_MODAL_STATUS.ACCEPT) {
-    return <SpeedInsights />;
-  }
+  const isAccepted = status === COOKIES_MODAL_STATUS.ACCEPT;
 
   return (
     <>
@@ -55,7 +78,7 @@ export function ThirdPartyScripts() {
         </Suspense>
       )}
 
-      {!!ENV.GOOGLE_ADSENSE && (
+      {isAccepted && !!ENV.GOOGLE_ADSENSE && (
         <Script
           async
           crossOrigin="anonymous"
@@ -63,12 +86,21 @@ export function ThirdPartyScripts() {
         />
       )}
 
-      {!!ENV.GOOGLE_ANALYTICS_CODE && (
-        <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE} />
-      )}
-
-      {!!ENV.GOOGLE_TAG_MANAGER_CODE && (
-        <GoogleTagManager gtmId={ENV.GOOGLE_TAG_MANAGER_CODE} />
+      {isAccepted && (
+        <>
+          {!!ENV.GOOGLE_ANALYTICS_CODE_SE_DOMAIN && !isIrDomain && (
+            <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE_SE_DOMAIN} />
+          )}
+          {!!ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN && isIrDomain && (
+            <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN} />
+          )}
+          {(!!ENV.GOOGLE_ANALYTICS_CODE_SE_DOMAIN ||
+            !!ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN) && (
+            <Suspense fallback={null}>
+              <GAPageView />
+            </Suspense>
+          )}
+        </>
       )}
     </>
   );

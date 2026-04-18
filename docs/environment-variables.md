@@ -60,11 +60,12 @@ If `NEXT_PUBLIC_SENTRY_DSN` is not set, Sentry is disabled and no errors are rep
 
 ### Google Analytics and Tag Manager
 
-| Variable                              | Required | Description                                             |
-| ------------------------------------- | -------- | ------------------------------------------------------- |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE`   | No       | Google Analytics 4 Measurement ID (e.g. `G-XXXXXXXXXX`) |
-| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE` | No       | GTM Container ID (e.g. `GTM-XXXXXXX`)                   |
-| `NEXT_PUBLIC_GOOGLE_ADSENSE`          | No       | Google AdSense Publisher ID                             |
+| Variable                                      | Required | Description                                                            |
+| --------------------------------------------- | -------- | ---------------------------------------------------------------------- |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_IR_DOMAIN` | No       | Google Analytics 4 Measurement ID For .ir domain (e.g. `G-XXXXXXXXXX`) |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_SE_DOMAIN` | No       | Google Analytics 4 Measurement ID For .se domain (e.g. `G-XXXXXXXXXX`) |
+| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE`         | No       | GTM Container ID (e.g. `GTM-XXXXXXX`)                                  |
+| `NEXT_PUBLIC_GOOGLE_ADSENSE`                  | No       | Google AdSense Publisher ID                                            |
 
 These are only loaded after the user accepts cookies (via the `CookiesModal`).
 
