@@ -9,6 +9,7 @@ import { getCookiesModalStatus, type CookiesModalStatus } from '@/shared/helpers
 import { COOKIES_MODAL_STATUS, ENV } from '@/shared/constants';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
+
 import { GAPageView } from './ga-page-view';
 
 const PerformanceMonitor = React.lazy(() =>
@@ -20,12 +21,13 @@ const PerformanceMonitor = React.lazy(() =>
 type WindowWithGtag = Window & { gtag?: (...args: unknown[]) => void };
 
 function updateGTMConsent(status: CookiesModalStatus) {
+  if (typeof window === 'undefined') return;
   const w = window as WindowWithGtag;
   if (!w.gtag) return;
   const state = status === COOKIES_MODAL_STATUS.ACCEPT ? 'granted' : 'denied';
   w.gtag('consent', 'update', {
-    analytics_storage: state,
     ad_storage: state,
+    analytics_storage: state,
     functionality_storage: state,
     personalization_storage: state
   });
@@ -46,7 +48,7 @@ export function ThirdPartyScripts() {
   }, []);
 
   useEffect(() => {
-    setIsIrDomain(window.location.hostname.includes('.ir'));
+    setIsIrDomain(/\.ir$/.test(window.location.hostname));
     // Developer signiture
     console.log(
       '%cHi, curious developer 👋',
@@ -92,7 +94,12 @@ export function ThirdPartyScripts() {
           {!!ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN && isIrDomain && (
             <GoogleAnalytics gaId={ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN} />
           )}
-          <GAPageView />
+          {(!!ENV.GOOGLE_ANALYTICS_CODE_SE_DOMAIN ||
+            !!ENV.GOOGLE_ANALYTICS_CODE_IR_DOMAIN) && (
+            <Suspense fallback={null}>
+              <GAPageView />
+            </Suspense>
+          )}
         </>
       )}
     </>
