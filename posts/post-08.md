@@ -13,7 +13,7 @@ tags:
   - Developer Mindset
 ---
 
-A code review isn't just about finding bugs. Its main goal is **continuously improving code quality** — catching issues early, keeping the codebase consistent, and spreading knowledge across the team. Done well, it's one of the highest-leverage activities on a team. Done poorly, it's a bottleneck that nobody enjoys.
+A code review isn't just about finding bugs. Its real goal is improving code quality over time — catching issues before they ship, keeping the codebase consistent, and spreading knowledge across the team. When it works, it's one of the most valuable things a team does. When it doesn't, everyone just resents the process.
 
 This is the checklist I use, adapted from Neo Kim's CodeRabbit checklist and refined with things I've learned the hard way.
 
