@@ -110,12 +110,12 @@ The fallback on line `if (!document.startViewTransition)` handles browsers that 
 
 ## Browser Support
 
-As of 2024, same-document view transitions are supported in:
+Same-document view transitions are now supported in all major browsers:
 
 - **Chrome** since v111
 - **Edge** since v111
 - **Safari** since v18 (September 2024)
-- **Firefox** not yet (as of early 2025, it's behind a flag)
+- **Firefox** since v131 (October 2024)
 
 Always check for support before using the API:
 
@@ -130,4 +130,4 @@ if ('startViewTransition' in document) {
 - [View Transitions API Overview](https://developer.chrome.com/docs/web-platform/view-transitions)
 - [Same-Document Transitions Guide](https://developer.chrome.com/docs/web-platform/view-transitions/same-document)
 
-If you're building a modern SPA and want native-feeling transitions without pulling in an animation library, the View Transitions API is worth trying. The fallback behavior is safe, the setup is minimal, and when it works, it genuinely elevates the feel of navigation.
+If you're building a modern SPA and want native-feeling transitions without pulling in an animation library, the View Transitions API is worth trying. Browser support is now solid across the board, the fallback is safe, the setup is minimal, and when it works, it genuinely elevates the feel of navigation.

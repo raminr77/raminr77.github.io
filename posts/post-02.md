@@ -52,14 +52,14 @@ The transition on `--main-bg-color` works because the browser now knows it's a c
 
 ## Browser Support
 
-As of 2024, `@property` is supported across all major browsers:
+`@property` is now supported across all major browsers:
 
 - **Chrome** since v85
 - **Edge** since v85
 - **Firefox** since v128 (July 2024)
 - **Safari** since v16.4 (March 2023)
 
-It's now safe to use in production without needing a fallback for modern browsers.
+It's safe to use in production without needing a fallback for modern browsers.
 
 One thing to keep in mind: `@property` only works with explicitly typed syntax. A generic untyped variable (`--my-var`) doesn't gain anything from it. You need to declare a proper `syntax` value for the browser to do anything meaningful with it.
 

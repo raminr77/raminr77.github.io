@@ -11,11 +11,11 @@ tags:
   - Personal
 ---
 
-It all started when I looked at my old website and realized it no longer represented who I am today. I wanted something simple, modern, and professional. A website that matched how I actually build things now. With the latest version of Next.js and React, I leaned on server-side rendering, dynamic routing, and a handful of performance tweaks to make the site feel fast and solid.
+It started with me looking at my old website and cringing a little. It didn’t feel like me anymore — it looked dated, the structure was messy, and I’d grown a lot since I last touched it. I wanted something that actually reflected how I build things now: simple, focused, nothing unnecessary.
 
-I also rethought how the content was organized. Projects, experience, and certificates are now easier to find and scan at a glance. And of course, it had to look right on every screen: phone, laptop, wide monitor.
+I used Next.js 15 as the foundation and leaned into server-side rendering and dynamic routing. Spent some time thinking about how the content was structured too — projects, experience, and certificates are easier to find now, and the layout holds up whether you’re on a phone or a wide monitor.
 
-This wasn’t just another coding task; it was a personal project that reminded me why I love building things from scratch. By the end, I had a site that genuinely feels like me: clean, focused, and no fluff.
+It ended up being one of those projects that reminds you why you got into this in the first place. Building something for yourself, without a backlog or a deadline, feels different. By the end I had a site I actually like looking at.
 
 ## Stay tuned
 
