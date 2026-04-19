@@ -97,6 +97,10 @@ export default function RootLayout({
     <html lang="en" className={`${textFont.variable} ${titleFont.variable} dark`}>
       <head>
         <link rel="preload" as="image" href="/images/background.webp" type="image/webp" />
+        <meta
+          name="thumbnail"
+          content={`${PERSONAL_DATA.url}/images/icons/icon-512x512.png`}
+        />
         {!!ENV.GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />
         )}
@@ -182,6 +186,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Person',
+              image: {
+                width: 512,
+                height: 512,
+                '@type': 'ImageObject',
+                url: `${PERSONAL_DATA.url}/images/icons/icon-512x512.png`
+              },
               name: PERSONAL_DATA.fullName,
               url: PERSONAL_DATA.url,
               sameAs: CONTACT_ME_DATA.links
