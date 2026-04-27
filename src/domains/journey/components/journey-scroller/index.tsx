@@ -66,7 +66,7 @@ export function JourneyScroller({ items }: JourneyScrollerProps) {
     prevActiveRef.current = activeIndex;
 
     const element = innerDivRefs.current[activeIndex];
-    if (!element) return;
+    if (!element || window.innerWidth < 760) return;
 
     spawnParticles(element);
   }, [activeIndex]);
