@@ -41,7 +41,7 @@ export function Header() {
               <Link
                 href={url}
                 onClick={() => sendGTMEvent(GTM_EVENTS.MENU(title))}
-                className="border-b border-transparent bg-transparent px-4 py-3 duration-200 hover:border-orange-500"
+                className="border-b border-transparent bg-transparent px-4 py-3 duration-200 hover:border-orange-500 whitespace-nowrap"
               >
                 {title}
               </Link>
