@@ -287,8 +287,8 @@ export const LENS_ITEMS: LensItem[] = [
     isVideo: false,
     createdAt: '2026-05-07',
     title: 'Malmö Claude Code for Developers',
-    src: '/images/lens/CLAUDE-CODE-07.webp',
-    cover: '/images/lens/CLAUDE-CODE-07.webp',
+    src: '/images/lens/CLAUDE-CODE-06.webp',
+    cover: '/images/lens/CLAUDE-CODE-06.webp',
     alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
     description:
       'Really interesting talks about AI-assisted development, code health, and real-world workflows with Claude Code. I especially enjoyed the sessions about Neo4j’s internal usage of Claude and how a one-person company can move incredibly fast with AI tools.',
@@ -332,7 +332,7 @@ export const LENS_ITEMS: LensItem[] = [
         id: 6,
         isVideo: true,
         alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
-        src: '/images/lens/CLAUDE_CODE.MOV',
+        src: '/images/lens/CLAUDE-CODE.MOV',
         cover: '/images/lens/CLAUDE-CODE-03.webp'
       }
     ]
