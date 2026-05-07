@@ -281,5 +281,60 @@ export const LENS_ITEMS: LensItem[] = [
         cover: '/images/lens/GOOGLE-AI-DAY-2025-03.webp'
       }
     ]
+  },
+  {
+    id: 15,
+    isVideo: false,
+    createdAt: '2026-05-07',
+    title: 'Malmö Claude Code for Developers',
+    src: '/images/lens/CLAUDE-CODE-06.webp',
+    cover: '/images/lens/CLAUDE-CODE-06.webp',
+    alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
+    description:
+      'Really interesting talks about AI-assisted development, code health, and real-world workflows with Claude Code. I especially enjoyed the sessions about Neo4j’s internal usage of Claude and how a one-person company can move incredibly fast with AI tools.',
+    slides: [
+      {
+        id: 1,
+        isVideo: false,
+        alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
+        src: '/images/lens/CLAUDE-CODE-01.webp',
+        cover: '/images/lens/CLAUDE-CODE-01.webp'
+      },
+      {
+        id: 2,
+        isVideo: false,
+        alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
+        src: '/images/lens/CLAUDE-CODE-02.webp',
+        cover: '/images/lens/CLAUDE-CODE-02.webp'
+      },
+      {
+        id: 3,
+        isVideo: false,
+        alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
+        src: '/images/lens/CLAUDE-CODE-03.webp',
+        cover: '/images/lens/CLAUDE-CODE-03.webp'
+      },
+      {
+        id: 4,
+        isVideo: false,
+        alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
+        src: '/images/lens/CLAUDE-CODE-04.webp',
+        cover: '/images/lens/CLAUDE-CODE-04.webp'
+      },
+      {
+        id: 5,
+        isVideo: false,
+        alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
+        src: '/images/lens/CLAUDE-CODE-05.webp',
+        cover: '/images/lens/CLAUDE-CODE-05.webp'
+      },
+      {
+        id: 6,
+        isVideo: true,
+        alt: 'Malmö Claude Code for Developers - Ramin Rezaei',
+        src: '/images/lens/CLAUDE-CODE.MOV',
+        cover: '/images/lens/CLAUDE-CODE-03.webp'
+      }
+    ]
   }
 ];
