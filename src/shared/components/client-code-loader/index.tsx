@@ -1,72 +1,53 @@
 'use client';
 
-import { notify } from '@/shared/helpers';
 import { useEffect } from 'react';
 
-import CopyButtonPlugin from '../../../../public/highlight-copy.min.js';
+import { notify } from '@/shared/helpers';
 
-import '../../../../public/highlight-copy.min.css';
-import '../../../../public/highlight.min.css';
-
+import 'highlightjs-copy/dist/highlightjs-copy.min.css';
+import 'highlight.js/styles/github-dark.css';
 import './client-code-loader.scss';
 
+/**
+ * Loads highlight.js and the copy-button plugin on the client, then highlights
+ * every `<code>` block on the page. Expand / collapse behaviour for long blocks
+ * is owned by the `<CodeBlock>` component (wired into markdown-to-jsx as a `pre`
+ * override), so this loader only handles syntax highlighting + copy buttons.
+ */
 export function ClientCodeLoader() {
   useEffect(() => {
-    const codeContainers = document.querySelectorAll('pre');
+    let cancelled = false;
 
-    const handleChangeCodePreview = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const parentElement = target.parentElement;
+    void (async () => {
+      try {
+        const [{ default: hljs }, copyModule] = await Promise.all([
+          import('highlight.js'),
+          import('highlightjs-copy')
+        ]);
 
-      if (!parentElement) return;
+        if (cancelled) return;
 
-      if (!parentElement.classList.contains('max-h-100')) {
-        parentElement.classList.remove('expand-button-overlay--collapsed');
-        parentElement.classList.add('max-h-100');
-        target.innerHTML = 'Expand Code';
-        window.scrollTo({
-          top: parentElement.offsetTop - 200,
-          behavior: 'smooth'
+        const CopyButtonPlugin = copyModule.default;
+
+        hljs.addPlugin(
+          new CopyButtonPlugin({
+            autohide: false,
+            callback: () => notify.success({ message: 'Copied to clipboard.' })
+          })
+        );
+
+        hljs.highlightAll();
+      } catch (error) {
+        // Highlighting is enhancement-only — the page still works without it.
+        notify.error({
+          message: error instanceof Error ? error.message : 'Failed to load highlight.js'
         });
-      } else {
-        parentElement.classList.add('expand-button-overlay--collapsed');
-        parentElement.classList.remove('max-h-100');
-        target.innerHTML = 'Collapse Code';
       }
+    })();
+
+    return () => {
+      cancelled = true;
     };
-
-    codeContainers.forEach((container) => {
-      const containerElement = container as HTMLElement;
-
-      const isSmallCodeBlock = containerElement.offsetHeight < 300;
-      if (isSmallCodeBlock) return;
-
-      containerElement.classList.add('max-h-100', 'expand-button-overlay');
-
-      const expandButton = document.createElement('button');
-      expandButton.className = 'handle-change-code-preview-button';
-      expandButton.innerHTML = 'Expand Code';
-
-      expandButton.addEventListener('click', handleChangeCodePreview);
-
-      containerElement.append(expandButton);
-    });
-
-    import('../../../../public/highlight.min.js')
-      .then(
-        (hljs: { addPlugin: (plugin: unknown) => void; highlightAll: () => void }) => {
-          hljs.addPlugin(
-            new CopyButtonPlugin({
-              autohide: false,
-              callback: () => notify.success({ message: 'Copied to clipboard.' })
-            })
-          );
-          hljs.highlightAll();
-        }
-      )
-      .catch(() => {
-        console.error('Failed to load highlight.js');
-      });
   }, []);
 
   return null;

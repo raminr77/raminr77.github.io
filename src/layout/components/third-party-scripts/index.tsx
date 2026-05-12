@@ -15,24 +15,26 @@ import { GAPageView } from './ga-page-view';
 
 const PerformanceMonitor = dynamic(
   () =>
-    import('@/shared/components/performance-monitor').then((m) => ({
-      default: m.PerformanceMonitor
+    import('@/shared/components/performance-monitor').then((module) => ({
+      default: module.PerformanceMonitor
     })),
   { ssr: false }
 );
 
-type WindowWithGtag = Window & { gtag?: (...args: unknown[]) => void };
+interface WindowWithGtag extends Window {
+  gtag?: (...args: unknown[]) => void;
+}
 
-function updateGTMConsent(status: CookiesModalStatus) {
+function updateGTMConsent(status: CookiesModalStatus): void {
   if (typeof window === 'undefined') return;
-  const w = window as WindowWithGtag;
-  if (!w.gtag) return;
-  const state = status === COOKIES_MODAL_STATUS.ACCEPT ? 'granted' : 'denied';
-  w.gtag('consent', 'update', {
-    ad_storage: state,
-    analytics_storage: state,
-    functionality_storage: state,
-    personalization_storage: state
+  const windowWithGtag = window as WindowWithGtag;
+  if (!windowWithGtag.gtag) return;
+  const consentState = status === COOKIES_MODAL_STATUS.ACCEPT ? 'granted' : 'denied';
+  windowWithGtag.gtag('consent', 'update', {
+    ad_storage: consentState,
+    analytics_storage: consentState,
+    functionality_storage: consentState,
+    personalization_storage: consentState
   });
 }
 
@@ -41,13 +43,13 @@ export function ThirdPartyScripts() {
   const [isIrDomain, setIsIrDomain] = useState(false);
 
   useEffect(() => {
-    const onCookiesChange = (e: Event) => {
-      const newStatus = (e as CustomEvent<CookiesModalStatus>).detail;
+    const handleCookiesChange = (cookiesEvent: Event): void => {
+      const newStatus = (cookiesEvent as CustomEvent<CookiesModalStatus>).detail;
       setStatus(newStatus);
       updateGTMConsent(newStatus);
     };
-    window.addEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
-    return () => window.removeEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
+    window.addEventListener(COOKIES_STATUS_CHANGE, handleCookiesChange);
+    return () => window.removeEventListener(COOKIES_STATUS_CHANGE, handleCookiesChange);
   }, []);
 
   useEffect(() => {

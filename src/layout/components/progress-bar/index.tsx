@@ -6,7 +6,7 @@ import { clsx } from 'clsx';
 
 import styles from './progress-bar.module.scss';
 
-type ProgressBarProps = {
+interface ProgressBarProps {
   color?: string;
   height?: number;
   easeRate?: number;
@@ -16,7 +16,7 @@ type ProgressBarProps = {
   startPosition?: number;
   completeEaseRate?: number;
   nearCompleteTarget?: number;
-};
+}
 
 export function ProgressBar({
   className,

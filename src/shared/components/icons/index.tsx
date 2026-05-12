@@ -22,10 +22,10 @@ const ICONS = {
   play: lazy(() => import('./play').then((module) => ({ default: module.Play })))
 } as const;
 
-type IconsProps = {
+interface IconsProps extends React.HTMLAttributes<SVGElement> {
   size?: number;
   name: keyof typeof ICONS;
-} & React.HTMLAttributes<SVGElement>;
+}
 
 export function Icons({ name, size = 18, ...props }: IconsProps) {
   const IconComponent = ICONS[name];

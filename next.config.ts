@@ -8,6 +8,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const config: NextConfig = {
   reactStrictMode: true,
+  reactCompiler: true,
 
   // Performance
   compress: true,
@@ -104,6 +105,21 @@ const config: NextConfig = {
             value:
               'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
           }
+        ]
+      },
+      // The CV PDF is updated infrequently; let browsers and CDNs cache it for a year.
+      {
+        source: '/:file(.*\\.pdf)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }]
+      },
+      {
+        source: '/feed.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400'
+          },
+          { key: 'Content-Type', value: 'application/rss+xml; charset=utf-8' }
         ]
       }
     ];

@@ -2,7 +2,11 @@ import { format } from 'date-fns';
 
 import { Icons } from '@/shared/components';
 
-export function PostDate({ date }: { date: Date }) {
+interface PostDateProps {
+  date: Date;
+}
+
+export function PostDate({ date }: PostDateProps) {
   return (
     <div className="flex gap-1 items-center">
       <Icons name="date" />

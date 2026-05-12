@@ -1,21 +1,35 @@
 # Security Policy
 
-## Supported Versions
+Thanks for taking the time to look at this project's security. If you've found something that looks like a vulnerability, please report it privately — don't open a public issue or PR with proof-of-concept code.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+## Reporting
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+Email <ramin.rezaei@sinch.com> with:
 
-## Reporting a Vulnerability
+- A short description of the issue.
+- Steps to reproduce (or a minimal repro).
+- The affected URL, route, or commit if you can pin it down.
+- Your suggested severity and any mitigation ideas.
 
-Use this section to tell people how to report a vulnerability.
+I'll confirm I received the report within **3 business days** and aim to respond with a plan within **7 days**. Fixes ship on `dev` first, then merge to `master` once verified.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+## Scope
+
+In scope:
+
+- The deployed site at <https://raminrezaei.se> and any preview deployment under `*.vercel.app`.
+- This repository's source code and CI configuration.
+
+Out of scope:
+
+- Issues that only exist because of a third-party service we depend on (Vercel, Sentry, Google reCAPTCHA, GTM). Please report those upstream and let me know so I can mitigate on our side.
+- Social engineering, phishing, or physical attacks.
+- Findings from automated scanners without a working proof of concept.
+
+## What you can expect
+
+- Acknowledgement within 3 business days.
+- A coordinated disclosure timeline. If the issue is real and severe, I'll prioritize a fix before any public discussion.
+- Credit in the commit / changelog if you'd like it.
+
+Thanks for helping keep the site safe.

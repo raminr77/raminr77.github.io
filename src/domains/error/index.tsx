@@ -3,27 +3,31 @@
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 
+import * as Sentry from '@sentry/nextjs';
+
 import { GENERAL_SITE_DATA } from '@/data';
+import { ENV } from '@/shared/constants';
 
 const DecryptedText = dynamic(
   () =>
-    import('@/shared/components/decrypted-text').then((m) => ({
-      default: m.DecryptedText
+    import('@/shared/components/decrypted-text').then((module) => ({
+      default: module.DecryptedText
     })),
   { ssr: false }
 );
 
-export function ErrorPage({
-  error,
-  reset
-}: {
+interface ErrorPageProps {
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}
+
+export function ErrorPage({ error, reset }: ErrorPageProps) {
   const { errorPage } = GENERAL_SITE_DATA;
 
   useEffect(() => {
-    console.error(error);
+    if (ENV.SENTRY_ENABLED) {
+      Sentry.captureException(error);
+    }
   }, [error]);
 
   return (

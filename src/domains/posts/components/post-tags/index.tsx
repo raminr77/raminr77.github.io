@@ -5,7 +5,12 @@ import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { GTM_EVENTS } from '@/shared/constants';
 
-export function PostTags({ postId, tags = [] }: { postId: number; tags: string[] }) {
+interface PostTagsProps {
+  postId: number;
+  tags?: string[];
+}
+
+export function PostTags({ postId, tags = [] }: PostTagsProps) {
   return (
     tags.length > 0 && (
       <div className="mb-2 flex select-none flex-wrap gap-2">

@@ -1,22 +1,20 @@
-const VERSION = 'v4';
+const VERSION = 'v5';
 const STATIC_CACHE = `static-${VERSION}`;
 const IMG_REGEX = /\/images\/.*\.(png|jpg|jpeg|gif|webp|svg)$/i;
 
 self.addEventListener('install', () => {
-  // event.waitUntil((async () => {})());
-  console.log('Service Worker installed.');
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activated.');
   event.waitUntil(
     (async () => {
-      // Clean
-      const keys = await caches.keys();
+      const cacheKeys = await caches.keys();
       await Promise.all(
-        keys.map((k) =>
-          k.startsWith('static-') && k !== STATIC_CACHE ? caches.delete(k) : null
+        cacheKeys.map((cacheKey) =>
+          cacheKey.startsWith('static-') && cacheKey !== STATIC_CACHE
+            ? caches.delete(cacheKey)
+            : null
         )
       );
 
@@ -30,40 +28,40 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-const canCache = (req, res) => {
-  if (req.method !== 'GET') return false;
-  if (!res || !res.ok) return false;
+const canCache = (request, response) => {
+  if (request.method !== 'GET') return false;
+  if (!response || !response.ok) return false;
 
-  const cacheControl = res.headers.get('Cache-Control') || '';
+  const cacheControl = response.headers.get('Cache-Control') || '';
 
   if (cacheControl.includes('no-store')) return false;
-  if (res.type === 'opaque') return false;
+  if (response.type === 'opaque') return false;
   return true;
 };
 
 self.addEventListener('fetch', (event) => {
-  const req = event.request;
+  const request = event.request;
 
-  if (req.method !== 'GET') return;
+  if (request.method !== 'GET') return;
 
-  const url = new URL(req.url);
-  const sameOrigin = url.origin === self.location.origin;
+  const requestUrl = new URL(request.url);
+  const sameOrigin = requestUrl.origin === self.location.origin;
 
   if (
-    url.searchParams.has('_rsc') ||
-    url.pathname.startsWith('/api') ||
-    url.pathname.startsWith('/_next/data') ||
-    url.pathname.startsWith('/_next/static') ||
-    url.pathname.startsWith('/_next/image')
+    requestUrl.searchParams.has('_rsc') ||
+    requestUrl.pathname.startsWith('/api') ||
+    requestUrl.pathname.startsWith('/_next/data') ||
+    requestUrl.pathname.startsWith('/_next/static') ||
+    requestUrl.pathname.startsWith('/_next/image')
   ) {
     return;
   }
 
-  if (req.mode === 'navigate') {
+  if (request.mode === 'navigate') {
     return;
   }
 
-  const isImage = sameOrigin && IMG_REGEX.test(url.pathname);
+  const isImage = sameOrigin && IMG_REGEX.test(requestUrl.pathname);
   if (!isImage) {
     return;
   }
@@ -71,32 +69,36 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     (async () => {
       const cache = await caches.open(STATIC_CACHE);
-      const cached = await cache.match(req);
+      const cachedResponse = await cache.match(request);
 
-      if (cached) {
+      if (cachedResponse) {
         event.waitUntil(
           (async () => {
             try {
-              const net = await fetch(req, { cache: 'no-store' });
-              if (canCache(req, net)) await cache.put(req, net.clone());
+              const networkResponse = await fetch(request, { cache: 'no-store' });
+              if (canCache(request, networkResponse)) {
+                await cache.put(request, networkResponse.clone());
+              }
             } catch {}
           })()
         );
-        return cached;
+        return cachedResponse;
       }
 
       try {
-        const preload = await event.preloadResponse;
-        if (preload && canCache(req, preload)) {
-          event.waitUntil(cache.put(req, preload.clone()));
-          return preload;
+        const preloadResponse = await event.preloadResponse;
+        if (preloadResponse && canCache(request, preloadResponse)) {
+          event.waitUntil(cache.put(request, preloadResponse.clone()));
+          return preloadResponse;
         }
       } catch {}
 
       try {
-        const net = await fetch(req, { cache: 'no-store' });
-        if (canCache(req, net)) event.waitUntil(cache.put(req, net.clone()));
-        return net;
+        const networkResponse = await fetch(request, { cache: 'no-store' });
+        if (canCache(request, networkResponse)) {
+          event.waitUntil(cache.put(request, networkResponse.clone()));
+        }
+        return networkResponse;
       } catch {
         return new Response('', { status: 504, statusText: 'Offline' });
       }

@@ -16,18 +16,6 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Ramin Rezaei Personal Page.',
     display_override: ['fullscreen', 'minimal-ui'],
     categories: ['social', 'personal', 'portfolio', 'blog'],
-    related_applications: [
-      {
-        platform: 'webapp',
-        url: 'https://khela.ir/manifest.json'
-      }
-    ],
-    protocol_handlers: [
-      {
-        protocol: 'web+open',
-        url: '/presentation?id=%s'
-      }
-    ],
     screenshots: [
       {
         type: 'image/png',

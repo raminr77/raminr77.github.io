@@ -17,19 +17,20 @@ import { ENV } from '@/shared/constants';
 // Components below are 'use client'; they are split-bundled but still render on the server
 // (for SEO and FCP). Browser-only effects are gated inside their own useEffect blocks.
 const CustomCursor = dynamic(() =>
-  import('@/shared/components/custom-cursor').then((m) => ({
-    default: m.CustomCursor
+  import('@/shared/components/custom-cursor').then((module) => ({
+    default: module.CustomCursor
   }))
 );
 
 const Header = dynamic(
-  () => import('@/layout/components/header').then((m) => ({ default: m.Header })),
+  () =>
+    import('@/layout/components/header').then((module) => ({ default: module.Header })),
   { loading: () => <div className="h-16 w-full" /> }
 );
 
 const CookiesModal = dynamic(() =>
-  import('@/layout/components/cookies-modal').then((m) => ({
-    default: m.CookiesModal
+  import('@/layout/components/cookies-modal').then((module) => ({
+    default: module.CookiesModal
   }))
 );
 
@@ -102,6 +103,12 @@ export default function RootLayout({
     <html lang="en" className={`${textFont.variable} ${titleFont.variable} dark`}>
       <head>
         <link rel="preload" as="image" href="/images/background.webp" type="image/webp" />
+        <link
+          rel="alternate"
+          href="/feed.xml"
+          type="application/rss+xml"
+          title={`${PERSONAL_DATA.fullName} — Blog`}
+        />
         {!!ENV.GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />
         )}

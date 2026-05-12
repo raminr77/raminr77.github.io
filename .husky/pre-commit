@@ -1,7 +1,15 @@
-pnpm run format
+#!/usr/bin/env sh
 
-pnpm run check-all
-
-pnpm test
+# Fast pre-commit:
+# - lint-staged formats and lints just the staged files
+# - typecheck catches things ESLint can't see
+# - run tests only for files related to the staged changes
+# The full safety net (full unit suite, build, e2e) runs on CI.
 
 pnpm lint-staged
+pnpm check-types
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR -- '*.ts' '*.tsx' | tr '\n' ' ')
+if [ -n "$STAGED_FILES" ]; then
+  pnpm exec jest --bail --findRelatedTests $STAGED_FILES --passWithNoTests
+fi

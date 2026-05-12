@@ -1,11 +1,11 @@
-export type PixelCanvasProps = {
+export interface PixelCanvasProps {
   className?: string;
   'data-gap'?: number;
   'data-speed'?: number;
   'data-colors'?: string;
   'data-play-ones'?: boolean;
   'data-auto-play'?: boolean;
-};
+}
 
 declare global {
   module '*.css';

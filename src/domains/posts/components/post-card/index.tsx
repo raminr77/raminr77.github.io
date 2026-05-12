@@ -1,13 +1,9 @@
-'use client';
-
-import Link from 'next/link';
 import { clsx } from 'clsx';
-
-import { sendGTMEvent } from '@next/third-parties/google';
 
 import { PostTags } from '@/domains/posts/components/post-tags';
 import type { PostMetadata } from '@/shared/types/post';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
+import { TrackedLink } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
 import { PostCategory } from '../post-category';
@@ -15,21 +11,28 @@ import { PostDate } from '../post-date';
 
 import styles from './post-card.module.scss';
 
+const DESCRIPTION_LIMIT = 210;
+
+interface PostCardProps {
+  data: PostMetadata;
+  animationDelay?: number;
+  disabledAnimation?: boolean;
+}
+
 export function PostCard({
   data,
   animationDelay = 1,
   disabledAnimation = false
-}: {
-  data: PostMetadata;
-  animationDelay?: number;
-  disabledAnimation?: boolean;
-}) {
+}: PostCardProps) {
   const { id, title, slug, description, tags, date, isActive, category } = data;
-  const postDetailUrl = `${ROUTES.POSTS}${id}?slug=${slug}`;
 
-  if (!isActive) {
-    return null;
-  }
+  if (!isActive) return null;
+
+  const postDetailUrl = `${ROUTES.POSTS}${id}?slug=${slug}`;
+  const shortDescription =
+    description.length > DESCRIPTION_LIMIT
+      ? `${description.substring(0, DESCRIPTION_LIMIT)}...`
+      : description;
 
   return (
     <div
@@ -40,28 +43,18 @@ export function PostCard({
       )}
       style={{ animationDelay: `${animationDelay}s` }}
     >
-      {/* 
-      TODO: Thinking about Post cover :D
-      <img
-        alt={title}
-        src="/images/screenshot-02.png"
-        className="w-full h-full absolute opacity-0 -top-1/2 group-hover:top-1/2 left-1/2 -translate-1/2 z-20 duration-500 group-hover:opacity-100 object-cover"
-      /> 
-      */}
-
       <div className="flex flex-col gap-2 z-10">
-        <Link
+        <TrackedLink
           href={postDetailUrl}
           className="text-lg font-bold text-amber-500 font-title"
-          onClick={() => sendGTMEvent(GTM_EVENTS.POST_CARD(title))}
+          trackingPayload={GTM_EVENTS.POST_CARD(title)}
         >
           {title}
-        </Link>
+        </TrackedLink>
         <PostCategory category={category} />
 
         <p className="[&>*]:mb-3 [&>*:last-child]:mb-0 text-md overflow-hidden">
-          {description.substring(0, 210)}
-          {description.length > 210 ? '...' : ''}
+          {shortDescription}
         </p>
       </div>
 
@@ -70,13 +63,13 @@ export function PostCard({
 
         <div className="flex select-none items-center justify-between">
           <PostDate date={date} />
-          <Link
+          <TrackedLink
             href={postDetailUrl}
             className="text-amber-500"
-            onClick={() => sendGTMEvent(GTM_EVENTS.POST_CARD(`Read More: ${title}`))}
+            trackingPayload={GTM_EVENTS.POST_CARD(`Read More: ${title}`)}
           >
             [ Read More ]
-          </Link>
+          </TrackedLink>
         </div>
       </div>
     </div>

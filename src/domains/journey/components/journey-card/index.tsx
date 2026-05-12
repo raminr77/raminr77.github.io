@@ -1,37 +1,30 @@
-'use client';
-
-import dynamic from 'next/dynamic';
 import { clsx } from 'clsx';
 
-import { JourneyItem } from '@/data/journey';
-import { Icons } from '@/shared/components';
+import { Icons, PixelCanvas, TrackedAnchor } from '@/shared/components';
+import type { JourneyItem } from '@/data/journey';
+import { GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 
-import { sendGTMEvent } from '@next/third-parties/google';
 import styles from './journey-card.module.scss';
-import { GTM_EVENTS } from '@/shared/constants';
-
-const PixelCanvas = dynamic(
-  () =>
-    import('@/shared/components/pixel-canvas').then((m) => ({ default: m.PixelCanvas })),
-  { ssr: false }
-);
 
 const TITLE_CLASSES = clsx(
   styles['journey-card__title'],
   'text-xl tracking-wide pb-2 border-b border-slate-300/40 mb-3 duration-500 font-title'
 );
+
+interface JourneyCardProps {
+  data: JourneyItem;
+  order?: number;
+  className?: string;
+  disableAnimation?: boolean;
+}
+
 export function JourneyCard({
   data,
   className,
   order = 1,
   disableAnimation = false
-}: {
-  order?: number;
-  data: JourneyItem;
-  className?: string;
-  disableAnimation?: boolean;
-}) {
+}: JourneyCardProps) {
   const animationDelay = `${order * 0.3}s`;
   const { title, description, date, year, url, items, location } = data;
 
@@ -70,7 +63,7 @@ export function JourneyCard({
       >
         <div className="flex select-none flex-col">
           {url ? (
-            <a
+            <TrackedAnchor
               href={url}
               target="_blank"
               rel="noopener noreferrer"
@@ -78,11 +71,11 @@ export function JourneyCard({
                 TITLE_CLASSES,
                 'flex items-center gap-2 hover:text-amber-500 flex-wrap'
               )}
-              onClick={() => sendGTMEvent(GTM_EVENTS.CHECK_EXPERIENCE(title))}
+              trackingPayload={GTM_EVENTS.CHECK_EXPERIENCE(title)}
             >
               <span>{title}</span>
               <Icons name="share" />
-            </a>
+            </TrackedAnchor>
           ) : (
             <p className={clsx(TITLE_CLASSES)}>{title}</p>
           )}

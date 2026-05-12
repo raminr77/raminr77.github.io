@@ -40,7 +40,11 @@ async function copyToClipboard(text: string): Promise<boolean> {
   return success;
 }
 
-export function PostShare({ postId }: { postId: number }) {
+interface PostShareProps {
+  postId: number;
+}
+
+export function PostShare({ postId }: PostShareProps) {
   const handleCopyShareLink = async () => {
     const shareLink = `${window.location.origin}/posts/${postId}/`;
     sendGTMEvent(GTM_EVENTS.POST_CARD(`Shared: ${postId}`));

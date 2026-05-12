@@ -1,6 +1,10 @@
 'use client';
 
-import { useIsClient } from '@/shared/hooks';
+import { useEffect } from 'react';
+
+import * as Sentry from '@sentry/nextjs';
+
+import { ENV } from '@/shared/constants';
 
 const COLORS = {
   white: '#ffffff',
@@ -29,17 +33,21 @@ export function PixelCanvas({
   autoPlay = false,
   playOnes = false
 }: PixelCanvasProps) {
-  const isClient = useIsClient();
-
-  if (isClient) {
-    import('../../libs/pixel-canvas').catch(() => {
-      console.error('Failed to load pixel-canvas');
+  useEffect(() => {
+    // The custom element registers itself as a side-effect on import.
+    // It is enhancement-only — silent on failure, but report to Sentry when enabled.
+    import('../../libs/pixel-canvas').catch((loadError: unknown) => {
+      if (ENV.SENTRY_ENABLED) {
+        Sentry.captureException(loadError, {
+          tags: { component: 'pixel-canvas' }
+        });
+      }
     });
-  }
+  }, []);
 
   return (
     <div className={className}>
-      {/* @ts-expect-error: Unreachable code error */}
+      {/* @ts-expect-error custom element registered by ../../libs/pixel-canvas */}
       <pixel-canvas
         data-gap={gap}
         data-speed={speed}
