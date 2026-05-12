@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(pnpm check-all:*)",
+      "Bash(pnpm check-format:*)",
+      "Bash(pnpm check-lint:*)",
+      "Bash(pnpm check-types:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm format:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(wc:*)",
+      "mcp__plugin_context-mode_context-mode__ctx_batch_execute",
+      "mcp__plugin_context-mode_context-mode__ctx_search",
+      "mcp__plugin_context-mode_context-mode__ctx_execute",
+      "mcp__plugin_context-mode_context-mode__ctx_execute_file",
+      "mcp__plugin_context-mode_context-mode__ctx_index",
+      "mcp__plugin_context-mode_context-mode__ctx_stats",
+      "mcp__codebase-memory-mcp__index_status",
+      "mcp__codebase-memory-mcp__search_graph",
+      "mcp__codebase-memory-mcp__search_code",
+      "mcp__codebase-memory-mcp__get_code_snippet",
+      "mcp__codebase-memory-mcp__get_architecture",
+      "mcp__codebase-memory-mcp__trace_path",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs"
+    ],
+    "deny": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -f*)",
+      "Bash(git branch -D:*)",
+      "Bash(rm -rf:*)",
+      "Bash(npm install:*)",
+      "Bash(yarn:*)",
+      "Read(./.env*)",
+      "Write(./.env*)",
+      "Edit(./.env*)"
+    ]
+  },
+  "env": {
+    "NEXT_TELEMETRY_DISABLED": "1"
+  }
+}
