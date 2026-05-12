@@ -1,127 +1,118 @@
 # Environment Variables
 
-This document lists all environment variables used in the project.
+Every environment variable the project reads, where it is used, and which `.env` file ships with it.
 
 ---
 
-## How to Set Up
-
-Copy the example file and fill in the values:
+## Setup
 
 ```bash
 cp .env.example .env.local
 ```
 
-Next.js loads `.env.local` automatically. Never commit `.env.local` to Git — it is in `.gitignore`.
+Next.js loads `.env.local` automatically. `.env.local` is in `.gitignore` — never commit it.
+
+The single source of truth in code is `src/shared/constants/env.ts`, which exports a typed `ENV` object. Import `ENV` everywhere rather than touching `process.env` directly.
 
 ---
 
-## Variable Reference
+## Variable reference
 
 ### Core
 
-| Variable   | Required | Description                                                                              |
-| ---------- | -------- | ---------------------------------------------------------------------------------------- |
-| `NODE_ENV` | Auto     | Set by Node.js. `development` locally, `production` in builds. Do not set this manually. |
+| Variable       | Required | Where it lives              | Notes                                                                                                       |
+| -------------- | -------- | --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `NODE_ENV`     | auto     | server + client             | Set by Node.js. Don't set manually.                                                                         |
+| `NEXT_RUNTIME` | auto     | server (`nodejs` or `edge`) | Set by Next.js. Read by `src/instrumentation.ts` to gate Sentry init.                                       |
+| `VERCEL_ENV`   | auto     | Vercel deploys only         | `production`, `preview`, or `development`. Read by `src/app/robots.ts` to gate indexing on preview deploys. |
+
+### Google reCAPTCHA (v3)
+
+| Variable                                | Scope  | Required for            | Notes                                                            |
+| --------------------------------------- | ------ | ----------------------- | ---------------------------------------------------------------- |
+| `NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY` | client | Contact form            | Loaded into the reCAPTCHA provider in `src/domains/contact-me/`. |
+| `GOOGLE_RECAPTCHA_SECRET_KEY`           | server | `/api/recaptcha-verify` | **No `NEXT_PUBLIC_` prefix** — must stay off the client bundle.  |
+
+Get the keys from the [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin). The contact form uses reCAPTCHA v3.
+
+### Sentry
+
+| Variable                     | Scope            | Notes                                                                                                      |
+| ---------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SENTRY_ENABLED` | client + server  | `'true'` enables Sentry. Anything else (including empty) disables every integration so no events are sent. |
+| `NEXT_PUBLIC_SENTRY_URL`     | client + server  | The Sentry DSN. Required when `NEXT_PUBLIC_SENTRY_ENABLED=true`.                                           |
+| `SENTRY_AUTH_TOKEN`          | server (CI only) | Used by the Sentry build plugin to upload source maps. Set as a CI secret; never commit it.                |
+
+In code, `ENV.SENTRY_ENABLED` and `ENV.SENTRY_DSN` are exposed via `src/shared/constants/env.ts`. The init lives in `src/instrumentation.ts` (server + edge) and `src/app/instrumentation-client.ts` (browser).
+
+Sample rates: 100 % locally, 10 % traces / 5 % session replays in production (`VERCEL_ENV === 'production'`).
+
+### Google Analytics & Tag Manager
+
+| Variable                                      | Scope  | Notes                                                                                |
+| --------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_SE_DOMAIN` | client | GA4 Measurement ID used when the hostname does **not** end in `.ir` (e.g. `G-XXXX`). |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_IR_DOMAIN` | client | GA4 Measurement ID used when the hostname ends in `.ir`.                             |
+| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE`         | client | GTM container ID (`GTM-XXXXXXX`). Loaded inline in `src/app/layout.tsx`.             |
+| `NEXT_PUBLIC_GOOGLE_ADSENSE`                  | client | AdSense Publisher ID. Only injected when set.                                        |
+
+All four only load after the user accepts cookies via `<CookiesModal>` (see `src/layout/components/third-party-scripts/`).
+
+### Build tools
+
+| Variable                   | Scope  | Default | Notes                                                             |
+| -------------------------- | ------ | ------- | ----------------------------------------------------------------- |
+| `NEXT_PUBLIC_ANALYZE_MODE` | client | `false` | Set to `'true'` to mount the in-page `<PerformanceMonitor>`.      |
+| `ANALYZE`                  | server | unset   | `pnpm build:analyze` sets this — toggles `@next/bundle-analyzer`. |
 
 ---
 
-### Google reCAPTCHA
+## `NEXT_PUBLIC_` rule of thumb
 
-Used by the contact form to prevent spam.
+Next.js exposes anything prefixed with `NEXT_PUBLIC_` to the browser bundle. Every other variable is server-only.
 
-| Variable                                | Required | Where It Is Used                                                                |
-| --------------------------------------- | -------- | ------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY` | Yes      | Client-side — passed to the reCAPTCHA widget                                    |
-| `GOOGLE_RECAPTCHA_SECRET_KEY`           | Yes      | Server-side only — used in `/api/recaptcha-verify` to verify tokens with Google |
-
-> The secret key does **not** have `NEXT_PUBLIC_` prefix. This keeps it server-only and never exposed to the browser.
-
-To get these keys:
-
-1. Go to [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin)
-2. Create a new site with reCAPTCHA v3
-3. Copy the Site Key and Secret Key
+Never put a secret in a `NEXT_PUBLIC_` variable. If a value is required on the client, it must be safe to publish (a site key, a measurement ID, a public DSN). Anything sensitive (secret keys, auth tokens) stays unprefixed.
 
 ---
 
-### Sentry (Error Monitoring)
-
-| Variable                     | Required | Description                                            |
-| ---------------------------- | -------- | ------------------------------------------------------ |
-| `NEXT_PUBLIC_SENTRY_DSN`     | No       | Sentry project DSN — enables error reporting           |
-| `NEXT_PUBLIC_SENTRY_ORG`     | No       | Sentry organization name — used for source map uploads |
-| `NEXT_PUBLIC_SENTRY_PROJECT` | No       | Sentry project name                                    |
-| `SENTRY_AUTH_TOKEN`          | No       | Sentry auth token — used in CI to upload source maps   |
-
-If `NEXT_PUBLIC_SENTRY_DSN` is not set, Sentry is disabled and no errors are reported.
-
----
-
-### Google Analytics and Tag Manager
-
-| Variable                                      | Required | Description                                                            |
-| --------------------------------------------- | -------- | ---------------------------------------------------------------------- |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_IR_DOMAIN` | No       | Google Analytics 4 Measurement ID For .ir domain (e.g. `G-XXXXXXXXXX`) |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_SE_DOMAIN` | No       | Google Analytics 4 Measurement ID For .se domain (e.g. `G-XXXXXXXXXX`) |
-| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE`         | No       | GTM Container ID (e.g. `GTM-XXXXXXX`)                                  |
-| `NEXT_PUBLIC_GOOGLE_ADSENSE`                  | No       | Google AdSense Publisher ID                                            |
-
-These are only loaded after the user accepts cookies (via the `CookiesModal`).
-
----
-
-### Build Tools
-
-| Variable                   | Required | Default | Description                                          |
-| -------------------------- | -------- | ------- | ---------------------------------------------------- |
-| `NEXT_PUBLIC_ANALYZE_MODE` | No       | `false` | Set to `true` to enable bundle analysis during build |
-
----
-
-## Variable Naming Convention
-
-Next.js has two types of environment variables:
-
-| Prefix         | Visible In         | Use For                        |
-| -------------- | ------------------ | ------------------------------ |
-| `NEXT_PUBLIC_` | Browser and server | Values safe to expose publicly |
-| _(no prefix)_  | Server only        | Secrets and sensitive keys     |
-
-**Rule:** Never put a secret value in a `NEXT_PUBLIC_` variable. It will be included in the JavaScript bundle that browsers download.
-
----
-
-## Example `.env.local` File
+## Example `.env.local`
 
 ```env
-# reCAPTCHA
-NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY=your_site_key_here
-GOOGLE_RECAPTCHA_SECRET_KEY=your_secret_key_here
+NODE_ENV=development
 
-# Sentry
-NEXT_PUBLIC_SENTRY_DSN=https://xxxx@sentry.io/xxxx
-NEXT_PUBLIC_SENTRY_ORG=your-org
-NEXT_PUBLIC_SENTRY_PROJECT=your-project
-SENTRY_AUTH_TOKEN=your_auth_token
+# Sentry (disabled by default; flip to true and fill the URL to enable)
+SENTRY_AUTH_TOKEN=
+NEXT_PUBLIC_SENTRY_URL=
+NEXT_PUBLIC_SENTRY_ENABLED=false
 
-# Google Analytics
-NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE=G-XXXXXXXXXX
-NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE=GTM-XXXXXXX
-NEXT_PUBLIC_GOOGLE_ADSENSE=ca-pub-XXXXXXXXXXXXXXXX
+# Bundle analyzer
+NEXT_PUBLIC_ANALYZE_MODE=false
+
+# Google AdSense
+NEXT_PUBLIC_GOOGLE_ADSENSE=
+
+# Google Tag Manager + Analytics
+NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE=
+NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_SE_DOMAIN=
+NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_IR_DOMAIN=
+
+# reCAPTCHA v3 (contact form)
+NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY=
+GOOGLE_RECAPTCHA_SECRET_KEY=
 ```
 
 ---
 
-## Accessing Variables in Code
+## Reading variables in code
 
-Environment variables are accessed through typed constants in `src/shared/constants/env.ts`:
-
-```typescript
+```ts
 import { ENV } from '@/shared/constants/env';
 
-// Use ENV.GOOGLE_ANALYTICS_CODE instead of process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE
-// This gives you type safety and a single place to manage env access
+if (ENV.SENTRY_ENABLED) {
+  // …
+}
+
+console.log(ENV.GOOGLE_ANALYTICS_CODE_SE_DOMAIN);
 ```
 
-This is the recommended pattern. Avoid calling `process.env` directly in components.
+`ENV` returns `''` (or `undefined` for the runtime-only fields) when a variable is unset, so it is safe to read everywhere without an `if (process.env.X)` guard.

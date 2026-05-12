@@ -1,197 +1,189 @@
 # Testing
 
-This document explains the testing strategy, setup, and how to run tests.
+Testing strategy, setup, and how to run the suites.
 
 ---
 
 ## Overview
 
-The project has two types of tests:
-
-| Type               | Tool                         | What It Tests                       |
+| Type               | Tool                         | What it tests                       |
 | ------------------ | ---------------------------- | ----------------------------------- |
-| Unit / Integration | Jest + React Testing Library | Individual functions and components |
-| End-to-End (E2E)   | Playwright                   | Full user flows in a real browser   |
+| Unit / integration | Jest + React Testing Library | Individual functions and components |
+| End-to-end (E2E)   | Playwright                   | Full user flows in a real browser   |
+
+At the time of writing the project ships **41 test suites / 227 tests** for the unit layer and 16 Playwright specs covering the main user journeys.
 
 ---
 
-## Unit and Integration Tests (Jest)
+## Unit and integration tests (Jest)
 
-### Setup
+### Jest configuration
 
-**Configuration file**: `jest.config.js`
+`jest.config.js`. Key settings:
 
-Key settings:
+| Setting                  | Value                                                             | Why                                                  |
+| ------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------- |
+| `testEnvironment`        | `jest-environment-jsdom`                                          | Simulates a browser environment for component tests  |
+| `setupFilesAfterEach`    | `<rootDir>/jest.setup.ts`                                         | Loads `@testing-library/jest-dom` matchers           |
+| `moduleNameMapper`       | `^@/(.*)$ → <rootDir>/src/$1`, CSS / SCSS → `identity-obj-proxy`  | Resolves the `@/` alias; mocks CSS module imports    |
+| `cacheDirectory`         | `<rootDir>/.jest-cache`                                           | Speeds up repeated runs                              |
+| `testPathIgnorePatterns` | `/.next/`, `/node_modules/`, `/e2e/`                              | Don't run E2E specs as unit tests                    |
+| `collectCoverageFrom`    | `src/**/*.{ts,tsx}` minus tests / barrels / route handlers / data | Coverage scope kept honest                           |
+| `coverageReporters`      | `text`, `text-summary`, `json-summary`, `lcov`, `html`            | Coverage outputs for both local terminal and CI      |
+| `coverageThreshold`      | global lines 27, statements 27, functions 20, branches 30         | Baseline ratchet — coverage may grow but not regress |
 
-- **Test environment**: `jsdom` — simulates a browser environment
-- **Setup file**: `jest.setup.ts` — loads `@testing-library/jest-dom` matchers
-- **Module alias**: `@/*` maps to `src/*` (same as in `tsconfig.json`)
-- **CSS module mock**: CSS and SCSS module imports return a proxy object
-- **Cache**: `.jest-cache/` (speeds up repeated runs)
+The threshold is intentionally set just below the current numbers so any drop fails the suite. Bump it as new tests are added.
 
-### Running Tests
+### Running Jest
 
 ```bash
-# Run all tests once
-pnpm test
-
-# Run in watch mode (reruns on file changes)
-pnpm test:watch
-
-# Run with coverage report
-pnpm test:coverage
+pnpm test             # full suite
+pnpm test:watch       # watch mode
+pnpm test:coverage    # with coverage report (enforces threshold)
+pnpm test -- <name>   # filter by file/folder name
 ```
 
-### Test File Locations
+### Where tests live
 
-Tests live next to the code they test, in `__tests__/` subfolders or as `*.test.ts(x)` files:
+Co-located next to the code they test, either as `<name>.test.ts(x)` siblings or in a `__tests__/` folder.
 
-```
-src/
-├── shared/
-│   ├── helpers/
-│   │   └── posts/
-│   │       ├── get-posts.test.ts
-│   │       └── utils.test.ts
-│   └── hooks/
-│       └── use-debounce.test.ts
-└── domains/
-    ├── contact-me/
-    │   └── __tests__/
-    │       └── ContactForm.test.tsx
-    └── posts/
-        └── __tests__/
-            └── PostCard.test.tsx
+```text
+src/shared/hooks/use-debounce.test.ts
+src/shared/services/email-service.test.ts
+src/shared/helpers/posts/get-posts.test.ts
+src/shared/components/code-block/code-block.test.tsx
+src/shared/components/tracked-link/tracked-link.test.tsx
+src/domains/posts/__tests__/post-card.test.tsx
+src/domains/journey/__tests__/journey-card.test.tsx
+src/domains/lens/hooks/use-gallery-keyboard.test.ts
+src/app/api/posts/search/route.test.ts          # @jest-environment node
+src/app/api/recaptcha-verify/route.test.ts      # @jest-environment node
 ```
 
-### What Is Tested
+### Conventions
 
-**Helper functions:**
+- `describe('<exportName>')` per exported symbol.
+- `beforeEach(() => { jest.clearAllMocks(); })`.
+- `jest.mocked(fn)` for type-safe assertions on mocked functions.
+- Prefer `screen.getByRole` and `screen.getByText`; reach for `data-testid` only when nothing else works.
+- Use `userEvent.setup()` rather than `fireEvent`.
 
-- `get-posts.test.ts` — tests filtering, searching, and sorting posts
-- `utils.test.ts` — tests reading time calculation and URL generation
+### Route-handler tests
 
-**Custom hooks:**
+Tests for `route.ts` files need the Node environment because `Request` / `Response` are not defined in jsdom. Add the docblock at the top:
 
-- `use-debounce.test.ts` — verifies debounce timing behavior
-
-**Components:**
-
-- `ContactForm.test.tsx` — tests form validation and submission states
-- `PostCard.test.tsx` — tests that post data renders correctly
-
-### Writing a New Test
-
-Create a file next to the code you want to test:
-
-```tsx
-// src/shared/helpers/my-helper.test.ts
-import { myHelper } from '../my-helper';
-
-describe('myHelper', () => {
-  it('returns the expected value', () => {
-    expect(myHelper('input')).toBe('expected output');
-  });
-});
+```ts
+/**
+ * @jest-environment node
+ */
 ```
 
-For React component tests:
+### Standard mocks
 
-```tsx
-// src/domains/posts/__tests__/PostCard.test.tsx
-import { render, screen } from '@testing-library/react'
-import { PostCard } from '../components/PostCard'
+```ts
+jest.mock('@next/third-parties/google', () => ({
+  sendGTMEvent: jest.fn()
+}));
 
-describe('PostCard', () => {
-  it('renders the post title', () => {
-    render(<PostCard title="My Post" date={new Date()} ... />)
-    expect(screen.getByText('My Post')).toBeInTheDocument()
-  })
-})
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => '/',
+  redirect: jest.fn()
+}));
+
+jest.mock('@/shared/helpers', () => ({
+  ...jest.requireActual('@/shared/helpers'),
+  notify: { error: jest.fn(), success: jest.fn(), info: jest.fn(), warning: jest.fn() }
+}));
+```
+
+For modules that read the filesystem (post helpers):
+
+```ts
+jest.mock('fs');
+const mockedFs = fs as jest.Mocked<typeof fs>;
+```
+
+To pre-prime the posts cache between tests:
+
+```ts
+import { __resetPostsCacheForTests } from '@/shared/helpers/posts/get-posts';
+
+beforeEach(() => __resetPostsCacheForTests());
 ```
 
 ---
 
-## End-to-End Tests (Playwright)
+## End-to-end tests (Playwright)
 
-E2E tests simulate real user interactions in a browser. They test full page flows — not just individual components.
+### Playwright configuration
 
-### Setup
+`playwright.config.ts`. Notable settings:
 
-**Configuration file**: `playwright.config.ts`
+- `testDir: './e2e'`
+- `baseURL`: `http://localhost:3000` (override with `PLAYWRIGHT_BASE_URL`)
+- `webServer`: runs `pnpm run build && pnpm run start` in CI; reuses an existing server locally
+- `fullyParallel: true`
+- `forbidOnly: !!process.env.CI`
+- `retries: process.env.CI ? 2 : 0`
+- Trace on first retry; screenshot on failure; video on failure
+- Service workers blocked (so caching can't interfere with assertions)
+- `chromium` is the only project (no cross-browser fan-out by default)
+- Default reCAPTCHA / GA / Sentry env values point to safe stubs
 
-Key settings:
-
-- **Test directory**: `e2e/`
-- **Base URL**: `http://localhost:3000`
-- **Screenshots**: Taken on test failure
-- **Video**: Retained on failure
-- **Parallel execution**: Enabled for faster runs in CI
-- **Reduced motion**: Emulated — disables CSS animations for reliable testing
-- **reCAPTCHA mock**: reCAPTCHA is mocked so the contact form can be tested without real tokens
-
-### Running E2E Tests
-
-Before running, make sure the dev server is not already running (Playwright starts its own):
+### Running Playwright
 
 ```bash
-# Run all E2E tests
-pnpm test:e2e
-
-# Open the Playwright UI (visual test runner)
-pnpm test:e2e:ui
-
-# View the last test report
-pnpm test:e2e:report
+pnpm test:e2e             # full suite (headless)
+pnpm test:e2e:ui          # interactive UI
+pnpm test:e2e:report      # open the last HTML report
+pnpm test:e2e -- --grep "contact"   # filter specs
 ```
 
-First-time setup — install browser binaries:
+First-time setup:
 
 ```bash
-pnpm dlx playwright install
+pnpm test:e2e:install
 ```
 
-### Test Files
+### Specs
 
-Located in the `e2e/` folder:
+```text
+e2e/about-me.spec.ts
+e2e/contact.spec.ts
+e2e/contact-validation.spec.ts
+e2e/lens.spec.ts
+e2e/navigation.spec.ts
+e2e/navigation-full.spec.ts
+e2e/pages.spec.ts
+e2e/post-detail.spec.ts
+e2e/posts.spec.ts
+e2e/posts-filter.spec.ts
+e2e/projects.spec.ts
+e2e/recommendations.spec.ts
+e2e/routing.spec.ts
+e2e/search.spec.ts
+e2e/search-extended.spec.ts
+e2e/theme.spec.ts
+```
 
-| File                 | What It Tests                                         |
-| -------------------- | ----------------------------------------------------- |
-| `navigation.spec.ts` | Clicking nav links, page transitions, header behavior |
-| `posts.spec.ts`      | Blog listing, category filter, tag filter             |
-| `search.spec.ts`     | Post search input, results display, empty state       |
-| `contact.spec.ts`    | Contact form fill-in, validation errors, submission   |
-| `lens.spec.ts`       | Gallery grid display, modal open/close                |
-| `theme.spec.ts`      | Dark/light mode toggle, theme persistence             |
-| `routing.spec.ts`    | URL routing, 404 page, redirects                      |
+### Writing a spec
 
-### Writing a New E2E Test
-
-```typescript
-// e2e/my-feature.spec.ts
+```ts
 import { test, expect } from '@playwright/test';
 
 test('user can navigate to the projects page', async ({ page }) => {
   await page.goto('/');
-  await page.click('a[href="/projects/"]');
-  await expect(page).toHaveURL('/projects/');
-  await expect(page.locator('h1')).toContainText('Projects');
+  await page.getByRole('link', { name: /projects/i }).click();
+  await expect(page).toHaveURL(/\/projects\/?$/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/projects/i);
 });
 ```
 
-### Key Playwright Concepts Used
-
-- `page.goto(url)` — navigate to a URL
-- `page.click(selector)` — click an element
-- `page.fill(selector, text)` — type into an input
-- `page.locator(selector)` — select an element
-- `expect(locator).toBeVisible()` — assert element is visible
-- `expect(page).toHaveURL(url)` — assert the current URL
+Prefer role-based selectors over CSS / XPath. They are more resilient to refactors.
 
 ---
 
-## CI Testing
+## CI
 
-Both Jest and Playwright tests run automatically in GitHub Actions on every pull request. See [deployment.md](./deployment.md) for details on the CI pipeline.
-
-Tests must pass before a PR can be merged.
+Unit and E2E tests both run on every push and PR via `.github/workflows/tests.yml`. Coverage is uploaded as an artifact (and commented on PRs via `MishaKav/jest-coverage-comment`). See [deployment.md](./deployment.md) for the full CI table.

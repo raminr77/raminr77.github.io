@@ -1,148 +1,133 @@
 # Deployment
 
-This document explains how to build the project and how it is deployed automatically.
+How the site is built, deployed, and the CI workflows that gate every change.
 
 ---
 
-## Building for Production
-
-Create an optimized production build:
+## Building for production
 
 ```bash
-pnpm build
+pnpm build       # production build
+pnpm start       # serve the .next output on http://localhost:3000
 ```
 
-This runs Next.js's build process, which:
+`pnpm build` runs `next build`, which:
 
 - Compiles TypeScript to JavaScript
-- Bundles and minifies code
-- Optimizes images
-- Generates static pages where possible
-- Creates the `.next/` output folder
-
-After building, you can run the production server locally to verify it:
-
-```bash
-pnpm start
-```
-
-This serves the `.next/` build at `http://localhost:3000`.
+- Bundles and minifies code with Webpack
+- Pre-renders static routes
+- Streams dynamic routes (`/posts`, `/posts/[id]`, `/lens`, `/projects`, `/api/*`, sitemap, robots, feed) as on-demand server-rendered routes
+- Writes the output to `.next/`
 
 ---
 
-## Bundle Analysis
-
-To see what is contributing to your JavaScript bundle size:
+## Bundle analysis
 
 ```bash
 pnpm build:analyze
 ```
 
-This builds the project and opens the **webpack-bundle-analyzer** in your browser. It shows a visual map of every module and its size. Use this to find unnecessarily large dependencies.
+Sets `ANALYZE=true` and runs `next build --webpack`. `@next/bundle-analyzer` writes HTML reports under `.next/analyze/`. Open one in a browser to see what is contributing to each chunk's size.
 
 ---
 
-## Lighthouse Performance Audit
+## Lighthouse
 
-To run a Lighthouse performance audit against the local production build:
+Local one-shot (start the production server first):
 
 ```bash
-# First build and start the server
 pnpm build
-pnpm start
-
-# In another terminal, run Lighthouse
-pnpm performance
+pnpm start &
+pnpm lighthouse
 ```
 
-This generates a report with scores for Performance, Accessibility, Best Practices, and SEO.
+`pnpm performance` does all three steps in one shot.
+
+CI runs Lighthouse on every PR against the built site — see the `lighthouse` workflow below.
 
 ---
 
-## CI/CD with GitHub Actions
+## Hosting
 
-The project uses **GitHub Actions** to automate testing and deployment. Workflow files are in `.github/workflows/`.
+The site is hosted on **Vercel**. Deploys happen automatically through Vercel's Git integration:
 
----
+- Push or merge to `master` → production deploy at <https://raminrezaei.se>.
+- Push to any other branch (including `dev`) → preview deploy at a `*.vercel.app` URL. Preview deploys serve `Disallow: /` from `/robots.txt` (via `src/app/robots.ts`) so they don't get indexed.
 
-### CI Workflow (Pull Requests)
-
-Triggered on every pull request to the main branch.
-
-**Steps:**
-
-1. Check out code
-2. Set up Node.js and pnpm
-3. Install dependencies
-4. Run TypeScript type check (`pnpm type-check`)
-5. Run ESLint (`pnpm lint`)
-6. Run Jest unit tests (`pnpm test`)
-7. Build the project (`pnpm build`)
-8. Run Playwright E2E tests (`pnpm test:e2e`)
-
-All steps must pass before the PR can be merged.
+There is no `deploy.yml` workflow in this repo — Vercel triggers builds via its own Git webhook and reports status back to GitHub.
 
 ---
 
-### Deploy Workflow (Main Branch)
+## CI workflows
 
-Triggered when code is pushed (or merged) to the main branch.
+All workflow files live under `.github/workflows/`. Run on every push and PR unless noted.
 
-**Steps:**
+| Workflow          | File               | Triggers                         | What it does                                                                                                 |
+| ----------------- | ------------------ | -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Build             | `build.yml`        | push + PR (master, dev)          | `pnpm check-format` then `next build`. Restores `.next/cache` between runs.                                  |
+| Tests             | `tests.yml`        | push + PR                        | `pnpm test:coverage --ci` (uploads coverage artifact, comments on PR) + Playwright E2E with cached browsers. |
+| ESLint            | `eslint.yml`       | push                             | ESLint with SARIF upload to GitHub Code Scanning; also re-runs with `--max-warnings=0` on PR.                |
+| TypeScript        | `tsc.yml`          | push                             | `tsc --noEmit`.                                                                                              |
+| CodeQL            | `codeql.yml`       | push + PR + cron (Sun 04:00 UTC) | Static security analysis for JavaScript/TypeScript (`security-and-quality` query suite).                     |
+| Dependency Review | `dependencies.yml` | PRs that touch lockfiles         | `actions/dependency-review-action`. Comments severity summary.                                               |
+| Lighthouse        | `lighthouse.yml`   | PR                               | Builds, starts the site, runs Lighthouse CI with budgets from `.lighthouserc.json`.                          |
+| Bundle size       | `bundle-size.yml`  | PR                               | `pnpm build:analyze`, uploads the analyzer HTML as a downloadable artifact.                                  |
 
-1. Check out code
-2. Set up Node.js and pnpm
-3. Install dependencies
-4. Build the project
-5. Deploy to hosting
-
-The built output is deployed to **GitHub Pages** or **Vercel** (depending on configuration).
-
----
-
-## Environment Variables in CI
-
-Secrets are stored in the GitHub repository's **Settings → Secrets and Variables → Actions**. The CI workflow injects them as environment variables during the build.
-
-Required secrets for CI:
-
-| Secret Name                             | Used For                           |
-| --------------------------------------- | ---------------------------------- |
-| `NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY` | reCAPTCHA on contact form          |
-| `GOOGLE_RECAPTCHA_SECRET_KEY`           | reCAPTCHA server-side verification |
-| `NEXT_PUBLIC_SENTRY_DSN`                | Sentry error tracking              |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE`     | Google Analytics                   |
-| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE`   | Google Tag Manager                 |
+Concurrency groups are set on each workflow so a new push cancels in-flight runs for the same ref.
 
 ---
 
-## Deployment Target
+## Dependabot
 
-The site is hosted and automatically deployed. The exact hosting platform is configured via `next.config.ts` and the deploy workflow. Based on the project name and setup, it supports both:
+`.github/dependabot.yml` groups updates by purpose so each PR is reviewable:
 
-- **GitHub Pages** — via static export
-- **Vercel** — via the Vercel platform with full Next.js support (recommended for API routes)
+| Group             | Packages                                                                                       | Cadence            | Target |
+| ----------------- | ---------------------------------------------------------------------------------------------- | ------------------ | ------ |
+| `next`            | `next`, `@next/*`, `eslint-config-next`                                                        | Weekly (Mon 06:00) | `dev`  |
+| `react`           | `react`, `react-dom`, `@types/react*`                                                          | Weekly             | `dev`  |
+| `sentry`          | `@sentry/*`                                                                                    | Weekly             | `dev`  |
+| `testing`         | `jest*`, `ts-jest`, `@testing-library/*`, `@playwright/test`, `playwright`                     | Weekly             | `dev`  |
+| `lint-and-format` | `eslint*`, `@eslint/*`, `typescript-eslint`, `prettier*`, `husky`, `lint-staged`, `@trivago/*` | Weekly             | `dev`  |
+| `types`           | `@types/*`                                                                                     | Weekly             | `dev`  |
+| `actions`         | All GitHub Actions                                                                             | Monthly            | `dev`  |
 
-Vercel is preferred because it supports Next.js API routes and server-side rendering natively, without any extra configuration.
+Major bumps are filtered to manual review — only `minor` / `patch` flow through automatic grouping.
 
 ---
 
-## Manual Deployment
+## Environment variables in CI
 
-If you need to deploy manually without CI, follow these steps:
+Secrets are stored in **Settings → Secrets and variables → Actions** on GitHub. The workflows inject them into the build / test steps as environment variables. The Playwright E2E spec uses safe stubs (no real keys required) so most workflows can run without secrets.
+
+Variables that genuinely need to be set as repo secrets for production builds:
+
+| Secret                                        | Used for                                         |
+| --------------------------------------------- | ------------------------------------------------ |
+| `NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY`       | reCAPTCHA client widget                          |
+| `GOOGLE_RECAPTCHA_SECRET_KEY`                 | `/api/recaptcha-verify` server-side verification |
+| `SENTRY_AUTH_TOKEN`                           | Source-map upload during Vercel build            |
+| `NEXT_PUBLIC_SENTRY_URL`                      | Sentry DSN                                       |
+| `NEXT_PUBLIC_SENTRY_ENABLED`                  | `'true'` to enable Sentry on production deploys  |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_SE_DOMAIN` | GA4 for `.se` hostname                           |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_IR_DOMAIN` | GA4 for `.ir` hostname                           |
+| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE`         | GTM container ID                                 |
+| `NEXT_PUBLIC_GOOGLE_ADSENSE`                  | AdSense publisher ID (optional)                  |
+
+These need to be set on **Vercel** (Project Settings → Environment Variables) for the deployed site. The CI build workflow sets `SENTRY_SKIP_UPLOAD=1` so source-map upload is skipped when running on GitHub Actions — only Vercel uploads source maps.
+
+---
+
+## Manual deployment
+
+You should never need to deploy manually — Vercel handles it. If you do:
 
 ```bash
-# 1. Make sure you have the correct environment variables set
-cp .env.example .env.local
-# Fill in .env.local with real values
-
-# 2. Build
+# Make sure .env.local has production values
+pnpm install
 pnpm build
 
-# 3. Deploy (depends on your host)
-# For Vercel:
-vercel --prod
-
-# For GitHub Pages (if using static export):
-# Push the build output to the gh-pages branch
+# Deploy via Vercel CLI
+pnpm dlx vercel --prod
 ```
+
+The `gh-pages` branch is **not** in use; the repo name (`raminr77.github.io`) is historical and predates the Vercel migration.

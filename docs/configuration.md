@@ -1,174 +1,174 @@
 # Configuration
 
-This document explains every configuration file in the project and what each setting does.
+Every configuration file in the project and what each setting actually does.
 
 ---
 
 ## `next.config.ts`
 
-The main Next.js configuration file.
+### Top-level
 
-### React Strict Mode
-
-```typescript
+```ts
 reactStrictMode: true;
+reactCompiler: true; // React 19 compiler for automatic memoization
+compress: true;
+generateEtags: true;
+poweredByHeader: false;
+productionBrowserSourceMaps: false;
 ```
 
-React renders components twice in development to detect side effects and deprecated usage. Disabled automatically in production.
+`reactCompiler` requires `babel-plugin-react-compiler` (added as a dev dependency).
 
-### Performance Settings
+### `images`
 
-```typescript
-compress: true; // Gzip responses
-generateEtags: true; // Cache validation headers
-poweredByHeader: false; // Remove "X-Powered-By: Next.js" header
-productionBrowserSourceMaps: false; // No source maps in production
-```
-
-### Image Optimization
-
-```typescript
+```ts
 images: {
   formats: ['image/avif', 'image/webp'],
   deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  minimumCacheTTL: 31536000,  // 1 year in seconds
-  dangerouslyAllowSVG: true,
-  contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
+  minimumCacheTTL: 31536000,   // 1 year
+  dangerouslyAllowSVG: false   // SVGs are imported as React components via @svgr/webpack
 }
 ```
 
-- `formats` — serve AVIF first (smallest), fall back to WebP
-- `deviceSizes` — breakpoints for responsive `srcset` attributes
-- `imageSizes` — sizes for the `sizes` attribute on smaller images
-- `minimumCacheTTL` — cache optimized images for 1 year
-- `dangerouslyAllowSVG` — allows SVG files through the image optimizer (with a security policy)
+`dangerouslyAllowSVG` is **off**. The project never streams SVG through `next/image`; instead, the webpack rule below transforms SVG imports into React components.
 
-### Experimental Features
+### `experimental.optimizePackageImports`
 
-```typescript
-experimental: {
-  optimizePackageImports: [
-    'require-in-the-middle',
-    'import-in-the-middle',
-    'date-fns',
-    'clsx'
-  ];
+```ts
+[
+  'require-in-the-middle',
+  'import-in-the-middle',
+  'date-fns',
+  'clsx',
+  'motion',
+  'react-toastify',
+  'react-hook-form',
+  '@next/third-parties'
+];
+```
+
+Tells Next.js to aggressively tree-shake these packages. Add new heavy libraries here when introducing them.
+
+### `turbopack`
+
+```ts
+turbopack: {
+  root: __dirname;
 }
 ```
 
-Tells Next.js to tree-shake specific packages more aggressively, reducing bundle size.
+Enables Turbopack for `pnpm dev`. Build still uses Webpack via `next build`.
 
-### Turbopack
+### `webpack` (SVG loader)
 
-```typescript
-turbopack: { ... }
-```
-
-Enables Turbopack for development builds (`pnpm dev`). Turbopack is significantly faster than Webpack for local development.
-
-### Webpack (SVG Loader)
-
-```typescript
-webpack: (config) => {
+```ts
+webpack(config) {
   config.module.rules.push({
-    test: /\.svg$/,
-    use: ['@svgr/webpack']
+    test: /\.svg$/i,
+    issuer: /\.[jt]sx?$/,
+    use: [{ loader: '@svgr/webpack', options: { icon: true, svgoConfig: { plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }] } }}]
   });
   return config;
-};
+}
 ```
 
-Allows importing SVG files directly as React components:
+Imports of `.svg` files become React components:
 
 ```tsx
 import Logo from './logo.svg';
 <Logo className="w-8 h-8" />;
 ```
 
-### CORS Headers
+### `headers()`
 
-Added to all `/api/*` routes:
+Sets security and CORS headers in one place.
 
-```typescript
-{ key: 'Access-Control-Allow-Origin', value: '*' }
-{ key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' }
-{ key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' }
+**Site-wide (all paths)** — defence-in-depth headers, mirrored in `vercel.json`:
+
+| Header                      | Value                                                          |
+| --------------------------- | -------------------------------------------------------------- |
+| `X-Content-Type-Options`    | `nosniff`                                                      |
+| `X-Frame-Options`           | `SAMEORIGIN`                                                   |
+| `Referrer-Policy`           | `strict-origin-when-cross-origin`                              |
+| `Strict-Transport-Security` | `max-age=63072000; includeSubDomains; preload`                 |
+| `Permissions-Policy`        | `camera=(), microphone=(), geolocation=(), interest-cohort=()` |
+
+**`/api/:path*`** — CORS for the public-read endpoints:
+
+| Header                         | Value                                                                                                                    |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `Access-Control-Allow-Origin`  | `*`                                                                                                                      |
+| `Access-Control-Allow-Methods` | `GET,OPTIONS,PATCH,DELETE,POST,PUT`                                                                                      |
+| `Access-Control-Allow-Headers` | `X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version` |
+
+**`*.pdf`** — cache the CV PDF for a year:
+
+```ts
+{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }
 ```
 
-### Redirects
+**`/feed.xml`** — short server cache + long SWR for the RSS feed:
 
-```typescript
-redirects: [
-  { source: '/skills', destination: '/journey', permanent: true },
-  { source: '/blog', destination: '/posts', permanent: true }
-];
+```ts
+{ key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' }
+{ key: 'Content-Type', value: 'application/rss+xml; charset=utf-8' }
 ```
 
-Old URLs are permanently redirected (301) to their new locations.
+### `redirects()`
 
-### Sentry Integration
+| Old URL                | New URL                                   |
+| ---------------------- | ----------------------------------------- |
+| `/skills`              | `/journey`                                |
+| `/experiences`         | `/journey`                                |
+| `/educations`          | `/journey`                                |
+| `/resume.pdf`          | `/`                                       |
+| `/random-sex-position` | `https://ramiiin.ir/random-sex-position/` |
+| `/csv-row-printer`     | `https://ramiiin.ir/csv-row-printer/`     |
 
-Sentry is wrapped around the entire Next.js config using `withSentryConfig()`. It handles:
+All are `permanent: true` (HTTP 301).
 
-- Error tracking in production
-- Source map uploading to Sentry (for readable stack traces)
-- Performance monitoring
+### Sentry wrapping
+
+The whole config is wrapped in `withSentryConfig(withBundleAnalyzer(config), { org, project, … })`. This handles source map upload to Sentry (when not skipped) and instruments the build.
 
 ---
 
 ## `tsconfig.json`
 
-TypeScript compiler configuration.
+| Setting            | Value                    | Notes                      |
+| ------------------ | ------------------------ | -------------------------- |
+| `target`           | `ES2015`                 | Compile target             |
+| `module`           | `ESNext`                 | ES module syntax           |
+| `moduleResolution` | `bundler`                | Modern resolution for Next |
+| `jsx`              | `react-jsx`              | New JSX transform          |
+| `strict`           | `true`                   | All strict checks on       |
+| `incremental`      | `true`                   | Faster rebuilds            |
+| `paths`            | `{ "@/*": ["./src/*"] }` | Alias `@/*` for `src/*`    |
 
-| Setting            | Value                  | Meaning                                              |
-| ------------------ | ---------------------- | ---------------------------------------------------- |
-| `target`           | `ES2015`               | Compile to ES2015 JavaScript                         |
-| `module`           | `ESNext`               | Use ESNext module syntax                             |
-| `moduleResolution` | `bundler`              | Let the bundler handle module resolution             |
-| `jsx`              | `react-jsx`            | Use the new JSX transform (no `import React` needed) |
-| `strict`           | `true`                 | Enable all strict type checks                        |
-| `incremental`      | `true`                 | Cache compilation for faster rebuilds                |
-| `paths`            | `{"@/*": ["./src/*"]}` | Enable `@/` as an alias for `src/`                   |
-
-The `@/*` path alias is the most important setting. It allows clean imports:
-
-```tsx
-// Instead of this:
-import { Button } from '../../../shared/components/Button';
-
-// You can write this:
-import { Button } from '@/shared/components/Button';
-```
+Always prefer `@/<path>` over deep relative imports — Prettier's sort-imports plugin treats them consistently and they survive folder moves.
 
 ---
 
 ## `eslint.config.mjs`
 
-ESLint rules for code quality.
+Flat config. Rule sets in use:
 
-**Rule sets enabled:**
+- `typescript-eslint` with **type-checked** rules
+- `@next/eslint-plugin-next` for Next-specific patterns
+- `eslint-config-prettier` to disable formatting rules that conflict with Prettier
+- SARIF reporter wired up for CI (`@microsoft/eslint-formatter-sarif`)
 
-- `typescript-eslint` recommended — TypeScript-specific rules with type checking
-- `next/core-web-vitals` — Next.js performance and accessibility rules
+Notable behaviours:
 
-**Ignored paths:**
-
-- `.git/`, `.next/`, `coverage/`, `node_modules/`
-- Config files (tsconfig, eslint itself, jest, playwright, etc.)
-- `public/`, `.github/`
-
-**Key behaviors:**
-
-- Type-checked rules are enabled, meaning ESLint reads the TypeScript types to catch more errors.
-- The `@typescript-eslint/no-explicit-any` rule is active — avoid using `any` type.
-- Next.js rules enforce performance practices like using `next/image` instead of `<img>`.
+- `pnpm check-lint` runs `eslint "src/**/*.{ts,tsx,js}" --max-warnings=0`. Any warning fails CI.
+- `@typescript-eslint/no-explicit-any` is on. Use `unknown` and narrow.
+- Type-checked rules read TS types directly, so they catch issues ESLint alone can't see.
+- Ignored: `.next/`, `coverage/`, `node_modules/`, `public/`, `.github/`, config files.
 
 ---
 
 ## `.prettierrc`
-
-Code formatting rules. All code is automatically formatted to these standards.
 
 ```json
 {
@@ -183,76 +183,76 @@ Code formatting rules. All code is automatically formatted to these standards.
 }
 ```
 
-| Setting         | Value  | Meaning                                       |
-| --------------- | ------ | --------------------------------------------- |
-| `printWidth`    | 90     | Wrap lines longer than 90 characters          |
-| `tabWidth`      | 2      | Use 2 spaces for indentation                  |
-| `useTabs`       | false  | Use spaces, not tabs                          |
-| `semi`          | true   | Always add semicolons                         |
-| `singleQuote`   | true   | Use single quotes for strings                 |
-| `arrowParens`   | always | Always wrap arrow function params: `(x) => x` |
-| `trailingComma` | none   | No trailing commas after the last item        |
+Plugins:
 
-**Plugins:**
-
-- `prettier-plugin-tailwindcss` — sorts Tailwind utility classes in a consistent order
-- `prettier-plugin-sort-imports` — sorts `import` statements alphabetically
+- `prettier-plugin-tailwindcss` — canonical Tailwind class order.
+- `prettier-plugin-sort-imports` (Trivago variant pinned in deps) — predictable import order: 3rd-party → `@/*` → relative.
 
 ---
 
 ## `jest.config.js`
 
-Jest configuration for unit and integration tests.
-
-```javascript
+```js
 {
-  testEnvironment: 'jsdom',
-  setupFilesAfterFramework: ['<rootDir>/jest.setup.ts'],
+  testEnvironment: 'jest-environment-jsdom',
+  setupFilesAfterEach: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    '\\.module\\.(css|scss)$': 'identity-obj-proxy'
+    '\\.(css|scss)$': 'identity-obj-proxy'
   },
-  cacheDirectory: '.jest-cache',
-  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/e2e/']
+  maxWorkers: '50%',
+  cacheDirectory: '<rootDir>/.jest-cache',
+  moduleDirectories: ['node_modules', '<rootDir>/src'],
+  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/', '<rootDir>/e2e/'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/*.test.{ts,tsx}',
+    '!src/**/__tests__/**',
+    '!src/**/index.ts',
+    '!src/app/**/{layout,page,not-found,error,global-error,manifest,sitemap,robots,opengraph-image,instrumentation-client,fonts}.{ts,tsx}',
+    '!src/app/**/route.ts',
+    '!src/data/**',
+    '!src/shared/components/**/index.ts'
+  ],
+  coverageReporters: ['text', 'text-summary', 'json-summary', 'lcov', 'html'],
+  coverageThreshold: {
+    global: { lines: 27, statements: 27, functions: 20, branches: 30 }
+  }
 }
 ```
 
-- `jsdom` environment — simulate browser APIs in Node.js
-- `jest.setup.ts` — loads `@testing-library/jest-dom` for extra matchers like `toBeInTheDocument()`
-- `moduleNameMapper` — resolves `@/` imports and returns a proxy object for CSS modules
-- `identity-obj-proxy` — CSS module proxy returns the class name itself as the value (e.g. `styles.button` returns `"button"`)
+The threshold acts as a ratchet — coverage can grow but not regress. Bump the numbers up when new tests are added.
 
 ---
 
 ## `playwright.config.ts`
 
-Playwright configuration for end-to-end tests.
-
-```typescript
+```ts
 {
   testDir: './e2e',
-  baseURL: 'http://localhost:3000',
   fullyParallel: true,
+  forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: [['list'], ['html', { open: 'never' }]],
   use: {
+    baseURL,
+    serviceWorkers: 'block',
+    trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    reducedMotion: 'reduce'
-  }
+    video: 'retain-on-failure'
+  },
+  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  webServer: { command: 'pnpm run build && pnpm run start', url: baseURL, … }
 }
 ```
 
-- `fullyParallel` — tests run in parallel for speed
-- `retries` — in CI, failed tests retry up to 2 times to reduce flakiness
-- `screenshot` — captures a screenshot when a test fails
-- `video` — saves a video recording when a test fails
-- `reducedMotion: 'reduce'` — disables CSS animations so tests are not timing-dependent
+E2E runs build and start the production server in CI. Locally, it re-uses an existing server if one is already running on the configured port.
 
 ---
 
 ## `.editorconfig`
-
-Ensures consistent formatting across different editors and operating systems.
 
 ```ini
 root = true
@@ -266,36 +266,45 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 ```
 
-- `lf` line endings (Unix style) — consistent across Windows, Mac, Linux
-- `utf-8` charset
-- Final newline at end of each file
-
 ---
 
 ## `.husky/pre-commit`
 
-Git hook that runs before every commit. Executes `lint-staged`.
+The current pre-commit hook is intentionally fast:
 
-**`lint-staged` configuration (in `package.json`):**
+```sh
+pnpm lint-staged
+pnpm check-types
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR -- '*.ts' '*.tsx' | tr '\n' ' ')
+if [ -n "$STAGED_FILES" ]; then
+  pnpm exec jest --bail --findRelatedTests $STAGED_FILES --passWithNoTests
+fi
+```
+
+What it runs:
+
+1. **`lint-staged`** — Prettier + ESLint on staged files (config in `package.json`).
+2. **`check-types`** — full `tsc --noEmit`; TS errors caught here can't be caught by ESLint.
+3. **`jest --findRelatedTests <staged>`** — runs only the tests that touch the staged files. Skipped if no `.ts` / `.tsx` is staged.
+
+The full Jest suite, production build, and Playwright E2E run on CI rather than every commit.
+
+`lint-staged` config in `package.json`:
 
 ```json
 "lint-staged": {
-  "*.{ts,tsx}": ["prettier --write", "eslint --fix"],
-  "*.{js,mjs,cjs}": ["prettier --write"],
-  "*.{css,scss}": ["prettier --write"],
-  "*.{json,md}": ["prettier --write"]
+  "**/*": ["prettier --write .", "eslint . --fix"]
 }
 ```
-
-Only the files you changed are checked, not the entire project. This keeps commits fast.
 
 ---
 
 ## `.prettierignore`
 
-Files that Prettier should skip:
+Includes (non-exhaustive):
 
-```
+```text
 *.svg
 *.png
 *.jpg
@@ -305,4 +314,48 @@ node_modules/
 public/
 ```
 
-Binary files (images) and auto-generated files (`.d.ts`, `.next/`) are not formatted.
+Binary files and auto-generated outputs are skipped.
+
+---
+
+## `.lighthouserc.json`
+
+Lighthouse CI budgets used by the `lighthouse` workflow:
+
+```json
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1,
+      "settings": { "preset": "desktop", "throttlingMethod": "simulate" }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.85 }],
+        "categories:accessibility": ["error", { "minScore": 0.9 }],
+        "categories:best-practices": ["warn", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 0.9 }],
+        "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 300 }]
+      }
+    },
+    "upload": { "target": "temporary-public-storage" }
+  }
+}
+```
+
+A11y and SEO are `error` thresholds (PR fails). Performance and best-practices are `warn` thresholds (PR comments but doesn't fail).
+
+---
+
+## `vercel.json`
+
+Mirrors the site-wide security headers from `next.config.ts` for the Vercel edge, plus the CORS headers for `/api/(.*)`. Keeping both in sync means previews and self-hosted runs both get the same headers.
+
+---
+
+## `.github/dependabot.yml`
+
+Weekly npm updates targeting `dev`, monthly GitHub Actions updates. Groups updates by purpose so one PR covers `next + @next/*`, another covers `react + react-dom + @types/*`, etc. See [deployment.md](./deployment.md).

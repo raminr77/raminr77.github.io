@@ -1,101 +1,97 @@
 # Getting Started
 
-This guide explains how to set up the project on your local machine and run it.
+This guide covers local setup, the available scripts, and what the Husky pre-commit hook actually runs.
 
 ---
 
 ## Requirements
 
-Before you start, make sure you have these installed:
+| Tool    | Version                                                          | Purpose            |
+| ------- | ---------------------------------------------------------------- | ------------------ |
+| Node.js | matches `.nvmrc`                                                 | JavaScript runtime |
+| pnpm    | 10.x (`packageManager` in `package.json` pins the exact version) | Package manager    |
+| Git     | any recent version                                               | Version control    |
 
-| Tool    | Version            | Purpose            |
-| ------- | ------------------ | ------------------ |
-| Node.js | 18 or higher       | JavaScript runtime |
-| pnpm    | 10.33.0 or higher  | Package manager    |
-| Git     | Any recent version | Version control    |
-
-> This project uses **pnpm** as its package manager. Do not use `npm` or `yarn` — the lockfile is for pnpm.
+This project uses **pnpm**. Don't use `npm` or `yarn` — the lockfile is `pnpm-lock.yaml`.
 
 ---
 
 ## Installation
 
-**1. Clone the repository**
-
 ```bash
 git clone https://github.com/raminr77/raminr77.github.io.git
 cd raminr77.github.io
-```
-
-**2. Install dependencies**
-
-```bash
 pnpm install
 ```
 
-**3. Set up environment variables**
+### Environment variables
 
-Copy the example env file and fill in the values:
+Copy the example file and fill in the values that apply to your environment:
 
 ```bash
 cp .env.example .env.local
 ```
 
-See [environment-variables.md](./environment-variables.md) for what each variable means.
+`.env.local` is gitignored. See [environment-variables.md](./environment-variables.md) for what each variable means.
 
 ---
 
-## Running Locally
-
-**Start the development server:**
+## Running locally
 
 ```bash
-pnpm dev
+pnpm dev      # http://localhost:3000 (Turbopack)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-The development server uses **Turbopack** for fast builds and hot module replacement.
+The dev server uses Turbopack for fast incremental rebuilds.
 
 ---
 
-## Available Scripts
+## Available scripts
 
-| Script         | Command              | What It Does                          |
-| -------------- | -------------------- | ------------------------------------- |
-| Dev server     | `pnpm dev`           | Start local dev server with Turbopack |
-| Build          | `pnpm build`         | Create optimized production build     |
-| Start          | `pnpm start`         | Run the production build locally      |
-| Lint           | `pnpm lint`          | Check code with ESLint                |
-| Format         | `pnpm format`        | Format code with Prettier             |
-| Type check     | `pnpm type-check`    | Run TypeScript compiler               |
-| Unit tests     | `pnpm test`          | Run Jest tests                        |
-| Test watch     | `pnpm test:watch`    | Run Jest in watch mode                |
-| Test coverage  | `pnpm test:coverage` | Generate coverage report              |
-| E2E tests      | `pnpm test:e2e`      | Run Playwright end-to-end tests       |
-| E2E UI mode    | `pnpm test:e2e:ui`   | Open Playwright test UI               |
-| Bundle analyze | `pnpm build:analyze` | Build and open bundle visualizer      |
-| Lighthouse     | `pnpm performance`   | Run Lighthouse performance audit      |
-
----
-
-## First-Time Setup for E2E Tests
-
-Playwright needs browser binaries. Install them once:
-
-```bash
-pnpm dlx playwright install
-```
+| Script                 | Command                 | What it does                                                 |
+| ---------------------- | ----------------------- | ------------------------------------------------------------ |
+| Dev server             | `pnpm dev`              | Start the dev server with Turbopack                          |
+| Dev (HTTPS)            | `pnpm dev-https`        | Same as above but over HTTPS (Next experimental flag)        |
+| Build                  | `pnpm build`            | Production build                                             |
+| Start                  | `pnpm start`            | Serve the production build                                   |
+| Lint (fix)             | `pnpm lint`             | ESLint with `--fix` on the whole tree                        |
+| Lint (strict)          | `pnpm check-lint`       | ESLint over `src/` with `--max-warnings=0` (used in CI)      |
+| Format (write)         | `pnpm format`           | Prettier `--write` across the project                        |
+| Format (check)         | `pnpm check-format`     | Prettier `--check` (used in CI)                              |
+| Type check             | `pnpm check-types`      | `tsc --noEmit`                                               |
+| All checks             | `pnpm check-all`        | format · lint · types (the full safety net)                  |
+| Unit tests             | `pnpm test`             | Jest                                                         |
+| Tests (watch)          | `pnpm test:watch`       | Jest in watch mode                                           |
+| Tests (coverage)       | `pnpm test:coverage`    | Jest with coverage. Threshold defined in `jest.config.js`    |
+| E2E                    | `pnpm test:e2e`         | Playwright                                                   |
+| E2E (UI)               | `pnpm test:e2e:ui`      | Playwright's interactive UI                                  |
+| E2E (report)           | `pnpm test:e2e:report`  | Open the last Playwright HTML report                         |
+| E2E (install browsers) | `pnpm test:e2e:install` | Install Playwright browsers (run this once)                  |
+| Bundle analyze         | `pnpm build:analyze`    | Production build with `@next/bundle-analyzer` (uses Webpack) |
+| Lighthouse             | `pnpm performance`      | Build, start, and run Lighthouse against the local server    |
+| Lighthouse only        | `pnpm lighthouse`       | Run Lighthouse against an already-running localhost:3000     |
 
 ---
 
-## Git Hooks
+## Husky pre-commit hook
 
-The project uses **Husky** for pre-commit hooks. When you commit code, it automatically:
+`.husky/pre-commit` keeps commits fast by checking only what you touched:
 
-1. Runs **Prettier** to format changed files
-2. Runs **ESLint** to catch errors
+1. **`pnpm lint-staged`** — Prettier and ESLint on the staged files (config in `package.json`).
+2. **`pnpm check-types`** — full TypeScript check; ESLint can't see type errors.
+3. **`pnpm exec jest --bail --findRelatedTests <staged>`** — runs the unit tests that touch the staged files (skipped automatically if no `.ts` / `.tsx` files are staged).
 
-This happens via **lint-staged** (only checks files you changed, not the whole project).
+The full Jest suite, the production build, and the Playwright E2E suite run on CI rather than in the pre-commit hook. See [deployment.md](./deployment.md) for the CI table.
 
-If the hooks fail, fix the reported issues before committing again.
+---
+
+## Common workflows
+
+| You want to…                   | Run                                                                                              |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Add a blog post                | Create `posts/post-NN.md` (zero-pad ids ≤ 9). See [data-and-content.md](./data-and-content.md).  |
+| Add a new page                 | Add a folder under `src/app/<route>/page.tsx` and a domain entry under `src/domains/<feature>/`. |
+| Add a generic UI component     | `src/shared/components/<name>/` + register in `src/shared/components/index.ts`.                  |
+| Add a feature-scoped component | `src/domains/<feature>/components/<name>/`.                                                      |
+| Add a unit test                | Co-locate as `<name>.test.tsx` or under `__tests__/`. See [testing.md](./testing.md).            |
+| Verify before pushing          | `pnpm check-all && pnpm test && pnpm build`                                                      |

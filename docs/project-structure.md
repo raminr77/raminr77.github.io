@@ -4,243 +4,228 @@ This document explains every folder and key file in the repository.
 
 ---
 
-## Root Level
+## Root layout
 
-```
+```text
 raminr77.github.io/
-├── src/                    # All application source code
-├── posts/                  # Blog post files (.md)
-├── public/                 # Static files served as-is
-├── e2e/                    # End-to-end tests (Playwright)
-├── docs/                   # Project documentation (this folder)
-├── .github/                # GitHub Actions CI/CD workflows
-├── .husky/                 # Git hook scripts
-├── .vscode/                # VS Code editor settings
-├── next.config.ts          # Next.js configuration
-├── tailwind.config.ts      # Tailwind CSS configuration
-├── tsconfig.json           # TypeScript configuration
-├── jest.config.js          # Jest test configuration
-├── playwright.config.ts    # Playwright E2E configuration
-├── eslint.config.mjs       # ESLint rules
-├── postcss.config.mjs      # PostCSS (for Tailwind)
-├── .prettierrc             # Prettier formatting rules
-├── .editorconfig           # Editor formatting rules
-├── .env.example            # Example environment variables
-└── package.json            # Dependencies and scripts
+├── src/                    Application source code
+├── posts/                  Blog post markdown files
+├── public/                 Static assets served as-is
+├── e2e/                    Playwright end-to-end tests
+├── docs/                   Project documentation (this folder)
+├── .github/                GitHub Actions workflows and Dependabot config
+├── .husky/                 Git hook scripts
+├── .vscode/                Recommended VS Code extensions + workspace settings
+├── .claude/                Claude Code workspace (settings, slash commands, subagents)
+├── CLAUDE.md               Project-wide rules for Claude Code
+├── SECURITY.md             Security disclosure policy
+├── LICENSE                 MIT license for the source code
+├── next.config.ts          Next.js configuration
+├── tailwind.config.ts      Tailwind CSS configuration
+├── tsconfig.json           TypeScript configuration
+├── jest.config.js          Jest configuration (incl. coverage threshold)
+├── jest.setup.ts           Jest test setup (matchers)
+├── playwright.config.ts    Playwright configuration
+├── eslint.config.mjs       ESLint flat config
+├── postcss.config.mjs      PostCSS (for Tailwind)
+├── .lighthouserc.json      Lighthouse CI budgets
+├── .prettierrc             Prettier formatting rules
+├── .prettierignore         Files Prettier should skip
+├── .editorconfig           Editor formatting rules
+├── .nvmrc                  Node.js version pin
+├── .env.example            Example environment variables
+└── package.json            Dependencies and scripts
 ```
 
 ---
 
-## The `src/` Folder
+## `src/`
 
-This is where all application code lives. It is split into clear areas of responsibility.
-
-```
+```text
 src/
-├── app/                    # Next.js App Router pages and layouts
-├── domains/                # Feature-based code (one folder per section of the site)
-├── shared/                 # Code reused across multiple features
-├── data/                   # Static content and data
-└── layout/                 # Site-wide layout components (header, footer, etc.)
+├── app/                Next.js App Router (server-first)
+├── domains/            Feature verticals (one folder per top-level section)
+├── shared/             Code reused across multiple features
+├── data/               Static content / data objects
+├── layout/             Site-wide layout components
+└── instrumentation.ts  Sentry (server + edge) bootstrap
 ```
 
----
+### `src/app/` — App Router
 
-### `src/app/`
+Every folder with a `page.tsx` is a route. Special files (`layout`, `error`, `not-found`, `sitemap`, `robots`, `manifest`, `opengraph-image`) follow Next.js conventions.
 
-This folder follows Next.js App Router conventions. Each subfolder is a route.
-
-```
+```text
 src/app/
-├── layout.tsx              # Root HTML layout — wraps every page
-├── page.tsx                # Home page (route: /)
-├── globals.scss            # Global CSS styles
-├── fonts.ts                # Font definitions (Hubballi, Gantari)
-├── manifest.ts             # PWA manifest
-├── error.tsx               # Error boundary page
-├── not-found.tsx           # 404 page
-├── global-error.tsx        # Top-level error fallback
-├── instrumentation-client.ts  # Sentry error monitoring setup
-├── about-me/
-│   └── page.tsx            # Route: /about-me
-├── posts/
-│   ├── page.tsx            # Route: /posts
-│   └── [id]/
-│       └── page.tsx        # Route: /posts/:id (dynamic)
-├── journey/
-│   └── page.tsx            # Route: /journey
-├── projects/
-│   └── page.tsx            # Route: /projects
-├── contact-me/
-│   └── page.tsx            # Route: /contact-me
-├── lens/
-│   └── page.tsx            # Route: /lens
-├── recommendations/
-│   └── page.tsx            # Route: /recommendations
+├── layout.tsx                          Root HTML layout (Server Component)
+├── page.tsx                            Home page (route: /)
+├── globals.scss                        Global styles
+├── fonts.ts                            Google Fonts (Hubballi, Gantari)
+├── manifest.ts                         PWA manifest
+├── sitemap.ts                          Dynamic /sitemap.xml from getPosts()
+├── robots.ts                           Dynamic /robots.txt (preview = Disallow: /)
+├── error.tsx                           Per-route error boundary
+├── global-error.tsx                    Top-level error fallback (reports to Sentry)
+├── not-found.tsx                       404 page
+├── icon.png, apple-icon.png            Favicons (auto-served)
+├── instrumentation-client.ts           Sentry client init
+├── feed.xml/route.ts                   RSS feed
+├── about-me/page.tsx                   Route: /about-me
+├── contact-me/page.tsx                 Route: /contact-me
+├── journey/page.tsx                    Route: /journey
+├── lens/page.tsx                       Route: /lens
+├── projects/page.tsx                   Route: /projects
+├── recommendations/page.tsx            Route: /recommendations
+├── posts/page.tsx                      Route: /posts
+├── posts/[id]/page.tsx                 Route: /posts/:id
+├── posts/[id]/opengraph-image.tsx      Dynamic OG image per post (1200×630)
 └── api/
-    ├── route.ts            # GET /api — health check
-    ├── posts/
-    │   └── search/
-    │       └── route.ts    # GET /api/posts/search
-    ├── recaptcha-verify/
-    │   └── route.ts        # POST /api/recaptcha-verify
-    └── react-sample/
-        └── route.ts        # GET|POST /api/react-sample
+    ├── route.ts                        GET /api — health check
+    ├── posts/search/route.ts           GET /api/posts/search?q=…
+    ├── recaptcha-verify/route.ts       POST /api/recaptcha-verify
+    └── react-sample/route.ts           Demo API (kept for a public sample repo)
 ```
-
----
 
 ### `src/domains/`
 
-Each domain is a self-contained feature of the website. A domain holds the page component and all the smaller components that belong only to that feature.
+One folder per feature vertical. Cross-domain imports are forbidden — if two domains need the same code, promote it to `src/shared/`.
 
-```
+```text
 src/domains/
-├── home/                   # Home/landing page
-├── posts/                  # Blog listing and individual post view
-├── projects/               # Projects showcase
-├── journey/                # Career timeline
-├── about-me/               # About me section
-├── contact-me/             # Contact form
-├── lens/                   # Photo gallery
-├── recommendations/        # Testimonials
-├── error/                  # Error page
-└── not-found/              # 404 page
+├── home/             Landing page
+├── posts/            Blog listing + single-post view
+├── projects/         Projects showcase
+├── journey/          Career timeline
+├── about-me/         About me page
+├── contact-me/       Contact form
+├── lens/             Photo gallery
+├── recommendations/  Testimonials
+├── error/            Error page UI
+├── not-found/        404 page UI
+└── gallery/          (Currently scaffolded, not yet shipped)
 ```
 
-Each domain typically looks like this internally:
+Typical domain shape:
 
+```text
+src/domains/<feature>/
+├── index.tsx           Page entry (may be 'use client' if it needs state)
+├── components/         Feature-scoped components
+├── __tests__/          Co-located Jest tests
+├── helper/             Feature-scoped pure functions (optional)
+├── services/           Feature-scoped API clients (optional)
+├── constants/          Feature-scoped constants (optional)
+└── hooks/              Feature-scoped hooks (e.g. lens has useGalleryKeyboard)
 ```
-domains/posts/
-├── index.tsx               # Main page component (exported)
-├── components/             # Sub-components used only in this domain
-│   ├── PostCard/
-│   ├── PostsSearch/
-│   └── ...
-└── __tests__/              # Unit tests for this domain
-    └── *.test.tsx
-```
-
----
 
 ### `src/shared/`
 
-Code that is used in more than one domain lives here. Nothing in `shared/` should depend on anything in `domains/`.
-
-```
+```text
 src/shared/
-├── components/             # Reusable UI components (Button, Input, Spinner, etc.)
-├── hooks/                  # Custom React hooks
-├── helpers/                # Pure functions and utilities
-├── services/               # API call functions
-├── api/
-│   └── constants/          # API endpoint URLs
-├── libs/                   # Third-party library wrappers
-├── types/                  # TypeScript type definitions
-└── constants/              # App-wide constants (routes, env vars, keys)
+├── components/         Generic UI components (kebab-case folders)
+├── hooks/              Generic React hooks
+├── helpers/            Pure functions
+├── services/           External-API clients (email, recaptcha, search)
+├── libs/               Third-party library wrappers (pixel-canvas custom element)
+├── types/              Shared TypeScript declarations
+├── api/constants/      Endpoint URLs
+└── constants/          App-wide constants (routes, env, GTM events, regexes, …)
 ```
 
----
+All component folder names are kebab-case (e.g. `code-block/`, `tracked-link/`).
 
 ### `src/data/`
 
-Static data that defines the site content. These are TypeScript files that export plain data arrays and objects.
-
-```
+```text
 src/data/
-├── personal-data.ts        # Name, bio, keywords, site URL
-├── projects.ts             # List of projects
-├── journey.ts              # Career history and education
-├── about-me.ts             # About page content and images
-├── recommendations.ts      # Testimonials and recommendations
-├── contact-me.ts           # Contact info and social links
-├── lens.ts                 # Photo gallery images
-└── resume-file.ts          # Resume PDF link
+├── personal-data.ts        Name, bio, site URL, keywords (en / fa / sv)
+├── projects.ts             Project list
+├── journey.ts              Career history and education
+├── about-me.ts             About page content
+├── recommendations.ts      Testimonials
+├── contact-me.ts           Contact info and social links
+├── lens.ts                 Photo gallery items
+├── general.ts              Cross-page UI strings (form labels, modal copy, …)
+└── resume-file.ts          Resume PDF link
 ```
-
----
 
 ### `src/layout/`
 
-Components that appear on every page of the site.
-
-```
-src/layout/
-└── components/
-    ├── Header/             # Top navigation bar
-    ├── BurgerMenu/         # Mobile hamburger menu
-    ├── ContentContainer/   # Page content wrapper
-    ├── ProgressBar/        # Page transition loading bar
-    ├── CookiesModal/       # Cookie consent banner
-    ├── ServiceWorkerRegistrar/  # PWA service worker setup
-    └── ThirdPartyScripts/  # Google Analytics, GTM scripts
+```text
+src/layout/components/
+├── burger-menu/                Mobile hamburger menu
+├── content-container/          Page-content wrapper
+├── cookies-modal/              Cookie consent banner
+├── header/                     Top navigation bar
+├── progress-bar/               Route-transition loading bar
+├── service-worker-registrar/   Registers /service-worker.js (production only)
+└── third-party-scripts/        GA, GTM, AdSense, Speed Insights (consent-gated)
 ```
 
 ---
 
-## The `posts/` Folder
+## `posts/`
 
-Markdown files for blog posts. Each file is one blog post.
+Each `.md` file is one blog post. File names are zero-padded for ids ≤ 9 (`post-01.md`, `post-02.md`, …, `post-10.md`).
 
-```
-posts/
-├── post-1.md
-├── post-2.md
-└── ...
-```
-
-Each file has a front matter section at the top with metadata, followed by the post content in Markdown.
-
-Example front matter:
-
-```yaml
----
-id: 1
-author: Ramin Rezaei
-isActive: true
-category: Engineering
-date: '2024-01-15'
-slug: my-first-post
-title: My First Post
-description: A short description of the post.
-tags:
-  - React
-  - TypeScript
----
-```
+See [data-and-content.md](./data-and-content.md) for the frontmatter spec and the `getPosts` / `getPostContent` lifecycle.
 
 ---
 
-## The `public/` Folder
+## `public/`
 
-Static files that are served directly without processing. Images, icons, fonts, and other assets go here.
+Static assets served as-is from the site root. Notable files:
+
+- `Software-Engineer-Ramin-Rezaei-CV.pdf` — CV (cached for 1 year via `next.config.ts` headers)
+- `click-spark.js` — small custom-element script loaded with `<Script strategy="lazyOnload">`
+- `service-worker.js` — image-caching service worker registered by `ServiceWorkerRegistrar`
+- `ads.txt`, `CNAME` — hosting metadata
+- `images/` — site imagery (background, social-banner, lens photos, icons, …)
 
 ---
 
-## The `e2e/` Folder
+## `e2e/`
 
-End-to-end test files written with Playwright.
+Playwright specs:
 
-```
+```text
 e2e/
-├── contact.spec.ts         # Tests the contact form
-├── lens.spec.ts            # Tests the photo gallery
-├── navigation.spec.ts      # Tests site navigation
-├── posts.spec.ts           # Tests blog listing and filtering
-├── routing.spec.ts         # Tests URL routing
-├── search.spec.ts          # Tests post search
-└── theme.spec.ts           # Tests dark/light mode toggle
+├── about-me.spec.ts
+├── contact.spec.ts
+├── contact-validation.spec.ts
+├── lens.spec.ts
+├── navigation.spec.ts
+├── navigation-full.spec.ts
+├── pages.spec.ts
+├── post-detail.spec.ts
+├── posts.spec.ts
+├── posts-filter.spec.ts
+├── projects.spec.ts
+├── recommendations.spec.ts
+├── routing.spec.ts
+├── search.spec.ts
+├── search-extended.spec.ts
+└── theme.spec.ts
 ```
+
+Run with `pnpm test:e2e`. Browsers install via `pnpm test:e2e:install`.
 
 ---
 
-## The `.github/` Folder
+## `.github/`
 
-GitHub Actions workflow files for automated CI/CD.
-
-```
+```text
 .github/
+├── dependabot.yml                  Weekly npm + monthly github-actions updates
 └── workflows/
-    ├── ci.yml              # Runs on pull requests — lint, test, build
-    └── deploy.yml          # Runs on push to main — deploys the site
+    ├── build.yml                   Production build + format check (push + PR)
+    ├── tests.yml                   Jest (coverage) + Playwright (push + PR)
+    ├── eslint.yml                  ESLint with SARIF upload to Code Scanning
+    ├── tsc.yml                     tsc --noEmit
+    ├── codeql.yml                  CodeQL javascript-typescript scan (push + PR + weekly)
+    ├── dependencies.yml            actions/dependency-review-action on dep PRs
+    ├── lighthouse.yml              Lighthouse CI against the built site (PR)
+    └── bundle-size.yml             Build with @next/bundle-analyzer + upload report (PR)
 ```
+
+See [deployment.md](./deployment.md) for what each workflow does.

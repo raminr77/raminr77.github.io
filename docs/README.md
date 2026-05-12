@@ -1,42 +1,44 @@
 # Project Documentation
 
-This folder contains the full documentation for the personal portfolio website of **Ramin Rezaei**.
+This folder is the long-form reference for the personal portfolio at **<https://raminrezaei.se>**.
 
-**Live Site**: https://raminrezaei.se
+For a quick overview, start with the [top-level README](../README.md). For project-wide rules that Claude Code follows, see [CLAUDE.md](../CLAUDE.md) and the [.claude/](../.claude) workspace.
 
 ---
 
 ## Table of Contents
 
-| File                                                     | What It Covers                                        |
-| -------------------------------------------------------- | ----------------------------------------------------- |
-| [getting-started.md](./getting-started.md)               | How to install, run, and build the project locally    |
-| [project-structure.md](./project-structure.md)           | Folder and file layout explained                      |
-| [architecture.md](./architecture.md)                     | Tech stack, design decisions, and patterns used       |
-| [pages-and-routes.md](./pages-and-routes.md)             | All pages, URL routes, and API endpoints              |
-| [components.md](./components.md)                         | Every component — what it does and how it fits        |
-| [data-and-content.md](./data-and-content.md)             | Static data files, blog posts, and content system     |
-| [styling.md](./styling.md)                               | CSS setup, Tailwind, SCSS, fonts, and theming         |
-| [hooks-helpers-services.md](./hooks-helpers-services.md) | Custom hooks, helper functions, and API services      |
-| [testing.md](./testing.md)                               | Unit tests, integration tests, and end-to-end tests   |
-| [configuration.md](./configuration.md)                   | All config files — TypeScript, ESLint, Prettier, etc. |
-| [deployment.md](./deployment.md)                         | How to build and deploy, CI/CD pipelines              |
-| [environment-variables.md](./environment-variables.md)   | All required and optional environment variables       |
+| File                                                     | What it covers                                                            |
+| -------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [getting-started.md](./getting-started.md)               | Install, run, build, available scripts, Husky hooks                       |
+| [project-structure.md](./project-structure.md)           | Every folder and key file explained                                       |
+| [architecture.md](./architecture.md)                     | Tech stack, rendering strategy, design decisions                          |
+| [pages-and-routes.md](./pages-and-routes.md)             | Pages, dynamic routes, API endpoints, sitemap / RSS / OG image, redirects |
+| [components.md](./components.md)                         | Each component: where it lives and what it does                           |
+| [data-and-content.md](./data-and-content.md)             | Static data files, blog post frontmatter, constants                       |
+| [styling.md](./styling.md)                               | Tailwind, SCSS modules, fonts, theming, animation libraries               |
+| [hooks-helpers-services.md](./hooks-helpers-services.md) | Custom hooks (`useTrack`, `useGalleryKeyboard`, …), helpers, services     |
+| [testing.md](./testing.md)                               | Jest (unit / integration) and Playwright (E2E) setup, coverage threshold  |
+| [configuration.md](./configuration.md)                   | `next.config.ts`, `tsconfig`, ESLint, Prettier, Jest, Playwright, Husky   |
+| [environment-variables.md](./environment-variables.md)   | Required and optional env vars                                            |
+| [deployment.md](./deployment.md)                         | Production build, Vercel deploy, all CI workflows                         |
 
 ---
 
 ## Quick Overview
 
-This is a **Next.js 16** personal portfolio website built with **React 19** and **TypeScript**. It includes:
+This is a **Next.js 16** App Router site built with **React 19** and **TypeScript 6**. It includes:
 
-- A landing/home page with animated text
-- A blog with markdown posts, search, and category filtering
-- A projects showcase page
-- A career/journey timeline
-- An about me page
-- A contact form with Google reCAPTCHA
-- A photo gallery (Lens)
-- A recommendations/testimonials page
-- Dark and light theme support
-- Full testing setup (Jest + Playwright)
-- CI/CD via GitHub Actions
+- A landing page with animated hero
+- A markdown-driven blog (`/posts`) with search, category and tag filtering, dynamic sitemap, RSS feed, per-post JSON-LD, and dynamic OpenGraph images
+- A projects showcase
+- A career / education timeline (`/journey`)
+- An about-me page
+- A reCAPTCHA-protected contact form (`/contact-me`)
+- A photo gallery (`/lens`) with a keyboard-driven modal
+- A recommendations / testimonials page
+- Dark / light theme with `localStorage` persistence
+- 41 Jest test suites + Playwright E2E
+- CI on every PR (build · tests · eslint · tsc · codeql · lighthouse · bundle-size · dependency review) and automated Dependabot updates
+
+Source: <https://github.com/raminr77/raminr77.github.io>. Live: <https://raminrezaei.se>. License: [MIT for source code](../LICENSE); written content remains © Ramin Rezaei.

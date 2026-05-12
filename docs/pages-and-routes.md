@@ -1,6 +1,6 @@
 # Pages and Routes
 
-This document covers every page, URL, and API endpoint in the project.
+Every page, URL, API endpoint, and SEO route in the project.
 
 ---
 
@@ -8,298 +8,176 @@ This document covers every page, URL, and API endpoint in the project.
 
 ### Home — `/`
 
-**File**: `src/app/page.tsx`  
-**Domain**: `src/domains/home/`
+`src/app/page.tsx` → `src/domains/home/`
 
-The landing page. Shows an animated hero section with a text reveal animation and a short summary of who Ramin is. This is the first thing visitors see.
-
-**Key Components Used:**
-
-- `HeroTextAnimator` — animates the main heading text letter by letter
-- `Summary` — displays a short bio paragraph
-
----
+Landing page with an animated hero. Components: `HeroTextAnimator`, `Summary`, `MoreInformationButton`.
 
 ### About Me — `/about-me`
 
-**File**: `src/app/about-me/page.tsx`  
-**Domain**: `src/domains/about-me/`
+`src/app/about-me/page.tsx` → `src/domains/about-me/`
 
-A personal introduction page with photos, background info, and a recommendations box.
+Personal introduction with photos, background, and a `RecommendationsBox` preview that links to the full recommendations page.
 
-**Key Components Used:**
+### Blog listing — `/posts`
 
-- `RecommendationsBox` — shows a small preview of testimonials
+`src/app/posts/page.tsx` → `src/domains/posts/`
 
----
+All active blog posts. Supports text search and category / tag filtering. Reads from disk via `getPosts()` (server, cached at module level).
 
-### Blog / Posts — `/posts`
+Components used: `PostCard`, `PostsSearch`, `PostsCategoryFilter`, `EmptyPostBlock`, `Pagination`.
 
-**File**: `src/app/posts/page.tsx`  
-**Domain**: `src/domains/posts/`
+**Query parameters:**
 
-Lists all blog posts. Supports text search and category filtering. Reads posts from the filesystem (the `posts/` folder).
+| Parameter  | Meaning                   |
+| ---------- | ------------------------- |
+| `q`        | Search string             |
+| `category` | Category filter           |
+| `tag`      | Tag filter                |
+| `page`     | Pagination page (1-based) |
 
-**Key Components Used:**
+### Single post — `/posts/:id`
 
-- `PostCard` — shows a preview of each post
-- `PostsSearch` — live search input
-- `PostsCategoryFilter` — dropdown to filter by category
-- `EmptyPostBlock` — shown when no posts match the filters
+`src/app/posts/[id]/page.tsx` → `src/domains/posts/post-detail-page.tsx`
 
-**URL Parameters:**
+Full post content. `:id` is the numeric ID from the post's frontmatter. The page also injects a `BlogPosting` JSON-LD `<Script>` and registers a dynamic OG image (see SEO routes below).
 
-- `?q=search-term` — search query
-- `?category=Engineering` — filter by category
-- `?tag=React` — filter by tag
-
----
-
-### Single Post — `/posts/:id`
-
-**File**: `src/app/posts/[id]/page.tsx`  
-**Domain**: `src/domains/posts/`
-
-Shows the full content of a single blog post. The `:id` is the numeric ID from the post's front matter.
-
-**Key Components Used:**
-
-- `PostDate` — formatted publish date
-- `PostTags` — list of tags
-- `PostCategory` — category badge
-- `PostAuthor` — author info
-- `PostReadTime` — estimated reading time
-- `PostShare` — social sharing buttons
-- `BackToPostsButton` — link back to the posts list
-
----
+Components used: `PageHeader`, `PostAuthor`, `PostCategory`, `PostDate`, `PostReadTime`, `PostShare`, `PostTags`, `BackToPostButton`, `PostCard` (recommended posts), `ClientCodeLoader`. `<pre>` blocks are overridden by `<CodeBlock>` for expand / collapse.
 
 ### Journey — `/journey`
 
-**File**: `src/app/journey/page.tsx`  
-**Domain**: `src/domains/journey/`
+`src/app/journey/page.tsx` → `src/domains/journey/`
 
-A timeline of Ramin's career — jobs, education, and skills. Entries are sorted chronologically and displayed as cards.
-
-**Key Components Used:**
-
-- `JourneyCard` — one card per career event
-
----
+Career and education timeline. Components: `JourneyCard`, `JourneyScroller`.
 
 ### Projects — `/projects`
 
-**File**: `src/app/projects/page.tsx`  
-**Domain**: `src/domains/projects/`
+`src/app/projects/page.tsx` → `src/domains/projects/`
 
-A grid of personal and professional projects. Each card shows the project name, description, role, tech stack, and links.
-
-**Key Components Used:**
-
-- `ProjectCard` — one card per project
-
----
+Grid of projects. Components: `ProjectCard`, `ProjectCardDemoLink`, `ProjectsFooter`.
 
 ### Contact Me — `/contact-me`
 
-**File**: `src/app/contact-me/page.tsx`  
-**Domain**: `src/domains/contact-me/`
+`src/app/contact-me/page.tsx` → `src/domains/contact-me/`
 
-A contact form where visitors can send a message. Protected by Google reCAPTCHA v3.
+reCAPTCHA-protected contact form. Components: `ContactForm`. Wraps the form in `<GoogleReCaptchaProvider>` scoped to this page only (the provider is not in the root layout).
 
-**Key Components Used:**
+### Lens — `/lens`
 
-- `ContactForm` — the full form with validation
+`src/app/lens/page.tsx` → `src/domains/lens/`
 
----
-
-### Lens (Photo Gallery) — `/lens`
-
-**File**: `src/app/lens/page.tsx`  
-**Domain**: `src/domains/lens/`
-
-A photo gallery with a grid of images. Clicking an image opens it in a full-screen modal.
-
-**Key Components Used:**
-
-- `LensCard` — one card per photo
-- `LensGalleryModal` — full-size image modal
-- `LensEmptyBlock` — shown if no images exist
-
----
+Photo gallery. Components: `LensCard`, `LensGalleryModal`, `useGalleryKeyboard` (Escape closes, arrow keys navigate, body scroll locked while open).
 
 ### Recommendations — `/recommendations`
 
-**File**: `src/app/recommendations/page.tsx`  
-**Domain**: `src/domains/recommendations/`
+`src/app/recommendations/page.tsx` → `src/domains/recommendations/`
 
-A page showing testimonials and recommendations from colleagues and collaborators.
+Testimonials. Components: `RecommendationCard`, `RecommendationsFooter`.
+
+### Error page
+
+`src/app/error.tsx` → `src/domains/error/`
+
+Per-route error boundary. Reports the error to Sentry when enabled and offers a "Try again" button.
+
+### Global error
+
+`src/app/global-error.tsx`
+
+Top-level fallback for errors that escape the layout. Renders a barebones HTML shell and reports to Sentry (when not on localhost).
+
+### 404
+
+`src/app/not-found.tsx` → `src/domains/not-found/`
+
+Friendly 404 with an animated text and a link back to the home page.
 
 ---
 
-### Error Page
+## SEO routes
 
-**File**: `src/app/error.tsx`  
-**Domain**: `src/domains/error/`
+These routes exist alongside the human-readable pages.
 
-Shown automatically when an unhandled error occurs on any page. Has a button to try again.
-
----
-
-### 404 Not Found
-
-**File**: `src/app/not-found.tsx`  
-**Domain**: `src/domains/not-found/`
-
-Shown when the user visits a URL that does not exist.
+| Route                          | File                                         | Purpose                                                            |
+| ------------------------------ | -------------------------------------------- | ------------------------------------------------------------------ |
+| `/sitemap.xml`                 | `src/app/sitemap.ts`                         | Static routes + every active post                                  |
+| `/robots.txt`                  | `src/app/robots.ts`                          | Production allow rules; preview returns `Disallow: /`              |
+| `/feed.xml`                    | `src/app/feed.xml/route.ts`                  | RSS 2.0 feed, cached `s-maxage=3600, stale-while-revalidate=86400` |
+| `/manifest.webmanifest`        | `src/app/manifest.ts`                        | PWA manifest                                                       |
+| `/posts/<id>/opengraph-image`  | `src/app/posts/[id]/opengraph-image.tsx`     | 1200×630 dynamic OG image per post (via `next/og`)                 |
+| `/icon.png`, `/apple-icon.png` | `src/app/icon.png`, `src/app/apple-icon.png` | Favicons                                                           |
 
 ---
 
 ## Redirects
 
-These old URLs are automatically redirected to their new locations:
+Configured in `next.config.ts`. All are 301 (permanent).
 
-| Old URL   | New URL    |
-| --------- | ---------- |
-| `/skills` | `/journey` |
-| `/blog`   | `/posts`   |
-
-Configured in `next.config.ts`.
+| Old URL                | New URL                                   |
+| ---------------------- | ----------------------------------------- |
+| `/skills`              | `/journey`                                |
+| `/experiences`         | `/journey`                                |
+| `/educations`          | `/journey`                                |
+| `/resume.pdf`          | `/`                                       |
+| `/random-sex-position` | `https://ramiiin.ir/random-sex-position/` |
+| `/csv-row-printer`     | `https://ramiiin.ir/csv-row-printer/`     |
 
 ---
 
-## API Routes
+## API routes
 
 All API routes are inside `src/app/api/`.
 
----
+### `GET /api`
 
-### Health Check — `GET /api`
-
-**File**: `src/app/api/route.ts`
-
-A simple endpoint to confirm the API is running.
-
-**Response:**
+`src/app/api/route.ts` — Health check.
 
 ```json
 { "message": "API is ready :D" }
 ```
 
----
+### `GET /api/posts/search`
 
-### Post Search — `GET /api/posts/search`
+`src/app/api/posts/search/route.ts` — searches blog posts via `getPosts(null, q)`.
 
-**File**: `src/app/api/posts/search/route.ts`
+| Parameter | Required | Notes                                     |
+| --------- | -------- | ----------------------------------------- |
+| `q`       | no       | Search string. Empty string returns `[]`. |
 
-Searches blog posts by their title, description, tags, or category.
-
-**Query Parameters:**
-
-- `q` — the search string (required)
-
-**Example Request:**
-
-```
-GET /api/posts/search?q=react
-```
-
-**Success Response:**
+Successful response (200):
 
 ```json
 {
   "success": true,
-  "data": [
-    {
-      "id": 1,
-      "title": "Getting Started with React",
-      "slug": "getting-started-with-react",
-      "date": "2024-01-15",
-      "category": "Engineering",
-      "tags": ["React", "JavaScript"],
-      "description": "...",
-      "author": "Ramin Rezaei",
-      "isActive": true
-    }
-  ],
-  "message": "Results found"
+  "data": [{ "id": 1, "title": "…", "...": "PostMetadata fields" }],
+  "message": "Search completed successfully"
 }
 ```
 
-**Error Response:**
+Failure response (500):
 
 ```json
-{
-  "success": false,
-  "data": [],
-  "message": "No query provided"
-}
+{ "success": false, "message": "An error occurred while searching for posts." }
 ```
 
----
+### `POST /api/recaptcha-verify`
 
-### reCAPTCHA Verify — `POST /api/recaptcha-verify`
+`src/app/api/recaptcha-verify/route.ts` — verifies a reCAPTCHA v3 token against Google.
 
-**File**: `src/app/api/recaptcha-verify/route.ts`
-
-Verifies a Google reCAPTCHA v3 token. Used by the contact form before sending an email.
-
-**Request Body:**
+Request body:
 
 ```json
-{ "token": "reCAPTCHA_token_string" }
+{ "token": "<recaptcha-token>" }
 ```
 
-**Success Response (score ≥ 0.5):**
+Status codes:
 
-```json
-{
-  "success": true,
-  "message": "Verification passed"
-}
-```
+| Status | Meaning                                                            |
+| ------ | ------------------------------------------------------------------ |
+| 200    | Success — token valid, score ≥ 0.5, action = `contact_form_submit` |
+| 400    | Token missing, Google rejection, low score, or wrong action        |
+| 500    | Unexpected failure (e.g. JSON parse error, network error)          |
+| 503    | `GOOGLE_RECAPTCHA_SECRET_KEY` not configured on the server         |
 
-**Failure Response:**
+### `GET | POST /api/react-sample`
 
-```json
-{
-  "success": false,
-  "message": "Verification failed",
-  "details": { "...": "Google's response object" }
-}
-```
-
----
-
-### React Sample API — `GET|POST /api/react-sample`
-
-**File**: `src/app/api/react-sample/route.ts`
-
-A demo API for learning and examples. Not used in production features.
-
-**GET Response:** Returns a fake list of users.
-
-**POST Request:**
-
-```json
-{ "username": "admin", "password": "admin" }
-```
-
-**POST Response (correct credentials):**
-
-```json
-{
-  "success": true,
-  "token": "fake-jwt-token",
-  "user": { "id": 1, "name": "Admin" }
-}
-```
-
-**POST Response (wrong credentials):**
-
-```json
-{
-  "success": false,
-  "message": "Invalid credentials"
-}
-```
+`src/app/api/react-sample/route.ts` — fake demo API used by a public sample repo for tutorials. Not used by this site. Accepts `admin/admin` on POST.
