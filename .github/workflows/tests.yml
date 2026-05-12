@@ -41,7 +41,9 @@ jobs:
       - name: Run tests with coverage
         env:
           CI: 'true'
-        run: pnpm test:coverage -- --ci
+        # No `--` separator: pnpm forwards remaining flags to the script. With `--`,
+        # `--ci` would be treated by jest as a test-name pattern (and match nothing).
+        run: pnpm exec jest --coverage --ci
 
       - name: Upload coverage report
         if: always()

@@ -168,7 +168,7 @@ The `/api/recaptcha-verify` route additionally checks the score (`< 0.5` is reje
   - `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`
   - `Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()`
 - `Access-Control-Allow-Origin: *` is allowed only on `/api/*` (public read APIs). It is never combined with `Access-Control-Allow-Credentials`.
-- **CodeQL** scans every push and PR (plus a weekly schedule). See `.github/workflows/codeql.yml`.
+- **CodeQL** is enabled via GitHub's Default Setup (repo Settings → Security → Code scanning). No custom workflow is committed — GitHub manages the schedule and query suite.
 - **Dependency Review Action** comments on dep-changing PRs.
 - See [`SECURITY.md`](../SECURITY.md) for the disclosure policy.
 

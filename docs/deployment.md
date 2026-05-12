@@ -62,18 +62,19 @@ There is no `deploy.yml` workflow in this repo — Vercel triggers builds via it
 
 All workflow files live under `.github/workflows/`. Run on every push and PR unless noted.
 
-| Workflow          | File               | Triggers                         | What it does                                                                                                 |
-| ----------------- | ------------------ | -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Build             | `build.yml`        | push + PR (master, dev)          | `pnpm check-format` then `next build`. Restores `.next/cache` between runs.                                  |
-| Tests             | `tests.yml`        | push + PR                        | `pnpm test:coverage --ci` (uploads coverage artifact, comments on PR) + Playwright E2E with cached browsers. |
-| ESLint            | `eslint.yml`       | push                             | ESLint with SARIF upload to GitHub Code Scanning; also re-runs with `--max-warnings=0` on PR.                |
-| TypeScript        | `tsc.yml`          | push                             | `tsc --noEmit`.                                                                                              |
-| CodeQL            | `codeql.yml`       | push + PR + cron (Sun 04:00 UTC) | Static security analysis for JavaScript/TypeScript (`security-and-quality` query suite).                     |
-| Dependency Review | `dependencies.yml` | PRs that touch lockfiles         | `actions/dependency-review-action`. Comments severity summary.                                               |
-| Lighthouse        | `lighthouse.yml`   | PR                               | Builds, starts the site, runs Lighthouse CI with budgets from `.lighthouserc.json`.                          |
-| Bundle size       | `bundle-size.yml`  | PR                               | `pnpm build:analyze`, uploads the analyzer HTML as a downloadable artifact.                                  |
+| Workflow          | File               | Triggers                 | What it does                                                                                              |
+| ----------------- | ------------------ | ------------------------ | --------------------------------------------------------------------------------------------------------- |
+| Build             | `build.yml`        | push + PR (master, dev)  | `pnpm check-format` then `next build`. Restores `.next/cache` between runs.                               |
+| Tests             | `tests.yml`        | push + PR                | `jest --coverage --ci` (uploads coverage artifact, comments on PR) + Playwright E2E with cached browsers. |
+| ESLint            | `eslint.yml`       | push                     | ESLint with SARIF upload to GitHub Code Scanning; also re-runs with `--max-warnings=0` on PR.             |
+| TypeScript        | `tsc.yml`          | push                     | `tsc --noEmit`.                                                                                           |
+| Dependency Review | `dependencies.yml` | PRs that touch lockfiles | `actions/dependency-review-action`. Comments severity summary.                                            |
+| Lighthouse        | `lighthouse.yml`   | PR                       | Builds, starts the site, runs Lighthouse CI with budgets from `.lighthouserc.json`.                       |
+| Bundle size       | `bundle-size.yml`  | PR                       | `pnpm build:analyze`, uploads the analyzer HTML as a downloadable artifact.                               |
 
 Concurrency groups are set on each workflow so a new push cancels in-flight runs for the same ref.
+
+CodeQL is **not** a committed workflow. It runs via GitHub's Default Setup (repo **Settings → Security → Code scanning**). That panel is the source of truth for its schedule and query suite.
 
 ---
 

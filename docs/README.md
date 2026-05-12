@@ -39,6 +39,6 @@ This is a **Next.js 16** App Router site built with **React 19** and **TypeScrip
 - A recommendations / testimonials page
 - Dark / light theme with `localStorage` persistence
 - 41 Jest test suites + Playwright E2E
-- CI on every PR (build · tests · eslint · tsc · codeql · lighthouse · bundle-size · dependency review) and automated Dependabot updates
+- CI on every PR (build · tests · eslint · tsc · lighthouse · bundle-size · dependency review), GitHub's Default CodeQL setup for security scanning, and automated Dependabot updates
 
 Source: <https://github.com/raminr77/raminr77.github.io>. Live: <https://raminrezaei.se>. License: [MIT for source code](../LICENSE); written content remains © Ramin Rezaei.

@@ -10,7 +10,6 @@ I build and maintain it on my own as a place to publish writing, share projects,
 [![Tests](https://github.com/raminr77/raminr77.github.io/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/tests.yml)
 [![ESLint](https://github.com/raminr77/raminr77.github.io/actions/workflows/eslint.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/eslint.yml)
 [![TypeScript](https://github.com/raminr77/raminr77.github.io/actions/workflows/tsc.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/tsc.yml)
-[![CodeQL](https://github.com/raminr77/raminr77.github.io/actions/workflows/codeql.yml/badge.svg?branch=master)](https://github.com/raminr77/raminr77.github.io/actions/workflows/codeql.yml)
 
 ## Stack
 
@@ -57,16 +56,15 @@ Detailed conventions and Claude Code workspace setup live in [`CLAUDE.md`](./CLA
 
 ## CI
 
-| Workflow       | Triggers           | Purpose                                                                 |
-| -------------- | ------------------ | ----------------------------------------------------------------------- |
-| `build`        | push + PR          | Format check, production build, Next.js cache restore                   |
-| `tests`        | push + PR          | Jest unit (+ coverage) + Playwright E2E                                 |
-| `eslint`       | push               | ESLint with SARIF upload                                                |
-| `tsc`          | push               | `tsc --noEmit`                                                          |
-| `codeql`       | push + PR + weekly | Security scan (`javascript-typescript` with security-and-quality)       |
-| `dependencies` | dep-related PRs    | `actions/dependency-review-action`                                      |
-| `lighthouse`   | PR                 | Lighthouse CI against the built site                                    |
-| `bundle-size`  | PR                 | Build with `@next/bundle-analyzer` and upload the report as an artifact |
+| Workflow       | Triggers        | Purpose                                                                 |
+| -------------- | --------------- | ----------------------------------------------------------------------- |
+| `build`        | push + PR       | Format check, production build, Next.js cache restore                   |
+| `tests`        | push + PR       | Jest unit (+ coverage) + Playwright E2E                                 |
+| `eslint`       | push            | ESLint with SARIF upload                                                |
+| `tsc`          | push            | `tsc --noEmit`                                                          |
+| `dependencies` | dep-related PRs | `actions/dependency-review-action`                                      |
+| `lighthouse`   | PR              | Lighthouse CI against the built site                                    |
+| `bundle-size`  | PR              | Build with `@next/bundle-analyzer` and upload the report as an artifact |
 
 Dependabot watches `npm` (weekly, grouped) and `github-actions` (monthly), targeting the `dev` branch.
 

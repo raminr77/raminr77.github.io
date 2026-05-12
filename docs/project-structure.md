@@ -222,10 +222,9 @@ Run with `pnpm test:e2e`. Browsers install via `pnpm test:e2e:install`.
     ├── tests.yml                   Jest (coverage) + Playwright (push + PR)
     ├── eslint.yml                  ESLint with SARIF upload to Code Scanning
     ├── tsc.yml                     tsc --noEmit
-    ├── codeql.yml                  CodeQL javascript-typescript scan (push + PR + weekly)
     ├── dependencies.yml            actions/dependency-review-action on dep PRs
     ├── lighthouse.yml              Lighthouse CI against the built site (PR)
     └── bundle-size.yml             Build with @next/bundle-analyzer + upload report (PR)
 ```
 
-See [deployment.md](./deployment.md) for what each workflow does.
+CodeQL runs through GitHub's Default Setup (configured under Settings → Security → Code scanning), not via a committed workflow. See [deployment.md](./deployment.md) for what each workflow does.
