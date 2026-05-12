@@ -1,8 +1,8 @@
 import matter from 'gray-matter';
 import fs from 'fs';
 
+import { getPosts, __resetPostsCacheForTests } from './get-posts';
 import type { PostMetadata } from '@/shared/types/post';
-import { getPosts } from './get-posts';
 
 jest.mock('fs', () => ({
   readdirSync: jest.fn(),
@@ -34,6 +34,7 @@ function asMatter(data: Partial<PostMetadata>) {
 describe('getPosts', () => {
   beforeEach(() => {
     jest.resetAllMocks();
+    __resetPostsCacheForTests();
 
     fsMock.readdirSync.mockReturnValue(['a.md', 'b.md', 'c.md', 'not-a-post.txt']);
 

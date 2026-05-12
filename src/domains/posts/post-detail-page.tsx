@@ -1,8 +1,8 @@
 import Markdown, { RuleType } from 'markdown-to-jsx';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
-import { clsx } from 'clsx';
 import React from 'react';
+import clsx from 'clsx';
 
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ClientCodeLoader, PageHeader } from '@/shared/components';
@@ -97,7 +97,7 @@ export async function PostDetailPage({ params }: Props) {
           options={{
             createElement: React.createElement,
             wrapper: null,
-            renderRule: (next, node, ـ, state) => {
+            renderRule: (next, node, _renderChildren, state) => {
               if (node.type === RuleType.table) {
                 return (
                   <div

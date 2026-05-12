@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { clsx } from 'clsx';
+import clsx from 'clsx';
 
 import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
