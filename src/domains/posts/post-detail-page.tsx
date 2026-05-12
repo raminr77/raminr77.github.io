@@ -1,8 +1,8 @@
 import Markdown, { RuleType } from 'markdown-to-jsx';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
+import { clsx } from 'clsx';
 import React from 'react';
-import clsx from 'clsx';
 
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { ClientCodeLoader, PageHeader } from '@/shared/components';

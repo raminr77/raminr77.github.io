@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import {
   animator,

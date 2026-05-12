@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { animator } from '@/shared/helpers';
 import { GENERAL_SITE_DATA } from '@/data';

@@ -74,8 +74,9 @@ export function ContactForm() {
       className={clsx('mt-5 flex flex-col gap-4', {
         'pointer-events-none': loading
       })}
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(event) => {
+        void handleSubmit(onSubmit)(event);
+      }}
     >
       <TextInput
         required

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import styles from './progress-bar.module.scss';
 
@@ -165,12 +165,15 @@ export function ProgressBar({
     return () => document.removeEventListener('click', onClickCapture, { capture: true });
   }, [startOnClick, startPosition, nearCompleteTarget, easeRate]);
 
+  // Set CSS custom properties once on mount (and only re-run if color/height change)
+  // — avoids touching the DOM on every navigation.
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.style.setProperty('--bar-color', color);
-      containerRef.current.style.setProperty('--bar-height', `${height}px`);
-    }
+    if (!containerRef.current) return;
+    containerRef.current.style.setProperty('--bar-color', color);
+    containerRef.current.style.setProperty('--bar-height', `${height}px`);
+  }, [color, height]);
 
+  useEffect(() => {
     if (!startedRef.current) start();
 
     clearTimers();
@@ -180,7 +183,7 @@ export function ProgressBar({
       cancelRAF();
       clearTimers();
     };
-  }, [pathname, color, height, completeEaseRate, finishDelay]);
+  }, [pathname, completeEaseRate, finishDelay]);
 
   return (
     <div
