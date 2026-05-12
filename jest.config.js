@@ -30,14 +30,14 @@ const customJestConfig = {
     '!src/shared/components/**/index.ts'
   ],
   coverageReporters: ['text', 'text-summary', 'json-summary', 'lcov', 'html'],
-  // Baseline thresholds set to the current numbers minus a small buffer. They act as a
-  // ratchet — coverage may grow but not regress. Bump them up when new tests are added.
+  // Baseline thresholds set just below the current numbers. They act as a ratchet —
+  // coverage may grow but not regress. Bump them up after a real coverage push.
   coverageThreshold: {
     global: {
-      statements: 27,
-      functions: 20,
-      branches: 30,
-      lines: 27
+      statements: 40,
+      functions: 32,
+      branches: 38,
+      lines: 42
     }
   }
 };
