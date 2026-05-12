@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "private": true,
   "scripts": {
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
@@ -29,7 +29,7 @@
     "@gsap/react": "^2.1.2",
     "@next/bundle-analyzer": "^16.2.6",
     "@next/third-parties": "^16.2.6",
-    "@sentry/nextjs": "^10.52.0",
+    "@sentry/nextjs": "^10.53.1",
     "@tailwindcss/postcss": "^4.3.0",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
@@ -107,5 +107,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@11.1.0"
+  "packageManager": "pnpm@11.1.1"
 }
