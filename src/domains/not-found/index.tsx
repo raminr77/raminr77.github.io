@@ -6,8 +6,8 @@ import { GENERAL_SITE_DATA } from '@/data';
 
 const DecryptedText = dynamic(
   () =>
-    import('@/shared/components/decrypted-text').then((m) => ({
-      default: m.DecryptedText
+    import('@/shared/components/decrypted-text').then((module) => ({
+      default: module.DecryptedText
     })),
   { ssr: true }
 );

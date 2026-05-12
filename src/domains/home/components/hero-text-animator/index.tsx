@@ -12,8 +12,8 @@ import styles from './hero-text-animator.module.scss';
 
 const DecryptedText = dynamic(
   () =>
-    import('@/shared/components/decrypted-text').then((m) => ({
-      default: m.DecryptedText
+    import('@/shared/components/decrypted-text').then((module) => ({
+      default: module.DecryptedText
     })),
   { ssr: false }
 );

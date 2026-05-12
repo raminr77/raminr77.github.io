@@ -4,7 +4,7 @@ import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { GENERAL_SITE_DATA } from '@/data';
 import Link from 'next/link';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 interface EmptyPostBlockProps {
   hasFilter: boolean;

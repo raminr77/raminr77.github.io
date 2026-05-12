@@ -12,20 +12,17 @@ export type Posts = {
   data: PostMetadata[];
 };
 
-// ONLY FOR SERVER SIDE
-// Parsed post data is static — cache it for the lifetime of the process
+// Server-only. Posts are static — parse markdown once per Node process and reuse.
 let allPostsCache: PostMetadata[] | null = null;
 
 function getAllPosts(): PostMetadata[] {
   if (allPostsCache) return allPostsCache;
 
-  const files = fs.readdirSync(POST_FOLDER_PATH);
-  const posts = files.filter((file) => file.endsWith('.md'));
+  const files = fs.readdirSync(POST_FOLDER_PATH).filter((file) => file.endsWith('.md'));
 
-  allPostsCache = posts.map((file) => {
+  allPostsCache = files.map((file) => {
     const fileContent = fs.readFileSync(`${POST_FOLDER_PATH}/${file}`, 'utf-8');
-    const matterData = matter(fileContent);
-    const data = matterData.data as PostMetadata;
+    const data = matter(fileContent).data as PostMetadata;
 
     return {
       id: data.id,
@@ -47,22 +44,26 @@ export function getPosts(
   filters: PostFilters | null = null,
   searchValue: string | null = null
 ): Posts {
-  const allParsed = getAllPosts();
-  const activePosts = allParsed.filter((postItem) => postItem.isActive);
+  const activePosts = getAllPosts().filter((postItem) => postItem.isActive);
 
-  // Categories from all active posts so the filter dropdown stays complete even when a filter is active
-  const categories: Record<string, true> = {};
+  // All active categories — keep dropdown complete even when filtering.
+  const categorySet = new Set<string>();
   for (const post of activePosts) {
-    if (post.category) categories[post.category] = true;
+    if (post.category) categorySet.add(post.category);
   }
 
-  const postsMetadata = activePosts
+  const data = activePosts
     .filter((postItem) => filterPostsByKey(postItem, filters))
     .filter((postItem) => searchPosts(postItem, searchValue))
     .sort(postSorter);
 
   return {
-    categories: Object.keys(categories),
-    data: postsMetadata
+    categories: Array.from(categorySet),
+    data
   };
+}
+
+// Test-only: reset the in-memory cache so each test gets a fresh parse.
+export function __resetPostsCacheForTests(): void {
+  allPostsCache = null;
 }

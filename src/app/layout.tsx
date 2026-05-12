@@ -1,6 +1,6 @@
 import { ToastContainer } from 'react-toastify';
-import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import Image from 'next/image';
 
@@ -13,16 +13,22 @@ import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
 import { textFont, titleFont } from '@/app/fonts';
 import { ENV } from '@/shared/constants';
 
-// Lazy load components for better performance
-const CustomCursor = React.lazy(() =>
+// next/dynamic with `ssr: false` is forbidden in Server Components.
+// Components below are 'use client'; they are split-bundled but still render on the server
+// (for SEO and FCP). Browser-only effects are gated inside their own useEffect blocks.
+const CustomCursor = dynamic(() =>
   import('@/shared/components/custom-cursor').then((module) => ({
     default: module.CustomCursor
   }))
 );
-const Header = React.lazy(() =>
-  import('@/layout/components/header').then((module) => ({ default: module.Header }))
+
+const Header = dynamic(
+  () =>
+    import('@/layout/components/header').then((module) => ({ default: module.Header })),
+  { loading: () => <div className="h-16 w-full" /> }
 );
-const CookiesModal = React.lazy(() =>
+
+const CookiesModal = dynamic(() =>
   import('@/layout/components/cookies-modal').then((module) => ({
     default: module.CookiesModal
   }))
@@ -97,15 +103,19 @@ export default function RootLayout({
     <html lang="en" className={`${textFont.variable} ${titleFont.variable} dark`}>
       <head>
         <link rel="preload" as="image" href="/images/background.webp" type="image/webp" />
-        <meta
-          name="thumbnail"
-          content={`${PERSONAL_DATA.url}/images/icons/icon-512x512.png`}
+        <link
+          rel="alternate"
+          href="/feed.xml"
+          type="application/rss+xml"
+          title={`${PERSONAL_DATA.fullName} — Blog`}
         />
         {!!ENV.GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />
         )}
         {!!ENV.GOOGLE_TAG_MANAGER_CODE && (
-          <script
+          <Script
+            id="gtm-consent-default"
+            strategy="beforeInteractive"
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','functionality_storage':'denied','personalization_storage':'denied','security_storage':'granted'});`
             }}
@@ -119,7 +129,8 @@ export default function RootLayout({
               src={`https://www.googletagmanager.com/ns.html?id=${ENV.GOOGLE_TAG_MANAGER_CODE}`}
               height="0"
               width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
+              className="hidden"
+              aria-hidden="true"
             />
           </noscript>
         )}
@@ -148,19 +159,13 @@ export default function RootLayout({
           className="shine-animation-top fixed top-0 left-0 pointer-events-none"
         />
 
-        <Suspense fallback={<div className="cursor-default" />}>
-          <CustomCursor />
-        </Suspense>
+        <CustomCursor />
 
-        <Suspense fallback={<div className="h-16 w-full" />}>
-          <Header />
-        </Suspense>
+        <Header />
 
         {children}
 
-        <Suspense fallback={null}>
-          <CookiesModal />
-        </Suspense>
+        <CookiesModal />
 
         <ToastContainer
           limit={4}
@@ -171,13 +176,11 @@ export default function RootLayout({
           toastClassName="!bg-gray-800 !text-white"
         />
 
-        {/* Optimized script loading */}
         <Script src="/click-spark.js" strategy="lazyOnload" />
         <ServiceWorkerRegistrar />
 
         <ThirdPartyScripts />
 
-        {/* JSON Data */}
         <Script
           id="structured-data"
           type="application/ld+json"

@@ -11,7 +11,9 @@ import { type AnimationNames, animator } from '@/shared/helpers';
 
 const PixelCanvas = dynamic(
   () =>
-    import('@/shared/components/pixel-canvas').then((m) => ({ default: m.PixelCanvas })),
+    import('@/shared/components/pixel-canvas').then((module) => ({
+      default: module.PixelCanvas
+    })),
   { ssr: false }
 );
 

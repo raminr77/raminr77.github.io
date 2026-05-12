@@ -39,9 +39,6 @@ export function DecryptedText({
   const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    let currentIteration = 0;
-
     const getNextIndex = (revealedSet: Set<number>): number => {
       const textLength = text.length;
       switch (revealDirection) {
@@ -98,55 +95,56 @@ export function DecryptedText({
             return nonSpaceChars[charIndex++];
           })
           .join('');
-      } else {
-        return originalText
-          .split('')
-          .map((char, i) => {
-            if (char === ' ') return ' ';
-            if (currentRevealed.has(i)) return originalText[i];
-            return availableChars[Math.floor(Math.random() * availableChars.length)];
-          })
-          .join('');
       }
+
+      return originalText
+        .split('')
+        .map((char, i) => {
+          if (char === ' ') return ' ';
+          if (currentRevealed.has(i)) return originalText[i];
+          return availableChars[Math.floor(Math.random() * availableChars.length)];
+        })
+        .join('');
     };
 
-    if (isHovering) {
-      setIsScrambling(true);
-      interval = setInterval(() => {
-        setRevealedIndices((prevRevealed) => {
-          if (sequential) {
-            if (prevRevealed.size < text.length) {
-              const nextIndex = getNextIndex(prevRevealed);
-              const newRevealed = new Set(prevRevealed);
-              newRevealed.add(nextIndex);
-              setDisplayText(shuffleText(text, newRevealed));
-              return newRevealed;
-            } else {
-              clearInterval(interval);
-              setIsScrambling(false);
-              return prevRevealed;
-            }
-          } else {
-            setDisplayText(shuffleText(text, prevRevealed));
-            currentIteration++;
-            if (currentIteration >= maxIterations) {
-              clearInterval(interval);
-              setIsScrambling(false);
-              setDisplayText(text);
-            }
-            return prevRevealed;
-          }
-        });
-      }, speed);
-    } else {
+    if (!isHovering) {
       setDisplayText(text);
       setRevealedIndices(new Set());
       setIsScrambling(false);
+      return;
     }
 
-    return () => {
-      if (interval) clearInterval(interval);
-    };
+    setIsScrambling(true);
+
+    // Track set/iteration locally so the interval callback stays a pure side-effect
+    // driver — no setState inside another state updater.
+    let revealed = new Set<number>();
+    let currentIteration = 0;
+
+    const interval = setInterval(() => {
+      if (sequential) {
+        if (revealed.size < text.length) {
+          const nextIndex = getNextIndex(revealed);
+          revealed = new Set(revealed);
+          revealed.add(nextIndex);
+          setRevealedIndices(revealed);
+          setDisplayText(shuffleText(text, revealed));
+        } else {
+          clearInterval(interval);
+          setIsScrambling(false);
+        }
+      } else {
+        setDisplayText(shuffleText(text, revealed));
+        currentIteration++;
+        if (currentIteration >= maxIterations) {
+          clearInterval(interval);
+          setIsScrambling(false);
+          setDisplayText(text);
+        }
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
   }, [
     isHovering,
     text,
@@ -161,30 +159,22 @@ export function DecryptedText({
   useEffect(() => {
     if (animateOn !== 'view') return;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setIsHovering(true);
-          setHasAnimated(true);
-        }
-      });
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setIsHovering(true);
+            setHasAnimated(true);
+          }
+        });
+      },
+      { root: null, rootMargin: '0px', threshold: 0.1 }
+    );
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
     const currentRef = containerRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+    if (currentRef) observer.observe(currentRef);
 
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
+    return () => observer.disconnect();
   }, [animateOn, hasAnimated]);
 
   const hoverProps =

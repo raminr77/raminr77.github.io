@@ -36,10 +36,12 @@ interface PerformanceWithMemory extends Performance {
   memory?: MemoryInfo;
 }
 
-// Performance observer for monitoring
+// Performance observer for monitoring. Singleton with idempotent setup —
+// re-mounts of the consumer component do not create duplicate observers.
 export class PerformanceMonitor {
   private static instance: PerformanceMonitor;
   private observers: PerformanceObserver[] = [];
+  private vitalsStarted = false;
 
   static getInstance(): PerformanceMonitor {
     if (!PerformanceMonitor.instance) {
@@ -48,85 +50,75 @@ export class PerformanceMonitor {
     return PerformanceMonitor.instance;
   }
 
-  // Monitor Core Web Vitals
   monitorWebVitals() {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || this.vitalsStarted) return;
+    this.vitalsStarted = true;
 
-    // LCP Observer
-    const lcpObserver = new PerformanceObserver((list) => {
+    this.observe('largest-contentful-paint', (list) => {
       const entries = list.getEntries();
       const lastEntry = entries[entries.length - 1];
-      this.reportMetric('LCP', lastEntry.startTime);
+      if (lastEntry) this.reportMetric('LCP', lastEntry.startTime);
     });
 
-    try {
-      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-      this.observers.push(lcpObserver);
-    } catch {
-      // LCP observer not supported
-    }
-
-    // FID Observer
-    const fidObserver = new PerformanceObserver((list) => {
-      const entries = list.getEntries() as FirstInputEntry[];
-      entries.forEach((entry) => {
+    this.observe('first-input', (list) => {
+      (list.getEntries() as FirstInputEntry[]).forEach((entry) => {
         this.reportMetric('FID', entry.processingStart - entry.startTime);
       });
     });
 
-    try {
-      fidObserver.observe({ entryTypes: ['first-input'] });
-      this.observers.push(fidObserver);
-    } catch {
-      // FID observer not supported
-    }
-
-    // CLS Observer
     let clsValue = 0;
-    const clsObserver = new PerformanceObserver((list) => {
-      const entries = list.getEntries() as LayoutShiftEntry[];
-      entries.forEach((entry) => {
+    this.observe('layout-shift', (list) => {
+      (list.getEntries() as LayoutShiftEntry[]).forEach((entry) => {
         if (!entry.hadRecentInput) {
           clsValue += entry.value;
           this.reportMetric('CLS', clsValue);
         }
       });
     });
+  }
 
+  private observe(type: string, callback: (list: PerformanceObserverEntryList) => void) {
     try {
-      clsObserver.observe({ entryTypes: ['layout-shift'] });
-      this.observers.push(clsObserver);
+      const observer = new PerformanceObserver(callback);
+      observer.observe({ entryTypes: [type] });
+      this.observers.push(observer);
     } catch {
-      // CLS observer not supported
+      // Observer type not supported in this browser — silently skip.
     }
   }
 
-  // Report metrics to analytics
   private reportMetric(name: string, value: number) {
+    if (typeof window === 'undefined') return;
     const w = window as WindowWithGtag;
-    if (typeof window !== 'undefined' && w.gtag) {
-      w.gtag('event', name, {
-        event_category: 'Web Vitals',
-        value: Math.round(value),
-        non_interaction: true
-      });
-    }
+    if (!w.gtag) return;
+    w.gtag('event', name, {
+      event_category: 'Web Vitals',
+      value: Math.round(value),
+      non_interaction: true
+    });
   }
 
-  // Clean up observers
   disconnect() {
     this.observers.forEach((observer) => observer.disconnect());
     this.observers = [];
+    this.vitalsStarted = false;
   }
 }
 
-// Memory optimization
-export const optimizeMemoryUsage = () => {
-  if (typeof window === 'undefined') return;
+// Idempotent — guard against duplicate listeners across re-inits.
+let memoryOptimized = false;
 
-  window.addEventListener('beforeunload', () => {
-    PerformanceMonitor.getInstance().disconnect();
-  });
+export const optimizeMemoryUsage = () => {
+  if (typeof window === 'undefined' || memoryOptimized) return;
+  memoryOptimized = true;
+
+  window.addEventListener(
+    'beforeunload',
+    () => {
+      PerformanceMonitor.getInstance().disconnect();
+    },
+    { once: true }
+  );
 
   if (ENV.NODE_ENV === 'development') {
     const intervalId = setInterval(() => {

@@ -7,11 +7,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const config: NextConfig = {
-  // reactCompiler: true,
-  // cacheComponents: true,
-
-  // trailingSlash: true,
   reactStrictMode: true,
+  reactCompiler: true,
 
   // Performance
   compress: true,
@@ -24,8 +21,9 @@ const config: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
+    // SVGs in this project are imported as React components via @svgr/webpack;
+    // no SVGs flow through next/image, so the SVG bypass is locked off.
+    dangerouslyAllowSVG: false
   },
 
   experimental: {
@@ -33,7 +31,11 @@ const config: NextConfig = {
       'require-in-the-middle',
       'import-in-the-middle',
       'date-fns',
-      'clsx'
+      'clsx',
+      'motion',
+      'react-toastify',
+      'react-hook-form',
+      '@next/third-parties'
     ]
   },
 
@@ -75,6 +77,22 @@ const config: NextConfig = {
   async headers() {
     return [
       {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+          }
+        ]
+      },
+      {
         source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },
@@ -87,6 +105,21 @@ const config: NextConfig = {
             value:
               'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
           }
+        ]
+      },
+      // The CV PDF is updated infrequently; let browsers and CDNs cache it for a year.
+      {
+        source: '/:file(.*\\.pdf)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }]
+      },
+      {
+        source: '/feed.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400'
+          },
+          { key: 'Content-Type', value: 'application/rss+xml; charset=utf-8' }
         ]
       }
     ];

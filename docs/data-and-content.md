@@ -1,234 +1,161 @@
 # Data and Content
 
-This document covers how content is managed — static data files, blog posts, and the TypeScript types that define them.
+How content is managed — static data files in `src/data/`, blog posts in `posts/`, and the TypeScript types that define them.
 
 ---
 
-## Static Data Files
+## Static data files
 
-All static data lives in `src/data/`. These are plain TypeScript files that export arrays and objects. There is no database or CMS.
-
----
+All static data is plain TypeScript exporting arrays or objects. No CMS, no database. Each domain that needs cross-page data imports from `src/data/`.
 
 ### `personal-data.ts`
 
-Contains the core personal information used across the site.
-
-```typescript
+```ts
 {
-  name: string          // Full name
-  title: string         // Job title
-  summary: string       // Short bio text
-  keywords: string[]    // SEO keywords
-  url: string           // Site URL
-  description: string   // Site meta description
+  firstName, lastName, fullName, title, url, pageDescription,
+  persianKeywords: string[], englishKeywords: string[], swedishKeywords: string[]
 }
 ```
 
-Used in: SEO metadata, the home page summary, and the root layout.
-
----
+Used by SEO metadata in `src/app/layout.tsx`, the post detail page's JSON-LD, the dynamic OG image, and the home page.
 
 ### `projects.ts`
 
-An array of projects shown on the `/projects` page.
-
-Each project has:
-
-```typescript
-{
-  name: string          // Project name
-  role: string          // Your role (e.g. "Lead Developer")
-  stack: string[]       // Technologies used
-  description: string   // Short project description
-  url?: string          // Live site URL (optional)
-  github?: string       // GitHub repo URL (optional)
-  isActive: boolean     // Whether to show the project
+```ts
+ProjectItem {
+  id, title, role, stack: string[], description, url: string | null,
+  github?, isActive
 }
 ```
-
----
 
 ### `journey.ts`
 
-An array of career events shown as a timeline on the `/journey` page.
-
-Each entry has:
-
-```typescript
-{
-  title: string; // Job title or degree
-  company: string; // Company or school name
-  startDate: string; // Start date (formatted string)
-  endDate: string; // End date or "Present"
-  description: string; // Summary of responsibilities or achievements
-  type: 'work' | 'education';
+```ts
+JourneyItem {
+  id, year, date, url?, title, location, items?: string[], description: string
 }
 ```
 
----
+The `description` and `items` strings are rendered with `dangerouslySetInnerHTML` because they contain pre-authored inline HTML (bold, em, links). They are compile-time data from a trusted source.
 
 ### `about-me.ts`
 
-Content for the `/about-me` page.
-
-```typescript
-{
-  bio: string           // Full biography text
-  images: string[]      // Paths to photos
-  sections: Section[]   // Named sections of the about page
-}
-```
-
----
+About-me copy including the hero image URL, paragraphs, and the named-component map used to interleave the recommendations preview and competition image into the text.
 
 ### `recommendations.ts`
 
-An array of testimonials shown on the `/recommendations` page and in the `RecommendationsBox` component.
-
-Each recommendation has:
-
-```typescript
-{
-  name: string          // Recommender's name
-  title: string         // Their job title
-  company: string       // Their company
-  text: string          // The recommendation text
-  avatar?: string       // Optional photo
-  linkedIn?: string     // LinkedIn profile URL
+```ts
+RecommendationItem {
+  id, fullName, title, caption, date, text, url, imageURL?
 }
 ```
 
----
+`text` is HTML and is also rendered with `dangerouslySetInnerHTML`. Source is trusted (manually curated).
 
 ### `contact-me.ts`
 
-Data for the `/contact-me` page — social links and contact details.
-
-```typescript
-{
-  email: string
-  social: {
-    github: string
-    linkedin: string
-    twitter?: string
-  }
-}
-```
-
----
+Email, phone (if any), social links, calendar URLs, and the contact-page texts.
 
 ### `lens.ts`
 
-An array of photos shown in the gallery on the `/lens` page.
-
-Each image has:
-
-```typescript
-{
-  src: string; // Path to the image in /public
-  alt: string; // Alt text for accessibility
-  width: number; // Image width
-  height: number; // Image height
+```ts
+LensItem {
+  id, title, description, alt, cover, src, isVideo,
+  createdAt, slides?: LensSlideItem[]
 }
 ```
 
----
+Slides have the same shape as the main item.
+
+### `general.ts`
+
+`GENERAL_SITE_DATA` — UI strings that appear in shared components (form validation messages, modal copy, pagination labels, empty states). Centralised so wording stays consistent.
 
 ### `resume-file.ts`
 
-Contains the URL to the resume PDF file.
-
-```typescript
-{
-  url: string; // Direct download URL for the resume
-  filename: string; // The filename to save as when downloading
-}
+```ts
+RESUME_FILE = { url: '/Software-Engineer-Ramin-Rezaei-CV.pdf', filename: '…' };
 ```
+
+The PDF lives in `public/` and is cached for a year via `next.config.ts` headers.
 
 ---
 
-## Blog Posts
+## Blog posts
 
-Blog posts are written in **Markdown** and stored in the `posts/` folder at the root of the project.
-
-### File Format
-
-Each post is a `.md` file named `post-N.md` where `N` is the post's numeric ID.
+Markdown files in `posts/`. One file per post, named **with a zero-padded id**:
 
 ```text
-posts/
-├── post-1.md
-├── post-2.md
-├── post-3.md
-└── ...
+posts/post-01.md
+posts/post-02.md
+…
+posts/post-10.md
 ```
 
-### Front Matter
+Ids up to and including 9 must be padded (`post-05.md`, not `post-5.md`). `getPostContent` does the padding when looking up by id.
 
-Every post starts with a YAML block called "front matter" wrapped in `---`. This is the post's metadata.
+### Frontmatter
+
+Every post starts with YAML frontmatter:
 
 ```yaml
 ---
 id: 5
-author: Ramin Rezaei
-isActive: true
-category: Engineering
-date: '2024-03-10'
 slug: understanding-typescript-generics
 title: Understanding TypeScript Generics
-description: A clear explanation of TypeScript generics with practical examples.
+description: A short summary used for cards, SEO meta description, and RSS.
+category: Engineering
 tags:
   - TypeScript
   - JavaScript
-  - Engineering
+date: '2024-03-10'
+isActive: true
+author: Ramin Rezaei
 ---
-Your post content in Markdown goes here...
 ```
 
-**Field Reference:**
+| Field         | Type     | Required | Notes                                                                  |
+| ------------- | -------- | -------- | ---------------------------------------------------------------------- |
+| `id`          | number   | yes      | Must match the file's `NN`. Used in the `/posts/:id` URL.              |
+| `slug`        | string   | yes      | Kebab-case, ASCII. Shown alongside the URL; not used for routing.      |
+| `title`       | string   | yes      | Headline; also the post detail metadata `<title>`.                     |
+| `description` | string   | yes      | 50–160 chars is the sweet spot for Google SERP truncation.             |
+| `category`    | string   | yes      | One of the existing categories (or warn before introducing a new one). |
+| `tags`        | string[] | yes      | Lowercase kebab-case where possible.                                   |
+| `date`        | string   | yes      | ISO `YYYY-MM-DD`. Used for sort order and `pubDate` in RSS.            |
+| `isActive`    | boolean  | yes      | Set `false` to keep a draft in the repo without publishing it.         |
+| `author`      | string   | yes      | Defaults to `PERSONAL_DATA.firstName` if omitted.                      |
 
-| Field         | Type       | Required | Description                                             |
-| ------------- | ---------- | -------- | ------------------------------------------------------- |
-| `id`          | `number`   | Yes      | Unique ID. Used in the `/posts/:id` URL.                |
-| `author`      | `string`   | Yes      | Author's full name                                      |
-| `isActive`    | `boolean`  | Yes      | Set to `false` to hide the post without deleting it     |
-| `category`    | `string`   | Yes      | Main topic category (e.g. Engineering, Career)          |
-| `date`        | `string`   | Yes      | Publish date in `"YYYY-MM-DD"` format                   |
-| `slug`        | `string`   | Yes      | URL-friendly identifier (used for display, not routing) |
-| `title`       | `string`   | Yes      | Post title                                              |
-| `description` | `string`   | Yes      | Short description for cards and SEO                     |
-| `tags`        | `string[]` | Yes      | List of topic tags                                      |
+### Body
 
-### Post Content
+Standard Markdown, rendered by `markdown-to-jsx`. Supported:
 
-After the front matter, write the post in standard Markdown. The `markdown-to-jsx` library renders it as React components, so it supports:
+- Headings, lists, links, images, blockquotes, tables (wrapped in a horizontal-scroll container by the renderer).
+- Fenced code blocks with a language tag. `<pre>` blocks are replaced by `<CodeBlock>` which clips long blocks at 480 px and adds an Expand / Collapse toggle.
+- Light HTML (`<details>`, `<sub>`, `<sup>`) — anything beyond that is escaped by the renderer.
 
-- Headings (`#`, `##`, `###`)
-- Bold, italic, strikethrough
-- Ordered and unordered lists
-- Links
-- Images
-- Code blocks with syntax highlighting (via `ClientCodeLoader`)
-- Blockquotes
-- Tables
+Images use absolute paths starting with `/images/` and live in `public/images/`.
 
-### Adding a New Post
+### Adding a post
 
-1. Create a new file: `posts/post-N.md` (use the next available number).
-2. Add the front matter with a unique `id`.
-3. Write your content below the front matter.
-4. Set `isActive: true` when you are ready to publish.
+1. Pick the next id. `ls posts/ | tail` shows the most recent one.
+2. Create `posts/post-NN.md` (zero-padded if `id ≤ 9`).
+3. Fill in the frontmatter.
+4. Write the body.
+5. Set `isActive: true` when the post is ready to publish.
 
-No restart or rebuild is needed in development — posts are read fresh from disk on each request.
+There is **no build step** for posts. They are read fresh on every server start. After publishing:
 
----
+- The post appears immediately in `/posts`.
+- `/sitemap.xml` picks it up automatically.
+- `/feed.xml` includes it on the next request.
+- `/posts/<id>/opengraph-image` renders a fresh preview.
 
-## Post Types
+### Post types
 
-Defined in `src/shared/types/post.d.ts`.
+`src/shared/types/post.d.ts`:
 
-```typescript
+```ts
 type PostFilterKeys = 'tag' | 'category';
 type PostFilters = Partial<Record<PostFilterKeys, string>>;
 
@@ -244,12 +171,10 @@ type PostMetadata = {
   description: string;
 };
 
-type Post = PostMetadata & {
-  content: string; // The full markdown content
-};
+type Post = PostMetadata & { content: string };
 ```
 
-`PostMetadata` is used in lists (where you do not need the full content). `Post` is used when displaying a single post.
+`PostMetadata` is used in list views and `Posts.data`. `Post` is used by the detail page when full body content is needed.
 
 ---
 
@@ -257,11 +182,9 @@ type Post = PostMetadata & {
 
 Located in `src/shared/constants/`.
 
----
-
 ### Routes (`routes.ts`)
 
-```typescript
+```ts
 ROUTES = {
   HOME: '/',
   LENS: '/lens/',
@@ -272,101 +195,60 @@ ROUTES = {
   CONTACT_ME: '/contact-me/',
   RECOMMENDATIONS: '/recommendations/'
 };
+
+MENU_ITEM_ROUTES = [{ id, title, url }, …];
 ```
 
-Use these constants instead of hardcoding URL strings. This makes renaming a route easier.
+Always reference `ROUTES.<KEY>` in `<Link>` / `redirect()`; the constant is the single source of truth.
 
----
+### Environment (`env.ts`)
 
-### Environment Variables (`env.ts`)
+A typed wrapper over `process.env`. See [environment-variables.md](./environment-variables.md). Always import `ENV` from this file rather than calling `process.env.*` directly.
 
-Typed wrappers around `process.env`. See [environment-variables.md](./environment-variables.md) for the full list.
+### Local storage keys (`local-storage.ts`)
 
----
-
-### GTM Events (`gtm-events.ts`)
-
-Named Google Tag Manager events used for analytics tracking. All events are sent via `sendGTMEvent` from `@next/third-parties/google`, which pushes to `window.dataLayer`.
-
-```typescript
-GTM_EVENTS = {
-  // Navigation
-  MENU: (value: string) => ({ event: 'menu-clicked', value }),
-  PAGINATION: (value: string) => ({ event: 'pagination-clicked', value }),
-
-  // Posts
-  POST_CARD: (value: string) => ({ event: 'post-card-clicked', value }),
-  FILTER_POSTS: (value: string) => ({ event: 'filter-posts-clicked', value }),
-  CLEAR_FILTERS: { event: 'clear-filters-clicked', value: '' },
-  SUBMIT_POST_SEARCH: (value: string) => ({ event: 'submit-post-search', value }),
-  CLOSE_SEARCH_MODAL: { event: 'close-search-modal-clicked', value: '' },
-
-  // Lens / Gallery
-  LENS_CARD: (value: string) => ({ event: 'lens-card-clicked', value }),
-  LENS_NAVIGATION: (value: 'previous' | 'next') => ({
-    event: 'lens-navigation-clicked',
-    value
-  }),
-  LENS_THUMBNAIL: (value: number) => ({
-    event: 'lens-thumbnail-clicked',
-    value: String(value)
-  }),
-  LENS_MODAL_CLOSE: { event: 'lens-modal-closed', value: '' },
-
-  // Projects
-  PROJECT_DEMO: (value: string) => ({ event: 'project-demo-link-clicked', value }),
-  PROJECTS_FOOTER: { event: 'projects-footer-link-clicked', value: '' },
-
-  // Recommendations
-  RECOMMENDATIONS_FOOTER: { event: 'recommendations-footer-link-clicked', value: '' },
-  LINKEDIN_RECOMMENDATION: (value: string) => ({
-    event: 'linkedIn-recommendation-clicked',
-    value
-  }),
-  CHECK_RECOMMENDATION: (value: string) => ({
-    event: 'check-recommendation-clicked',
-    value
-  }),
-
-  // Contact
-  CONTACT_LINK: (value: string) => ({ event: 'contact-link-clicked', value }),
-  GOOGLE_CALENDAR: { event: 'google-calendar-clicked', value: 'Google' },
-  ADP_CALENDAR: { event: 'google-calendar-clicked', value: 'ADP' },
-  SEND_MESSAGE: (value: 'success' | 'error') => ({
-    event: 'send-message-clicked',
-    value
-  }),
-
-  // About / Resume
-  MORE_ABOUT_ME: { event: 'more-about-me-clicked', value: '' },
-  DOWNLOAD_RESUME: { event: 'download-resume-clicked', value: '' },
-  CHECK_EXPERIENCE: (value: string) => ({ event: 'check-experience-clicked', value }),
-
-  // Theme
-  TOGGLE_THEME: (value: Theme) => ({ event: 'toggle-theme-clicked', value })
-};
+```ts
+LOCAL_STORAGE_KEYS = { COOKIES_MODAL, THEME };
 ```
 
-**Cookie consent gating:** GA and GTM scripts only load after the user accepts cookies via the `CookiesModal`. If the user rejects, no events reach GA or GTM — only Vercel Speed Insights (which is privacy-friendly) loads unconditionally.
+### Cookies modal status (`cookies-modal.ts`)
 
----
-
-### Local Storage Keys
-
-Keys used to read and write from `localStorage`.
-
-```typescript
-LOCAL_STORAGE_KEYS = {
-  COOKIES_MODAL: 'cookies_modal_status',
-  THEME: 'theme'
-};
+```ts
+COOKIES_MODAL_STATUS = { NONE: 'none', ACCEPT: 'accept', REJECT: 'reject' };
+type CookiesModalStatus = 'none' | 'accept' | 'reject';
 ```
 
+### GTM events (`gtm-events.ts`)
+
+Named GTM event objects. All events go through `sendGTMEvent` from `@next/third-parties/google` (or the `useTrack` / `TrackedLink` / `TrackedAnchor` wrappers).
+
+**Cookie gating:** GA and GTM scripts only load after the user accepts via `<CookiesModal>`. Events queued before that go to `window.dataLayer` but aren't forwarded until the scripts load.
+
+### Feature flags (`feature-flags.ts`)
+
+A small `FEATURE_FLAGS` object for guarding work-in-progress UI from production.
+
+### Regexes (`regexs.ts`)
+
+Shared validation regexes (e.g. `EMAIL_VALIDATION_REGEX`).
+
+### Custom events (`src/layout/constants/custom-events.ts`)
+
+DOM `CustomEvent` names dispatched between layout components without a route change:
+
+```ts
+COOKIES_STATUS_CHANGE = 'cookies-status-change';
+```
+
+`<CookiesModal>` dispatches it; `<ThirdPartyScripts>` listens.
+
 ---
 
-### API Endpoints (`src/shared/api/constants/`)
+## API endpoints
 
-```typescript
+`src/shared/api/constants/endpoints.ts`
+
+```ts
 ENDPOINTS = {
   verifyReCaptcha: '/api/recaptcha-verify',
   sendMessage: 'https://email-api.ramiin.se',

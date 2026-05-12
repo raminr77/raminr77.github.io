@@ -1,7 +1,11 @@
 import { readingTime } from '@/shared/helpers/posts/utils';
 import { Icons } from '@/shared/components';
 
-export function PostReadTime({ words }: { words: string }) {
+interface PostReadTimeProps {
+  words: string;
+}
+
+export function PostReadTime({ words }: PostReadTimeProps) {
   return (
     <div className="flex gap-1 items-center">
       <Icons name="time" />

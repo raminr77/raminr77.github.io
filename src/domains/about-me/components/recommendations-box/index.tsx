@@ -46,8 +46,9 @@ export function RecommendationsBox() {
 
       <Link
         href={ROUTES.RECOMMENDATIONS}
+        style={{ textDecoration: 'none' }}
         onClick={() => sendGTMEvent(GTM_EVENTS.CHECK_RECOMMENDATION('See All Action'))}
-        className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 my-5"
+        className="border-b border-orange-500 px-5 pb-1 duration-200 hover:px-8 my-5 no-underline"
       >
         See all recommendations
       </Link>

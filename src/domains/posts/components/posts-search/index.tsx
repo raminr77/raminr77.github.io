@@ -2,7 +2,7 @@
 import { Activity, useCallback, useEffect, useState, type ChangeEvent } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { useDebounce } from '@/shared/hooks/use-debounce';
 import { sendGTMEvent } from '@next/third-parties/google';

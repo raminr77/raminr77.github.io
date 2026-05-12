@@ -1,5 +1,6 @@
 export { Button } from './button';
 export { ClientCodeLoader } from './client-code-loader';
+export { CodeBlock } from './code-block';
 export { CustomCursor } from './custom-cursor';
 export { DecryptedText } from './decrypted-text';
 export { Icons } from './icons';
@@ -16,3 +17,5 @@ export { TextInput } from './text-input';
 export { ToggleThemeButton } from './toggle-theme-button';
 export type { Theme } from './toggle-theme-button';
 export { Tooltip } from './tooltip';
+export { TrackedLink } from './tracked-link';
+export { TrackedAnchor } from './tracked-link/tracked-anchor';

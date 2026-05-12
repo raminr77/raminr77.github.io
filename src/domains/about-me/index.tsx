@@ -24,14 +24,16 @@ import styles from './about-me.module.scss';
 
 const PixelCanvas = dynamic(
   () =>
-    import('@/shared/components/pixel-canvas').then((m) => ({ default: m.PixelCanvas })),
+    import('@/shared/components/pixel-canvas').then((module) => ({
+      default: module.PixelCanvas
+    })),
   { ssr: false }
 );
 
 const DecryptedText = dynamic(
   () =>
-    import('@/shared/components/decrypted-text').then((m) => ({
-      default: m.DecryptedText
+    import('@/shared/components/decrypted-text').then((module) => ({
+      default: module.DecryptedText
     })),
   { ssr: false }
 );

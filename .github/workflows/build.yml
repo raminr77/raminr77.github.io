@@ -48,11 +48,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Prisma generate (if schema exists)
-        run: |
-          if [ -f "prisma/schema.prisma" ]; then
-            pnpm exec prisma generate
-          fi
+      - name: Check formatting
+        run: pnpm run check-format
 
       - name: Build
         run: pnpm exec next build

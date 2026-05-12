@@ -1,7 +1,40 @@
 .recommendation-card {
-  &:hover & {
-    &__profile-image {
+  // Subtle amber accent on the left edge so adjacent cards never blend together.
+  // Intentionally static — no hover transition on the bar itself.
+  &::before {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    content: '';
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255, 143, 0, 0.6), rgba(255, 143, 0, 0.1));
+  }
+
+  &:hover {
+    .recommendation-card__profile-image {
       filter: grayscale(0);
     }
+  }
+}
+
+.recommendation-card__quote {
+  position: relative;
+  padding-left: 1.5rem;
+  font-style: italic;
+  opacity: 0.9;
+
+  // Large opening quote glyph, decorative only.
+  &::before {
+    top: -0.4rem;
+    left: -0.25rem;
+    content: '\201C'; // “
+    position: absolute;
+    line-height: 1;
+    font-size: 2.5rem;
+    font-style: normal;
+    opacity: 0.35;
+    color: var(--primary, #ff8f00);
+    pointer-events: none;
   }
 }

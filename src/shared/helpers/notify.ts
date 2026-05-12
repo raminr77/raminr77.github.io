@@ -1,9 +1,9 @@
 import { Slide, toast, type ToastOptions } from 'react-toastify';
 
-type NotifyProps = {
+interface NotifyProps {
   message: string;
   options?: ToastOptions<unknown>;
-};
+}
 
 const DEFAULT_OPTIONS: ToastOptions = {
   autoClose: 3000,

@@ -17,7 +17,29 @@ const customJestConfig = {
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
     '<rootDir>/e2e/'
-  ]
+  ],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/*.test.{ts,tsx}',
+    '!src/**/__tests__/**',
+    '!src/**/index.ts',
+    '!src/app/**/{layout,page,not-found,error,global-error,manifest,sitemap,robots,opengraph-image,instrumentation-client,fonts}.{ts,tsx}',
+    '!src/app/**/route.ts',
+    '!src/data/**',
+    '!src/shared/components/**/index.ts'
+  ],
+  coverageReporters: ['text', 'text-summary', 'json-summary', 'lcov', 'html'],
+  // Baseline thresholds set just below the current numbers. They act as a ratchet —
+  // coverage may grow but not regress. Bump them up after a real coverage push.
+  coverageThreshold: {
+    global: {
+      statements: 40,
+      functions: 32,
+      branches: 38,
+      lines: 42
+    }
+  }
 };
 
 module.exports = createJestConfig(customJestConfig);

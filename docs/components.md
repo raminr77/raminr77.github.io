@@ -1,385 +1,260 @@
 # Components
 
-This document describes every component in the project — where it lives, what it does, and its props.
+Every component in the project — where it lives and what it does.
 
-Components are split into three groups:
+Three groups:
 
-- **Shared components** — used across multiple pages
-- **Domain components** — belong to a specific feature/page
-- **Layout components** — appear on every page
+- **Shared** — `src/shared/components/`, reusable across features.
+- **Domain** — `src/domains/<feature>/components/`, scoped to one feature.
+- **Layout** — `src/layout/components/`, present on every page.
+
+All folder names are kebab-case. The export is always `export function ComponentName(...) {}`. Props are declared as a named `interface ComponentNameProps` above the component.
 
 ---
 
-## Shared Components
+## Shared components
 
 Located in `src/shared/components/`.
 
----
-
 ### Button
 
-**Path**: `src/shared/components/Button/`
+`src/shared/components/button/`
 
-A reusable button. Supports loading state, disabled state, and custom styles.
+A semantic `<button>` with loading and disabled states. When `loading` is true, it shows the `Spinner` and disables itself automatically.
 
-**Props:**
-
-| Prop        | Type                   | Required | Description               |
-| ----------- | ---------------------- | -------- | ------------------------- |
-| `label`     | `string`               | Yes      | Button text               |
-| `type`      | `'submit' \| 'button'` | Yes      | HTML button type          |
-| `testId`    | `string`               | No       | Data attribute for tests  |
-| `loading`   | `boolean`              | No       | Shows a spinner when true |
-| `className` | `string`               | No       | Extra CSS classes         |
-| `disabled`  | `boolean`              | No       | Disables the button       |
-| `onClick`   | `MouseEventHandler`    | No       | Click handler             |
-
-When `loading` is true, the button shows a `Spinner` component and is automatically disabled.
-
----
+| Prop        | Type                   | Required | Default | Notes               |
+| ----------- | ---------------------- | -------- | ------- | ------------------- |
+| `label`     | `string`               | yes      | —       | Visible text        |
+| `type`      | `'submit' \| 'button'` | yes      | —       | HTML type attribute |
+| `loading`   | `boolean`              | no       | `false` | Shows the spinner   |
+| `disabled`  | `boolean`              | no       | `false` |                     |
+| `className` | `string`               | no       | —       | Extra classes       |
+| `testId`    | `string`               | no       | —       | `data-testid`       |
+| `onClick`   | `MouseEventHandler`    | no       | —       |                     |
 
 ### TextInput
 
-**Path**: `src/shared/components/TextInput/`
+`src/shared/components/text-input/`
 
-A flexible input field. Can render as a text input, email input, password input, or textarea.
-
-**Props:**
-
-| Prop          | Type                                            | Default  | Description                         |
-| ------------- | ----------------------------------------------- | -------- | ----------------------------------- |
-| `type`        | `'text' \| 'password' \| 'email' \| 'textarea'` | `'text'` | Input type                          |
-| `label`       | `string`                                        | -        | Label text shown above the input    |
-| `value`       | `string`                                        | -        | Current value                       |
-| `error`       | `string \| null`                                | -        | Error message shown below the input |
-| `required`    | `boolean`                                       | -        | Marks the field as required         |
-| `placeholder` | `string`                                        | -        | Placeholder text                    |
-
----
+A single input that renders as `text`, `email`, `password`, or `textarea`. Pairs with `react-hook-form` via `register`.
 
 ### Spinner
 
-**Path**: `src/shared/components/Spinner/`
+`src/shared/components/spinner/`
 
-An animated SVG loading spinner. Used inside the `Button` component when loading.
-
-No props — it is purely visual.
-
----
+Purely visual SVG loading indicator. No props.
 
 ### CustomCursor
 
-**Path**: `src/shared/components/CustomCursor/`
+`src/shared/components/custom-cursor/`
 
-Replaces the default browser cursor with a custom styled cursor. Follows mouse movement.
-
-No props.
-
----
+Replaces the browser cursor with a canvas trail on desktop (≥ 1100 px). Returns `null` on smaller viewports. Listens to `mousemove` + `resize`; cleans up on unmount.
 
 ### ToggleThemeButton
 
-**Path**: `src/shared/components/ToggleThemeButton/`
+`src/shared/components/toggle-theme-button/`
 
-A button that switches between dark and light theme. Shows a sun or moon icon depending on the current theme.
-
-No props.
-
----
+Switches between dark and light theme. Persists the choice to `localStorage`.
 
 ### PixelCanvas
 
-**Path**: `src/shared/components/PixelCanvas/`
+`src/shared/components/pixel-canvas/`
 
-A canvas-based animation that creates a grid of pixels with a 3D hover effect. Used as a decorative background element.
-
-**Props** (passed as data attributes on the web component):
-
-| Prop             | Type      | Description                        |
-| ---------------- | --------- | ---------------------------------- |
-| `data-gap`       | `number`  | Gap between pixels                 |
-| `data-speed`     | `number`  | Animation speed                    |
-| `data-colors`    | `string`  | Comma-separated list of hex colors |
-| `data-play-ones` | `boolean` | Play animation once then stop      |
-| `data-auto-play` | `boolean` | Start animation automatically      |
-
----
+Thin React wrapper around the `<pixel-canvas>` custom element defined in `src/shared/libs/pixel-canvas/`. Dynamic-imports the element registration on the client. Forwards configuration via `data-*` attributes.
 
 ### PixelCard
 
-**Path**: `src/shared/components/PixelCard/`
+`src/shared/components/pixel-card/`
 
-A card component with a pixel animation hover effect powered by `PixelCanvas`.
-
----
+A decorative card that wraps `PixelCanvas` and an animator. Used in a few hero areas.
 
 ### DecryptedText
 
-**Path**: `src/shared/components/DecryptedText/`
+`src/shared/components/decrypted-text/`
 
-Displays text that animates as if it is being "decrypted" — characters scramble and then reveal the real text.
+Text that animates as if being decrypted. Two modes:
 
----
+- `animateOn="view"` — runs once when the element scrolls into view (`IntersectionObserver`).
+- `animateOn="hover"` — runs on hover.
 
 ### ResumeDownloaderButton
 
-**Path**: `src/shared/components/ResumeDownloaderButton/`
+`src/shared/components/resume-downloader-button/`
 
-A button that triggers a download of Ramin's resume PDF. The URL comes from `src/data/resume-file.ts`.
-
----
+Downloads the CV PDF (`/Software-Engineer-Ramin-Rezaei-CV.pdf`) and tracks the click via GTM.
 
 ### PerformanceMonitor
 
-**Path**: `src/shared/components/PerformanceMonitor/`
+`src/shared/components/performance-monitor/`
 
-A non-visual component that sets up Core Web Vitals monitoring. Reports metrics to Google Analytics. Mounted once in the root layout.
-
----
+Non-visual. On mount, calls `initPerformanceMonitoring()` (LCP / FID / CLS observers) and disconnects on unmount. Only mounted from `<ThirdPartyScripts>` when `ENV.ANALYZE_MODE` is on.
 
 ### ClientCodeLoader
 
-**Path**: `src/shared/components/ClientCodeLoader/`
+`src/shared/components/client-code-loader/`
 
-Renders a code snippet with syntax highlighting. Used in blog posts that contain code blocks.
+Bootstraps `highlight.js` + `highlightjs-copy` on the client. Highlights every `<code>` on the page and attaches a copy button. Mounted once on the post detail page. **Does not** own the expand / collapse behaviour — that belongs to `CodeBlock`.
 
----
+### CodeBlock
+
+`src/shared/components/code-block/`
+
+A `'use client'` replacement for `<pre>` rendered by `markdown-to-jsx`. Wired in via `overrides: { pre: CodeBlock }` on the main markdown block. Measures the natural height of its `<pre>` (via `scrollHeight` in `useLayoutEffect`) and, when the height exceeds 480 px, clips the block and renders an absolute-positioned "Expand Code" / "Collapse Code" button at the bottom. Smooth-scrolls back to the top of the block on collapse. Respects `prefers-reduced-motion`.
+
+| Prop        | Type        | Notes                                            |
+| ----------- | ----------- | ------------------------------------------------ |
+| `className` | `string`    | Forwarded from `markdown-to-jsx` (language hint) |
+| `children`  | `ReactNode` | The rendered `<code>` element                    |
+
+### TrackedLink
+
+`src/shared/components/tracked-link/`
+
+A `next/link` wrapper that fires a GTM event on click. Use for **internal** navigation when you want a Server Component to stay server-rendered (parent stays server, only the click handler is client).
+
+```tsx
+<TrackedLink href={ROUTES.POSTS} trackingPayload={GTM_EVENTS.MENU('Posts')}>
+  Posts
+</TrackedLink>
+```
+
+### TrackedAnchor
+
+`src/shared/components/tracked-link/tracked-anchor.tsx`
+
+The plain-`<a>` sister of `TrackedLink`. Use for external URLs (`target="_blank"`, `rel="noopener noreferrer"`). Same `trackingPayload` shape.
+
+### Pagination
+
+`src/shared/components/pagination/`
+
+Page-link list with ellipsis logic for long page counts. Pure URL-driven; uses `next/link`.
+
+### PageHeader
+
+`src/shared/components/page-header/`
+
+Title + optional description block at the top of a page. Animated entrance.
 
 ### Tooltip
 
-**Path**: `src/shared/components/Tooltip/`
+`src/shared/components/tooltip/`
 
-A small floating tooltip that appears on hover. Wraps any element and shows a text label.
-
----
+Small floating tooltip on hover / focus.
 
 ### Icons
 
-**Path**: `src/shared/components/Icons/`
+`src/shared/components/icons/`
 
-A collection of SVG icon components. Each icon is its own component that accepts standard SVG props like `width`, `height`, and `className`.
-
----
-
-## Domain Components
-
-These components are specific to one feature and live inside `src/domains/`.
+SVG icon set, lazy-loaded per icon via `React.lazy`. Pick an icon by name (`name="share"`, `name="close"`, …) — see `ICONS` constant in `icons/index.tsx` for the full set.
 
 ---
 
-### Home Domain
+## Domain components
 
-**Path**: `src/domains/home/`
+### Home (`src/domains/home/`)
 
-#### HeroTextAnimator
+- **HeroTextAnimator** — animates the hero heading.
+- **Summary** — short bio block.
+- **MoreInformationButton** — CTA that links to the About Me page and tracks the click.
 
-Animates the main heading on the home page. Letters appear one by one with a reveal effect.
+### Posts (`src/domains/posts/`)
 
-#### Summary
+- **PostCard** — preview card (Server Component, uses `TrackedLink`). Description is truncated to 210 chars.
+- **PostsSearch** — debounced search input that calls `/api/posts/search`.
+- **PostsCategoryFilter** — category dropdown.
+- **EmptyPostBlock** — shown when filters return no posts.
+- **PostDate** — formatted date.
+- **PostTags** — tag chip list.
+- **PostCategory** — category chip.
+- **PostAuthor** — author byline.
+- **PostReadTime** — estimated reading time (300 wpm).
+- **PostShare** — copies the post URL to the clipboard (with a `document.execCommand('copy')` fallback for insecure contexts).
+- **BackToPostButton** — link back to `/posts/`.
 
-Displays the short bio text under the hero heading.
+### Projects (`src/domains/projects/`)
 
----
+- **ProjectCard** — project card with optional demo + GitHub links.
+- **ProjectCardDemoLink** — small client wrapper around the demo link so the rest of the card stays server-rendered.
+- **ProjectsFooter** — closing CTA.
 
-### Posts Domain
+### Journey (`src/domains/journey/`)
 
-**Path**: `src/domains/posts/`
+- **JourneyCard** — one entry (Server Component, uses `TrackedAnchor` + a directly-imported `PixelCanvas`).
+- **JourneyScroller** — handles scroll-into-view for deep links.
 
-#### PostCard
+### About Me (`src/domains/about-me/`)
 
-Shows a preview of one blog post in the posts list. Displays title, date, category, tags, and description.
+- **RecommendationsBox** — compact preview of testimonials, linking to `/recommendations/`.
 
-Fires `post-card-clicked` when the user clicks the post title or the "Read More" link (value contains the post title).
+### Contact Me (`src/domains/contact-me/`)
 
-#### PostsSearch
+- **ContactForm** — full contact form. `react-hook-form` for validation, reCAPTCHA v3 via `useGoogleReCaptcha`, `<Button loading>` for submission state, toast on success / error.
 
-A search input that filters posts as you type. Uses debouncing to avoid searching on every keystroke.
+### Lens (`src/domains/lens/`)
 
-#### PostsCategoryFilter
+- **LensCard** — one tile in the gallery grid. Opens the modal on click / Enter.
+- **LensGalleryModal** — full-screen modal with previous / next buttons. Keyboard handling lives in `useGalleryKeyboard` (`src/domains/lens/hooks/`): Escape closes, arrow keys navigate.
 
-A dropdown that filters posts by category.
+### Recommendations (`src/domains/recommendations/`)
 
-#### EmptyPostBlock
+- **RecommendationCard** — bordered card with an amber left-accent. Uses `TrackedAnchor` so the parent stays server-rendered.
+- **RecommendationsFooter** — closing CTA.
 
-Shown when a search or filter returns no results. Has a message and a "clear filters" link.
+### Error / Not Found (`src/domains/error/`, `src/domains/not-found/`)
 
-#### PostDate
-
-Renders a formatted date string. Example: `January 15, 2024`.
-
-#### PostTags
-
-Renders a list of tag badges. Each tag is a link that filters the posts list.
-
-#### PostCategory
-
-Renders the category badge for a post.
-
-#### PostAuthor
-
-Displays the author's name and optionally an avatar.
-
-#### PostReadTime
-
-Shows the estimated reading time for a post. Example: `5 min read`.
-
-#### PostShare
-
-Social sharing buttons. Lets the user share the post on Twitter, LinkedIn, etc.
-
-#### BackToPostsButton
-
-A back button that links to the `/posts` page.
+Stylized error UI shown by the route-level `error.tsx` and `not-found.tsx` boundaries.
 
 ---
 
-### Projects Domain
+## Layout components
 
-**Path**: `src/domains/projects/`
-
-#### ProjectCard
-
-One card per project. Shows: project name, description, your role, tech stack (as badges), and links to the live site or GitHub.
-
-Fires `project-demo-link-clicked` (value: project title) when the user clicks the Demo link.
-
----
-
-### Journey Domain
-
-**Path**: `src/domains/journey/`
-
-#### JourneyCard
-
-One card per timeline entry. Shows: company/school name, dates, title/role, and a description.
-
----
-
-### About Me Domain
-
-**Path**: `src/domains/about-me/`
-
-#### RecommendationsBox
-
-A compact section inside the About Me page that shows a few recommendations. Links to the full `/recommendations` page.
-
----
-
-### Contact Me Domain
-
-**Path**: `src/domains/contact-me/`
-
-#### ContactForm
-
-The full contact form. Includes:
-
-- Email input with validation
-- Subject input
-- Message textarea
-- Google reCAPTCHA v3 integration (invisible)
-- Submit button with loading state
-- Toast notification on success or error
-
-Uses `react-hook-form` for form state and validation.
-
----
-
-### Lens Domain
-
-**Path**: `src/domains/lens/`
-
-#### LensCard
-
-One card per photo in the gallery grid. Shows a thumbnail. Clicking it opens the modal.
-
-Fires `lens-card-clicked` (value: item title) when the user opens the gallery.
-
-#### LensGalleryModal
-
-A full-screen modal that shows the selected photo at full size. Supports keyboard navigation (arrow keys, Escape to close).
-
-Fires the following GTM events:
-
-- `lens-navigation-clicked` (value: `'previous'` or `'next'`) — arrow button or keyboard navigation
-- `lens-thumbnail-clicked` (value: slide number) — thumbnail click in the footer strip
-- `lens-modal-closed` — close button or Escape key or backdrop click
-
-#### LensEmptyBlock
-
-Shown when there are no images to display.
-
----
-
-## Layout Components
-
-Located in `src/layout/components/`. These appear on every page.
-
----
+Located in `src/layout/components/`. All present on every page.
 
 ### Header
 
-**Path**: `src/layout/components/Header/`
+`src/layout/components/header/`
 
-The top navigation bar. Contains:
-
-- Site logo/name
-- Navigation links to each page
-- Theme toggle button
-- Mobile burger menu button
-
----
+Top navigation bar with menu links and the theme toggle. Used on every page.
 
 ### BurgerMenu
 
-**Path**: `src/layout/components/BurgerMenu/`
+`src/layout/components/burger-menu/`
 
-The mobile hamburger menu. Hidden on desktop. Opens a slide-in navigation panel on small screens.
-
----
+Mobile hamburger menu. Hidden on desktop. Opens an animated panel; close-out runs `animator({ name: 'fadeOutUp' })` then unmounts.
 
 ### ContentContainer
 
-**Path**: `src/layout/components/ContentContainer/`
+`src/layout/components/content-container/`
 
-A wrapper that gives consistent padding and max-width to page content. Most pages wrap their content in this.
+Shared wrapper that gives pages consistent padding and entrance animation.
 
-**Props:**
-
-| Prop            | Type             | Description                          |
-| --------------- | ---------------- | ------------------------------------ |
-| `title`         | `string`         | Optional page title shown at the top |
-| `children`      | `ReactNode`      | Page content                         |
-| `className`     | `string`         | Extra CSS classes                    |
-| `animationName` | `AnimationNames` | Entrance animation                   |
-
----
+| Prop            | Type             | Notes                           |
+| --------------- | ---------------- | ------------------------------- |
+| `children`      | `ReactNode`      | Page content                    |
+| `className`     | `string`         | Extra classes                   |
+| `animationName` | `AnimationNames` | Optional entrance animation key |
 
 ### ProgressBar
 
-**Path**: `src/layout/components/ProgressBar/`
+`src/layout/components/progress-bar/`
 
-A thin bar at the top of the page that animates during route transitions. Gives the user feedback that a new page is loading.
-
----
+Thin route-transition bar at the top of the page. Driven by `usePathname()` + `requestAnimationFrame`. CSS variables (`--bar-color`, `--bar-height`) set once on mount.
 
 ### CookiesModal
 
-**Path**: `src/layout/components/CookiesModal/`
+`src/layout/components/cookies-modal/`
 
-A cookie consent banner shown to first-time visitors. The user can accept or reject cookies. The choice is saved in `localStorage`.
-
----
+Cookie consent banner. The choice is saved to `localStorage` and a `cookies-status-change` custom event is dispatched so `ThirdPartyScripts` can react to it without a route change.
 
 ### ServiceWorkerRegistrar
 
-**Path**: `src/layout/components/ServiceWorkerRegistrar/`
+`src/layout/components/service-worker-registrar/`
 
-Registers the PWA service worker. Runs once when the app loads. Only active in production.
-
----
+Registers `/service-worker.js`. Only runs in production. Failures go to Sentry when enabled.
 
 ### ThirdPartyScripts
 
-**Path**: `src/layout/components/ThirdPartyScripts/`
+`src/layout/components/third-party-scripts/`
 
-Loads external scripts: Google Analytics, Google Tag Manager, Google AdSense. Only loads them after the user accepts cookies.
+Loads GA, GTM, AdSense, and Vercel Speed Insights. GA and GTM only load once the user accepts cookies. The `.ir` / `.se` GA measurement IDs are selected from the current hostname.

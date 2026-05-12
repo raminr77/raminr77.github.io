@@ -1,8 +1,9 @@
 'use client';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
-import React, { useEffect, useState, Suspense } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { useEffect, useState, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import Script from 'next/script';
 
 import { getCookiesModalStatus, type CookiesModalStatus } from '@/shared/helpers';
@@ -12,24 +13,28 @@ import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
 
 import { GAPageView } from './ga-page-view';
 
-const PerformanceMonitor = React.lazy(() =>
-  import('@/shared/components/performance-monitor').then((module) => ({
-    default: module.PerformanceMonitor
-  }))
+const PerformanceMonitor = dynamic(
+  () =>
+    import('@/shared/components/performance-monitor').then((module) => ({
+      default: module.PerformanceMonitor
+    })),
+  { ssr: false }
 );
 
-type WindowWithGtag = Window & { gtag?: (...args: unknown[]) => void };
+interface WindowWithGtag extends Window {
+  gtag?: (...args: unknown[]) => void;
+}
 
-function updateGTMConsent(status: CookiesModalStatus) {
+function updateGTMConsent(status: CookiesModalStatus): void {
   if (typeof window === 'undefined') return;
-  const w = window as WindowWithGtag;
-  if (!w.gtag) return;
-  const state = status === COOKIES_MODAL_STATUS.ACCEPT ? 'granted' : 'denied';
-  w.gtag('consent', 'update', {
-    ad_storage: state,
-    analytics_storage: state,
-    functionality_storage: state,
-    personalization_storage: state
+  const windowWithGtag = window as WindowWithGtag;
+  if (!windowWithGtag.gtag) return;
+  const consentState = status === COOKIES_MODAL_STATUS.ACCEPT ? 'granted' : 'denied';
+  windowWithGtag.gtag('consent', 'update', {
+    ad_storage: consentState,
+    analytics_storage: consentState,
+    functionality_storage: consentState,
+    personalization_storage: consentState
   });
 }
 
@@ -38,26 +43,29 @@ export function ThirdPartyScripts() {
   const [isIrDomain, setIsIrDomain] = useState(false);
 
   useEffect(() => {
-    const onCookiesChange = (e: Event) => {
-      const newStatus = (e as CustomEvent<CookiesModalStatus>).detail;
+    const handleCookiesChange = (cookiesEvent: Event): void => {
+      const newStatus = (cookiesEvent as CustomEvent<CookiesModalStatus>).detail;
       setStatus(newStatus);
       updateGTMConsent(newStatus);
     };
-    window.addEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
-    return () => window.removeEventListener(COOKIES_STATUS_CHANGE, onCookiesChange);
+    window.addEventListener(COOKIES_STATUS_CHANGE, handleCookiesChange);
+    return () => window.removeEventListener(COOKIES_STATUS_CHANGE, handleCookiesChange);
   }, []);
 
   useEffect(() => {
     setIsIrDomain(/\.ir$/.test(window.location.hostname));
-    // Developer signiture
-    console.log(
-      '%cHi, curious developer 👋',
-      'color:#fff; background:#111827; padding:10px 16px; font-size:20px; font-weight:bold; margin:16px; border-radius:4px;'
-    );
-    console.log(
-      "%cWelcome to Ramin's personal website.\nIf you're interested in web development, feel free to explore the source code and reach out!\nGithub: https://github.com/raminr77/raminr77.github.io",
-      `color:#60a5fa; font-size:16px; padding:16px; line-height:1.5;`
-    );
+
+    if (ENV.NODE_ENV === 'production') {
+      // Developer signature for curious visitors viewing the console.
+      console.log(
+        '%cHi, curious developer 👋',
+        'color:#fff; background:#111827; padding:10px 16px; font-size:20px; font-weight:bold; margin:16px; border-radius:4px;'
+      );
+      console.log(
+        "%cWelcome to Ramin's personal website.\nIf you're interested in web development, feel free to explore the source code and reach out!\nGithub: https://github.com/raminr77/raminr77.github.io",
+        `color:#60a5fa; font-size:16px; padding:16px; line-height:1.5;`
+      );
+    }
 
     const savedStatus = getCookiesModalStatus();
     setStatus(savedStatus);

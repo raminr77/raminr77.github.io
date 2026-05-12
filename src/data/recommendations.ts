@@ -24,6 +24,16 @@ export const RECOMMENDATION_PAGE_DATA = {
 
 export const RECOMMENDATIONS: RecommendationItem[] = [
   {
+    id: 19,
+    fullName: 'Martin Klaunzer',
+    title: 'Product leader, mentor, advisor (ex-Spotify, ex-Klarna)',
+    text: "Ramin is one of those rare engineers who pairs deep technical expertise with genuine humility, kindness, and a steady positive presence on the team. I've worked closely with him over the past year at Sinch — as the product manager on his team and the product lead for our domain — and his impact has been substantial.<br />He has shaped how we work with frontend components and our setup for testing and deployments, led our MCP integration, and driven our E2E testing and observability initiatives. But what stands out most is how proactive he is in driving improvements, both technical and product-facing. His suggestions — whether about architecture, developer experience, or user flows — are always well-judged and grounded in genuine care for what we are building.<br />He is also remarkably fast. More than once, while the team was still debating how best to address an issue, Ramin had already shipped a fix.<br />Beyond all of this, he is simply someone you want on your team: reliable, thoughtful, generous with his expertise, and well-liked by everyone he works with. Any team would be lucky to have him.",
+    date: 'May 8, 2026',
+    caption: 'Martin worked with Ramin on the same team',
+    url: 'https://www.linkedin.com/in/martin-klaunzer/',
+    imageURL: '/images/linkedIn-profiles/martin-klaunzer.jpeg'
+  },
+  {
     id: 18,
     fullName: 'Hamed Kabiri',
     title: 'Senior Front-End Engineer',

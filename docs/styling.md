@@ -1,242 +1,188 @@
 # Styling
 
-This document explains the styling setup — Tailwind CSS, SCSS modules, global styles, fonts, and theming.
+Tailwind CSS, SCSS modules, global styles, fonts, theming, and the animation libraries used in the project.
 
 ---
 
 ## Overview
 
-The project uses two styling approaches together:
+Two approaches work side-by-side:
 
-1. **Tailwind CSS** — utility classes applied directly in JSX (e.g. `className="flex gap-4 text-lg"`)
-2. **SCSS Modules** — component-scoped CSS files (e.g. `Button.module.scss`) for styles that are complex or need to be isolated
+1. **Tailwind CSS** for the vast majority of styling — utility classes in JSX.
+2. **SCSS modules** (`*.module.scss`) for component-scoped CSS that is too gnarly for utilities (custom selectors, pseudo-elements, keyframes, layered transitions).
 
-Both approaches work side by side. Use Tailwind for most styling and SCSS modules for complex or stateful styles.
+Prefer Tailwind first. Reach for a module when:
+
+- The same class needs a `::before` / `::after` pseudo-element.
+- You need state-conditional CSS that can't be expressed with `data-*` + variants.
+- You have keyframes that don't already live in `animate.css`.
 
 ---
 
-## Tailwind CSS
+## Tailwind CSS 4
 
-**Version**: 4.2.2
+The project uses Tailwind 4 with the `@tailwindcss/postcss` plugin.
 
-Tailwind generates utility classes based on the configuration. Every file inside `src/` is scanned for Tailwind classes.
+**Configuration**: `tailwind.config.ts`
 
-**Configuration file**: `tailwind.config.ts`
-
-```typescript
-content: ['./src/**/*.{js,ts,jsx,tsx,mdx}']
-darkMode: 'class'
-
-theme.extend:
-  fontFamily:
-    text: ['var(--font-text)']    // Hubballi font
-    title: ['var(--font-title)']  // Gantari font
-  colors:
-    background: 'var(--background)'
-    foreground: 'var(--foreground)'
+```ts
+content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+darkMode: 'class',
+theme: {
+  extend: {
+    fontFamily: {
+      text: ['var(--font-text)'],
+      title: ['var(--font-title)']
+    },
+    colors: {
+      background: 'var(--background)',
+      foreground: 'var(--foreground)'
+    }
+  }
+}
 ```
 
-**Key points:**
+Key points:
 
-- `darkMode: 'class'` — dark mode is toggled by adding/removing the `dark` class on `<html>`.
-- Font families and colors reference CSS variables, so they automatically update when the theme changes.
-- The `background` and `foreground` colors from Tailwind map to the CSS variable values.
+- `darkMode: 'class'` — dark mode is toggled by adding / removing the `dark` class on `<html>`.
+- Tailwind colors `background` and `foreground` map to CSS variables, so a single class works for both themes.
+- The `font-text` and `font-title` utilities reference Google Fonts loaded via `next/font/google`.
 
-**PostCSS** (`postcss.config.mjs`) runs Tailwind's transform plugin:
+PostCSS config (`postcss.config.mjs`) just enables the Tailwind plugin:
 
 ```js
 plugins: { '@tailwindcss/postcss': {} }
 ```
 
+### Class-list ergonomics
+
+`prettier-plugin-tailwindcss` sorts utility classes in the canonical order. `clsx` is imported as a **named** import everywhere (project convention):
+
+```ts
+import { clsx } from 'clsx';
+
+<div className={clsx('base classes', condition && 'state', className)} />;
+```
+
+VS Code workspace settings (`.vscode/settings.json`) include a `tailwindCSS.experimental.classRegex` entry that gives IntelliSense for class strings nested inside `clsx(...)` calls.
+
 ---
 
-## Global Styles
+## Global styles
 
-**File**: `src/app/globals.scss`
+`src/app/globals.scss`
 
-This file sets up the design tokens (CSS variables), base styles, and shared animations.
+Defines design tokens and shared keyframes.
 
-### CSS Variables
+### CSS variables
 
 ```scss
 :root {
-  --primary: #ff8f00; // Main orange accent color
-  --background: #0a0a0a; // Dark background
-  --foreground: #ededed; // Light text
+  --primary: #ff8f00;
+  --background: #0a0a0a;
+  --foreground: #ededed;
   --blog-title-background: #282c34;
   --code-block-background: rgb(40, 44, 52);
   --bar-height: 1px;
   --bar-color: #ff8f00;
 }
-```
 
-In light mode, some of these values are overridden:
-
-```scss
 .light {
   --background: #ffffff;
   --foreground: #0a0a0a;
 }
 ```
 
-### Animations
+### Shared keyframes
 
-Two reusable CSS animations are defined globally:
+- `shine` — opacity pulse used for the top / bottom border lines in the layout.
+- `float` — gentle up / down translate for circles on `journey-card`.
 
-**shine-animation** — pulses opacity (used for decorative lines):
+Both are exposed as utility classes (`.shine-animation-top`, `.shine-animation-bottom`, `.float-animation`).
 
-```scss
-@keyframes shine {
-  0%,
-  100% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 1;
-  }
-}
+### Scrollbar styling
 
-.shine-animation-top {
-  animation: shine 3s ease-in-out infinite;
-}
-.shine-animation-bottom {
-  animation: shine 3s ease-in-out infinite reverse;
-}
-```
+Custom scrollbar theme that turns amber on hover. Defined in `globals.scss`.
 
-**float-animation** — gently moves an element up and down:
+### Toast theme
 
-```scss
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.float-animation {
-  animation: float 4s ease-in-out infinite;
-}
-```
-
-### Custom Scrollbar
-
-The scrollbar is styled to match the site theme. On hover, the scrollbar thumb turns the primary orange color.
-
-### Toast Notifications
-
-The styles for `react-toastify` toast pop-ups are customized here to match the site's dark background and fonts.
+`react-toastify` styles are tweaked here to match the dark backdrop. Component-level overrides (e.g. progress class) are passed inline on `<ToastContainer>` in `src/app/layout.tsx`.
 
 ---
 
 ## Fonts
 
-**File**: `src/app/fonts.ts`
+`src/app/fonts.ts` loads two Google Fonts via `next/font/google`:
 
-Two fonts are loaded from Google Fonts using Next.js's built-in font system (`next/font/google`).
+| Font     | CSS variable   | Used for          | Weights              |
+| -------- | -------------- | ----------------- | -------------------- |
+| Hubballi | `--font-text`  | Body text         | 400                  |
+| Gantari  | `--font-title` | Headings, accents | 100–900 (full range) |
 
-| Font     | Variable       | Used For              | Weight                |
-| -------- | -------------- | --------------------- | --------------------- |
-| Hubballi | `--font-text`  | Body text, paragraphs | 400                   |
-| Gantari  | `--font-title` | Headings, titles      | All weights (100–900) |
-
-Both fonts use `display: 'swap'`, which means text shows in a fallback font while the custom font loads. This avoids invisible text during page load.
-
-The fonts are injected as CSS variables on the `<html>` tag in `src/app/layout.tsx`.
-
-**Usage in Tailwind:**
-
-```jsx
-<p className="font-text">Body text</p>
-<h1 className="font-title">Heading</h1>
-```
+Both use `display: 'swap'` so text shows in a fallback font while the custom font streams in. The CSS variables are applied to `<html>` in `src/app/layout.tsx`, which makes them available to every Tailwind `font-text` / `font-title` utility.
 
 ---
 
-## SCSS Modules
+## SCSS modules
 
-Component-specific styles use CSS Modules with SCSS syntax. A module file is named `ComponentName.module.scss` and placed next to the component.
-
-**How it works:**
+A module is named `<component-name>.module.scss` and lives next to its component (kebab-case to match the folder).
 
 ```scss
-// Button.module.scss
-.button {
-  padding: 0.5rem 1rem;
-  &:hover {
-    opacity: 0.8;
-  }
+// recommendation-card.module.scss
+.recommendation-card {
+  &::before { … }
 }
 ```
 
 ```tsx
-// Button.tsx
-import styles from './Button.module.scss';
+// recommendation-card/index.tsx
+import styles from './recommendation-card.module.scss';
 
-<button className={styles.button}>Click me</button>;
+<div className={styles['recommendation-card']} />;
 ```
 
-CSS Modules automatically scope class names so they do not clash with other components. The class name `button` in `Button.module.scss` will never conflict with a `button` class in another component.
+CSS Modules auto-scope class names. Use `styles['kebab-case']` because BEM-style names work better with `::before` pseudo-selectors than camelCase.
+
+Modules used in the project:
+
+- `hero-text-animator.module.scss`
+- `summary.module.scss`
+- `post-card.module.scss`, `post-detail-page.module.scss`
+- `journey-card.module.scss`
+- `recommendation-card.module.scss`
+- `about-me.module.scss`
+- `progress-bar.module.scss`
+- `burger-menu.module.scss`
+- `header.module.scss`
+- `resume-downloader-button.module.scss`
+- `code-block.module.scss` (gradient overlay + toggle button)
+- `client-code-loader.scss` (global-ish, applies to every `pre`)
 
 ---
 
-## Theming: Dark and Light Mode
+## Theming
 
-The theme system works through CSS classes and CSS variables.
+1. `localStorage` key from `LOCAL_STORAGE_KEYS.THEME` holds `'dark'` or `'light'`.
+2. `<ToggleThemeButton>` reads / writes the key and toggles the `dark` / `light` class on `<html>`.
+3. Tailwind's `darkMode: 'class'` reads the same class for `dark:` variants.
+4. CSS variables in `globals.scss` swap values per class, so non-Tailwind code (SCSS modules) also follows the theme.
 
-**How it works:**
-
-1. The current theme is stored in `localStorage` under the key `theme`.
-2. On page load, the stored theme is read and the `dark` or `light` class is added to `<html>`.
-3. CSS variables change based on which class is active:
-   - `.dark` uses `--background: #0a0a0a` and `--foreground: #ededed`
-   - `.light` uses `--background: #ffffff` and `--foreground: #0a0a0a`
-4. Tailwind's `darkMode: 'class'` lets you write conditional dark-mode classes:
-   ```jsx
-   <div className="bg-white dark:bg-black">...</div>
-   ```
-5. The `ToggleThemeButton` component handles switching between themes and updating `localStorage`.
+`<html>` ships pre-set to `dark` (see `src/app/layout.tsx`) so first paint has the dark palette.
 
 ---
 
-## The `clsx` Utility
+## Animation libraries
 
-The project uses `clsx` to build class name strings conditionally:
+The project uses three different animation tools, each for what it does best:
 
-```tsx
-import clsx from 'clsx'
+- **animate.css** — quick one-shot animations applied via classes. Use through the `animator()` helper (see [hooks-helpers-services.md](./hooks-helpers-services.md)).
+- **Motion** (the Framer Motion rebrand, package name `motion`) — declarative React animations. Used by `DecryptedText` (via `motion.span`).
+- **GSAP** + **@gsap/react** — imperative timelines for sequenced effects.
 
-<div className={clsx('base-class', isActive && 'active', className)}>
-```
+The project also has the custom `<pixel-canvas>` element (`src/shared/libs/pixel-canvas/`) for the canvas-based pixel grid hover effect on certain cards.
 
-This is cleaner than string concatenation and handles `false`/`undefined` values automatically.
+All three respect `prefers-reduced-motion` where it applies:
 
----
-
-## Animate.css Integration
-
-The project includes `animate.css` for quick CSS animations. The `animator()` helper in `src/shared/helpers/animator.ts` generates the correct class names.
-
-**Usage:**
-
-```tsx
-import { animator } from '@/shared/helpers/animator';
-
-<div className={animator({ name: 'fadeInUp', speed: 'fast', delay: '1s' })}>Content</div>;
-```
-
-This produces the correct `animate__` prefixed class names that `animate.css` expects.
-
----
-
-## GSAP and Framer Motion
-
-More complex animations use:
-
-- **GSAP** (`gsap`) — for scroll-triggered animations, timelines, and advanced sequences.
-- **Framer Motion** (`motion`) — for React component animations with simple declarative props.
-
-These are used in specific components like `HeroTextAnimator` where fine-grained animation control is needed.
+- `progress-bar/index.tsx` skips the loading animation when reduced motion is on.
+- `pixel-canvas/index.ts` skips per-pixel delays.
+- `code-block` uses a `@media (prefers-reduced-motion: reduce)` block to drop transitions.

@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "stylelint.vscode-stylelint",
+    "mikestead.dotenv",
+    "yoavbls.pretty-ts-errors",
+    "streetsidesoftware.code-spell-checker",
+    "github.vscode-github-actions",
+    "ms-playwright.playwright",
+    "orta.vscode-jest",
+    "redhat.vscode-yaml",
+    "wayou.vscode-todo-highlight",
+    "christian-kohler.path-intellisense",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint"
+  ],
+  "unwantedRecommendations": ["formulahendry.auto-rename-tag"]
+}

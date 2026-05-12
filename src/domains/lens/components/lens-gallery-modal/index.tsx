@@ -11,6 +11,8 @@ import type { LensItem, LensSlideItem } from '@/data';
 import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
 
+import { useGalleryKeyboard } from '../../hooks/use-gallery-keyboard';
+
 type Slide = Pick<LensSlideItem, 'src' | 'alt' | 'isVideo' | 'cover'>;
 
 interface LensGalleryModalProps {
@@ -63,21 +65,7 @@ export function LensGalleryModal({
     [onNavigate]
   );
 
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handleClose();
-      if (e.key === 'ArrowLeft') prev();
-      if (e.key === 'ArrowRight') next();
-    };
-
-    document.addEventListener('keydown', handleKey);
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.removeEventListener('keydown', handleKey);
-      document.body.style.overflow = '';
-    };
-  }, [handleClose, prev, next]);
+  useGalleryKeyboard({ onClose: handleClose, onPrevious: prev, onNext: next });
 
   return createPortal(
     <div
@@ -89,7 +77,7 @@ export function LensGalleryModal({
     >
       {/* Header */}
       <div
-        onClick={(e) => e.stopPropagation()}
+        onClick={(clickEvent) => clickEvent.stopPropagation()}
         className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-4 z-10 bg-gradient-to-b from-black/60 to-transparent"
       >
         <div className="text-white">

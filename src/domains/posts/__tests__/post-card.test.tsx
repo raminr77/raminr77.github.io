@@ -14,9 +14,21 @@ jest.mock('@/domains/posts/components/post-tags', () => ({
   )
 }));
 
-jest.mock('@/shared/components', () => ({
-  Icons: () => <span data-testid="icon" />
-}));
+jest.mock('@/shared/components', () => {
+  interface LinkLikeProps {
+    href: string;
+    children: React.ReactNode;
+    className?: string;
+  }
+  return {
+    Icons: () => <span data-testid="icon" />,
+    TrackedLink: ({ href, children, className }: LinkLikeProps) => (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    )
+  };
+});
 
 jest.mock('@next/third-parties/google', () => ({
   sendGTMEvent: jest.fn()
