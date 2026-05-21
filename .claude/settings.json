@@ -1,5 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(pnpm check-all:*)",
@@ -31,7 +34,10 @@
       "mcp__codebase-memory-mcp__get_architecture",
       "mcp__codebase-memory-mcp__trace_path",
       "mcp__plugin_context7_context7__resolve-library-id",
-      "mcp__plugin_context7_context7__query-docs"
+      "mcp__plugin_context7_context7__query-docs",
+      "Bash(pnpm prettier *)",
+      "Bash(pnpm eslint *)",
+      "Bash(pnpm jest *)"
     ],
     "deny": [
       "Bash(git commit:*)",
@@ -46,8 +52,5 @@
       "Write(./.env*)",
       "Edit(./.env*)"
     ]
-  },
-  "env": {
-    "NEXT_TELEMETRY_DISABLED": "1"
   }
 }

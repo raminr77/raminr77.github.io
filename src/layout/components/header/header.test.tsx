@@ -5,6 +5,7 @@ import { Header } from './index';
 
 const mockSendGTMEvent = jest.fn();
 const mockUsePathname = jest.fn();
+const mockPlayClick = jest.fn();
 
 jest.mock('@next/third-parties/google', () => ({
   sendGTMEvent: (...args: unknown[]) => {
@@ -28,8 +29,13 @@ jest.mock('@/shared/helpers', () => ({
   animator: () => ''
 }));
 
+jest.mock('@/shared/hooks', () => ({
+  useClickSound: () => mockPlayClick
+}));
+
 beforeEach(() => {
   mockSendGTMEvent.mockClear();
+  mockPlayClick.mockClear();
   mockUsePathname.mockReturnValue('/');
 });
 
@@ -50,6 +56,7 @@ describe('<Header />', () => {
     firstLink.addEventListener('click', (clickEvent) => clickEvent.preventDefault());
     await user.click(firstLink);
 
+    expect(mockPlayClick).toHaveBeenCalledTimes(1);
     expect(mockSendGTMEvent).toHaveBeenCalledTimes(1);
   });
 

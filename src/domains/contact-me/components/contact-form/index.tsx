@@ -9,6 +9,7 @@ import { sendGTMEvent } from '@next/third-parties/google';
 
 import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
 import { TextInput, Button } from '@/shared/components';
+import { useClickSound } from '@/shared/hooks';
 import { sendEmail } from '@/shared/services';
 import { GENERAL_SITE_DATA } from '@/data';
 import { notify } from '@/shared/helpers';
@@ -25,6 +26,7 @@ export function ContactForm() {
 
   const [loading, setLoading] = useState<boolean>(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const playClick = useClickSound();
 
   const {
     formState: { errors },
@@ -75,6 +77,7 @@ export function ContactForm() {
         'pointer-events-none': loading
       })}
       onSubmit={(event) => {
+        playClick();
         void handleSubmit(onSubmit)(event);
       }}
     >

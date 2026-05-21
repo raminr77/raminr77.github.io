@@ -8,12 +8,14 @@ import { clsx } from 'clsx';
 import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { BurgerMenu } from '@/layout/components/burger-menu';
 import { ToggleThemeButton } from '@/shared/components';
+import { useClickSound } from '@/shared/hooks';
 import { animator } from '@/shared/helpers';
 
 import styles from './header.module.scss';
 
 export function Header() {
   const pathname: string = usePathname();
+  const playClick = useClickSound();
 
   return (
     <header
@@ -40,7 +42,10 @@ export function Header() {
             >
               <Link
                 href={url}
-                onClick={() => sendGTMEvent(GTM_EVENTS.MENU(title))}
+                onClick={() => {
+                  playClick();
+                  sendGTMEvent(GTM_EVENTS.MENU(title));
+                }}
                 className="border-b border-transparent bg-transparent px-4 py-3 duration-200 hover:border-orange-500 whitespace-nowrap"
               >
                 {title}

@@ -14,6 +14,10 @@ jest.mock('@/shared/helpers/notify', () => ({
   }
 }));
 
+jest.mock('@/shared/hooks/use-click-sound', () => ({
+  useClickSound: jest.fn(() => jest.fn())
+}));
+
 describe('ContactForm', () => {
   it('should validate and submit', async () => {
     render(<ContactForm />);
