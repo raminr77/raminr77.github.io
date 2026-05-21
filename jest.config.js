@@ -15,6 +15,7 @@ const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/src'],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
+    '<rootDir>/.claude/',
     '<rootDir>/node_modules/',
     '<rootDir>/e2e/'
   ],
