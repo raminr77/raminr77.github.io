@@ -68,6 +68,16 @@ export const ABOUT_ME_DATA: {
       ]
     },
     {
+      width: 1200,
+      height: 500,
+      className: 'w-full rounded',
+      type: ABOUT_ME_CONTENT_TYPE.image,
+      url: '/images/personal-images/sinch.webp',
+      tooltip: 'Team building and after work at Sinch - 2026',
+      title:
+        'Ramin Rezaei - team building and after work at Sinch - Senior Software Engineer'
+    },
+    {
       type: ABOUT_ME_CONTENT_TYPE.list,
       title: 'At Boozt, I worked on projects like:',
       data: [
