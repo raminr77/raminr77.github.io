@@ -1,6 +1,8 @@
 # Ramin Rezaei — Personal Website
 
-This repository holds the source code for [raminrezaei.se](https://raminrezaei.se) — my personal portfolio and blog. It first went live on **11 June** (my birthday).
+This repository holds the source code for [raminrezaei.se](https://raminrezaei.se)
+
+My personal portfolio and blog. It first went live on **11 June** (my birthday).
 
 I build and maintain it on my own as a place to publish writing, share projects, and keep learning in public.
 
