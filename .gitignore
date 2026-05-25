@@ -57,3 +57,5 @@ certificates
 
 # SWC Config File
 .swc
+
+.claude/worktrees/*
