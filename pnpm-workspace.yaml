@@ -3,3 +3,7 @@ allowBuilds:
   '@sentry/cli': true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - lint-staged@17.0.7
+  - react-hook-form@7.77.0
+  - tinyexec@1.2.4
