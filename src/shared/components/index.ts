@@ -1,3 +1,4 @@
+export { BeforeAfterSlider } from './before-after-slider';
 export { Button } from './button';
 export { ClientCodeLoader } from './client-code-loader';
 export { CodeBlock } from './code-block';
