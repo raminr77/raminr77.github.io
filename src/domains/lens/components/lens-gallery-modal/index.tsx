@@ -124,8 +124,8 @@ export function LensGalleryModal({
             {current.isVideo ? (
               <video
                 controls
-                autoPlay
                 playsInline
+                autoPlay={false}
                 key={currentIndex}
                 poster={current.cover}
                 onLoadedData={() => setIsLoading(false)}

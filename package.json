@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "private": true,
   "scripts": {
     "start": "next start",
@@ -33,9 +33,9 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.2.6",
-    "@next/third-parties": "^16.2.6",
-    "@sentry/nextjs": "^10.55.0",
+    "@next/bundle-analyzer": "^16.2.7",
+    "@next/third-parties": "^16.2.7",
+    "@sentry/nextjs": "^10.56.0",
     "@tailwindcss/postcss": "^4.3.0",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
@@ -47,10 +47,10 @@
     "highlightjs-copy": "^1.0.6",
     "markdown-to-jsx": "^9.8.1",
     "motion": "^12.40.0",
-    "next": "^16.2.6",
+    "next": "^16.2.7",
     "qs": "^6.15.2",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "react-google-recaptcha-v3": "^1.11.0",
     "react-hook-form": "^7.77.0",
     "react-toastify": "^11.1.0"
@@ -64,7 +64,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.2.6",
+    "@next/eslint-plugin-next": "^16.2.7",
     "@playwright/test": "^1.60.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -72,9 +72,9 @@
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.9.1",
+    "@types/node": "^25.9.2",
     "@types/qs": "^6.15.1",
-    "@types/react": "^19.2.15",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "babel-plugin-react-compiler": "^1.0.0",
@@ -95,7 +95,7 @@
     "ts-jest": "^29.4.11",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.0",
+    "typescript-eslint": "^8.60.1",
     "webpack": "^5.107.2",
     "webpack-bundle-analyzer": "^5.3.0"
   },
@@ -113,5 +113,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@11.5.0"
+  "packageManager": "pnpm@11.5.2"
 }

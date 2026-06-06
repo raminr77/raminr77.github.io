@@ -77,6 +77,18 @@
       border-left: 4px solid var(--blog-title-background);
     }
 
+    img {
+      max-width: 100%;
+      margin: 16px auto;
+      border-radius: 8px;
+    }
+
+    video {
+      max-width: 100%;
+      margin: 16px auto;
+      border-radius: 8px;
+    }
+
     /* Table styling */
     table {
       border-collapse: collapse;

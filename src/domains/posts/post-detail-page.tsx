@@ -5,7 +5,12 @@ import Script from 'next/script';
 import { clsx } from 'clsx';
 import React from 'react';
 
-import { ClientCodeLoader, CodeBlock, PageHeader } from '@/shared/components';
+import {
+  CodeBlock,
+  PageHeader,
+  ClientCodeLoader,
+  BeforeAfterSlider
+} from '@/shared/components';
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import type { Post, PostMetadata } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
@@ -20,38 +25,38 @@ function buildBlogPostingJsonLd(post: Post): string {
   const ogImageUrl = `${postUrl}opengraph-image`;
 
   return JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.description,
-    inLanguage: 'en',
     url: postUrl,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
-    datePublished: new Date(post.date).toISOString(),
+    inLanguage: 'en',
+    image: [ogImageUrl],
+    headline: post.title,
+    '@type': 'BlogPosting',
+    articleSection: post.category,
+    description: post.description,
+    keywords: post.tags?.join(', '),
+    '@context': 'https://schema.org',
     dateModified: new Date(post.date).toISOString(),
+    datePublished: new Date(post.date).toISOString(),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
     author: {
       '@type': 'Person',
-      name: post.author || PERSONAL_DATA.fullName,
-      url: PERSONAL_DATA.url
+      url: PERSONAL_DATA.url,
+      name: post.author || PERSONAL_DATA.fullName
     },
     publisher: {
       '@type': 'Person',
-      name: PERSONAL_DATA.fullName,
-      url: PERSONAL_DATA.url
-    },
-    articleSection: post.category,
-    keywords: post.tags?.join(', '),
-    image: [ogImageUrl]
+      url: PERSONAL_DATA.url,
+      name: PERSONAL_DATA.fullName
+    }
   });
 }
 
 import {
-  PostCard,
   BackToPostButton,
   PostReadTime,
   PostCategory,
   PostAuthor,
   PostShare,
+  PostCard,
   PostTags,
   PostDate
 } from './components';
@@ -81,16 +86,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: `/posts/${post.id}/` },
     openGraph: {
       type: 'article',
-      title: post.title,
-      description: post.description,
-      url: `/posts/${post.id}/`,
-      publishedTime: new Date(post.date).toISOString(),
       tags: post.tags,
-      authors: [PERSONAL_DATA.fullName]
+      title: post.title,
+      url: `/posts/${post.id}/`,
+      description: post.description,
+      authors: [PERSONAL_DATA.fullName],
+      publishedTime: new Date(post.date).toISOString()
     },
     twitter: {
-      card: 'summary_large_image',
       title: post.title,
+      card: 'summary_large_image',
       description: post.description
     }
   };
@@ -146,7 +151,8 @@ export async function PostDetailPage({ params }: Props) {
             createElement: React.createElement,
             wrapper: null,
             overrides: {
-              pre: CodeBlock
+              pre: CodeBlock,
+              BeforeAfterSlider
             },
             renderRule: (next, node, _renderChildren, state) => {
               if (node.type === RuleType.table) {
