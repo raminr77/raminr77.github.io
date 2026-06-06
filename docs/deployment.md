@@ -107,7 +107,7 @@ Variables that genuinely need to be set as repo secrets for production builds:
 | `NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY`       | reCAPTCHA client widget                          |
 | `GOOGLE_RECAPTCHA_SECRET_KEY`                 | `/api/recaptcha-verify` server-side verification |
 | `SENTRY_AUTH_TOKEN`                           | Source-map upload during Vercel build            |
-| `NEXT_PUBLIC_SENTRY_URL`                      | Sentry DSN                                       |
+| `NEXT_PUBLIC_SENTRY_DSN`                      | Sentry DSN                                       |
 | `NEXT_PUBLIC_SENTRY_ENABLED`                  | `'true'` to enable Sentry on production deploys  |
 | `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_SE_DOMAIN` | GA4 for `.se` hostname                           |
 | `NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE_IR_DOMAIN` | GA4 for `.ir` hostname                           |
