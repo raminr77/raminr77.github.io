@@ -40,7 +40,7 @@ Get the keys from the [Google reCAPTCHA Admin Console](https://www.google.com/re
 | Variable                     | Scope            | Notes                                                                                                      |
 | ---------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_SENTRY_ENABLED` | client + server  | `'true'` enables Sentry. Anything else (including empty) disables every integration so no events are sent. |
-| `NEXT_PUBLIC_SENTRY_URL`     | client + server  | The Sentry DSN. Required when `NEXT_PUBLIC_SENTRY_ENABLED=true`.                                           |
+| `NEXT_PUBLIC_SENTRY_DSN`     | client + server  | The Sentry DSN. Required when `NEXT_PUBLIC_SENTRY_ENABLED=true`.                                           |
 | `SENTRY_AUTH_TOKEN`          | server (CI only) | Used by the Sentry build plugin to upload source maps. Set as a CI secret; never commit it.                |
 
 In code, `ENV.SENTRY_ENABLED` and `ENV.SENTRY_DSN` are exposed via `src/shared/constants/env.ts`. The init lives in `src/instrumentation.ts` (server + edge) and `src/app/instrumentation-client.ts` (browser).
@@ -82,7 +82,7 @@ NODE_ENV=development
 
 # Sentry (disabled by default; flip to true and fill the URL to enable)
 SENTRY_AUTH_TOKEN=
-NEXT_PUBLIC_SENTRY_URL=
+NEXT_PUBLIC_SENTRY_DSN=
 NEXT_PUBLIC_SENTRY_ENABLED=false
 
 # Bundle analyzer
