@@ -7,3 +7,5 @@ minimumReleaseAgeExclude:
   - lint-staged@17.0.7
   - react-hook-form@7.77.0
   - tinyexec@1.2.4
+  - '@types/node@25.9.2'
+  - '@types/react@19.2.17'

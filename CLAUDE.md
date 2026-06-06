@@ -14,7 +14,7 @@ Personal portfolio for **Ramin Rezaei** at <https://raminrezaei.se>. Public sour
 - **Markdown**: blog posts in `/posts/*.md` (gray-matter + markdown-to-jsx)
 - **Testing**: Jest **30** + `@testing-library/react` (unit) + Playwright (E2E)
 - **Monitoring**: Sentry + Vercel Speed Insights
-- **Package manager**: **pnpm 10** — never use `npm` or `yarn` here.
+- **Package manager**: **pnpm 11** — never use `npm` or `yarn` here. [ current pnpm version pnpm@11.5.2]
 
 ## Architecture
 

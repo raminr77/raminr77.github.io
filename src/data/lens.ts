@@ -336,5 +336,109 @@ export const LENS_ITEMS: LensItem[] = [
         cover: '/images/lens/CLAUDE-CODE-03.webp'
       }
     ]
+  },
+  {
+    id: 16,
+    isVideo: false,
+    createdAt: '2026-06-06',
+    title: 'Google Cloud Summit Nordics 2026',
+    src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026.webp',
+    cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026.webp',
+    alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+    description:
+      'Attended Google Cloud Summit Nordics 2026, engaging with the latest innovations in cloud computing and AI, and connecting with industry leaders driving the future of technology.',
+    slides: [
+      {
+        id: 1,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-01.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-01.webp'
+      },
+      {
+        id: 2,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-02.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-02.webp'
+      },
+      {
+        id: 3,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-03.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-03.webp'
+      },
+      {
+        id: 4,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-04.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-04.webp'
+      },
+      {
+        id: 5,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-05.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-05.webp'
+      },
+      {
+        id: 6,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-06.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-06.webp'
+      },
+      {
+        id: 7,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-07.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-07.webp'
+      },
+      {
+        id: 8,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-08.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-08.webp'
+      },
+      {
+        id: 9,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-09.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-09.webp'
+      },
+      {
+        id: 10,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-10.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-10.webp'
+      },
+      {
+        id: 11,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-11.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-11.webp'
+      },
+      {
+        id: 12,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-12.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-12.webp'
+      },
+      {
+        id: 13,
+        isVideo: false,
+        alt: 'Google Cloud Summit Nordics 2026 - Ramin Rezaei',
+        src: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-13.webp',
+        cover: '/images/lens/GOOGLE-CLOUD-SUMMIT-NORDICS-2026-13.webp'
+      }
+    ]
   }
 ];
