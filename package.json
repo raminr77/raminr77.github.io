@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "7.0.3",
+  "version": "7.1.0",
   "private": true,
   "scripts": {
     "start": "next start",
@@ -35,7 +35,7 @@
     "@gsap/react": "^2.1.2",
     "@next/bundle-analyzer": "^16.2.7",
     "@next/third-parties": "^16.2.7",
-    "@sentry/nextjs": "^10.56.0",
+    "@sentry/nextjs": "^10.57.0",
     "@tailwindcss/postcss": "^4.3.0",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
@@ -52,7 +52,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-google-recaptcha-v3": "^1.11.0",
-    "react-hook-form": "^7.77.0",
+    "react-hook-form": "^7.78.0",
     "react-toastify": "^11.1.0"
   },
   "lint-staged": {
@@ -86,7 +86,7 @@
     "lighthouse": "^13.3.0",
     "lint-staged": "^17.0.7",
     "postcss": "^8.5.15",
-    "prettier": "3.8.3",
+    "prettier": "3.8.4",
     "prettier-plugin-sort-imports": "^1.8.11",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sass": "^1.100.0",
@@ -95,7 +95,7 @@
     "ts-jest": "^29.4.11",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.1",
+    "typescript-eslint": "^8.61.0",
     "webpack": "^5.107.2",
     "webpack-bundle-analyzer": "^5.3.0"
   },
