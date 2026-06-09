@@ -12,7 +12,7 @@ export type Posts = {
   data: PostMetadata[];
 };
 
-// Server-only. Posts are static — parse markdown once per Node process and reuse.
+// Server-only. Posts are static, parse markdown once per Node process and reuse.
 let allPostsCache: PostMetadata[] | null = null;
 
 function getAllPosts(): PostMetadata[] {
@@ -46,7 +46,7 @@ export function getPosts(
 ): Posts {
   const activePosts = getAllPosts().filter((postItem) => postItem.isActive);
 
-  // All active categories — keep dropdown complete even when filtering.
+  // All active categories, keep dropdown complete even when filtering.
   const categorySet = new Set<string>();
   for (const post of activePosts) {
     if (post.category) categorySet.add(post.category);

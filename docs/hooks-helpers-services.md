@@ -24,7 +24,7 @@ Used by `PostsSearch` to avoid querying on every keystroke.
 
 `src/shared/hooks/use-is-client.ts`
 
-Returns `true` after the first client render. Use sparingly — `'use client'` components already only run in the browser inside `useEffect`. Use only when you need to gate a render branch on "we are in the browser".
+Returns `true` after the first client render. Use sparingly, `'use client'` components already only run in the browser inside `useEffect`. Use only when you need to gate a render branch on "we are in the browser".
 
 ```ts
 function useIsClient(): boolean;
@@ -125,7 +125,7 @@ function updateCookiesModalStatus(status: CookiesModalStatus): void;
 
 `src/shared/helpers/performance.ts`
 
-Singleton wrapper around three `PerformanceObserver`s (LCP, FID, CLS). `monitorWebVitals()` is idempotent — calling it twice does not stack listeners. Exposes `disconnect()` for clean unmount.
+Singleton wrapper around three `PerformanceObserver`s (LCP, FID, CLS). `monitorWebVitals()` is idempotent, calling it twice does not stack listeners. Exposes `disconnect()` for clean unmount.
 
 | Metric | Good     | Poor     | What it measures         |
 | ------ | -------- | -------- | ------------------------ |
@@ -165,7 +165,7 @@ Reads a single post. Pads single-digit ids: `getPostContent(5)` reads `posts/pos
 function postSorter(first: PostMetadata, second: PostMetadata): number;
 ```
 
-`Array.sort` comparator — newest date first.
+`Array.sort` comparator, newest date first.
 
 #### `filterPostsByKey`
 

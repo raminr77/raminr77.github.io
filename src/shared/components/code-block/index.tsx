@@ -58,7 +58,7 @@ export function CodeBlock({ className, children }: CodeBlockProps) {
     if (isExpanded) return;
     if (!shouldClip) return;
 
-    // Skip on the initial mount — only react to a transition from expanded → collapsed.
+    // Skip on the initial mount, only react to a transition from expanded → collapsed.
     if (!collapseRequestedRef.current) return;
     collapseRequestedRef.current = false;
 

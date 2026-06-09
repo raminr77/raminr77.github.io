@@ -1,5 +1,5 @@
 /**
- * Posts search — extended coverage: Escape key, backdrop click, empty state,
+ * Posts search, extended coverage: Escape key, backdrop click, empty state,
  * no-results state, and result navigation. Basic happy-path is in search.spec.ts.
  */
 import { expect, test } from '@playwright/test';

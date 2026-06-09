@@ -1,6 +1,6 @@
 # Security Policy
 
-Thanks for taking the time to look at this project's security. If you've found something that looks like a vulnerability, please report it privately — don't open a public issue or PR with proof-of-concept code.
+Thanks for taking the time to look at this project's security. If you've found something that looks like a vulnerability, please report it privately, don't open a public issue or PR with proof-of-concept code.
 
 ## Reporting
 

@@ -1,6 +1,6 @@
 ---
 name: nextjs-reviewer
-description: Use this agent to review code for Next.js 16 App Router + React 19 best practices — Server vs Client Components, dynamic imports, metadata, route handlers, and data fetching. Invoke after any change to files in `src/app/`, `src/domains/`, or `src/layout/`, or when the user asks for a "Next.js review" / "React 19 review".
+description: Use this agent to review code for Next.js 16 App Router + React 19 best practices, Server vs Client Components, dynamic imports, metadata, route handlers, and data fetching. Invoke after any change to files in `src/app/`, `src/domains/`, or `src/layout/`, or when the user asks for a "Next.js review" / "React 19 review".
 model: opus
 ---
 
@@ -13,7 +13,7 @@ Review the diff or the requested files for:
 ### Server vs Client Components
 
 - Default to Server Components. `'use client'` should only appear when the component uses state, effects, browser APIs, or event handlers.
-- Cards / list items that exist only to fire a single `sendGTMEvent` on click should be Server Components that nest a small `'use client'` wrapper (e.g. `useTrack` callback) — not full client components.
+- Cards / list items that exist only to fire a single `sendGTMEvent` on click should be Server Components that nest a small `'use client'` wrapper (e.g. `useTrack` callback), not full client components.
 - **`React.lazy` must NEVER appear in a Server Component.** Use `next/dynamic` instead.
 - **`next/dynamic` with `ssr: false` is FORBIDDEN in Server Components in Next 16.** Either drop `ssr: false` or wrap inside a `'use client'` boundary.
 
@@ -41,9 +41,9 @@ Review the diff or the requested files for:
 
 ### React 19 specifics
 
-- Forms can use the new `<form action={serverAction}>` pattern — but `react-hook-form` is preferred for client-side validation in this project.
+- Forms can use the new `<form action={serverAction}>` pattern, but `react-hook-form` is preferred for client-side validation in this project.
 - Avoid `useEffect` for derived state; use `useMemo` or compute inline.
-- State setter inside another setState updater (anti-pattern) — flag any occurrence.
+- State setter inside another setState updater (anti-pattern), flag any occurrence.
 
 ### Project-specific rules
 
@@ -73,6 +73,6 @@ If everything looks good, say so explicitly. Do not pad with platitudes.
 
 ## What to NOT do
 
-- Do not apply fixes — only review.
-- Do not run the test suite — that's the `/check` command's job.
+- Do not apply fixes, only review.
+- Do not run the test suite, that's the `/check` command's job.
 - Do not opinion on stylistic preferences that don't affect correctness or performance.

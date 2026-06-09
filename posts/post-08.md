@@ -13,7 +13,7 @@ tags:
   - Developer Mindset
 ---
 
-A code review isn't just about finding bugs. Its real goal is improving code quality over time — catching issues before they ship, keeping the codebase consistent, and spreading knowledge across the team. When it works, it's one of the most valuable things a team does. When it doesn't, everyone just resents the process.
+A code review isn't just about finding bugs. Its real goal is improving code quality over time, catching issues before they ship, keeping the codebase consistent, and spreading knowledge across the team. When it works, it's one of the most valuable things a team does. When it doesn't, everyone just resents the process.
 
 This is the checklist I use, adapted from Neo Kim's CodeRabbit checklist and refined with things I've learned the hard way.
 
@@ -37,7 +37,7 @@ Does the code actually do what it's supposed to?
 // Correct
 if (user && user.isAdmin) { ... }
 
-// Risky — throws if user is null
+// Risky, throws if user is null
 if (user.isAdmin) { ... }
 ```
 
@@ -65,10 +65,10 @@ const userProfile = getUserProfile();
 - Are there obvious algorithmic problems?
 
 ```ts
-// Bad — O(n²)
+// Bad, O(n²)
 arr.forEach(a => arr.forEach(b => { ... }));
 
-// Good — O(n)
+// Good, O(n)
 const set = new Set(arr);
 ```
 
@@ -79,7 +79,7 @@ const set = new Set(arr);
 
 - Are inputs validated and sanitized before use?
 - Are there any SQL injection, XSS, or CSRF vectors?
-- Is sensitive data (passwords, tokens, PII) handled correctly — not logged, not exposed in responses?
+- Is sensitive data (passwords, tokens, PII) handled correctly, not logged, not exposed in responses?
 - Does error handling fail gracefully without leaking internals?
 
 ```ts

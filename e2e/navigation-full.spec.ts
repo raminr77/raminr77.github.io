@@ -1,5 +1,5 @@
 /**
- * Full navigation coverage — all desktop menu links, mobile burger menu.
+ * Full navigation coverage, all desktop menu links, mobile burger menu.
  */
 import { expect, test } from '@playwright/test';
 
@@ -25,15 +25,15 @@ for (const { name, url } of NAV_LINKS) {
   }) => {
     await page.goto('/');
 
-    // Use first() — some pages (e.g. posts with pagination) render a second <nav>
+    // Use first(), some pages (e.g. posts with pagination) render a second <nav>
     const nav = page.getByRole('navigation').first();
     const link = nav.getByRole('link', { name, exact: true });
     await expect(link).toBeVisible();
 
     await link.click();
-    // Wait for page to finish loading before checking URL — dev server (Turbopack)
+    // Wait for page to finish loading before checking URL, dev server (Turbopack)
     // compiles pages on-demand and can take longer than the default 5s timeout.
-    // Using 'load' instead of 'networkidle' — pages with dynamic imports (e.g. About Me)
+    // Using 'load' instead of 'networkidle', pages with dynamic imports (e.g. About Me)
     // keep network activity alive indefinitely and never reach networkidle on CI.
     await page.waitForLoadState('load');
     await expect(page).toHaveURL(url, { timeout: 15000 });

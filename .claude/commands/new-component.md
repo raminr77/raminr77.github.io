@@ -55,6 +55,6 @@ describe('<ComponentName>', () => {
 
 ## Things to NOT do
 
-- Do not add `'use client'` reflexively — check if the component truly needs it.
-- Do not use `import clsx from 'clsx'` — use the **named** import.
-- Do not place generic UI under `src/domains/` — those are feature-specific.
+- Do not add `'use client'` reflexively, check if the component truly needs it.
+- Do not use `import clsx from 'clsx'`: use the **named** import.
+- Do not place generic UI under `src/domains/`: those are feature-specific.

@@ -10,7 +10,7 @@ Every environment variable the project reads, where it is used, and which `.env`
 cp .env.example .env.local
 ```
 
-Next.js loads `.env.local` automatically. `.env.local` is in `.gitignore` — never commit it.
+Next.js loads `.env.local` automatically. `.env.local` is in `.gitignore`: never commit it.
 
 The single source of truth in code is `src/shared/constants/env.ts`, which exports a typed `ENV` object. Import `ENV` everywhere rather than touching `process.env` directly.
 
@@ -31,7 +31,7 @@ The single source of truth in code is `src/shared/constants/env.ts`, which expor
 | Variable                                | Scope  | Required for            | Notes                                                            |
 | --------------------------------------- | ------ | ----------------------- | ---------------------------------------------------------------- |
 | `NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY` | client | Contact form            | Loaded into the reCAPTCHA provider in `src/domains/contact-me/`. |
-| `GOOGLE_RECAPTCHA_SECRET_KEY`           | server | `/api/recaptcha-verify` | **No `NEXT_PUBLIC_` prefix** — must stay off the client bundle.  |
+| `GOOGLE_RECAPTCHA_SECRET_KEY`           | server | `/api/recaptcha-verify` | **No `NEXT_PUBLIC_` prefix**: must stay off the client bundle.   |
 
 Get the keys from the [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin). The contact form uses reCAPTCHA v3.
 
@@ -60,10 +60,10 @@ All four only load after the user accepts cookies via `<CookiesModal>` (see `src
 
 ### Build tools
 
-| Variable                   | Scope  | Default | Notes                                                             |
-| -------------------------- | ------ | ------- | ----------------------------------------------------------------- |
-| `NEXT_PUBLIC_ANALYZE_MODE` | client | `false` | Set to `'true'` to mount the in-page `<PerformanceMonitor>`.      |
-| `ANALYZE`                  | server | unset   | `pnpm build:analyze` sets this — toggles `@next/bundle-analyzer`. |
+| Variable                   | Scope  | Default | Notes                                                            |
+| -------------------------- | ------ | ------- | ---------------------------------------------------------------- |
+| `NEXT_PUBLIC_ANALYZE_MODE` | client | `false` | Set to `'true'` to mount the in-page `<PerformanceMonitor>`.     |
+| `ANALYZE`                  | server | unset   | `pnpm build:analyze` sets this, toggles `@next/bundle-analyzer`. |
 
 ---
 

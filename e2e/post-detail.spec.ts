@@ -1,5 +1,5 @@
 /**
- * Post detail page — metadata bar, share button, tags, back navigation,
+ * Post detail page, metadata bar, share button, tags, back navigation,
  * and related post recommendations.
  */
 import { expect, test } from '@playwright/test';
@@ -78,7 +78,7 @@ test('post category link navigates to filtered posts list', async ({ page }) => 
   const categoryLink = page.locator('main a[href*="category="]').first();
   await categoryLink.click();
   await expect(page).toHaveURL(/\/posts.*category=/);
-  // Posts list with filter applied — clear filter button visible
+  // Posts list with filter applied, clear filter button visible
   await expect(page.getByTestId('clear-filter-link')).toBeVisible();
 });
 

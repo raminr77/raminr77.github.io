@@ -6,19 +6,19 @@ Every page, URL, API endpoint, and SEO route in the project.
 
 ## Pages
 
-### Home — `/`
+### Home, `/`
 
 `src/app/page.tsx` → `src/domains/home/`
 
 Landing page with an animated hero. Components: `HeroTextAnimator`, `Summary`, `MoreInformationButton`.
 
-### About Me — `/about-me`
+### About Me, `/about-me`
 
 `src/app/about-me/page.tsx` → `src/domains/about-me/`
 
 Personal introduction with photos, background, and a `RecommendationsBox` preview that links to the full recommendations page.
 
-### Blog listing — `/posts`
+### Blog listing, `/posts`
 
 `src/app/posts/page.tsx` → `src/domains/posts/`
 
@@ -35,7 +35,7 @@ Components used: `PostCard`, `PostsSearch`, `PostsCategoryFilter`, `EmptyPostBlo
 | `tag`      | Tag filter                |
 | `page`     | Pagination page (1-based) |
 
-### Single post — `/posts/:id`
+### Single post, `/posts/:id`
 
 `src/app/posts/[id]/page.tsx` → `src/domains/posts/post-detail-page.tsx`
 
@@ -43,31 +43,31 @@ Full post content. `:id` is the numeric ID from the post's frontmatter. The page
 
 Components used: `PageHeader`, `PostAuthor`, `PostCategory`, `PostDate`, `PostReadTime`, `PostShare`, `PostTags`, `BackToPostButton`, `PostCard` (recommended posts), `ClientCodeLoader`. `<pre>` blocks are overridden by `<CodeBlock>` for expand / collapse.
 
-### Journey — `/journey`
+### Journey, `/journey`
 
 `src/app/journey/page.tsx` → `src/domains/journey/`
 
 Career and education timeline. Components: `JourneyCard`, `JourneyScroller`.
 
-### Projects — `/projects`
+### Projects, `/projects`
 
 `src/app/projects/page.tsx` → `src/domains/projects/`
 
 Grid of projects. Components: `ProjectCard`, `ProjectCardDemoLink`, `ProjectsFooter`.
 
-### Contact Me — `/contact-me`
+### Contact Me, `/contact-me`
 
 `src/app/contact-me/page.tsx` → `src/domains/contact-me/`
 
 reCAPTCHA-protected contact form. Components: `ContactForm`. Wraps the form in `<GoogleReCaptchaProvider>` scoped to this page only (the provider is not in the root layout).
 
-### Lens — `/lens`
+### Lens, `/lens`
 
 `src/app/lens/page.tsx` → `src/domains/lens/`
 
 Photo gallery. Components: `LensCard`, `LensGalleryModal`, `useGalleryKeyboard` (Escape closes, arrow keys navigate, body scroll locked while open).
 
-### Recommendations — `/recommendations`
+### Recommendations, `/recommendations`
 
 `src/app/recommendations/page.tsx` → `src/domains/recommendations/`
 
@@ -129,7 +129,7 @@ All API routes are inside `src/app/api/`.
 
 ### `GET /api`
 
-`src/app/api/route.ts` — Health check.
+`src/app/api/route.ts`: Health check.
 
 ```json
 { "message": "API is ready :D" }
@@ -137,7 +137,7 @@ All API routes are inside `src/app/api/`.
 
 ### `GET /api/posts/search`
 
-`src/app/api/posts/search/route.ts` — searches blog posts via `getPosts(null, q)`.
+`src/app/api/posts/search/route.ts`: searches blog posts via `getPosts(null, q)`.
 
 | Parameter | Required | Notes                                     |
 | --------- | -------- | ----------------------------------------- |
@@ -161,7 +161,7 @@ Failure response (500):
 
 ### `POST /api/recaptcha-verify`
 
-`src/app/api/recaptcha-verify/route.ts` — verifies a reCAPTCHA v3 token against Google.
+`src/app/api/recaptcha-verify/route.ts`: verifies a reCAPTCHA v3 token against Google.
 
 Request body:
 
@@ -171,13 +171,13 @@ Request body:
 
 Status codes:
 
-| Status | Meaning                                                            |
-| ------ | ------------------------------------------------------------------ |
-| 200    | Success — token valid, score ≥ 0.5, action = `contact_form_submit` |
-| 400    | Token missing, Google rejection, low score, or wrong action        |
-| 500    | Unexpected failure (e.g. JSON parse error, network error)          |
-| 503    | `GOOGLE_RECAPTCHA_SECRET_KEY` not configured on the server         |
+| Status | Meaning                                                           |
+| ------ | ----------------------------------------------------------------- |
+| 200    | Success, token valid, score ≥ 0.5, action = `contact_form_submit` |
+| 400    | Token missing, Google rejection, low score, or wrong action       |
+| 500    | Unexpected failure (e.g. JSON parse error, network error)         |
+| 503    | `GOOGLE_RECAPTCHA_SECRET_KEY` not configured on the server        |
 
 ### `GET | POST /api/react-sample`
 
-`src/app/api/react-sample/route.ts` — fake demo API used by a public sample repo for tutorials. Not used by this site. Accepts `admin/admin` on POST.
+`src/app/api/react-sample/route.ts`: fake demo API used by a public sample repo for tutorials. Not used by this site. Accepts `admin/admin` on POST.

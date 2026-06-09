@@ -19,14 +19,14 @@ In this post, I want to share a personal story and a few lessons I've picked up 
 
 ## The Story of the Setaregan Project
 
-The **Setaregan Project** is a project I've been maintaining for over a decade. It started in 2013 when my sports coach asked for a simple website for his club. At the time, I had zero web development experience — no HTML, no CSS, no idea where to even start. But I gave it a shot.
+The **Setaregan Project** is a project I've been maintaining for over a decade. It started in 2013 when my sports coach asked for a simple website for his club. At the time, I had zero web development experience, no HTML, no CSS, no idea where to even start. But I gave it a shot.
 
 The first version was a static page. It showed some text on a domain and I edited the files by hand whenever something needed to change. Over the years, the system kept evolving:
 
 - **Year 2:** Rebuilt with Joomla.
 - **Year 3:** Migrated to a blogging platform.
 - **Year 4:** Recreated with WordPress, adding more features.
-- **Year 7:** A custom PHP MVC version — large, full of bugs, very unstable.
+- **Year 7:** A custom PHP MVC version, large, full of bugs, very unstable.
 - **Year 8:** A complete rebuild using Laravel and React.
 - **Later:** Microservices, Docker, Kubernetes.
 
@@ -36,7 +36,7 @@ On paper, that looks like steady progress. But the pattern I noticed was less en
 
 ### Developer Knowledge
 
-There's a trap that a lot of developers fall into, myself included. When you learn something new — a pattern, a framework, an architecture — you want to use it. When I built my own MVC framework in PHP, I genuinely thought I was improving the system. What I was actually doing was adding complexity I didn't yet have the skills to manage. I didn't know SOLID principles, I hadn't studied Design Patterns seriously, and Clean Architecture was just a book title at that point. The result was something harder to maintain than WordPress.
+There's a trap that a lot of developers fall into, myself included. When you learn something new (a pattern, a framework, an architecture) you want to use it. When I built my own MVC framework in PHP, I genuinely thought I was improving the system. What I was actually doing was adding complexity I didn't yet have the skills to manage. I didn't know SOLID principles, I hadn't studied Design Patterns seriously, and Clean Architecture was just a book title at that point. The result was something harder to maintain than WordPress.
 
 As _The Pragmatic Programmer_ puts it, the right tool in the wrong hands can lead to disaster.
 
@@ -44,7 +44,7 @@ As _The Pragmatic Programmer_ puts it, the right tool in the wrong hands can lea
 
 The biggest mistake I made with the Setaregan project was introducing microservices, Docker, and Kubernetes into something that had no real reason to be distributed. A single well-structured monolith would have served the club perfectly.
 
-Fred Brooks said it decades ago in _The Mythical Man-Month_: there is no silver bullet. Modern tools are genuinely powerful, but if your problem doesn't require them, you're not solving a problem — you're creating one.
+Fred Brooks said it decades ago in _The Mythical Man-Month_: there is no silver bullet. Modern tools are genuinely powerful, but if your problem doesn't require them, you're not solving a problem, you're creating one.
 
 ### Domain Knowledge
 
@@ -64,7 +64,7 @@ Eric Evans' _Domain-Driven Design_ makes this point clearly: the real value of s
 
 ## Conclusion
 
-After more than a decade with the same project, two things became very clear to me. First, the more technical skill you have, the more discipline you need to avoid over-engineering things. Second, understanding the business is not optional — without it, the best code in the world won't solve the right problem.
+After more than a decade with the same project, two things became very clear to me. First, the more technical skill you have, the more discipline you need to avoid over-engineering things. Second, understanding the business is not optional: without it, the best code in the world won't solve the right problem.
 
 Successful software isn't the one with the newest tech stack. It's the one that stays simple, useful, and aligned with what people actually need.
 

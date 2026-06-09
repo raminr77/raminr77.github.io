@@ -1,5 +1,5 @@
 /**
- * Contact form validation — required fields, error messages, calendar links.
+ * Contact form validation, required fields, error messages, calendar links.
  * Form submission is covered separately in contact.spec.ts (mocked).
  */
 import { expect, test } from '@playwright/test';

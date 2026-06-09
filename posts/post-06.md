@@ -79,11 +79,11 @@ Leadership often wants velocity, not technical perfection. And it's up to senior
 
 A few more invisible blockers I've run into over the years:
 
-- No psychological safety — you don't challenge bad decisions because you don't want to be seen as "negative"
-- Short-term reward systems — features get praised, refactors get ignored
-- Decision by committee — too many voices leads to compromise, not clarity
-- Bad estimations — refactors always look longer than features, so they get cut
-- Unclear ownership — nobody feels responsible for long-term health
+- No psychological safety: you don't challenge bad decisions because you don't want to be seen as "negative"
+- Short-term reward systems: features get praised, refactors get ignored
+- Decision by committee: too many voices leads to compromise, not clarity
+- Bad estimations: refactors always look longer than features, so they get cut
+- Unclear ownership: nobody feels responsible for long-term health
 
 ## So… what now?
 

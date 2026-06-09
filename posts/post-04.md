@@ -31,7 +31,7 @@ You can build virtualization from scratch, but honestly there are solid librarie
 
 **`react-window`** is the one I reach for most often. It's small (around 5KB gzipped), has a simple API, and covers the two most common cases: fixed-size and variable-size lists. Brian Vaughn built it while he was on the React core team, so it's well-maintained.
 
-**`react-virtualized`** is the older sibling — more feature-rich but heavier (around 30KB). Good if you need grids, tables, or complex infinite loading out of the box.
+**`react-virtualized`** is the older sibling, more feature-rich but heavier (around 30KB). Good if you need grids, tables, or complex infinite loading out of the box.
 
 **`react-virtuoso`** is the newer option. Great for dynamic content and built-in infinite scrolling support. Worth checking out if `react-window` feels too low-level for your use case.
 

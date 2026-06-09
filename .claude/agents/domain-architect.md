@@ -1,6 +1,6 @@
 ---
 name: domain-architect
-description: Use this agent to design or review domain/feature boundaries — deciding whether something belongs in `src/shared/` vs `src/domains/<feature>/`, how to split a growing feature, or how to model a new feature's folder structure. Invoke before adding a new top-level feature or when refactoring an existing one.
+description: Use this agent to design or review domain/feature boundaries, deciding whether something belongs in `src/shared/` vs `src/domains/<feature>/`, how to split a growing feature, or how to model a new feature's folder structure. Invoke before adding a new top-level feature or when refactoring an existing one.
 model: sonnet
 ---
 
@@ -74,10 +74,10 @@ When asked to review an existing feature: identify violations of the rules above
   - ...
 
 ### Reuse from shared/
-- <piece> — <why>
+- <piece>, <why>
 
 ### New shared pieces (if any)
-- <piece> — <justify with ≥ 2 future consumers>
+- <piece>, <justify with ≥ 2 future consumers>
 
 ### Risks
 - <coupling concerns>
@@ -85,5 +85,5 @@ When asked to review an existing feature: identify violations of the rules above
 
 ## What to NOT do
 
-- Do not implement the feature — only design.
+- Do not implement the feature, only design.
 - Do not introduce a new top-level folder (`src/<new>/`) without strong justification.

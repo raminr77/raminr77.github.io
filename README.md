@@ -1,4 +1,4 @@
-# Ramin Rezaei — Personal Website
+# Ramin Rezaei Personal Website
 
 This repository holds the source code for [raminrezaei.se](https://raminrezaei.se)
 
@@ -39,7 +39,7 @@ pnpm test:e2e          # Playwright (run `pnpm test:e2e:install` first)
 
 - **Sitemap**: generated dynamically at [`/sitemap.xml`](https://raminrezaei.se/sitemap.xml) from `getPosts()`.
 - **RSS**: subscribe at [`/feed.xml`](https://raminrezaei.se/feed.xml).
-- **robots.txt**: dynamic — preview deployments return `Disallow: /` so they don't get indexed.
+- **robots.txt**: dynamic, preview deployments return `Disallow: /` so they don't get indexed.
 - **JSON-LD**: every blog post exposes `BlogPosting` structured data.
 - **Open Graph images**: every post gets a dynamically generated 1200×630 preview at `/posts/<id>/opengraph-image`.
 

@@ -7,7 +7,7 @@ Scaffold a new top-level page for route: **/$ARGUMENTS**
 
 ## Steps
 
-1. **Server-side route entry** — create `src/app/<route>/page.tsx`:
+1. **Server-side route entry**: create `src/app/<route>/page.tsx`:
 
 ```tsx
 import type { Metadata } from 'next';
@@ -24,7 +24,7 @@ export default function Page() {
 }
 ```
 
-2. **Domain entry** — create `src/domains/<route>/index.tsx`:
+2. **Domain entry**: create `src/domains/<route>/index.tsx`:
 
 ```tsx
 import { ContentContainer } from '@/layout/components';
@@ -40,17 +40,17 @@ export function <PascalName>Page() {
 }
 ```
 
-3. **Domain components folder** — create `src/domains/<route>/components/` directory (empty for now).
+3. **Domain components folder**: create `src/domains/<route>/components/` directory (empty for now).
 
-4. **Routes constant** — append to `src/shared/constants/routes.ts`:
+4. **Routes constant**: append to `src/shared/constants/routes.ts`:
 
 ```ts
 <UPPER_NAME>: '/<route>',
 ```
 
-5. **Menu entry (optional)** — if the page is in the main menu, add to `MENU_ITEM_ROUTES` in `src/shared/constants/index.ts`.
+5. **Menu entry (optional)**: if the page is in the main menu, add to `MENU_ITEM_ROUTES` in `src/shared/constants/index.ts`.
 
-6. **E2E spec (recommended)** — create `e2e/<route>.spec.ts` with a basic navigation check:
+6. **E2E spec (recommended)**: create `e2e/<route>.spec.ts` with a basic navigation check:
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -68,5 +68,5 @@ test('<route> page loads', async ({ page }) => {
 
 ## Things to NOT do
 
-- Do not put page UI directly inside `src/app/<route>/page.tsx` — keep `app/` thin and forward to the domain.
-- Do not hardcode the route path string elsewhere — always reference `ROUTES.<NAME>`.
+- Do not put page UI directly inside `src/app/<route>/page.tsx`: keep `app/` thin and forward to the domain.
+- Do not hardcode the route path string elsewhere, always reference `ROUTES.<NAME>`.

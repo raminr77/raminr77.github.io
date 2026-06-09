@@ -36,7 +36,7 @@ interface PerformanceWithMemory extends Performance {
   memory?: MemoryInfo;
 }
 
-// Performance observer for monitoring. Singleton with idempotent setup —
+// Performance observer for monitoring. Singleton with idempotent setup,
 // re-mounts of the consumer component do not create duplicate observers.
 export class PerformanceMonitor {
   private static instance: PerformanceMonitor;
@@ -83,7 +83,7 @@ export class PerformanceMonitor {
       observer.observe({ entryTypes: [type] });
       this.observers.push(observer);
     } catch {
-      // Observer type not supported in this browser — silently skip.
+      // Observer type not supported in this browser, silently skip.
     }
   }
 
@@ -105,7 +105,7 @@ export class PerformanceMonitor {
   }
 }
 
-// Idempotent — guard against duplicate listeners across re-inits.
+// Idempotent, guard against duplicate listeners across re-inits.
 let memoryOptimized = false;
 
 export const optimizeMemoryUsage = () => {
