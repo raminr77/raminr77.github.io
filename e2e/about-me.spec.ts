@@ -1,5 +1,5 @@
 /**
- * About Me page — hero image, personal info, resume download button.
+ * About Me page, hero image, personal info, resume download button.
  */
 import { expect, test } from '@playwright/test';
 

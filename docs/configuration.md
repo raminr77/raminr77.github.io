@@ -84,7 +84,7 @@ import Logo from './logo.svg';
 
 Sets security and CORS headers in one place.
 
-**Site-wide (all paths)** — defence-in-depth headers, mirrored in `vercel.json`:
+**Site-wide (all paths)**: defence-in-depth headers, mirrored in `vercel.json`:
 
 | Header                      | Value                                                          |
 | --------------------------- | -------------------------------------------------------------- |
@@ -94,7 +94,7 @@ Sets security and CORS headers in one place.
 | `Strict-Transport-Security` | `max-age=63072000; includeSubDomains; preload`                 |
 | `Permissions-Policy`        | `camera=(), microphone=(), geolocation=(), interest-cohort=()` |
 
-**`/api/:path*`** — CORS for the public-read endpoints:
+**`/api/:path*`**, CORS for the public-read endpoints:
 
 | Header                         | Value                                                                                                                    |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
@@ -102,13 +102,13 @@ Sets security and CORS headers in one place.
 | `Access-Control-Allow-Methods` | `GET,OPTIONS,PATCH,DELETE,POST,PUT`                                                                                      |
 | `Access-Control-Allow-Headers` | `X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version` |
 
-**`*.pdf`** — cache the CV PDF for a year:
+**`*.pdf`**, cache the CV PDF for a year:
 
 ```ts
 { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }
 ```
 
-**`/feed.xml`** — short server cache + long SWR for the RSS feed:
+**`/feed.xml`**: short server cache + long SWR for the RSS feed:
 
 ```ts
 { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' }
@@ -146,7 +146,7 @@ The whole config is wrapped in `withSentryConfig(withBundleAnalyzer(config), { o
 | `incremental`      | `true`                   | Faster rebuilds            |
 | `paths`            | `{ "@/*": ["./src/*"] }` | Alias `@/*` for `src/*`    |
 
-Always prefer `@/<path>` over deep relative imports — Prettier's sort-imports plugin treats them consistently and they survive folder moves.
+Always prefer `@/<path>` over deep relative imports, Prettier's sort-imports plugin treats them consistently and they survive folder moves.
 
 ---
 
@@ -185,8 +185,8 @@ Notable behaviours:
 
 Plugins:
 
-- `prettier-plugin-tailwindcss` — canonical Tailwind class order.
-- `prettier-plugin-sort-imports` (Trivago variant pinned in deps) — predictable import order: 3rd-party → `@/*` → relative.
+- `prettier-plugin-tailwindcss`: canonical Tailwind class order.
+- `prettier-plugin-sort-imports` (Trivago variant pinned in deps), predictable import order: 3rd-party → `@/*` → relative.
 
 ---
 
@@ -222,7 +222,7 @@ Plugins:
 }
 ```
 
-The threshold acts as a ratchet — coverage can grow but not regress. Bump the numbers up when new tests are added.
+The threshold acts as a ratchet, coverage can grow but not regress. Bump the numbers up when new tests are added.
 
 ---
 
@@ -284,9 +284,9 @@ fi
 
 What it runs:
 
-1. **`lint-staged`** — Prettier + ESLint on staged files (config in `package.json`).
-2. **`check-types`** — full `tsc --noEmit`; TS errors caught here can't be caught by ESLint.
-3. **`jest --findRelatedTests <staged>`** — runs only the tests that touch the staged files. Skipped if no `.ts` / `.tsx` is staged.
+1. **`lint-staged`**: Prettier + ESLint on staged files (config in `package.json`).
+2. **`check-types`**: full `tsc --noEmit`; TS errors caught here can't be caught by ESLint.
+3. **`jest --findRelatedTests <staged>`**: runs only the tests that touch the staged files. Skipped if no `.ts` / `.tsx` is staged.
 
 The full Jest suite, production build, and Playwright E2E run on CI rather than every commit.
 

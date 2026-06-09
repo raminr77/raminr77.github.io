@@ -43,8 +43,8 @@ So "real-time ML" here means: a trained model that runs fast enough to process y
 
 There are two separate jobs we want to do:
 
-1. **Video** — figure out which pixels are _you_ and which are _background_, then blur or replace the background.
-2. **Audio** — figure out which sounds are _your voice_ and which are _noise_, then keep the voice and remove the noise.
+1. **Video**: figure out which pixels are _you_ and which are _background_, then blur or replace the background.
+2. **Audio**: figure out which sounds are _your voice_ and which are _noise_, then keep the voice and remove the noise.
 
 They sound similar, but the techniques are different. Let me take them one at a time.
 
@@ -248,9 +248,9 @@ The models that remove backgrounds and noise are _not_ the most accurate models 
 
 Everything here is a balancing act between three things:
 
-- **Quality** — how clean is the result?
-- **Speed** — can it finish a frame or audio chunk in a few milliseconds?
-- **Cost** — how much CPU, GPU, or battery does it burn?
+- **Quality**: how clean is the result?
+- **Speed**: can it finish a frame or audio chunk in a few milliseconds?
+- **Cost**: how much CPU, GPU, or battery does it burn?
 
 For a live stream you cannot have all three. The tools pick "fast and cheap enough", then make the quality as good as they can within that budget. That is why your background flickers a little and a sharp bark might sneak through. It is not a bug, it is the price of doing it live. When you process a recording afterwards, where speed does not matter, you can use the slow heavy models and get near-perfect results.
 
@@ -262,7 +262,7 @@ This same trade-off, quality versus speed versus cost, shows up everywhere in ma
 | ----------------------------------- | ------------------------------------------------- | --------------------------------------------------- |
 | Blur / replace background on a call | Google Meet or Zoom built-in                      | MediaPipe Selfie Segmentation in the browser        |
 | Background removal for any app      | NVIDIA Broadcast                                  | OBS Background Removal plugin                       |
-| Basic mic noise removal on the web  | `noiseSuppression: true` in `getUserMedia`        | —                                                   |
+| Basic mic noise removal on the web  | `noiseSuppression: true` in `getUserMedia`        | N/A                                                 |
 | Strong mic noise removal            | Krisp or NVIDIA Broadcast                         | RNNoise compiled to WebAssembly, in an AudioWorklet |
 | Full streaming setup                | OBS + Background Removal + NVIDIA Broadcast/Krisp | Your own pipeline with the models above             |
 
@@ -278,14 +278,14 @@ Next time my neighbor starts drilling, I will still click the button. But now I 
 
 ## References
 
-- [MediaPipe Selfie Segmentation](https://ai.google.dev/edge/mediapipe/solutions/vision/image_segmenter) — Google's person segmentation model and docs.
-- [TensorFlow.js BodyPix](https://github.com/tensorflow/tfjs-models/tree/master/body-pix) — another in-browser person segmentation model.
-- [RNNoise](https://jmvalin.ca/demo/rnnoise/) — the open-source neural noise suppression library, with before/after audio samples.
-- [Jitsi RNNoise WebAssembly build](https://github.com/jitsi/rnnoise-wasm) — a ready-to-use browser build of RNNoise.
-- [MediaStream constraints (`noiseSuppression`)](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) — the built-in browser audio cleanup flags.
-- [AudioWorklet](https://developer.mozilla.org/en-US/docs/Web/API/AudioWorklet) — how to process live audio off the main thread.
-- [NVIDIA Broadcast](https://www.nvidia.com/en-us/geforce/broadcasting/broadcast-app/) — GPU-based background and noise removal.
-- [OBS Background Removal plugin](https://github.com/locaal-ai/obs-backgroundremoval) — segmentation-based background removal for OBS Studio.
-- [Krisp](https://krisp.ai/) — ML noise cancellation app.
+- [MediaPipe Selfie Segmentation](https://ai.google.dev/edge/mediapipe/solutions/vision/image_segmenter): Google's person segmentation model and docs.
+- [TensorFlow.js BodyPix](https://github.com/tensorflow/tfjs-models/tree/master/body-pix): another in-browser person segmentation model.
+- [RNNoise](https://jmvalin.ca/demo/rnnoise/): the open-source neural noise suppression library, with before/after audio samples.
+- [Jitsi RNNoise WebAssembly build](https://github.com/jitsi/rnnoise-wasm): a ready-to-use browser build of RNNoise.
+- [MediaStream constraints (`noiseSuppression`)](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints): the built-in browser audio cleanup flags.
+- [AudioWorklet](https://developer.mozilla.org/en-US/docs/Web/API/AudioWorklet): how to process live audio off the main thread.
+- [NVIDIA Broadcast](https://www.nvidia.com/en-us/geforce/broadcasting/broadcast-app/): GPU-based background and noise removal.
+- [OBS Background Removal plugin](https://github.com/locaal-ai/obs-backgroundremoval): segmentation-based background removal for OBS Studio.
+- [Krisp](https://krisp.ai/): ML noise cancellation app.
 
 – Ramin ✌️

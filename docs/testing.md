@@ -21,16 +21,16 @@ At the time of writing the project ships **41 test suites / 227 tests** for the 
 
 `jest.config.js`. Key settings:
 
-| Setting                  | Value                                                             | Why                                                  |
-| ------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------- |
-| `testEnvironment`        | `jest-environment-jsdom`                                          | Simulates a browser environment for component tests  |
-| `setupFilesAfterEach`    | `<rootDir>/jest.setup.ts`                                         | Loads `@testing-library/jest-dom` matchers           |
-| `moduleNameMapper`       | `^@/(.*)$ → <rootDir>/src/$1`, CSS / SCSS → `identity-obj-proxy`  | Resolves the `@/` alias; mocks CSS module imports    |
-| `cacheDirectory`         | `<rootDir>/.jest-cache`                                           | Speeds up repeated runs                              |
-| `testPathIgnorePatterns` | `/.next/`, `/node_modules/`, `/e2e/`                              | Don't run E2E specs as unit tests                    |
-| `collectCoverageFrom`    | `src/**/*.{ts,tsx}` minus tests / barrels / route handlers / data | Coverage scope kept honest                           |
-| `coverageReporters`      | `text`, `text-summary`, `json-summary`, `lcov`, `html`            | Coverage outputs for both local terminal and CI      |
-| `coverageThreshold`      | global lines 27, statements 27, functions 20, branches 30         | Baseline ratchet — coverage may grow but not regress |
+| Setting                  | Value                                                             | Why                                                 |
+| ------------------------ | ----------------------------------------------------------------- | --------------------------------------------------- |
+| `testEnvironment`        | `jest-environment-jsdom`                                          | Simulates a browser environment for component tests |
+| `setupFilesAfterEach`    | `<rootDir>/jest.setup.ts`                                         | Loads `@testing-library/jest-dom` matchers          |
+| `moduleNameMapper`       | `^@/(.*)$ → <rootDir>/src/$1`, CSS / SCSS → `identity-obj-proxy`  | Resolves the `@/` alias; mocks CSS module imports   |
+| `cacheDirectory`         | `<rootDir>/.jest-cache`                                           | Speeds up repeated runs                             |
+| `testPathIgnorePatterns` | `/.next/`, `/node_modules/`, `/e2e/`                              | Don't run E2E specs as unit tests                   |
+| `collectCoverageFrom`    | `src/**/*.{ts,tsx}` minus tests / barrels / route handlers / data | Coverage scope kept honest                          |
+| `coverageReporters`      | `text`, `text-summary`, `json-summary`, `lcov`, `html`            | Coverage outputs for both local terminal and CI     |
+| `coverageThreshold`      | global lines 27, statements 27, functions 20, branches 30         | Baseline ratchet, coverage may grow but not regress |
 
 The threshold is intentionally set just below the current numbers so any drop fails the suite. Bump it as new tests are added.
 

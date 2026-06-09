@@ -117,7 +117,7 @@ export function DecryptedText({
     setIsScrambling(true);
 
     // Track set/iteration locally so the interval callback stays a pure side-effect
-    // driver — no setState inside another state updater.
+    // driver, no setState inside another state updater.
     let revealed = new Set<number>();
     let currentIteration = 0;
 

@@ -1,6 +1,6 @@
 .recommendation-card {
   // Subtle amber accent on the left edge so adjacent cards never blend together.
-  // Intentionally static — no hover transition on the bar itself.
+  // Intentionally static, no hover transition on the bar itself.
   &::before {
     top: 0;
     left: 0;

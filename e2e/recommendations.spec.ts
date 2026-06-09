@@ -1,5 +1,5 @@
 /**
- * Recommendations page — cards, LinkedIn links, anchor navigation.
+ * Recommendations page, cards, LinkedIn links, anchor navigation.
  */
 import { expect, test } from '@playwright/test';
 
@@ -30,7 +30,7 @@ test('all LinkedIn links open in a new tab', async ({ page }) => {
 
 test('recommendation cards display a person name', async ({ page }) => {
   // RecommendationCard renders fullName in uppercase
-  // We just check that there's content — names are data-driven
+  // We just check that there's content, names are data-driven
   const cards = page.locator('[id^="item-"]');
   const count = await cards.count();
   expect(count).toBeGreaterThan(0);

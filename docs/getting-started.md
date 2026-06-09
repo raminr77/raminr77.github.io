@@ -12,7 +12,7 @@ This guide covers local setup, the available scripts, and what the Husky pre-com
 | pnpm    | 10.x (`packageManager` in `package.json` pins the exact version) | Package manager    |
 | Git     | any recent version                                               | Version control    |
 
-This project uses **pnpm**. Don't use `npm` or `yarn` — the lockfile is `pnpm-lock.yaml`.
+This project uses **pnpm**. Don't use `npm` or `yarn`: the lockfile is `pnpm-lock.yaml`.
 
 ---
 
@@ -77,9 +77,9 @@ The dev server uses Turbopack for fast incremental rebuilds.
 
 `.husky/pre-commit` keeps commits fast by checking only what you touched:
 
-1. **`pnpm lint-staged`** — Prettier and ESLint on the staged files (config in `package.json`).
-2. **`pnpm check-types`** — full TypeScript check; ESLint can't see type errors.
-3. **`pnpm exec jest --bail --findRelatedTests <staged>`** — runs the unit tests that touch the staged files (skipped automatically if no `.ts` / `.tsx` files are staged).
+1. **`pnpm lint-staged`**: Prettier and ESLint on the staged files (config in `package.json`).
+2. **`pnpm check-types`**: full TypeScript check; ESLint can't see type errors.
+3. **`pnpm exec jest --bail --findRelatedTests <staged>`**: runs the unit tests that touch the staged files (skipped automatically if no `.ts` / `.tsx` files are staged).
 
 The full Jest suite, the production build, and the Playwright E2E suite run on CI rather than in the pre-commit hook. See [deployment.md](./deployment.md) for the CI table.
 

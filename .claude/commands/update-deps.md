@@ -11,7 +11,7 @@ Show outdated packages and assess upgrade risk. **Do not run `pnpm add` or `pnpm
 2. Group findings:
    - **Patch** (safe, just apply)
    - **Minor** (review changelog briefly)
-   - **Major** (high-risk — Next.js, React, Tailwind, motion, gsap, jest, eslint, typescript, @sentry/nextjs)
+   - **Major** (high-risk, Next.js, React, Tailwind, motion, gsap, jest, eslint, typescript, @sentry/nextjs)
 3. For each **major** bump in a critical lib (`next`, `react`, `react-dom`, `tailwindcss`, `typescript`, `eslint`, `jest`):
    - Fetch the upgrade guide via `context7` (resolve the library id, then query for "migration", "upgrade", or "breaking changes").
    - Summarize the migration steps in 3–5 bullets.

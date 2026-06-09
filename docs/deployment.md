@@ -43,7 +43,7 @@ pnpm lighthouse
 
 `pnpm performance` does all three steps in one shot.
 
-CI runs Lighthouse on every PR against the built site — see the `lighthouse` workflow below.
+CI runs Lighthouse on every PR against the built site, see the `lighthouse` workflow below.
 
 ---
 
@@ -54,7 +54,7 @@ The site is hosted on **Vercel**. Deploys happen automatically through Vercel's 
 - Push or merge to `master` → production deploy at <https://raminrezaei.se>.
 - Push to any other branch (including `dev`) → preview deploy at a `*.vercel.app` URL. Preview deploys serve `Disallow: /` from `/robots.txt` (via `src/app/robots.ts`) so they don't get indexed.
 
-There is no `deploy.yml` workflow in this repo — Vercel triggers builds via its own Git webhook and reports status back to GitHub.
+There is no `deploy.yml` workflow in this repo, Vercel triggers builds via its own Git webhook and reports status back to GitHub.
 
 ---
 
@@ -92,7 +92,7 @@ CodeQL is **not** a committed workflow. It runs via GitHub's Default Setup (repo
 | `types`           | `@types/*`                                                                                     | Weekly             | `dev`  |
 | `actions`         | All GitHub Actions                                                                             | Monthly            | `dev`  |
 
-Major bumps are filtered to manual review — only `minor` / `patch` flow through automatic grouping.
+Major bumps are filtered to manual review, only `minor` / `patch` flow through automatic grouping.
 
 ---
 
@@ -114,13 +114,13 @@ Variables that genuinely need to be set as repo secrets for production builds:
 | `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_CODE`         | GTM container ID                                 |
 | `NEXT_PUBLIC_GOOGLE_ADSENSE`                  | AdSense publisher ID (optional)                  |
 
-These need to be set on **Vercel** (Project Settings → Environment Variables) for the deployed site. The CI build workflow sets `SENTRY_SKIP_UPLOAD=1` so source-map upload is skipped when running on GitHub Actions — only Vercel uploads source maps.
+These need to be set on **Vercel** (Project Settings → Environment Variables) for the deployed site. The CI build workflow sets `SENTRY_SKIP_UPLOAD=1` so source-map upload is skipped when running on GitHub Actions, only Vercel uploads source maps.
 
 ---
 
 ## Manual deployment
 
-You should never need to deploy manually — Vercel handles it. If you do:
+You should never need to deploy manually, Vercel handles it. If you do:
 
 ```bash
 # Make sure .env.local has production values

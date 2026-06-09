@@ -1,5 +1,5 @@
 /**
- * Smoke tests — verify every main page loads and shows its primary content.
+ * Smoke tests, verify every main page loads and shows its primary content.
  * These are the fastest safety net: if a page fails to render, this catches it.
  */
 import { expect, test } from '@playwright/test';

@@ -84,7 +84,7 @@ Added tests: <file>
 - <behaviour 1>
 - <behaviour 2>
 ...
-Total tests: <new count> (was <old count>) — all passing.
+Total tests: <new count> (was <old count>), all passing.
 ```
 
 ## What to NOT do
@@ -92,4 +92,4 @@ Total tests: <new count> (was <old count>) — all passing.
 - Do not write trivial `expect(true).toBe(true)` placeholders.
 - Do not mock things the test doesn't actually exercise.
 - Do not modify production code to make it more "testable" without flagging the change to the user first.
-- Do not write E2E tests for pure logic — those belong in unit tests.
+- Do not write E2E tests for pure logic, those belong in unit tests.

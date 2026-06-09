@@ -17,7 +17,7 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: `11 Jan 1999 ( ${new Date().getFullYear() - 1999} years )`,
     title: 'Birthday',
     description:
-      '<p>I was born on <strong>January 11, 1999</strong> in <em>Isfahan, Iran</em> 🇮🇷. This was the beginning of my journey, which later took me through software engineering, large-scale systems, and international opportunities.</p>'
+      '<p>I was born on <strong>January 11, 1999</strong> in <em>Isfahan, Iran</em>. This was the beginning of my journey, which later took me through software engineering, large-scale systems, and international opportunities.</p>'
   },
   {
     id: 2,
@@ -116,7 +116,7 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
       'Led migration to React and TypeScript, improving maintainability, performance, and frontend architecture.',
       'Optimized rendering and reduced re-renders to improve load times and user experience.',
       'Contributed to CI/CD, code reviews, and automated testing across unit, integration, and E2E layers.',
-      'Built an ML-powered image processing system using Google tools and TensorFlow.js to classify and cluster images, and automatically remove backgrounds for easier content usage.'
+      'Built an ML-powered image processing and classification pipeline using TensorFlow.js and Google Cloud Vision AI to automatically classify, cluster, and process product images, including automated background removal, directly improving content team efficiency.'
     ]
   },
   {
@@ -125,11 +125,11 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: 'May 2025 - Now',
     location: 'Malmö, Sweden',
     url: 'https://www.linkedin.com/company/sinch/',
-    title: 'Sinch - Software Engineer',
+    title: 'Sinch - Software Engineer III',
     description:
       '<p>At <strong>Sinch</strong>, I work on distributed systems, frontend platforms, backend services, observability, and infrastructure. My focus is on building scalable internal tools and improving reliability across complex architectures.</p>',
     items: [
-      'Led development of MCP for the Account & Access domain, integrating with multiple internal tools and lovable, and winning an internal engineering competition.',
+      'Designed and built a Model Context Protocol (MCP) server for the Account & Access domain, integrating AI-driven tooling across internal services. It won an internal engineering competition and is now adopted as a partnership integration.',
       'Led an end-to-end E2E testing initiative and observability dashboards using Grafana with Prometheus data, improving system visibility and reliability.',
       'Contributed to BFF services using Kotlin, integrating with large-scale microservices in a distributed architecture.',
       'Improved dashboard performance by optimizing frontend code and reducing system overhead through backend caching and streaming strategies.',

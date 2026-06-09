@@ -35,7 +35,7 @@ export function PixelCanvas({
 }: PixelCanvasProps) {
   useEffect(() => {
     // The custom element registers itself as a side-effect on import.
-    // It is enhancement-only — silent on failure, but report to Sentry when enabled.
+    // It is enhancement-only, silent on failure, but report to Sentry when enabled.
     import('../../libs/pixel-canvas').catch((loadError: unknown) => {
       if (ENV.SENTRY_ENABLED) {
         Sentry.captureException(loadError, {

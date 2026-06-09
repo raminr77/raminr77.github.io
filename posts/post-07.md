@@ -19,9 +19,9 @@ Picking a data access layer in a TypeScript + PostgreSQL project is one of those
 
 The three options:
 
-1. **[Prisma](https://www.prisma.io/docs)** — schema-first, type-safe ORM with great DX
-2. **[TypeORM](https://typeorm.io/)** — decorator-based ORM, closer to SQL, more flexible
-3. **[Direct DB Client](https://node-postgres.com/)** — raw `node-postgres`, maximum control
+1. **[Prisma](https://www.prisma.io/docs)**: schema-first, type-safe ORM with great DX
+2. **[TypeORM](https://typeorm.io/)**: decorator-based ORM, closer to SQL, more flexible
+3. **[Direct DB Client](https://node-postgres.com/)**: raw `node-postgres`, maximum control
 
 ## The Same Query, Three Ways
 

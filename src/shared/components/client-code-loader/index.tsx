@@ -38,7 +38,7 @@ export function ClientCodeLoader() {
 
         hljs.highlightAll();
       } catch (error) {
-        // Highlighting is enhancement-only — the page still works without it.
+        // Highlighting is enhancement-only, the page still works without it.
         notify.error({
           message: error instanceof Error ? error.message : 'Failed to load highlight.js'
         });

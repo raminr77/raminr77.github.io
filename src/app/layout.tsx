@@ -107,7 +107,7 @@ export default function RootLayout({
           rel="alternate"
           href="/feed.xml"
           type="application/rss+xml"
-          title={`${PERSONAL_DATA.fullName} — Blog`}
+          title={`${PERSONAL_DATA.fullName} - Blog`}
         />
         {!!ENV.GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={ENV.GOOGLE_ADSENSE} />

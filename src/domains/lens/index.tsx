@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: LENS_DATA.title
 };
 
-// Pre-sorted at module level — static data, no need to sort on every render
+// Pre-sorted at module level, static data, no need to sort on every render
 const SORTED_LENS_ITEMS: LensItem[] = [...LENS_ITEMS].sort(
   (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
 );

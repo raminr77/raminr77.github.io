@@ -12,7 +12,7 @@ tags:
   - SPA
 ---
 
-Page transitions in SPAs have always been a bit awkward to get right. You either pull in a full animation library, write your own enter/leave logic with CSS classes, or just accept the abrupt content swap. The View Transitions API is a browser-native way to handle this — you wrap a DOM update in `document.startViewTransition()` and the browser captures the before/after states and animates between them.
+Page transitions in SPAs have always been a bit awkward to get right. You either pull in a full animation library, write your own enter/leave logic with CSS classes, or just accept the abrupt content swap. The View Transitions API is a browser-native way to handle this: you wrap a DOM update in `document.startViewTransition()` and the browser captures the before/after states and animates between them.
 
 It works differently from traditional CSS transitions. Instead of transitioning a property value over time, it takes a screenshot of the current state, makes your DOM change, then animates from the old screenshot to the new live state. The result is smooth even for complex layout changes.
 
@@ -106,7 +106,7 @@ Here's a simple two-view demo with a fade transition:
 
 The key parts: you assign a `view-transition-name` to the element you want to animate, define `@keyframes` for the old and new states using the `::view-transition-old` and `::view-transition-new` pseudo-elements, then call `document.startViewTransition()` with your DOM update inside the callback.
 
-The fallback on line `if (!document.startViewTransition)` handles browsers that don't support it — content still updates, just without the animation.
+The fallback on line `if (!document.startViewTransition)` handles browsers that don't support it: content still updates, just without the animation.
 
 ## Browser Support
 

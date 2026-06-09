@@ -39,7 +39,7 @@ describe('<ToggleThemeButton />', () => {
     expect(screen.getByRole('button', { name: /toggle theme/i })).toBeInTheDocument();
   });
 
-  it('defaults to dark theme — shows sun icon (to switch to light)', () => {
+  it('defaults to dark theme, shows sun icon (to switch to light)', () => {
     act(() => {
       render(<ToggleThemeButton />);
     });

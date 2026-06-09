@@ -1,12 +1,12 @@
 # Components
 
-Every component in the project — where it lives and what it does.
+Every component in the project, where it lives and what it does.
 
 Three groups:
 
-- **Shared** — `src/shared/components/`, reusable across features.
-- **Domain** — `src/domains/<feature>/components/`, scoped to one feature.
-- **Layout** — `src/layout/components/`, present on every page.
+- **Shared**: `src/shared/components/`, reusable across features.
+- **Domain**: `src/domains/<feature>/components/`, scoped to one feature.
+- **Layout**: `src/layout/components/`, present on every page.
 
 All folder names are kebab-case. The export is always `export function ComponentName(...) {}`. Props are declared as a named `interface ComponentNameProps` above the component.
 
@@ -24,13 +24,13 @@ A semantic `<button>` with loading and disabled states. When `loading` is true, 
 
 | Prop        | Type                   | Required | Default | Notes               |
 | ----------- | ---------------------- | -------- | ------- | ------------------- |
-| `label`     | `string`               | yes      | —       | Visible text        |
-| `type`      | `'submit' \| 'button'` | yes      | —       | HTML type attribute |
+| `label`     | `string`               | yes      | -       | Visible text        |
+| `type`      | `'submit' \| 'button'` | yes      | -       | HTML type attribute |
 | `loading`   | `boolean`              | no       | `false` | Shows the spinner   |
 | `disabled`  | `boolean`              | no       | `false` |                     |
-| `className` | `string`               | no       | —       | Extra classes       |
-| `testId`    | `string`               | no       | —       | `data-testid`       |
-| `onClick`   | `MouseEventHandler`    | no       | —       |                     |
+| `className` | `string`               | no       | -       | Extra classes       |
+| `testId`    | `string`               | no       | -       | `data-testid`       |
+| `onClick`   | `MouseEventHandler`    | no       | -       |                     |
 
 ### TextInput
 
@@ -74,8 +74,8 @@ A decorative card that wraps `PixelCanvas` and an animator. Used in a few hero a
 
 Text that animates as if being decrypted. Two modes:
 
-- `animateOn="view"` — runs once when the element scrolls into view (`IntersectionObserver`).
-- `animateOn="hover"` — runs on hover.
+- `animateOn="view"`: runs once when the element scrolls into view (`IntersectionObserver`).
+- `animateOn="hover"`: runs on hover.
 
 ### ResumeDownloaderButton
 
@@ -93,7 +93,7 @@ Non-visual. On mount, calls `initPerformanceMonitoring()` (LCP / FID / CLS obser
 
 `src/shared/components/client-code-loader/`
 
-Bootstraps `highlight.js` + `highlightjs-copy` on the client. Highlights every `<code>` on the page and attaches a copy button. Mounted once on the post detail page. **Does not** own the expand / collapse behaviour — that belongs to `CodeBlock`.
+Bootstraps `highlight.js` + `highlightjs-copy` on the client. Highlights every `<code>` on the page and attaches a copy button. Mounted once on the post detail page. **Does not** own the expand / collapse behaviour, that belongs to `CodeBlock`.
 
 ### CodeBlock
 
@@ -146,7 +146,7 @@ Small floating tooltip on hover / focus.
 
 `src/shared/components/icons/`
 
-SVG icon set, lazy-loaded per icon via `React.lazy`. Pick an icon by name (`name="share"`, `name="close"`, …) — see `ICONS` constant in `icons/index.tsx` for the full set.
+SVG icon set, lazy-loaded per icon via `React.lazy`. Pick an icon by name (`name="share"`, `name="close"`, …), see `ICONS` constant in `icons/index.tsx` for the full set.
 
 ---
 
@@ -154,52 +154,52 @@ SVG icon set, lazy-loaded per icon via `React.lazy`. Pick an icon by name (`name
 
 ### Home (`src/domains/home/`)
 
-- **HeroTextAnimator** — animates the hero heading.
-- **Summary** — short bio block.
-- **MoreInformationButton** — CTA that links to the About Me page and tracks the click.
+- **HeroTextAnimator**: animates the hero heading.
+- **Summary**: short bio block.
+- **MoreInformationButton**: CTA that links to the About Me page and tracks the click.
 
 ### Posts (`src/domains/posts/`)
 
-- **PostCard** — preview card (Server Component, uses `TrackedLink`). Description is truncated to 210 chars.
-- **PostsSearch** — debounced search input that calls `/api/posts/search`.
-- **PostsCategoryFilter** — category dropdown.
-- **EmptyPostBlock** — shown when filters return no posts.
-- **PostDate** — formatted date.
-- **PostTags** — tag chip list.
-- **PostCategory** — category chip.
-- **PostAuthor** — author byline.
-- **PostReadTime** — estimated reading time (300 wpm).
-- **PostShare** — copies the post URL to the clipboard (with a `document.execCommand('copy')` fallback for insecure contexts).
-- **BackToPostButton** — link back to `/posts/`.
+- **PostCard**: preview card (Server Component, uses `TrackedLink`). Description is truncated to 210 chars.
+- **PostsSearch**: debounced search input that calls `/api/posts/search`.
+- **PostsCategoryFilter**: category dropdown.
+- **EmptyPostBlock**: shown when filters return no posts.
+- **PostDate**: formatted date.
+- **PostTags**: tag chip list.
+- **PostCategory**: category chip.
+- **PostAuthor**: author byline.
+- **PostReadTime**: estimated reading time (300 wpm).
+- **PostShare**: copies the post URL to the clipboard (with a `document.execCommand('copy')` fallback for insecure contexts).
+- **BackToPostButton**: link back to `/posts/`.
 
 ### Projects (`src/domains/projects/`)
 
-- **ProjectCard** — project card with optional demo + GitHub links.
-- **ProjectCardDemoLink** — small client wrapper around the demo link so the rest of the card stays server-rendered.
-- **ProjectsFooter** — closing CTA.
+- **ProjectCard**: project card with optional demo + GitHub links.
+- **ProjectCardDemoLink**: small client wrapper around the demo link so the rest of the card stays server-rendered.
+- **ProjectsFooter**: closing CTA.
 
 ### Journey (`src/domains/journey/`)
 
-- **JourneyCard** — one entry (Server Component, uses `TrackedAnchor` + a directly-imported `PixelCanvas`).
-- **JourneyScroller** — handles scroll-into-view for deep links.
+- **JourneyCard**: one entry (Server Component, uses `TrackedAnchor` + a directly-imported `PixelCanvas`).
+- **JourneyScroller**: handles scroll-into-view for deep links.
 
 ### About Me (`src/domains/about-me/`)
 
-- **RecommendationsBox** — compact preview of testimonials, linking to `/recommendations/`.
+- **RecommendationsBox**: compact preview of testimonials, linking to `/recommendations/`.
 
 ### Contact Me (`src/domains/contact-me/`)
 
-- **ContactForm** — full contact form. `react-hook-form` for validation, reCAPTCHA v3 via `useGoogleReCaptcha`, `<Button loading>` for submission state, toast on success / error.
+- **ContactForm**: full contact form. `react-hook-form` for validation, reCAPTCHA v3 via `useGoogleReCaptcha`, `<Button loading>` for submission state, toast on success / error.
 
 ### Lens (`src/domains/lens/`)
 
-- **LensCard** — one tile in the gallery grid. Opens the modal on click / Enter.
-- **LensGalleryModal** — full-screen modal with previous / next buttons. Keyboard handling lives in `useGalleryKeyboard` (`src/domains/lens/hooks/`): Escape closes, arrow keys navigate.
+- **LensCard**: one tile in the gallery grid. Opens the modal on click / Enter.
+- **LensGalleryModal**: full-screen modal with previous / next buttons. Keyboard handling lives in `useGalleryKeyboard` (`src/domains/lens/hooks/`): Escape closes, arrow keys navigate.
 
 ### Recommendations (`src/domains/recommendations/`)
 
-- **RecommendationCard** — bordered card with an amber left-accent. Uses `TrackedAnchor` so the parent stays server-rendered.
-- **RecommendationsFooter** — closing CTA.
+- **RecommendationCard**: bordered card with an amber left-accent. Uses `TrackedAnchor` so the parent stays server-rendered.
+- **RecommendationsFooter**: closing CTA.
 
 ### Error / Not Found (`src/domains/error/`, `src/domains/not-found/`)
 

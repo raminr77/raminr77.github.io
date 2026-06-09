@@ -1,5 +1,5 @@
 ---
-description: Performance audit — bundle, Core Web Vitals risks, RSC boundaries, observer leaks
+description: Performance audit, bundle, Core Web Vitals risks, RSC boundaries, observer leaks
 allowed-tools: Bash(pnpm build:*), Bash(pnpm build:analyze:*), Bash(grep:*), Bash(rg:*), mcp__plugin_context-mode_context-mode__ctx_batch_execute, Read
 ---
 
@@ -10,8 +10,8 @@ Run a performance audit. Use the `perf-auditor` subagent if available; otherwise
 ### 1. RSC / Client-component boundary
 
 - Run: `grep -rln "'use client'" src/ | wc -l`. Report the count; flag if it grew since the May 2026 audit (was 44).
-- Identify components marked `'use client'` that only have static content + a single `onClick` analytics call — those are candidates for the `useTrack` hook + server parent pattern.
-- Verify no `React.lazy(...)` in Server Components — grep `React.lazy` outside `'use client'` files.
+- Identify components marked `'use client'` that only have static content + a single `onClick` analytics call, those are candidates for the `useTrack` hook + server parent pattern.
+- Verify no `React.lazy(...)` in Server Components, grep `React.lazy` outside `'use client'` files.
 
 ### 2. Dynamic imports
 
@@ -20,7 +20,7 @@ Run a performance audit. Use the `perf-auditor` subagent if available; otherwise
 ### 3. Heavy libraries
 
 - Confirm `motion`, `gsap`, `react-toastify`, `react-hook-form`, `@next/third-parties` are listed in `next.config.ts` → `experimental.optimizePackageImports`.
-- Check `package.json` for duplicate animation libs (we already use `motion` + `gsap` + `animate.css` — flag if a fourth slips in).
+- Check `package.json` for duplicate animation libs (we already use `motion` + `gsap` + `animate.css`: flag if a fourth slips in).
 
 ### 4. Effect & observer leaks
 
@@ -29,7 +29,7 @@ Run a performance audit. Use the `perf-auditor` subagent if available; otherwise
 
 ### 5. Images
 
-- Find `<img ` (raw img tags) anywhere under `src/` — should be 0; flag any.
+- Find `<img ` (raw img tags) anywhere under `src/`: should be 0; flag any.
 - For each `<Image src={...} />`, confirm `width`+`height` OR `fill` is set, and an `alt` is provided.
 
 ### 6. Server-side caching

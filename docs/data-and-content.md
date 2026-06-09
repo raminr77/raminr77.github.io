@@ -1,6 +1,6 @@
 # Data and Content
 
-How content is managed — static data files in `src/data/`, blog posts in `posts/`, and the TypeScript types that define them.
+How content is managed, static data files in `src/data/`, blog posts in `posts/`, and the TypeScript types that define them.
 
 ---
 
@@ -69,7 +69,7 @@ Slides have the same shape as the main item.
 
 ### `general.ts`
 
-`GENERAL_SITE_DATA` — UI strings that appear in shared components (form validation messages, modal copy, pagination labels, empty states). Centralised so wording stays consistent.
+`GENERAL_SITE_DATA`: UI strings that appear in shared components (form validation messages, modal copy, pagination labels, empty states). Centralised so wording stays consistent.
 
 ### `resume-file.ts`
 
@@ -132,7 +132,7 @@ Standard Markdown, rendered by `markdown-to-jsx`. Supported:
 
 - Headings, lists, links, images, blockquotes, tables (wrapped in a horizontal-scroll container by the renderer).
 - Fenced code blocks with a language tag. `<pre>` blocks are replaced by `<CodeBlock>` which clips long blocks at 480 px and adds an Expand / Collapse toggle.
-- Light HTML (`<details>`, `<sub>`, `<sup>`) — anything beyond that is escaped by the renderer.
+- Light HTML (`<details>`, `<sub>`, `<sup>`), anything beyond that is escaped by the renderer.
 
 Images use absolute paths starting with `/images/` and live in `public/images/`.
 

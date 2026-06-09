@@ -166,7 +166,7 @@ export function ProgressBar({
   }, [startOnClick, startPosition, nearCompleteTarget, easeRate]);
 
   // Set CSS custom properties once on mount (and only re-run if color/height change)
-  // — avoids touching the DOM on every navigation.
+  // Avoids touching the DOM on every navigation.
   useEffect(() => {
     if (!containerRef.current) return;
     containerRef.current.style.setProperty('--bar-color', color);

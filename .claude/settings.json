@@ -1,5 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(pnpm check-all:*)",
@@ -31,7 +34,17 @@
       "mcp__codebase-memory-mcp__get_architecture",
       "mcp__codebase-memory-mcp__trace_path",
       "mcp__plugin_context7_context7__resolve-library-id",
-      "mcp__plugin_context7_context7__query-docs"
+      "mcp__plugin_context7_context7__query-docs",
+      "Bash(sed -n '166,170p' src/layout/components/progress-bar/index.tsx)",
+      "Bash(sed -n '38,41p' src/shared/helpers/performance.ts)",
+      "Bash(sed -n '263,266p' posts/post-11.md)",
+      "Bash(sed -n '265p' posts/post-11.md)",
+      "Bash(sed -n '167,170p' src/layout/components/progress-bar/index.tsx)",
+      "Bash(sed -n '38,40p' src/shared/helpers/performance.ts)",
+      "Bash(sed -n '82,86p' posts/post-06.md)",
+      "Bash(pnpm exec *)",
+      "Bash(xargs pnpm exec prettier --write)",
+      "Bash(pnpm build *)"
     ],
     "deny": [
       "Bash(git commit:*)",
@@ -45,9 +58,7 @@
       "Read(./.env*)",
       "Write(./.env*)",
       "Edit(./.env*)"
-    ]
-  },
-  "env": {
-    "NEXT_TELEMETRY_DISABLED": "1"
+    ],
+    "additionalDirectories": ["/tmp", "/private/tmp"]
   }
 }

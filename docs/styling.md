@@ -8,7 +8,7 @@ Tailwind CSS, SCSS modules, global styles, fonts, theming, and the animation lib
 
 Two approaches work side-by-side:
 
-1. **Tailwind CSS** for the vast majority of styling — utility classes in JSX.
+1. **Tailwind CSS** for the vast majority of styling, utility classes in JSX.
 2. **SCSS modules** (`*.module.scss`) for component-scoped CSS that is too gnarly for utilities (custom selectors, pseudo-elements, keyframes, layered transitions).
 
 Prefer Tailwind first. Reach for a module when:
@@ -44,7 +44,7 @@ theme: {
 
 Key points:
 
-- `darkMode: 'class'` — dark mode is toggled by adding / removing the `dark` class on `<html>`.
+- `darkMode: 'class'`: dark mode is toggled by adding / removing the `dark` class on `<html>`.
 - Tailwind colors `background` and `foreground` map to CSS variables, so a single class works for both themes.
 - The `font-text` and `font-title` utilities reference Google Fonts loaded via `next/font/google`.
 
@@ -95,8 +95,8 @@ Defines design tokens and shared keyframes.
 
 ### Shared keyframes
 
-- `shine` — opacity pulse used for the top / bottom border lines in the layout.
-- `float` — gentle up / down translate for circles on `journey-card`.
+- `shine`: opacity pulse used for the top / bottom border lines in the layout.
+- `float`: gentle up / down translate for circles on `journey-card`.
 
 Both are exposed as utility classes (`.shine-animation-top`, `.shine-animation-bottom`, `.float-animation`).
 
@@ -175,9 +175,9 @@ Modules used in the project:
 
 The project uses three different animation tools, each for what it does best:
 
-- **animate.css** — quick one-shot animations applied via classes. Use through the `animator()` helper (see [hooks-helpers-services.md](./hooks-helpers-services.md)).
-- **Motion** (the Framer Motion rebrand, package name `motion`) — declarative React animations. Used by `DecryptedText` (via `motion.span`).
-- **GSAP** + **@gsap/react** — imperative timelines for sequenced effects.
+- **animate.css**: quick one-shot animations applied via classes. Use through the `animator()` helper (see [hooks-helpers-services.md](./hooks-helpers-services.md)).
+- **Motion** (the Framer Motion rebrand, package name `motion`), declarative React animations. Used by `DecryptedText` (via `motion.span`).
+- **GSAP** + **@gsap/react**: imperative timelines for sequenced effects.
 
 The project also has the custom `<pixel-canvas>` element (`src/shared/libs/pixel-canvas/`) for the canvas-based pixel grid hover effect on certain cards.
 

@@ -1,5 +1,5 @@
 /**
- * Projects page — project cards, badges, demo links.
+ * Projects page, project cards, badges, demo links.
  */
 import { expect, test } from '@playwright/test';
 

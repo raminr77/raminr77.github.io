@@ -1,5 +1,5 @@
 /**
- * Posts filtering — category dropdown, clear filter, URL state.
+ * Posts filtering, category dropdown, clear filter, URL state.
  */
 import { expect, test } from '@playwright/test';
 

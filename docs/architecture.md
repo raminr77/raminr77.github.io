@@ -1,6 +1,6 @@
 # Architecture
 
-Technical decisions behind the project — what is used, why, and how it fits together.
+Technical decisions behind the project, what is used, why, and how it fits together.
 
 ---
 
@@ -26,7 +26,7 @@ Technical decisions behind the project — what is used, why, and how it fits to
 | Monitoring       | @sentry/nextjs              | 10.x          | Error and performance monitoring                          |
 | Monitoring       | Vercel Speed Insights       | 2.x           | RUM for Core Web Vitals                                   |
 | Analytics        | @next/third-parties         | 16.x          | GA + GTM integration                                      |
-| Compiler         | babel-plugin-react-compiler | 1.x           | React 19 compiler — automatic memoization                 |
+| Compiler         | babel-plugin-react-compiler | 1.x           | React 19 compiler, automatic memoization                  |
 | Package manager  | pnpm                        | 10.x          | Disk-efficient package manager                            |
 
 Run `pnpm outdated` for the exact installed versions.
@@ -58,13 +58,13 @@ The project uses the **Next.js App Router**. Every folder under `src/app/` with 
 
 ---
 
-## Code organisation — domain-driven
+## Code organisation, domain-driven
 
 `src/` is organised by **feature**, not file type. Code related to a section of the site stays together under `src/domains/<feature>/`. Anything reused by two or more domains is promoted to `src/shared/`.
 
 Cross-domain imports (e.g. `src/domains/posts/` importing from `src/domains/journey/`) are not allowed.
 
-The `src/app/` folder is intentionally thin — every page is a 5-to-15-line server entry that re-exports its domain page component.
+The `src/app/` folder is intentionally thin, every page is a 5-to-15-line server entry that re-exports its domain page component.
 
 ---
 
@@ -93,10 +93,10 @@ The active theme is stored as a class (`dark` / `light`) on `<html>`. Tailwind's
 
 Posts are markdown files in `posts/*.md`. No CMS, no database. The pipeline:
 
-1. **Parse** — `gray-matter` reads frontmatter; the rest is treated as content.
-2. **Filter & sort** — `getPosts()` filters by `isActive`, optional tag / category, and an optional search string, then sorts newest first. Results are cached at the module level (one parse per Node process). The cache can be cleared in tests via `__resetPostsCacheForTests()`.
-3. **Render** — `markdown-to-jsx` renders content. The `pre` element is overridden by `<CodeBlock>` (see `src/shared/components/code-block/`), which clips long blocks (> 480px) and shows an "Expand Code" / "Collapse Code" toggle.
-4. **Highlight** — `<ClientCodeLoader>` mounts once on the post detail page; it dynamically imports `highlight.js` and the `highlightjs-copy` plugin, then highlights every `<code>` and attaches a copy button.
+1. **Parse**: `gray-matter` reads frontmatter; the rest is treated as content.
+2. **Filter & sort**: `getPosts()` filters by `isActive`, optional tag / category, and an optional search string, then sorts newest first. Results are cached at the module level (one parse per Node process). The cache can be cleared in tests via `__resetPostsCacheForTests()`.
+3. **Render**: `markdown-to-jsx` renders content. The `pre` element is overridden by `<CodeBlock>` (see `src/shared/components/code-block/`), which clips long blocks (> 480px) and shows an "Expand Code" / "Collapse Code" toggle.
+4. **Highlight**: `<ClientCodeLoader>` mounts once on the post detail page; it dynamically imports `highlight.js` and the `highlightjs-copy` plugin, then highlights every `<code>` and attaches a copy button.
 
 Search uses a small route handler (`/api/posts/search`) that re-runs `getPosts()` with a search string. Tag and category filtering on the listing page is done server-side from query string parameters.
 
@@ -104,11 +104,11 @@ Search uses a small route handler (`/api/posts/search`) that re-runs `getPosts()
 
 ## SEO & discovery
 
-- **Dynamic sitemap** — `src/app/sitemap.ts` reads `getPosts()` for the blog entries and joins them with the static routes (`ROUTES`).
-- **Dynamic robots.txt** — `src/app/robots.ts` returns `Disallow: /` for preview deployments (`VERCEL_ENV !== 'production'`) and the full allow rules for production.
-- **RSS** — `src/app/feed.xml/route.ts` emits RSS 2.0 with all active posts.
-- **Per-post JSON-LD** — `BlogPosting` schema injected via `<Script type="application/ld+json">` inside the post detail page.
-- **Dynamic OpenGraph images** — `src/app/posts/[id]/opengraph-image.tsx` renders a 1200×630 PNG per post using `next/og`.
+- **Dynamic sitemap**: `src/app/sitemap.ts` reads `getPosts()` for the blog entries and joins them with the static routes (`ROUTES`).
+- **Dynamic robots.txt**: `src/app/robots.ts` returns `Disallow: /` for preview deployments (`VERCEL_ENV !== 'production'`) and the full allow rules for production.
+- **RSS**: `src/app/feed.xml/route.ts` emits RSS 2.0 with all active posts.
+- **Per-post JSON-LD**: `BlogPosting` schema injected via `<Script type="application/ld+json">` inside the post detail page.
+- **Dynamic OpenGraph images**: `src/app/posts/[id]/opengraph-image.tsx` renders a 1200×630 PNG per post using `next/og`.
 - **`<link rel="alternate">`** for the RSS feed in the root layout.
 
 ---
@@ -134,7 +134,7 @@ The `/api/recaptcha-verify` route additionally checks the score (`< 0.5` is reje
 | Code splitting          | Next.js automatic; heavy widgets (`PixelCanvas`, `DecryptedText`) are `next/dynamic`-d                                             |
 | Bundle slimming         | `experimental.optimizePackageImports` for `date-fns`, `clsx`, `motion`, `react-toastify`, `react-hook-form`, `@next/third-parties` |
 | Font loading            | Google Fonts via `next/font/google` with `display: 'swap'`                                                                         |
-| React Compiler          | `reactCompiler: true` — automatic memoization across the tree                                                                      |
+| React Compiler          | `reactCompiler: true`, automatic memoization across the tree                                                                       |
 | Long code blocks        | `<CodeBlock>` clips at 480px with an "Expand" toggle                                                                               |
 | Module-level post cache | `getPosts()` parses markdown once per Node process                                                                                 |
 | Static asset caching    | 1-year `Cache-Control: immutable` on `/Software-Engineer-Ramin-Rezaei-CV.pdf`                                                      |
@@ -168,7 +168,7 @@ The `/api/recaptcha-verify` route additionally checks the score (`< 0.5` is reje
   - `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`
   - `Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()`
 - `Access-Control-Allow-Origin: *` is allowed only on `/api/*` (public read APIs). It is never combined with `Access-Control-Allow-Credentials`.
-- **CodeQL** is enabled via GitHub's Default Setup (repo Settings → Security → Code scanning). No custom workflow is committed — GitHub manages the schedule and query suite.
+- **CodeQL** is enabled via GitHub's Default Setup (repo Settings → Security → Code scanning). No custom workflow is committed, GitHub manages the schedule and query suite.
 - **Dependency Review Action** comments on dep-changing PRs.
 - See [`SECURITY.md`](../SECURITY.md) for the disclosure policy.
 

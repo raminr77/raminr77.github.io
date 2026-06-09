@@ -51,7 +51,7 @@ src/
 └── instrumentation.ts  Sentry (server + edge) bootstrap
 ```
 
-### `src/app/` — App Router
+### `src/app/`: App Router
 
 Every folder with a `page.tsx` is a route. Special files (`layout`, `error`, `not-found`, `sitemap`, `robots`, `manifest`, `opengraph-image`) follow Next.js conventions.
 
@@ -80,7 +80,7 @@ src/app/
 ├── posts/[id]/page.tsx                 Route: /posts/:id
 ├── posts/[id]/opengraph-image.tsx      Dynamic OG image per post (1200×630)
 └── api/
-    ├── route.ts                        GET /api — health check
+    ├── route.ts                        GET /api, health check
     ├── posts/search/route.ts           GET /api/posts/search?q=…
     ├── recaptcha-verify/route.ts       POST /api/recaptcha-verify
     └── react-sample/route.ts           Demo API (kept for a public sample repo)
@@ -88,7 +88,7 @@ src/app/
 
 ### `src/domains/`
 
-One folder per feature vertical. Cross-domain imports are forbidden — if two domains need the same code, promote it to `src/shared/`.
+One folder per feature vertical. Cross-domain imports are forbidden, if two domains need the same code, promote it to `src/shared/`.
 
 ```text
 src/domains/
@@ -176,11 +176,11 @@ See [data-and-content.md](./data-and-content.md) for the frontmatter spec and th
 
 Static assets served as-is from the site root. Notable files:
 
-- `Software-Engineer-Ramin-Rezaei-CV.pdf` — CV (cached for 1 year via `next.config.ts` headers)
-- `click-spark.js` — small custom-element script loaded with `<Script strategy="lazyOnload">`
-- `service-worker.js` — image-caching service worker registered by `ServiceWorkerRegistrar`
-- `ads.txt`, `CNAME` — hosting metadata
-- `images/` — site imagery (background, social-banner, lens photos, icons, …)
+- `Software-Engineer-Ramin-Rezaei-CV.pdf`: CV (cached for 1 year via `next.config.ts` headers)
+- `click-spark.js`: small custom-element script loaded with `<Script strategy="lazyOnload">`
+- `service-worker.js`: image-caching service worker registered by `ServiceWorkerRegistrar`
+- `ads.txt`, `CNAME`: hosting metadata
+- `images/`: site imagery (background, social-banner, lens photos, icons, …)
 
 ---
 
