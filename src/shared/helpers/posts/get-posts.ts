@@ -58,7 +58,9 @@ export function getPosts(
     .sort(postSorter);
 
   return {
-    categories: Array.from(categorySet),
+    categories: Array.from(categorySet).sort(
+      (first, second) => first.length - second.length
+    ),
     data
   };
 }
