@@ -110,9 +110,18 @@ export async function PostDetailPage({ params }: Props) {
   }
 
   const { data: sameCategoryPosts = [] } = getPosts({ category: post.category });
-  const recommendedPosts = sameCategoryPosts
-    .filter(({ id }) => id !== Number(postId))
-    .slice(0, 3);
+  const sameCategoryPostsExcludingCurrent = sameCategoryPosts.filter(
+    ({ id }) => id !== Number(postId)
+  );
+
+  const { data: allPosts = [] } =
+    sameCategoryPostsExcludingCurrent.length === 0 ? getPosts(null) : { data: [] };
+  const allPostsExcludingCurrent = allPosts.filter(({ id }) => id !== Number(postId));
+
+  const recommendedPosts = [
+    ...sameCategoryPostsExcludingCurrent,
+    ...allPostsExcludingCurrent
+  ].slice(0, 3);
 
   return (
     <ContentContainer animationName="fadeIn">
@@ -182,7 +191,7 @@ export async function PostDetailPage({ params }: Props) {
       </div>
 
       {recommendedPosts.length > 0 ? (
-        <div className="flex overflow-x-auto gap-4 mb-6 max-lg:flex-col">
+        <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
           {recommendedPosts.map((post: PostMetadata) => (
             <PostCard key={post.id} data={post} disabledAnimation />
           ))}
