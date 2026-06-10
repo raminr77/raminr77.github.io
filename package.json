@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "private": true,
   "scripts": {
     "start": "next start",
@@ -8,21 +8,16 @@
     "dev": "next dev --turbopack",
     "dev-https": "next dev --experimental-https",
     "build:analyze": "ANALYZE=true next build --webpack",
-    "//": "FORMATTING",
+    "//": "TESTS",
     "format": "prettier --write .",
     "check-format": "prettier . --check",
-    "//": "LINTING",
     "lint": "eslint . --fix",
     "check-lint": "eslint \"src/**/*.{ts,tsx,js}\" --max-warnings=0",
-    "//": "CHECK TYPES",
     "check-types": "tsc --pretty --noEmit --project ./",
-    "//": "CHECKS",
     "check-all": "pnpm run check-format && pnpm run check-lint && pnpm run check-types",
-    "//": "PERFORMANCE",
     "prepare": "husky",
     "performance": "pnpm run build && pnpm run start & sleep 5 && pnpm run lighthouse",
     "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags=\"--headless\"",
-    "//": "TESTS",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:e2e": "playwright test",
@@ -33,8 +28,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.2.7",
-    "@next/third-parties": "^16.2.7",
+    "@next/bundle-analyzer": "^16.2.9",
+    "@next/third-parties": "^16.2.9",
     "@sentry/nextjs": "^10.57.0",
     "@tailwindcss/postcss": "^4.3.0",
     "@vercel/speed-insights": "^2.0.0",
@@ -45,9 +40,9 @@
     "gsap": "^3.15.0",
     "highlight.js": "^11.11.1",
     "highlightjs-copy": "^1.0.6",
-    "markdown-to-jsx": "^9.8.1",
+    "markdown-to-jsx": "^9.8.2",
     "motion": "^12.40.0",
-    "next": "^16.2.7",
+    "next": "^16.2.9",
     "qs": "^6.15.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -64,7 +59,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.2.7",
+    "@next/eslint-plugin-next": "^16.2.9",
     "@playwright/test": "^1.60.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -83,7 +78,7 @@
     "husky": "^9.1.7",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
-    "lighthouse": "^13.3.0",
+    "lighthouse": "^13.4.0",
     "lint-staged": "^17.0.7",
     "postcss": "^8.5.15",
     "prettier": "3.8.4",
@@ -113,5 +108,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@11.5.2"
+  "packageManager": "pnpm@11.5.3"
 }
