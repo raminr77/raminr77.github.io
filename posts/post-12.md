@@ -5,10 +5,10 @@ title: A Simple Guide to the Sliding Window Algorithm
 description: The sliding window is one of those techniques that looks clever once you see it and obvious once you understand it. Here is the plain version, with the kind of examples that actually made it click for me.
 category: Algorithm
 tags:
-  - algorithm
+  - Algorithm
   - Interview
-  - programming
-  - problem solving
+  - Programming
+  - Problem Solving
 date: 2026-06-10
 isActive: true
 author: Ramin
