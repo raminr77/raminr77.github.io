@@ -11,10 +11,14 @@ import { PERSONAL_DATA } from '@/data';
 
 import { PostCard, PostsCategoryFilter, EmptyPostBlock, PostsSearch } from './components';
 
-type PostsSearchParams = PostFilters & { page?: string };
+type RawSearchParams = Record<string, string | string[] | undefined>;
 
 interface PostListPageProps {
-  searchParams: Promise<PostsSearchParams>;
+  searchParams: Promise<RawSearchParams>;
+}
+
+function firstParam(value: string | string[] | undefined): string | undefined {
+  return Array.isArray(value) ? value[0] : value;
 }
 
 export const metadata: Metadata = {
@@ -23,9 +27,11 @@ export const metadata: Metadata = {
 
 export async function PostListPage({ searchParams }: PostListPageProps) {
   const params = await searchParams;
-  const page = Math.max(1, Number(params.page) || 1);
-  const filters: PostFilters | null =
-    params.category || params.tag ? { category: params.category, tag: params.tag } : null;
+  const category = firstParam(params.category);
+  const tag = firstParam(params.tag);
+  const page = Math.max(1, Number(firstParam(params.page)) || 1);
+
+  const filters: PostFilters | null = category || tag ? { category, tag } : null;
 
   const { data: allPosts, categories } = getPosts(filters);
 
@@ -34,8 +40,8 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
   const posts = allPosts.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   const paginationParams: Record<string, string> = {};
-  if (params.category) paginationParams.category = params.category;
-  if (params.tag) paginationParams.tag = params.tag;
+  if (category) paginationParams.category = category;
+  if (tag) paginationParams.tag = tag;
 
   return (
     <ContentContainer animationName="fadeIn" className="relative">

@@ -27,13 +27,13 @@ function getAllPosts(): PostMetadata[] {
     return {
       id: data.id,
       date: data.date ?? '',
-      tags: data.tags ?? [],
       title: data.title ?? '',
       isActive: data.isActive ?? false,
       category: data.category ?? 'News',
       description: data.description ?? '',
       slug: data.slug ?? file.replace('.md', ''),
-      author: data.author ?? PERSONAL_DATA.firstName
+      author: data.author ?? PERSONAL_DATA.firstName,
+      tags: Array.isArray(data.tags) ? data.tags.map(String) : []
     };
   });
 
