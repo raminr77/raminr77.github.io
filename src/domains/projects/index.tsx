@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { clsx } from 'clsx';
 
+import { firstSearchParam, type RawSearchParams } from '@/shared/helpers/search-params';
 import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import { PROJECTS_DATA, type ProjectItem } from '@/data';
 import { ContentContainer } from '@/layout/components';
@@ -17,12 +18,12 @@ export const metadata: Metadata = {
 const SORTED_PROJECTS = [...PROJECTS_DATA.items].sort((a, b) => b.id - a.id);
 
 interface ProjectsPageProps {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<RawSearchParams>;
 }
 
 export async function ProjectsPage({ searchParams }: ProjectsPageProps) {
   const params = await searchParams;
-  const page = Math.max(1, Number(params.page) || 1);
+  const page = Math.max(1, Number(firstSearchParam(params.page)) || 1);
 
   const totalPages = Math.ceil(SORTED_PROJECTS.length / PAGE_SIZE);
   const safePage = Math.min(page, Math.max(1, totalPages));

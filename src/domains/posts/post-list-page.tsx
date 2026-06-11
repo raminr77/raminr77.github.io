@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { clsx } from 'clsx';
 
+import { firstSearchParam, type RawSearchParams } from '@/shared/helpers/search-params';
 import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
@@ -11,14 +12,8 @@ import { PERSONAL_DATA } from '@/data';
 
 import { PostCard, PostsCategoryFilter, EmptyPostBlock, PostsSearch } from './components';
 
-type RawSearchParams = Record<string, string | string[] | undefined>;
-
 interface PostListPageProps {
   searchParams: Promise<RawSearchParams>;
-}
-
-function firstParam(value: string | string[] | undefined): string | undefined {
-  return Array.isArray(value) ? value[0] : value;
 }
 
 export const metadata: Metadata = {
@@ -27,9 +22,9 @@ export const metadata: Metadata = {
 
 export async function PostListPage({ searchParams }: PostListPageProps) {
   const params = await searchParams;
-  const category = firstParam(params.category);
-  const tag = firstParam(params.tag);
-  const page = Math.max(1, Number(firstParam(params.page)) || 1);
+  const tag = firstSearchParam(params.tag);
+  const category = firstSearchParam(params.category);
+  const page = Math.max(1, Number(firstSearchParam(params.page)) || 1);
 
   const filters: PostFilters | null = category || tag ? { category, tag } : null;
 
