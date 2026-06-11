@@ -1,5 +1,5 @@
 'use client';
-import { Activity, useCallback, useEffect, useState, type ChangeEvent } from 'react';
+import { useCallback, useEffect, useState, type ChangeEvent } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { clsx } from 'clsx';
@@ -80,79 +80,75 @@ export function PostsSearch() {
     return () => document.removeEventListener('keyup', handleCloseSearch);
   }, []);
 
-  const SearchModal = (
-    <Activity mode={showSearch ? 'visible' : 'hidden'}>
+  const SearchModal = showSearch ? (
+    <div
+      onClick={handleCloseSearch}
+      className={clsx(
+        'flex justify-center fixed left-0 right-0 top-0 bottom-0 z-10 bg-white/90 dark:bg-black/80 w-full h-full overflow-hidden',
+        animator({ name: 'fadeIn', speed: 'faster' })
+      )}
+    >
       <div
-        onClick={handleCloseSearch}
-        className={clsx(
-          'flex justify-center fixed left-0 right-0 top-0 bottom-0 z-10 bg-white/90 dark:bg-black/80 w-full h-full overflow-hidden',
-          animator({ name: 'fadeIn', speed: 'faster' })
-        )}
+        onClick={(event) => event.stopPropagation()}
+        className="w-full mx-5 p-4 max-w-3xl mt-40 overflow-hidden h-fit bg-white dark:bg-black border border-slate-500 dark:border-slate-300 relative"
       >
-        <div
-          onClick={(event) => event.stopPropagation()}
-          className="w-full mx-5 p-4 max-w-3xl mt-40 overflow-hidden h-fit bg-white dark:bg-black border border-slate-500 dark:border-slate-300 relative"
+        <button
+          type="button"
+          onClick={handleCloseSearch}
+          title={searchTexts.closeTitle}
+          aria-label={searchTexts.closeAriaLabel}
+          className={clsx(BUTTON_CLASSES, 'absolute top-4 right-4')}
         >
-          <button
-            type="button"
-            onClick={handleCloseSearch}
-            title={searchTexts.closeTitle}
-            aria-label={searchTexts.closeAriaLabel}
-            className={clsx(BUTTON_CLASSES, 'absolute top-4 right-4')}
-          >
-            <Icons name="close" />
-          </button>
+          <Icons name="close" />
+        </button>
 
-          <TextInput
-            autoFocus
-            type="text"
-            id="search"
-            value={searchValue}
-            label={searchTexts.label}
-            onChange={handleSearchChange}
-            placeholder={searchTexts.placeholder}
-            className="w-full bg-transparent mb-5 mt-4 placeholder-black dark:placeholder-white"
-          />
+        <TextInput
+          autoFocus
+          type="text"
+          id="search"
+          value={searchValue}
+          label={searchTexts.label}
+          onChange={handleSearchChange}
+          placeholder={searchTexts.placeholder}
+          className="w-full bg-transparent mb-5 mt-4 placeholder-black dark:placeholder-white"
+        />
 
-          <ul
-            className={clsx('flex flex-col overflow-y-auto', {
-              'opacity-50 pointer-events-none': loading,
-              'max-h-[60vh]': posts.length > 0 && !loading
-            })}
-          >
-            <Activity mode={loading ? 'visible' : 'hidden'}>
-              <li className="text-center text-gray-500">{searchTexts.loading}</li>
-            </Activity>
+        <ul
+          className={clsx('flex flex-col overflow-y-auto', {
+            'opacity-50 pointer-events-none': loading,
+            'max-h-[60vh]': posts.length > 0 && !loading
+          })}
+        >
+          {loading && (
+            <li className="text-center text-gray-500">{searchTexts.loading}</li>
+          )}
 
-            <Activity
-              mode={!loading && posts.length === 0 && searchValue ? 'visible' : 'hidden'}
-            >
-              <li className="text-center text-gray-500">{searchTexts.noResults}</li>
-            </Activity>
+          {!loading && posts.length === 0 && searchValue && (
+            <li className="text-center text-gray-500">{searchTexts.noResults}</li>
+          )}
 
-            {posts.map((post: PostMetadata) => {
-              const postDetailUrl = `${ROUTES.POSTS}${post.id}?slug=${post.slug}`;
-              return (
-                <li
-                  key={post.id}
-                  className="p-4 border-b border-slate-300/40 last:border-0"
+          {posts.map((post: PostMetadata) => {
+            const postDetailUrl = `${ROUTES.POSTS}${post.id}?slug=${post.slug}`;
+            return (
+              <li
+                key={post.id}
+                className="p-4 border-b border-slate-300/40 last:border-0"
+              >
+                <Link
+                  href={postDetailUrl}
+                  className="w-full flex items-center gap-2 hover:text-amber-500 duration-300 flex-wrap justify-between"
                 >
-                  <Link
-                    href={postDetailUrl}
-                    className="w-full flex items-center gap-2 hover:text-amber-500 duration-300 flex-wrap justify-between"
-                  >
-                    <span className="font-medium text-lg">{post.title}</span>
-                    <PostDate date={post.date} />
-                  </Link>
-                  <p className="text-sm text-gray-500 mt-3">{post.description}</p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+                  <span className="font-medium text-lg">{post.title}</span>
+                  <PostDate date={post.date} />
+                </Link>
+                <p className="text-sm text-gray-500 mt-3">{post.description}</p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-    </Activity>
-  );
+    </div>
+  ) : null;
 
   return (
     <div className="flex items-center">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useCallback, useState, type MouseEvent } from 'react';
+import { motion, useReducedMotion, type Transition } from 'motion/react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { clsx } from 'clsx';
@@ -12,6 +13,9 @@ import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
 
 import { useGalleryKeyboard } from '../../hooks/use-gallery-keyboard';
+import { getLensLayoutId } from '../../constants';
+
+const ZOOM_TRANSITION: Transition = { duration: 0.4, ease: [0.22, 1, 0.36, 1] };
 
 type Slide = Pick<LensSlideItem, 'src' | 'alt' | 'isVideo' | 'cover'>;
 
@@ -28,7 +32,9 @@ export function LensGalleryModal({
   onNavigate,
   currentIndex
 }: LensGalleryModalProps) {
+  const shouldReduceMotion = useReducedMotion();
   const [isLoading, setIsLoading] = useState(true);
+  const layoutId = shouldReduceMotion ? undefined : getLensLayoutId(item.id);
 
   const allSlides: Slide[] = [
     { src: item.src, alt: item.alt, isVideo: item.isVideo, cover: item.cover },
@@ -77,11 +83,15 @@ export function LensGalleryModal({
   useGalleryKeyboard({ onClose: handleClose, onPrevious: prev, onNext: next });
 
   return createPortal(
-    <div
+    <motion.div
       role="dialog"
       aria-modal="true"
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       onClick={handleBackdropClick}
       aria-label={`Gallery: ${item.title}`}
+      initial={shouldReduceMotion ? false : { opacity: 0 }}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: 'easeOut' }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-md"
     >
       {/* Header */}
@@ -136,35 +146,41 @@ export function LensGalleryModal({
               </div>
             )}
 
-            {current.isVideo ? (
-              <video
-                controls
-                playsInline
-                autoPlay={false}
-                key={currentIndex}
-                poster={current.cover}
-                onLoadedData={() => setIsLoading(false)}
-                className="max-h-[65vh] w-auto rounded-sm select-none"
-              >
-                <source src={current.src} />
-              </video>
-            ) : (
-              <Image
-                priority
-                width={1400}
-                height={900}
-                quality={90}
-                src={current.src}
-                alt={current.alt}
-                draggable={false}
-                key={currentIndex}
-                onLoad={() => setIsLoading(false)}
-                className={clsx(
-                  'object-contain max-h-[65vh] w-auto rounded-sm select-none transition-opacity duration-300',
-                  isLoading ? 'opacity-0' : 'opacity-100'
-                )}
-              />
-            )}
+            <motion.div
+              layoutId={layoutId}
+              transition={shouldReduceMotion ? { duration: 0 } : ZOOM_TRANSITION}
+              className="relative flex w-fit max-w-full items-center justify-center"
+            >
+              {current.isVideo ? (
+                <video
+                  controls
+                  playsInline
+                  autoPlay={false}
+                  key={currentIndex}
+                  poster={current.cover}
+                  onLoadedData={() => setIsLoading(false)}
+                  className="max-h-[65vh] w-auto rounded-sm select-none"
+                >
+                  <source src={current.src} />
+                </video>
+              ) : (
+                <Image
+                  priority
+                  width={1400}
+                  height={900}
+                  quality={90}
+                  src={current.src}
+                  alt={current.alt}
+                  draggable={false}
+                  key={currentIndex}
+                  onLoad={() => setIsLoading(false)}
+                  className={clsx(
+                    'object-contain max-h-[65vh] w-auto rounded-sm select-none transition-opacity duration-300',
+                    isLoading ? 'opacity-0' : 'opacity-100'
+                  )}
+                />
+              )}
+            </motion.div>
           </div>
 
           {item.description && (
@@ -227,7 +243,7 @@ export function LensGalleryModal({
           </div>
         )}
       </div>
-    </div>,
+    </motion.div>,
     document.body
   );
 }
