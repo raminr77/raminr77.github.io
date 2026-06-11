@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { clsx } from 'clsx';
 
+import { firstSearchParam, type RawSearchParams } from '@/shared/helpers/search-params';
 import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import type { PostMetadata, PostFilters } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
@@ -11,10 +12,8 @@ import { PERSONAL_DATA } from '@/data';
 
 import { PostCard, PostsCategoryFilter, EmptyPostBlock, PostsSearch } from './components';
 
-type PostsSearchParams = PostFilters & { page?: string };
-
 interface PostListPageProps {
-  searchParams: Promise<PostsSearchParams>;
+  searchParams: Promise<RawSearchParams>;
 }
 
 export const metadata: Metadata = {
@@ -23,9 +22,11 @@ export const metadata: Metadata = {
 
 export async function PostListPage({ searchParams }: PostListPageProps) {
   const params = await searchParams;
-  const page = Math.max(1, Number(params.page) || 1);
-  const filters: PostFilters | null =
-    params.category || params.tag ? { category: params.category, tag: params.tag } : null;
+  const tag = firstSearchParam(params.tag);
+  const category = firstSearchParam(params.category);
+  const page = Math.max(1, Number(firstSearchParam(params.page)) || 1);
+
+  const filters: PostFilters | null = category || tag ? { category, tag } : null;
 
   const { data: allPosts, categories } = getPosts(filters);
 
@@ -34,8 +35,8 @@ export async function PostListPage({ searchParams }: PostListPageProps) {
   const posts = allPosts.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   const paginationParams: Record<string, string> = {};
-  if (params.category) paginationParams.category = params.category;
-  if (params.tag) paginationParams.tag = params.tag;
+  if (category) paginationParams.category = category;
+  if (tag) paginationParams.tag = tag;
 
   return (
     <ContentContainer animationName="fadeIn" className="relative">

@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState, type MouseEvent } from 'react';
+import { motion, useReducedMotion, type Transition } from 'motion/react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { clsx } from 'clsx';
@@ -12,6 +13,9 @@ import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
 
 import { useGalleryKeyboard } from '../../hooks/use-gallery-keyboard';
+import { getLensLayoutId } from '../../constants';
+
+const ZOOM_TRANSITION: Transition = { duration: 0.4, ease: [0.22, 1, 0.36, 1] };
 
 type Slide = Pick<LensSlideItem, 'src' | 'alt' | 'isVideo' | 'cover'>;
 
@@ -28,7 +32,9 @@ export function LensGalleryModal({
   onNavigate,
   currentIndex
 }: LensGalleryModalProps) {
+  const shouldReduceMotion = useReducedMotion();
   const [isLoading, setIsLoading] = useState(true);
+  const layoutId = shouldReduceMotion ? undefined : getLensLayoutId(item.id);
 
   const allSlides: Slide[] = [
     { src: item.src, alt: item.alt, isVideo: item.isVideo, cover: item.cover },
@@ -57,6 +63,15 @@ export function LensGalleryModal({
     onClose();
   }, [onClose]);
 
+  const handleBackdropClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      if (event.target === event.currentTarget) {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
   const handleThumbnailClick = useCallback(
     (index: number) => {
       sendGTMEvent(GTM_EVENTS.LENS_THUMBNAIL(index + 1));
@@ -68,16 +83,20 @@ export function LensGalleryModal({
   useGalleryKeyboard({ onClose: handleClose, onPrevious: prev, onNext: next });
 
   return createPortal(
-    <div
+    <motion.div
       role="dialog"
       aria-modal="true"
-      onClick={handleClose}
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      onClick={handleBackdropClick}
       aria-label={`Gallery: ${item.title}`}
+      initial={shouldReduceMotion ? false : { opacity: 0 }}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: 'easeOut' }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-md"
     >
       {/* Header */}
       <div
-        onClick={(clickEvent) => clickEvent.stopPropagation()}
+        onClick={handleBackdropClick}
         className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-4 z-10 bg-gradient-to-b from-black/60 to-transparent"
       >
         <div className="text-white">
@@ -100,7 +119,7 @@ export function LensGalleryModal({
 
       {/* Main media */}
       <div
-        onClick={(event) => event.stopPropagation()}
+        onClick={handleBackdropClick}
         className="relative flex items-center justify-center w-full flex-1 px-16 py-20"
       >
         {total > 1 && (
@@ -113,43 +132,55 @@ export function LensGalleryModal({
           </button>
         )}
 
-        <div className="relative max-w-5xl w-full h-full flex flex-col items-center gap-4">
-          <div className="relative flex-1 w-full flex items-center justify-center min-h-0">
+        <div
+          onClick={handleBackdropClick}
+          className="relative max-w-5xl w-full h-full flex flex-col items-center gap-4"
+        >
+          <div
+            onClick={handleBackdropClick}
+            className="relative flex-1 w-full flex items-center justify-center min-h-0"
+          >
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-10 h-10 rounded-full border-2 border-white/20 border-t-white/60 animate-spin" />
               </div>
             )}
 
-            {current.isVideo ? (
-              <video
-                controls
-                playsInline
-                autoPlay={false}
-                key={currentIndex}
-                poster={current.cover}
-                onLoadedData={() => setIsLoading(false)}
-                className="max-h-[65vh] w-auto rounded-sm select-none"
-              >
-                <source src={current.src} />
-              </video>
-            ) : (
-              <Image
-                priority
-                width={1400}
-                height={900}
-                quality={90}
-                src={current.src}
-                alt={current.alt}
-                draggable={false}
-                key={currentIndex}
-                onLoad={() => setIsLoading(false)}
-                className={clsx(
-                  'object-contain max-h-[65vh] w-auto rounded-sm select-none transition-opacity duration-300',
-                  isLoading ? 'opacity-0' : 'opacity-100'
-                )}
-              />
-            )}
+            <motion.div
+              layoutId={layoutId}
+              transition={shouldReduceMotion ? { duration: 0 } : ZOOM_TRANSITION}
+              className="relative flex w-fit max-w-full items-center justify-center"
+            >
+              {current.isVideo ? (
+                <video
+                  controls
+                  playsInline
+                  autoPlay={false}
+                  key={currentIndex}
+                  poster={current.cover}
+                  onLoadedData={() => setIsLoading(false)}
+                  className="max-h-[65vh] w-auto rounded-sm select-none"
+                >
+                  <source src={current.src} />
+                </video>
+              ) : (
+                <Image
+                  priority
+                  width={1400}
+                  height={900}
+                  quality={90}
+                  src={current.src}
+                  alt={current.alt}
+                  draggable={false}
+                  key={currentIndex}
+                  onLoad={() => setIsLoading(false)}
+                  className={clsx(
+                    'object-contain max-h-[65vh] w-auto rounded-sm select-none transition-opacity duration-300',
+                    isLoading ? 'opacity-0' : 'opacity-100'
+                  )}
+                />
+              )}
+            </motion.div>
           </div>
 
           {item.description && (
@@ -175,11 +206,14 @@ export function LensGalleryModal({
 
       {/* Footer: thumbnails */}
       <div
-        onClick={(event) => event.stopPropagation()}
+        onClick={handleBackdropClick}
         className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-3 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent"
       >
         {total > 1 && (
-          <div className="flex items-center justify-center gap-1 overflow-x-auto w-full">
+          <div
+            onClick={handleBackdropClick}
+            className="flex items-center justify-center gap-1 overflow-x-auto w-full"
+          >
             {allSlides.map((slide, index) => (
               <button
                 key={index}
@@ -209,7 +243,7 @@ export function LensGalleryModal({
           </div>
         )}
       </div>
-    </div>,
+    </motion.div>,
     document.body
   );
 }

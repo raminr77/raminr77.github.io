@@ -1,5 +1,6 @@
 'use client';
 
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useState } from 'react';
 import Image from 'next/image';
 import { clsx } from 'clsx';
@@ -12,6 +13,7 @@ import { animator } from '@/shared/helpers';
 import type { LensItem } from '@/data';
 
 import { LensGalleryModal } from '../lens-gallery-modal';
+import { getLensLayoutId } from '../../constants';
 
 interface LensCardProps {
   data: LensItem;
@@ -26,9 +28,11 @@ export function LensCard({
 }: LensCardProps) {
   const isClient = useIsClient();
   const [isOpen, setIsOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const totalSlides = 1 + (data.slides?.length ?? 0);
+  const layoutId = shouldReduceMotion ? undefined : getLensLayoutId(data.id);
 
   function handleOpen() {
     sendGTMEvent(GTM_EVENTS.LENS_CARD(data.title));
@@ -51,16 +55,18 @@ export function LensCard({
           !disabledAnimation && animator({ name: 'fadeIn' })
         )}
       >
-        <Image
-          fill
-          quality={75}
-          src={data.cover}
-          draggable={false}
-          fetchPriority="high"
-          alt={data.alt || data.title}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover group-hover:scale-105 duration-300 transition-transform opacity-60 dark:opacity-70 group-hover:opacity-100"
-        />
+        <motion.div layoutId={layoutId} className="absolute inset-0">
+          <Image
+            fill
+            quality={75}
+            src={data.cover}
+            draggable={false}
+            fetchPriority="high"
+            alt={data.alt || data.title}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover group-hover:scale-105 duration-300 transition-transform opacity-60 dark:opacity-70 group-hover:opacity-100"
+          />
+        </motion.div>
 
         <div className="text-white min-h-[200px] p-4 group-hover:pb-8 duration-300 flex flex-col justify-end gap-1 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent z-10">
           <h3 className="font-bold text-xl leading-tight">{data.title}</h3>
@@ -71,14 +77,16 @@ export function LensCard({
         </div>
       </div>
 
-      {isClient && isOpen && (
-        <LensGalleryModal
-          item={data}
-          currentIndex={currentIndex}
-          onNavigate={setCurrentIndex}
-          onClose={() => setIsOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {isClient && isOpen && (
+          <LensGalleryModal
+            item={data}
+            currentIndex={currentIndex}
+            onNavigate={setCurrentIndex}
+            onClose={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

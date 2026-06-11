@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { firstSearchParam, type RawSearchParams } from '@/shared/helpers/search-params';
 import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
 import { LENS_DATA, LENS_ITEMS, type LensItem } from '@/data';
 import { ContentContainer } from '@/layout/components';
@@ -17,12 +18,12 @@ const SORTED_LENS_ITEMS: LensItem[] = [...LENS_ITEMS].sort(
 );
 
 interface LensPageProps {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<RawSearchParams>;
 }
 
 export async function LensPage({ searchParams }: LensPageProps) {
   const params = await searchParams;
-  const page = Math.max(1, Number(params.page) || 1);
+  const page = Math.max(1, Number(firstSearchParam(params.page)) || 1);
 
   const totalPages = Math.ceil(SORTED_LENS_ITEMS.length / PAGE_SIZE);
   const safePage = Math.min(page, Math.max(1, totalPages));

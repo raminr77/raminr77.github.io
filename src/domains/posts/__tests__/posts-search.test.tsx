@@ -2,21 +2,6 @@ import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-// Mock Activity so mode="hidden" actually unmounts children in tests
-jest.mock('react', () => {
-  const actual = jest.requireActual<typeof React>('react');
-  return {
-    ...actual,
-    Activity: ({
-      children,
-      mode
-    }: {
-      children: React.ReactNode;
-      mode: 'visible' | 'hidden';
-    }) => (mode === 'visible' ? <>{children}</> : null)
-  };
-});
-
 import { PostsSearch } from '../components/posts-search';
 
 jest.mock('@next/third-parties/google', () => ({

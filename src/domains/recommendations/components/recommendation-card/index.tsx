@@ -15,7 +15,7 @@ interface RecommendationCardProps {
 
 export function RecommendationCard({
   data,
-  animationDelay = '0s'
+  animationDelay = '1.5s'
 }: RecommendationCardProps) {
   const { url, text, date, title, caption, fullName, imageURL } = data;
   const trackingPayload = GTM_EVENTS.LINKEDIN_RECOMMENDATION(fullName);

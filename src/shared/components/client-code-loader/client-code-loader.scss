@@ -4,30 +4,28 @@ code {
 }
 
 pre code {
-  padding: 0;
+  padding: 1em;
   transition-duration: 500ms;
 }
 
 pre {
-  padding: 4px;
   margin: 20px 0;
   position: relative;
   border-radius: 8px;
   transition-duration: 500ms;
-  background-color: var(--code-block-background);
 }
 
 .hljs-copy-button {
-  width: 26px;
-  height: 26px;
-  margin: 10px;
+  width: 20px;
+  height: 20px;
+  margin: 16px;
   height: 24px;
   border: unset;
   cursor: pointer;
   background-color: transparent !important;
 
   &::before {
-    width: 26px !important;
-    height: 26px !important;
+    width: 20px !important;
+    height: 20px !important;
   }
 }
