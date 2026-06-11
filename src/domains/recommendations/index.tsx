@@ -26,12 +26,8 @@ export function RecommendationsPage() {
       />
 
       <div className="mt-10 flex flex-col gap-6 overflow-hidden">
-        {RECOMMENDATIONS.map((item: RecommendationItem, index: number) => (
-          <RecommendationCard
-            key={item.id}
-            data={item}
-            animationDelay={`${(index + 1) * 0.3}s`}
-          />
+        {RECOMMENDATIONS.map((item: RecommendationItem) => (
+          <RecommendationCard key={item.id} data={item} />
         ))}
       </div>
 
