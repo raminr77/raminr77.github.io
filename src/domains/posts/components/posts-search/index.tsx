@@ -24,6 +24,7 @@ export function PostsSearch() {
   const [loading, setLoading] = useState<boolean>(false);
   const [posts, setPosts] = useState<PostMetadata[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
   const debouncedSearchValue = useDebounce(searchValue, 300);
@@ -59,6 +60,10 @@ export function PostsSearch() {
         setPosts([]);
       })
       .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
@@ -149,8 +154,6 @@ export function PostsSearch() {
     </Activity>
   );
 
-  if (typeof window === 'undefined') return null;
-
   return (
     <div className="flex items-center">
       <button
@@ -163,7 +166,7 @@ export function PostsSearch() {
         <Icons name="search" />
       </button>
 
-      {createPortal(SearchModal, document.body)}
+      {isMounted && createPortal(SearchModal, document.body)}
     </div>
   );
 }
