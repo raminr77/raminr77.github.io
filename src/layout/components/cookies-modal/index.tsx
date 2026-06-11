@@ -16,8 +16,8 @@ import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
 
 export function CookiesModal() {
   const { cookiesModal } = GENERAL_SITE_DATA;
-  const [cookiesModalStatus, setCookiesModalStatus] = useState<CookiesModalStatus>(
-    COOKIES_MODAL_STATUS.NONE
+  const [cookiesModalStatus, setCookiesModalStatus] = useState<CookiesModalStatus | null>(
+    null
   );
 
   useEffect(() => {
