@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { clsx } from 'clsx';
@@ -57,6 +57,15 @@ export function LensGalleryModal({
     onClose();
   }, [onClose]);
 
+  const handleBackdropClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      if (event.target === event.currentTarget) {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
   const handleThumbnailClick = useCallback(
     (index: number) => {
       sendGTMEvent(GTM_EVENTS.LENS_THUMBNAIL(index + 1));
@@ -71,13 +80,13 @@ export function LensGalleryModal({
     <div
       role="dialog"
       aria-modal="true"
-      onClick={handleClose}
+      onClick={handleBackdropClick}
       aria-label={`Gallery: ${item.title}`}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-md"
     >
       {/* Header */}
       <div
-        onClick={(clickEvent) => clickEvent.stopPropagation()}
+        onClick={handleBackdropClick}
         className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-4 z-10 bg-gradient-to-b from-black/60 to-transparent"
       >
         <div className="text-white">
@@ -100,7 +109,7 @@ export function LensGalleryModal({
 
       {/* Main media */}
       <div
-        onClick={(event) => event.stopPropagation()}
+        onClick={handleBackdropClick}
         className="relative flex items-center justify-center w-full flex-1 px-16 py-20"
       >
         {total > 1 && (
@@ -113,8 +122,14 @@ export function LensGalleryModal({
           </button>
         )}
 
-        <div className="relative max-w-5xl w-full h-full flex flex-col items-center gap-4">
-          <div className="relative flex-1 w-full flex items-center justify-center min-h-0">
+        <div
+          onClick={handleBackdropClick}
+          className="relative max-w-5xl w-full h-full flex flex-col items-center gap-4"
+        >
+          <div
+            onClick={handleBackdropClick}
+            className="relative flex-1 w-full flex items-center justify-center min-h-0"
+          >
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-10 h-10 rounded-full border-2 border-white/20 border-t-white/60 animate-spin" />
@@ -175,11 +190,14 @@ export function LensGalleryModal({
 
       {/* Footer: thumbnails */}
       <div
-        onClick={(event) => event.stopPropagation()}
+        onClick={handleBackdropClick}
         className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-3 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent"
       >
         {total > 1 && (
-          <div className="flex items-center justify-center gap-1 overflow-x-auto w-full">
+          <div
+            onClick={handleBackdropClick}
+            className="flex items-center justify-center gap-1 overflow-x-auto w-full"
+          >
             {allSlides.map((slide, index) => (
               <button
                 key={index}
