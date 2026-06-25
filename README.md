@@ -22,7 +22,7 @@ I build and maintain it on my own as a place to publish writing, share projects,
 - **Content**: Markdown posts in [`/posts`](./posts) parsed with `gray-matter` + `markdown-to-jsx`
 - **Testing**: Jest 30, `@testing-library/react`, Playwright
 - **Monitoring**: Sentry, Vercel Speed Insights
-- **Package manager**: pnpm 11 [ current pnpm version pnpm@11.5.3]
+- **Package manager**: pnpm
 
 ## Quick start
 
