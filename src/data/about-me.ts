@@ -38,10 +38,7 @@ type AboutMeComponentContent = {
 };
 
 export type AboutMeContentItem =
-  | AboutMeTextContent
-  | AboutMeListContent
-  | AboutMeImageContent
-  | AboutMeComponentContent;
+  AboutMeTextContent | AboutMeListContent | AboutMeImageContent | AboutMeComponentContent;
 
 export const ABOUT_ME_DATA: {
   heroURL: string;

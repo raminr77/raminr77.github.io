@@ -5,10 +5,7 @@ type ShakeAnimationNames = 'shakeX' | 'shakeY' | 'headShake';
 type FlipAnimationNames = 'flip' | 'flipInX' | 'flipInY' | 'flipOutX' | 'flipOutY';
 
 type LightSpeedAnimationNames =
-  | 'lightSpeedInRight'
-  | 'lightSpeedInLeft'
-  | 'lightSpeedOutRight'
-  | 'lightSpeedOutLeft';
+  'lightSpeedInRight' | 'lightSpeedInLeft' | 'lightSpeedOutRight' | 'lightSpeedOutLeft';
 
 type RotateAnimationNames =
   | 'rotateIn'
