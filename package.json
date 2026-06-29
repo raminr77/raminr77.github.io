@@ -30,7 +30,7 @@
     "@gsap/react": "^2.1.2",
     "@next/bundle-analyzer": "^16.2.9",
     "@next/third-parties": "^16.2.9",
-    "@sentry/nextjs": "^10.60.0",
+    "@sentry/nextjs": "^10.62.0",
     "@tailwindcss/postcss": "^4.3.1",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
