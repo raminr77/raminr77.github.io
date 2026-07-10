@@ -8,3 +8,4 @@ minimumReleaseAgeExclude:
   - '@types/node@26.0.1'
   - qs@6.15.3
   - postcss@8.5.16
+  - prettier@3.9.5
