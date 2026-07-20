@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
+
 import { clsx } from 'clsx';
 
-import { firstSearchParam, type RawSearchParams } from '@/shared/helpers/search-params';
-import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
-import type { PostMetadata, PostFilters } from '@/shared/types/post';
+import { type RawSearchParams, firstSearchParam } from '@/shared/helpers/search-params';
+import { PAGE_SIZE, PageHeader, Pagination } from '@/shared/components';
+import type { PostFilters, PostMetadata } from '@/shared/types/post';
 import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 import { PERSONAL_DATA } from '@/data';
 
-import { PostCard, PostsCategoryFilter, EmptyPostBlock, PostsSearch } from './components';
+import { EmptyPostBlock, PostCard, PostsCategoryFilter, PostsSearch } from './components';
 
 interface PostListPageProps {
   searchParams: Promise<RawSearchParams>;

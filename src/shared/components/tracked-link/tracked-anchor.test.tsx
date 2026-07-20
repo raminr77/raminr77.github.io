@@ -1,7 +1,6 @@
+import { sendGTMEvent } from '@next/third-parties/google';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import { sendGTMEvent } from '@next/third-parties/google';
 
 import { TrackedAnchor } from './tracked-anchor';
 

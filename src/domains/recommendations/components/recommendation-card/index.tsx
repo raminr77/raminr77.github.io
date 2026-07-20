@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import { clsx } from 'clsx';
 
 import { TrackedAnchor } from '@/shared/components';

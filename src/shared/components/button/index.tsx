@@ -1,6 +1,7 @@
 'use client';
 
 import type { MouseEventHandler } from 'react';
+
 import { clsx } from 'clsx';
 
 import { Spinner } from '@/shared/components/spinner';

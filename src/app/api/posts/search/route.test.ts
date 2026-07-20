@@ -1,13 +1,13 @@
 /**
  * @jest-environment node
  */
+import { getPosts } from '@/shared/helpers/posts/get-posts';
+
 import { GET } from './route';
 
 jest.mock('@/shared/helpers/posts/get-posts', () => ({
   getPosts: jest.fn()
 }));
-
-import { getPosts } from '@/shared/helpers/posts/get-posts';
 
 const mockedGetPosts = jest.mocked(getPosts);
 

@@ -1,7 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
+
+import dynamic from 'next/dynamic';
 
 import * as Sentry from '@sentry/nextjs';
 

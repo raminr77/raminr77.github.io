@@ -1,6 +1,7 @@
 'use client';
-import { sendGTMEvent } from '@next/third-parties/google';
 import { useEffect, useState } from 'react';
+
+import { sendGTMEvent } from '@next/third-parties/google';
 
 import { FEATURE_FLAGS, GTM_EVENTS, LOCAL_STORAGE_KEYS } from '@/shared/constants';
 import { Icons } from '@/shared/components/icons';

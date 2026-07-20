@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useCallback, useState, type MouseEvent } from 'react';
-import { motion, useReducedMotion, type Transition } from 'motion/react';
+import { type MouseEvent, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import Image from 'next/image';
-import { clsx } from 'clsx';
 
+import Image from 'next/image';
+
+import { type Transition, motion, useReducedMotion } from 'motion/react';
 import { sendGTMEvent } from '@next/third-parties/google';
+import { clsx } from 'clsx';
 
 import type { LensItem, LensSlideItem } from '@/data';
 import { GTM_EVENTS } from '@/shared/constants';

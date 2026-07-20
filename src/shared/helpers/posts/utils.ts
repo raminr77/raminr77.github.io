@@ -1,8 +1,7 @@
 import { compareDesc } from 'date-fns';
 
+import type { PostFilters, PostMetadata } from '@/shared/types/post';
 import { ROUTES } from '@/shared/constants';
-
-import type { PostMetadata, PostFilters } from '@/shared/types/post';
 
 export function postSorter(first: PostMetadata, second: PostMetadata) {
   return compareDesc(new Date(first.date), new Date(second.date));

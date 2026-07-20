@@ -4,8 +4,17 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
 minimumReleaseAgeExclude:
-  - lint-staged@17.0.8
-  - '@types/node@26.0.1'
-  - qs@6.15.3
-  - postcss@8.5.16
-  - prettier@3.9.5
+  - '@sentry/browser-utils@10.67.0'
+  - '@sentry/browser@10.67.0'
+  - '@sentry/core@10.67.0'
+  - '@sentry/feedback@10.67.0'
+  - '@sentry/nextjs@10.67.0'
+  - '@sentry/node-core@10.67.0'
+  - '@sentry/node@10.67.0'
+  - '@sentry/opentelemetry@10.67.0'
+  - '@sentry/react@10.67.0'
+  - '@sentry/replay-canvas@10.67.0'
+  - '@sentry/replay@10.67.0'
+  - '@sentry/server-utils@10.67.0'
+  - '@sentry/vercel-edge@10.67.0'
+  - markdown-to-jsx@9.9.0

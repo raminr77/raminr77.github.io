@@ -1,10 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
+
 import { clsx } from 'clsx';
 
 import {
-  animator,
   CookiesModalStatus,
+  animator,
   getCookiesModalStatus,
   updateCookiesModalStatus
 } from '@/shared/helpers';

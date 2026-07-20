@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 
 // ICONS - https://icones.js.org/collection/lucide
 const ICONS = {

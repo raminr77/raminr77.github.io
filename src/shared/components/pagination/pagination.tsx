@@ -1,10 +1,11 @@
 'use client';
 
 import { useCallback } from 'react';
+
 import Link from 'next/link';
-import { clsx } from 'clsx';
 
 import { sendGTMEvent } from '@next/third-parties/google';
+import { clsx } from 'clsx';
 
 import { GTM_EVENTS } from '@/shared/constants';
 import { GENERAL_SITE_DATA } from '@/data';

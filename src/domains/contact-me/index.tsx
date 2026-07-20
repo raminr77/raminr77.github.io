@@ -1,11 +1,13 @@
 'use client';
 
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+
 import Link from 'next/link';
+
+import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
 import { CONTACT_ME_DATA, GENERAL_SITE_DATA } from '@/data';
-import { sendGTMEvent } from '@next/third-parties/google';
 import { ContentContainer } from '@/layout/components';
 import { ENV, GTM_EVENTS } from '@/shared/constants';
 import { PageHeader } from '@/shared/components';

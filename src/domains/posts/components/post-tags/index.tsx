@@ -1,8 +1,9 @@
 'use client';
 import Link from 'next/link';
 
-import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
 import { sendGTMEvent } from '@next/third-parties/google';
+
+import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
 import { GTM_EVENTS } from '@/shared/constants';
 
 interface PostTagsProps {

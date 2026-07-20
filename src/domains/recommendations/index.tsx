@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
+
 import { clsx } from 'clsx';
 
 import {
-  RECOMMENDATION_PAGE_DATA,
   RECOMMENDATIONS,
+  RECOMMENDATION_PAGE_DATA,
   type RecommendationItem
 } from '@/data';
 import { ContentContainer } from '@/layout/components';

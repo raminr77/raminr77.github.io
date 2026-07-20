@@ -1,7 +1,9 @@
 'use client';
-import { sendGTMEvent } from '@next/third-parties/google';
-import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import Link from 'next/link';
+
+import { sendGTMEvent } from '@next/third-parties/google';
+
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 
 export function BackToPostButton() {
   return (

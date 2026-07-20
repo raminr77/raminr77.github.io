@@ -97,8 +97,9 @@ The frontmatter (between `---`) defines metadata, while the content below is the
 Contentlayer generates a data layer you can import directly. For the blog index page at `pages/blog/index.js`:
 
 ```javascript
-import { allPosts } from 'contentlayer/generated';
 import Link from 'next/link';
+
+import { allPosts } from 'contentlayer/generated';
 
 export default function Blog() {
   return (
@@ -122,6 +123,7 @@ For individual posts at `pages/blog/[slug].js`:
 
 ```javascript
 import { useMDXComponent } from 'next-contentlayer/hooks';
+
 import { allPosts } from 'contentlayer/generated';
 
 export default function Post({ post }) {

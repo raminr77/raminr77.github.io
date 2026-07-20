@@ -4,7 +4,7 @@ import fs from 'fs';
 import { PERSONAL_DATA } from '@/data';
 
 import { filterPostsByKey, postSorter, searchPosts } from './utils';
-import type { PostMetadata, PostFilters } from '../../types/post';
+import type { PostFilters, PostMetadata } from '../../types/post';
 import { POST_FOLDER_PATH } from './constants';
 
 export type Posts = {

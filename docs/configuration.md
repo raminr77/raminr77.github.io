@@ -77,6 +77,7 @@ Imports of `.svg` files become React components:
 
 ```tsx
 import Logo from './logo.svg';
+
 <Logo className="w-8 h-8" />;
 ```
 

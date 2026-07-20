@@ -1,6 +1,9 @@
-import { render, screen, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
+
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import { searchPosts } from '@/shared/services';
 
 import { PostsSearch } from '../components/posts-search';
 
@@ -45,7 +48,6 @@ jest.mock('react-dom', (): typeof import('react-dom') => ({
   createPortal: (node: React.ReactNode): React.ReactPortal => node as React.ReactPortal
 }));
 
-import { searchPosts } from '@/shared/services';
 const mockSearchPosts = searchPosts as jest.Mock;
 
 jest.useFakeTimers();

@@ -1,4 +1,4 @@
-import { Slide, toast, type ToastOptions } from 'react-toastify';
+import { Slide, type ToastOptions, toast } from 'react-toastify';
 
 interface NotifyProps {
   message: string;

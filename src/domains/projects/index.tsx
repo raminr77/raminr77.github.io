@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
+
 import { clsx } from 'clsx';
 
-import { firstSearchParam, type RawSearchParams } from '@/shared/helpers/search-params';
-import { Pagination, PAGE_SIZE, PageHeader } from '@/shared/components';
+import { type RawSearchParams, firstSearchParam } from '@/shared/helpers/search-params';
+import { PAGE_SIZE, PageHeader, Pagination } from '@/shared/components';
 import { PROJECTS_DATA, type ProjectItem } from '@/data';
 import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 
-import { ProjectsFooter, ProjectCard } from './components';
+import { ProjectCard, ProjectsFooter } from './components';
 
 export const metadata: Metadata = {
   title: 'Projects'

@@ -1,8 +1,10 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
-import { sendGAEvent } from '@next/third-parties/google';
 import { useEffect, useRef } from 'react';
+
+import { usePathname, useSearchParams } from 'next/navigation';
+
+import { sendGAEvent } from '@next/third-parties/google';
 
 export function GAPageView() {
   const pathname = usePathname();

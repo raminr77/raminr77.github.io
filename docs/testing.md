@@ -170,7 +170,7 @@ e2e/theme.spec.ts
 ### Writing a spec
 
 ```ts
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test('user can navigate to the projects page', async ({ page }) => {
   await page.goto('/');

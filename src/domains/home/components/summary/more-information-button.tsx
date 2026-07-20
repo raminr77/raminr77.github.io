@@ -1,8 +1,10 @@
 'use client';
+import Link from 'next/link';
+
 import { sendGTMEvent } from '@next/third-parties/google';
+
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { PERSONAL_DATA } from '@/data';
-import Link from 'next/link';
 
 export function MoreInformationButton() {
   return (

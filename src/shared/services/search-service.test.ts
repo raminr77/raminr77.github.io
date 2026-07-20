@@ -1,5 +1,6 @@
-import { searchPosts } from './search-service';
 import { notify } from '@/shared/helpers';
+
+import { searchPosts } from './search-service';
 
 jest.mock('@/shared/helpers', () => ({
   notify: { error: jest.fn(), success: jest.fn() }

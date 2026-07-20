@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+
 import { usePathname } from 'next/navigation';
+
 import { clsx } from 'clsx';
 
 import styles from './progress-bar.module.scss';
