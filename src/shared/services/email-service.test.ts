@@ -1,5 +1,7 @@
-import { sendEmail } from './email-service';
 import { notify } from '@/shared/helpers';
+
+import { isValidGoogleReCaptcha } from './recaptcha-service';
+import { sendEmail } from './email-service';
 
 jest.mock('./recaptcha-service', () => ({
   isValidGoogleReCaptcha: jest.fn()
@@ -12,8 +14,6 @@ jest.mock('@/shared/helpers', () => ({
 jest.mock('@/shared/api/constants', () => ({
   ENDPOINTS: { sendMessage: 'https://email-api.example.com' }
 }));
-
-import { isValidGoogleReCaptcha } from './recaptcha-service';
 
 const mockRecaptcha = isValidGoogleReCaptcha as jest.Mock;
 

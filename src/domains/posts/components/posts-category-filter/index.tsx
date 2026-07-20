@@ -1,9 +1,11 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import type { ChangeEvent } from 'react';
+
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import { sendGTMEvent } from '@next/third-parties/google';
+
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import type { PostFilters } from '@/shared/types/post';
 import { GENERAL_SITE_DATA } from '@/data';

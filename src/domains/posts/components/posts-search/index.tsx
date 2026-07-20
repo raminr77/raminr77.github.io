@@ -1,14 +1,16 @@
 'use client';
-import { useCallback, useEffect, useState, type ChangeEvent } from 'react';
+import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+
 import Link from 'next/link';
+
+import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
 import { useDebounce } from '@/shared/hooks/use-debounce';
-import { sendGTMEvent } from '@next/third-parties/google';
 import type { PostMetadata } from '@/shared/types/post';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
-import { TextInput, Icons } from '@/shared/components';
+import { Icons, TextInput } from '@/shared/components';
 import { searchPosts } from '@/shared/services';
 import { animator } from '@/shared/helpers';
 import { GENERAL_SITE_DATA } from '@/data';

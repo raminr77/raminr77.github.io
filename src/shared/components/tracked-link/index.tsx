@@ -1,7 +1,8 @@
 'use client';
 
-import Link, { type LinkProps } from 'next/link';
 import type { ReactNode } from 'react';
+
+import Link, { type LinkProps } from 'next/link';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 

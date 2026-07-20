@@ -1,11 +1,12 @@
 'use client';
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useState } from 'react';
-import Image from 'next/image';
-import { clsx } from 'clsx';
 
+import Image from 'next/image';
+
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { sendGTMEvent } from '@next/third-parties/google';
+import { clsx } from 'clsx';
 
 import { GTM_EVENTS } from '@/shared/constants';
 import { useIsClient } from '@/shared/hooks';

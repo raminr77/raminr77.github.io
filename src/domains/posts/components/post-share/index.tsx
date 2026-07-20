@@ -1,6 +1,7 @@
 'use client';
 
 import { sendGTMEvent } from '@next/third-parties/google';
+
 import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
 import { notify } from '@/shared/helpers';

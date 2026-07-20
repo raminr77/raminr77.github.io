@@ -1,14 +1,14 @@
 'use client';
 
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { clsx } from 'clsx';
 
 import { sendGTMEvent } from '@next/third-parties/google';
+import { clsx } from 'clsx';
 
 import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
-import { TextInput, Button } from '@/shared/components';
+import { Button, TextInput } from '@/shared/components';
 import { sendEmail } from '@/shared/services';
 import { GENERAL_SITE_DATA } from '@/data';
 import { notify } from '@/shared/helpers';

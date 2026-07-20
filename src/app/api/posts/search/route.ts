@@ -1,4 +1,4 @@
-import { getPosts, type Posts } from '@/shared/helpers/posts/get-posts';
+import { type Posts, getPosts } from '@/shared/helpers/posts/get-posts';
 
 export function GET(request: Request) {
   try {

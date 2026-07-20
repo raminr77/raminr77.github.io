@@ -1,7 +1,6 @@
 /**
  * Performance optimization utilities
  */
-
 import { ENV } from '@/shared/constants';
 
 // Web Vitals thresholds

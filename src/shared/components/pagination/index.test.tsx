@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { Pagination, PAGE_SIZE } from './index';
+import { PAGE_SIZE, Pagination } from './index';
 
 describe('PAGE_SIZE', () => {
   it('equals 9', () => {

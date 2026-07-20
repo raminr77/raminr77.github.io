@@ -1,8 +1,9 @@
 import matter from 'gray-matter';
 import fs from 'fs';
 
-import { getPosts, __resetPostsCacheForTests } from './get-posts';
 import type { PostMetadata } from '@/shared/types/post';
+
+import { __resetPostsCacheForTests, getPosts } from './get-posts';
 
 jest.mock('fs', () => ({
   readdirSync: jest.fn(),

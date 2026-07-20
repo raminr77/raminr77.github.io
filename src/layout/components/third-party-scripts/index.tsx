@@ -1,16 +1,17 @@
 'use client';
 
-import { GoogleAnalytics } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { useEffect, useState, Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
 
-import { getCookiesModalStatus, type CookiesModalStatus } from '@/shared/helpers';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
+import { type CookiesModalStatus, getCookiesModalStatus } from '@/shared/helpers';
 import { COOKIES_MODAL_STATUS, ENV } from '@/shared/constants';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
-
 import { GAPageView } from './ga-page-view';
 
 const PerformanceMonitor = dynamic(

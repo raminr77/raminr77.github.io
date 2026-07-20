@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import { useId, useState } from 'react';
 
 import Image from 'next/image';
+
 import { clsx } from 'clsx';
 
 import styles from './before-after-slider.module.scss';

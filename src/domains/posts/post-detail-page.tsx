@@ -1,15 +1,17 @@
-import Markdown, { RuleType } from 'markdown-to-jsx';
+import React from 'react';
+
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import Script from 'next/script';
+
+import Markdown, { RuleType } from 'markdown-to-jsx';
 import { clsx } from 'clsx';
-import React from 'react';
 
 import {
-  CodeBlock,
-  PageHeader,
+  BeforeAfterSlider,
   ClientCodeLoader,
-  BeforeAfterSlider
+  CodeBlock,
+  PageHeader
 } from '@/shared/components';
 import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import type { Post, PostMetadata } from '@/shared/types/post';
@@ -17,6 +19,18 @@ import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
 import { PERSONAL_DATA } from '@/data';
+
+import {
+  BackToPostButton,
+  PostAuthor,
+  PostCard,
+  PostCategory,
+  PostDate,
+  PostReadTime,
+  PostShare,
+  PostTags
+} from './components';
+import styles from './post-detail-page.module.scss';
 
 const SITE_URL = PERSONAL_DATA.url.replace(/\/$/, '');
 
@@ -49,19 +63,6 @@ function buildBlogPostingJsonLd(post: Post): string {
     }
   });
 }
-
-import {
-  BackToPostButton,
-  PostReadTime,
-  PostCategory,
-  PostAuthor,
-  PostShare,
-  PostCard,
-  PostTags,
-  PostDate
-} from './components';
-
-import styles from './post-detail-page.module.scss';
 
 interface Props {
   params: Promise<{ id: string }>;

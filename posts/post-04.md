@@ -96,7 +96,7 @@ const VirtualizedList = () => {
 If you want to understand what's happening under the hood, here's a bare-bones implementation without any library:
 
 ```javascript
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 const SimpleVirtualizedList = () => {
   const [scrollTop, setScrollTop] = useState(0);

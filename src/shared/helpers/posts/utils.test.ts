@@ -1,12 +1,12 @@
+import type { PostMetadata } from '@/shared/types/post';
+
 import {
-  generateFilteredPostUrl,
-  readingTime,
   filterPostsByKey,
+  generateFilteredPostUrl,
   postSorter,
+  readingTime,
   searchPosts
 } from './utils';
-
-import type { PostMetadata } from '@/shared/types/post';
 
 jest.mock('@/shared/constants', () => ({
   ROUTES: { POSTS: '/posts/' }

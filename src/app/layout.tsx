@@ -1,17 +1,22 @@
 import { ToastContainer } from 'react-toastify';
+
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import Image from 'next/image';
 
+import 'animate.css';
+
 import {
+  ProgressBar,
   ServiceWorkerRegistrar,
-  ThirdPartyScripts,
-  ProgressBar
+  ThirdPartyScripts
 } from '@/layout/components';
 import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
 import { textFont, titleFont } from '@/app/fonts';
 import { ENV } from '@/shared/constants';
+
+import './globals.scss';
 
 // next/dynamic with `ssr: false` is forbidden in Server Components.
 // Components below are 'use client'; they are split-bundled but still render on the server
@@ -33,9 +38,6 @@ const CookiesModal = dynamic(() =>
     default: module.CookiesModal
   }))
 );
-
-import './globals.scss';
-import 'animate.css';
 
 export const metadata: Metadata = {
   title: {

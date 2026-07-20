@@ -1,6 +1,7 @@
-import { isValidGoogleReCaptcha } from './recaptcha-service';
 import { ENDPOINTS } from '@/shared/api/constants';
 import { notify } from '@/shared/helpers';
+
+import { isValidGoogleReCaptcha } from './recaptcha-service';
 
 type requestData = {
   email: string;

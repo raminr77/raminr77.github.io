@@ -1,5 +1,6 @@
-import { isValidGoogleReCaptcha } from './recaptcha-service';
 import { notify } from '@/shared/helpers';
+
+import { isValidGoogleReCaptcha } from './recaptcha-service';
 
 jest.mock('@/shared/helpers', () => ({
   notify: { error: jest.fn(), success: jest.fn() }

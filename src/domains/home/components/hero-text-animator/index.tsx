@@ -1,8 +1,10 @@
 'use client';
 
-import { useGSAP } from '@gsap/react';
-import dynamic from 'next/dynamic';
 import { useRef } from 'react';
+
+import dynamic from 'next/dynamic';
+
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
 import { HERO_TEXT_CHARACTERS } from '@/domains/home/constants';

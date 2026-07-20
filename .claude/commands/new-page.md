@@ -53,7 +53,7 @@ export function <PascalName>Page() {
 6. **E2E spec (recommended)**: create `e2e/<route>.spec.ts` with a basic navigation check:
 
 ```ts
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test('<route> page loads', async ({ page }) => {
   await page.goto('/<route>');

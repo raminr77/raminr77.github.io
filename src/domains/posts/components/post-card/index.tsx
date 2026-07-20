@@ -7,9 +7,8 @@ import { TrackedLink } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
 import { PostCategory } from '../post-category';
-import { PostDate } from '../post-date';
-
 import styles from './post-card.module.scss';
+import { PostDate } from '../post-date';
 
 const DESCRIPTION_LIMIT = 210;
 

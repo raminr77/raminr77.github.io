@@ -1,8 +1,9 @@
 'use client';
 
-import { sendGTMEvent } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+
+import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
 import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';

@@ -1,6 +1,5 @@
-import { renderHook } from '@testing-library/react';
-
 import { sendGTMEvent } from '@next/third-parties/google';
+import { renderHook } from '@testing-library/react';
 
 import { useTrack } from './use-track';
 

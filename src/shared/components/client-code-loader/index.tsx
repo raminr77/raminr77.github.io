@@ -2,10 +2,11 @@
 
 import { useEffect } from 'react';
 
-import { notify } from '@/shared/helpers';
-
 import 'highlightjs-copy/dist/highlightjs-copy.min.css';
 import 'highlight.js/styles/github-dark.css';
+
+import { notify } from '@/shared/helpers';
+
 import './client-code-loader.scss';
 
 /**

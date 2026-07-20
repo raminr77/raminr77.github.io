@@ -6,21 +6,20 @@ import Image from 'next/image';
 import { clsx } from 'clsx';
 
 import {
-  PERSONAL_DATA,
-  ABOUT_ME_DATA,
-  GENERAL_SITE_DATA,
-  ABOUT_ME_CONTENT_TYPE,
   ABOUT_ME_COMPONENT_NAMES,
-  type AboutMeContentItem
+  ABOUT_ME_CONTENT_TYPE,
+  ABOUT_ME_DATA,
+  type AboutMeContentItem,
+  GENERAL_SITE_DATA,
+  PERSONAL_DATA
 } from '@/data';
 import { ResumeDownloaderButton } from '@/shared/components';
 import { ContentContainer } from '@/layout/components';
 import { animator } from '@/shared/helpers';
 
 import { RecommendationsBox } from './components';
-import { renderContent } from './helper';
-
 import styles from './about-me.module.scss';
+import { renderContent } from './helper';
 
 const PixelCanvas = dynamic(
   () =>
