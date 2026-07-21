@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/nextjs';
 
+import { initWebVitals } from '@/shared/helpers/performance';
 import { ENV } from '@/shared/constants';
 
 const isProduction =
@@ -26,6 +27,7 @@ if (ENV.SENTRY_ENABLED) {
       Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] })
     ]
   });
-  Sentry.metrics.count('user_action', 1);
-  Sentry.metrics.distribution('api_response_time', 150);
 }
+
+// Always initialize — reports to GTM unconditionally, Sentry only when enabled.
+initWebVitals(window.location.pathname);

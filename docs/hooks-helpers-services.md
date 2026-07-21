@@ -121,21 +121,40 @@ function getCookiesModalStatus(): CookiesModalStatus;
 function updateCookiesModalStatus(status: CookiesModalStatus): void;
 ```
 
-### `PerformanceMonitor`
+### Web Vitals — `initWebVitals` / `reportWebVital`
 
 `src/shared/helpers/performance.ts`
 
-Singleton wrapper around three `PerformanceObserver`s (LCP, FID, CLS). `monitorWebVitals()` is idempotent, calling it twice does not stack listeners. Exposes `disconnect()` for clean unmount.
+Collects all six Core Web Vitals using the `web-vitals` library and reports them to
+Sentry and GTM. Initialized once in `src/app/instrumentation-client.ts` at module load,
+before React hydrates.
 
-| Metric | Good     | Poor     | What it measures         |
-| ------ | -------- | -------- | ------------------------ |
-| LCP    | ≤ 2500ms | > 4000ms | Largest Contentful Paint |
-| FID    | ≤ 100ms  | > 300ms  | First Input Delay        |
-| CLS    | ≤ 0.1    | > 0.25   | Cumulative Layout Shift  |
-| FCP    | ≤ 1800ms | > 3000ms | First Contentful Paint   |
-| TTFB   | ≤ 800ms  | > 1800ms | Time to First Byte       |
+```ts
+// Called once at module load — idempotent, safe to call multiple times.
+initWebVitals(pathname: string): void
 
-Mounted by the `<PerformanceMonitor>` component when `ENV.ANALYZE_MODE` is on.
+// Called by each web-vitals callback. Writes to:
+//   - Sentry custom metrics  (web_vitals.lcp, web_vitals.cls, …)
+//   - Sentry span measurement (lcp, cls, …) — when an active span exists
+//   - GTM window.gtag        — when gtag is available
+reportWebVital(metric: Metric, pathname: string): void
+```
+
+Thresholds follow Google's Core Web Vitals definitions:
+
+| Vital | Unit  | Good    | Poor               |
+| ----- | ----- | ------- | ------------------ |
+| LCP   | ms    | ≤ 2 500 | > 4 000            |
+| CLS   | ratio | ≤ 0.1   | > 0.25             |
+| FCP   | ms    | ≤ 1 800 | > 3 000            |
+| TTFB  | ms    | ≤ 800   | > 1 800            |
+| INP   | ms    | ≤ 200   | > 500              |
+| FID   | ms    | ≤ 100   | > 300 (deprecated) |
+
+In Sentry, vitals appear in two places:
+
+- **Metrics** tab: `web_vitals.<name>` distributions, tagged by `page`.
+- **Performance → Transactions**: measurements on the page-load span.
 
 ### Post helpers
 

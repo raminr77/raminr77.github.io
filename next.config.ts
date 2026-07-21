@@ -36,7 +36,8 @@ const config: NextConfig = {
       'motion',
       'react-toastify',
       'react-hook-form',
-      '@next/third-parties'
+      '@next/third-parties',
+      'web-vitals'
     ]
   },
 

@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from 'react';
 
-import dynamic from 'next/dynamic';
 import Script from 'next/script';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -13,14 +12,6 @@ import { COOKIES_MODAL_STATUS, ENV } from '@/shared/constants';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
 import { GAPageView } from './ga-page-view';
-
-const PerformanceMonitor = dynamic(
-  () =>
-    import('@/shared/components/performance-monitor').then((module) => ({
-      default: module.PerformanceMonitor
-    })),
-  { ssr: false }
-);
 
 interface WindowWithGtag extends Window {
   gtag?: (...args: unknown[]) => void;
@@ -80,12 +71,6 @@ export function ThirdPartyScripts() {
   return (
     <>
       <SpeedInsights />
-
-      {ENV.ANALYZE_MODE && (
-        <Suspense fallback={null}>
-          <PerformanceMonitor />
-        </Suspense>
-      )}
 
       {isAccepted && !!ENV.GOOGLE_ADSENSE && (
         <Script

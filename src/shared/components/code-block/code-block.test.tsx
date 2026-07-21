@@ -21,8 +21,11 @@ function restoreScrollHeight(): void {
   }
 }
 
+let scrollToMock: jest.Mock;
+
 beforeEach(() => {
-  window.scrollTo = jest.fn();
+  scrollToMock = jest.fn();
+  window.scrollTo = scrollToMock;
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: jest.fn().mockImplementation((query: string) => ({
@@ -136,7 +139,7 @@ describe('<CodeBlock />', () => {
     await user.click(toggle); // expand
     await user.click(toggle); // collapse
 
-    expect(window.scrollTo).toHaveBeenCalledWith(
+    expect(scrollToMock).toHaveBeenCalledWith(
       expect.objectContaining({ behavior: 'smooth' })
     );
   });
@@ -165,7 +168,7 @@ describe('<CodeBlock />', () => {
     await user.click(toggle);
     await user.click(toggle);
 
-    expect(window.scrollTo).toHaveBeenCalledWith(
+    expect(scrollToMock).toHaveBeenCalledWith(
       expect.objectContaining({ behavior: 'auto' })
     );
   });

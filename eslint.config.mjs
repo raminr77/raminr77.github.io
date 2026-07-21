@@ -19,7 +19,8 @@ export default defineConfig(
       '**/node_modules/',
       '*.config.mjs',
       '*.config.js',
-      '*.config.ts'
+      '*.config.ts',
+      '.superpowers/'
     ]
   },
   js.configs.recommended,
