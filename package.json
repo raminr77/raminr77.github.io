@@ -90,7 +90,7 @@
     "tailwindcss": "^4.3.3",
     "ts-jest": "^29.4.11",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.65.0",
     "webpack": "^5.108.4",
     "webpack-bundle-analyzer": "^5.3.1"
