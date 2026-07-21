@@ -1,147 +1,82 @@
-/**
- * Performance optimization utilities
- */
-import { ENV } from '@/shared/constants';
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals';
+import * as Sentry from '@sentry/nextjs';
+import type { Metric } from 'web-vitals';
 
-// Web Vitals thresholds
 export const WEB_VITALS_THRESHOLDS = {
-  LCP: { good: 2500, poor: 4000 }, // Largest Contentful Paint
-  FID: { good: 100, poor: 300 }, // First Input Delay
-  CLS: { good: 0.1, poor: 0.25 }, // Cumulative Layout Shift
-  FCP: { good: 1800, poor: 3000 }, // First Contentful Paint
-  TTFB: { good: 800, poor: 1800 } // Time to First Byte
-};
+  LCP: { good: 2500, poor: 4000 },
+  FID: { good: 100, poor: 300 },
+  CLS: { good: 0.1, poor: 0.25 },
+  FCP: { good: 1800, poor: 3000 },
+  TTFB: { good: 800, poor: 1800 },
+  INP: { good: 200, poor: 500 }
+} as const;
 
-interface FirstInputEntry extends PerformanceEntry {
-  processingStart: number;
-}
-
-interface LayoutShiftEntry extends PerformanceEntry {
-  hadRecentInput: boolean;
-  value: number;
-}
-
-interface MemoryInfo {
-  usedJSHeapSize: number;
-  totalJSHeapSize: number;
-  jsHeapSizeLimit: number;
-}
+type VitalUnit = 'millisecond' | 'ratio';
 
 interface WindowWithGtag extends Window {
   gtag?: (command: string, eventName: string, params: Record<string, unknown>) => void;
 }
 
-interface PerformanceWithMemory extends Performance {
-  memory?: MemoryInfo;
+function getVitalUnit(name: Metric['name']): VitalUnit {
+  return name === 'CLS' ? 'ratio' : 'millisecond';
 }
 
-// Performance observer for monitoring. Singleton with idempotent setup,
-// re-mounts of the consumer component do not create duplicate observers.
-export class PerformanceMonitor {
-  private static instance: PerformanceMonitor;
-  private observers: PerformanceObserver[] = [];
-  private vitalsStarted = false;
+export function reportWebVital(metric: Metric, pathname: string): void {
+  if (typeof window === 'undefined') return;
+  const unit = getVitalUnit(metric.name);
+  const lowerName = metric.name.toLowerCase();
 
-  static getInstance(): PerformanceMonitor {
-    if (!PerformanceMonitor.instance) {
-      PerformanceMonitor.instance = new PerformanceMonitor();
-    }
-    return PerformanceMonitor.instance;
+  Sentry.metrics.distribution(`web_vitals.${lowerName}`, metric.value, {
+    unit,
+    attributes: { page: pathname }
+  });
+
+  const activeSpan = Sentry.getActiveSpan();
+  if (activeSpan) {
+    Sentry.setMeasurement(lowerName, metric.value, unit);
   }
 
-  monitorWebVitals() {
-    if (typeof window === 'undefined' || this.vitalsStarted) return;
-    this.vitalsStarted = true;
-
-    this.observe('largest-contentful-paint', (list) => {
-      const entries = list.getEntries();
-      const lastEntry = entries[entries.length - 1];
-      if (lastEntry) this.reportMetric('LCP', lastEntry.startTime);
-    });
-
-    this.observe('first-input', (list) => {
-      (list.getEntries() as FirstInputEntry[]).forEach((entry) => {
-        this.reportMetric('FID', entry.processingStart - entry.startTime);
-      });
-    });
-
-    let clsValue = 0;
-    this.observe('layout-shift', (list) => {
-      (list.getEntries() as LayoutShiftEntry[]).forEach((entry) => {
-        if (!entry.hadRecentInput) {
-          clsValue += entry.value;
-          this.reportMetric('CLS', clsValue);
-        }
-      });
-    });
-  }
-
-  private observe(type: string, callback: (list: PerformanceObserverEntryList) => void) {
-    try {
-      const observer = new PerformanceObserver(callback);
-      observer.observe({ entryTypes: [type] });
-      this.observers.push(observer);
-    } catch {
-      // Observer type not supported in this browser, silently skip.
-    }
-  }
-
-  private reportMetric(name: string, value: number) {
-    if (typeof window === 'undefined') return;
-    const w = window as WindowWithGtag;
-    if (!w.gtag) return;
-    w.gtag('event', name, {
+  const windowWithGtag = window as WindowWithGtag;
+  if (windowWithGtag.gtag) {
+    const gtagValue =
+      metric.name === 'CLS' ? Math.round(metric.value * 1000) : Math.round(metric.value);
+    windowWithGtag.gtag('event', metric.name, {
       event_category: 'Web Vitals',
-      value: Math.round(value),
+      value: gtagValue,
+      metric_id: metric.id,
+      metric_delta: metric.delta,
       non_interaction: true
     });
   }
-
-  disconnect() {
-    this.observers.forEach((observer) => observer.disconnect());
-    this.observers = [];
-    this.vitalsStarted = false;
-  }
 }
 
-// Idempotent, guard against duplicate listeners across re-inits.
-let memoryOptimized = false;
+let vitalsInitialized = false;
+// JSDOM does not allow deleting the window global, so tests override this flag
+// to simulate a non-browser environment without manipulating globalThis.window.
+let _browserOverride: boolean | null = null;
 
-export const optimizeMemoryUsage = () => {
-  if (typeof window === 'undefined' || memoryOptimized) return;
-  memoryOptimized = true;
+function isBrowser(): boolean {
+  if (_browserOverride !== null) return _browserOverride;
+  return typeof window !== 'undefined';
+}
 
-  window.addEventListener(
-    'beforeunload',
-    () => {
-      PerformanceMonitor.getInstance().disconnect();
-    },
-    { once: true }
-  );
+export function initWebVitals(pathname: string): void {
+  if (!isBrowser() || vitalsInitialized) return;
+  vitalsInitialized = true;
 
-  if (ENV.NODE_ENV === 'development') {
-    const intervalId = setInterval(() => {
-      const perf = performance as PerformanceWithMemory;
-      if (perf.memory) {
-        console.log('Memory usage:', {
-          used: Math.round(perf.memory.usedJSHeapSize / 1048576) + ' MB',
-          total: Math.round(perf.memory.totalJSHeapSize / 1048576) + ' MB',
-          limit: Math.round(perf.memory.jsHeapSizeLimit / 1048576) + ' MB'
-        });
-      }
-    }, 30000);
+  const report = (metric: Metric) => reportWebVital(metric, pathname);
+  onLCP(report);
+  onCLS(report);
+  onFCP(report);
+  onTTFB(report);
+  onINP(report);
+}
 
-    window.addEventListener('beforeunload', () => clearInterval(intervalId), {
-      once: true
-    });
-  }
-};
+export function __resetVitalsForTests(): void {
+  vitalsInitialized = false;
+  _browserOverride = null;
+}
 
-// Initialize performance monitoring
-export const initPerformanceMonitoring = () => {
-  if (typeof window === 'undefined') return;
-
-  const monitor = PerformanceMonitor.getInstance();
-  monitor.monitorWebVitals();
-  optimizeMemoryUsage();
-};
+export function __setBrowserForTests(value: boolean): void {
+  _browserOverride = value;
+}

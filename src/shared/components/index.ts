@@ -8,7 +8,6 @@ export { Icons } from './icons';
 export { PageHeader } from './page-header';
 export { Pagination } from './pagination';
 export { PAGE_SIZE } from './pagination/page-size';
-export { PerformanceMonitor } from './performance-monitor';
 export { PixelCanvas } from './pixel-canvas';
 export type { PixelCanvasColor } from './pixel-canvas';
 export { PixelCard } from './pixel-card';

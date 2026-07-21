@@ -25,8 +25,6 @@ export function register(): void {
         Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] })
       ]
     });
-    Sentry.metrics.count('user_action', 1);
-    Sentry.metrics.distribution('api_response_time', 150);
   }
 }
 
