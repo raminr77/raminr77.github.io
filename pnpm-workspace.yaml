@@ -34,3 +34,8 @@ minimumReleaseAgeExclude:
   - prettier@3.9.6
   - sass@1.101.3
   - typescript-eslint@8.65.0
+  - enhanced-resolve@5.24.4
+  - framer-motion@12.43.0
+  - motion-dom@12.43.0
+  - motion@12.43.0
+  - webpack@5.109.2
