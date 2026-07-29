@@ -4,7 +4,7 @@ Thanks for taking the time to look at this project's security. If you've found s
 
 ## Reporting
 
-Email <ramin.rezaei@sinch.com> with:
+Email <info@raminrezaei.se> with:
 
 - A short description of the issue.
 - Steps to reproduce (or a minimal repro).
