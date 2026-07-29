@@ -35,6 +35,7 @@ function makeMetric(name: Metric['name'], value: number): Metric {
     delta: value,
     id: 'v3-test',
     entries: [],
+    navigationId: 10,
     navigationType: 'navigate',
     rating: 'good'
   };

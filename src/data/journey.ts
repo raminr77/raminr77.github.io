@@ -7,6 +7,20 @@ export interface JourneyItem {
   location: string;
   items?: string[];
   description: string;
+  image?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  video?: {
+    src: string;
+    alt: string;
+    loop: boolean;
+    muted: boolean;
+    autoPlay: boolean;
+    controls: boolean;
+  };
 }
 
 const JOURNEY_ITEM_DATA: JourneyItem[] = [
@@ -16,6 +30,12 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     location: 'Isfahan, Iran',
     date: `11 Jan 1999 ( ${new Date().getFullYear() - 1999} years )`,
     title: 'Birthday',
+    image: {
+      width: 1000,
+      height: 699,
+      src: '/images/isfahan.webp',
+      alt: 'Birthday - Isfahan, Iran (1999)'
+    },
     description:
       '<p>I was born on <strong>January 11, 1999</strong> in <em>Isfahan, Iran</em>. This was the beginning of my journey, which later took me through software engineering, large-scale systems, and international opportunities.</p>'
   },
@@ -95,6 +115,14 @@ const JOURNEY_ITEM_DATA: JourneyItem[] = [
     date: 'Aug 2023',
     location: 'Malmö, Sweden',
     title: 'Relocation to Sweden',
+    video: {
+      loop: true,
+      muted: true,
+      autoPlay: true,
+      controls: false,
+      src: '/images/malmo.mp4',
+      alt: 'Moving to Sweden - Malmö'
+    },
     description:
       '<p>In <strong>August 2023</strong>, I moved to <strong>Malmö, Sweden</strong> 🇸🇪. This was the beginning of a new international chapter in my career, with bigger systems, broader impact, and new challenges.</p>'
   },

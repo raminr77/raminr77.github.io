@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "7.3.0",
+  "version": "7.4.0",
   "private": true,
   "scripts": {
     "start": "next start",
@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.2.10",
-    "@next/third-parties": "^16.2.10",
-    "@sentry/nextjs": "^10.67.0",
+    "@next/bundle-analyzer": "^16.2.12",
+    "@next/third-parties": "^16.2.12",
+    "@sentry/nextjs": "^10.68.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
@@ -41,15 +41,15 @@
     "highlight.js": "^11.11.1",
     "highlightjs-copy": "^1.0.6",
     "markdown-to-jsx": "^9.9.0",
-    "motion": "^12.42.2",
-    "next": "^16.2.10",
+    "motion": "^12.43.0",
+    "next": "^16.2.12",
     "qs": "^6.15.3",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-google-recaptcha-v3": "^1.11.0",
-    "react-hook-form": "^7.82.0",
+    "react-hook-form": "^7.83.0",
     "react-toastify": "^11.1.0",
-    "web-vitals": "^5.3.0"
+    "web-vitals": "^6.0.1"
   },
   "lint-staged": {
     "**/*": [
@@ -60,39 +60,39 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.2.10",
-    "@playwright/test": "^1.61.1",
+    "@next/eslint-plugin-next": "^16.2.12",
+    "@playwright/test": "^1.62.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/jest": "^30.0.0",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "@types/qs": "^6.15.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^10.7.0",
+    "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "lighthouse": "^13.4.1",
-    "lint-staged": "^17.1.0",
-    "postcss": "^8.5.21",
+    "lint-staged": "^17.2.0",
+    "postcss": "^8.5.24",
     "prettier": "3.9.6",
     "prettier-plugin-sort-imports": "^1.8.11",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "sass": "^1.101.3",
+    "sass": "^1.102.0",
     "sharp": "^0.35.3",
     "tailwindcss": "^4.3.3",
-    "ts-jest": "^29.4.11",
+    "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0",
-    "webpack": "^5.108.4",
+    "webpack": "^5.109.2",
     "webpack-bundle-analyzer": "^5.3.1"
   },
   "browserslist": {
@@ -109,5 +109,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@11.15.1"
+  "packageManager": "pnpm@11.17.0"
 }

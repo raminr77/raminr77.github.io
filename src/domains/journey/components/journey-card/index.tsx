@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { clsx } from 'clsx';
 
 import { Icons, PixelCanvas, TrackedAnchor } from '@/shared/components';
@@ -99,6 +100,34 @@ export function JourneyCard({
             </ul>
           )}
         </div>
+
+        {data.video && (
+          <div className="my-2 overflow-hidden rounded-lg flex flex-col items-center justify-center">
+            <video
+              src={data.video.src}
+              loop={data.video.loop}
+              muted={data.video.muted}
+              autoPlay={data.video.autoPlay}
+              controls={data.video.controls}
+              className="w-full rounded-lg overflow-hidden"
+            />
+            <p className="text-sm mt-2 w-full text-center">{data.video.alt}</p>
+          </div>
+        )}
+
+        {data.image && (
+          <div className="my-4 w-full overflow-hidden rounded-lg flex flex-col items-center justify-center">
+            <Image
+              loading="lazy"
+              alt={data.image.alt}
+              src={data.image.src}
+              width={data.image.width}
+              height={data.image.height}
+              className="w-full h-full object-cover overflow-hidden rounded-lg"
+            />
+            <p className="text-sm mt-2 w-full text-center">{data.image.alt}</p>
+          </div>
+        )}
       </div>
     </div>
   );
