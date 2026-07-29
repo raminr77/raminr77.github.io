@@ -72,7 +72,7 @@ Dependabot watches `npm` (weekly, grouped) and `github-actions` (monthly), targe
 
 ## Security
 
-Security policy lives in [`SECURITY.md`](./SECURITY.md). Report vulnerabilities privately at <ramin.rezaei77@gmail.com>.
+Security policy lives in [`SECURITY.md`](./SECURITY.md). Report vulnerabilities privately at <info@raminrezaei.se>.
 
 ## License
 
