@@ -1,14 +1,14 @@
 'use client';
 import type { ChangeEvent } from 'react';
 
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 
+import { GENERAL_SITE_DATA } from '@/data';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import type { PostFilters } from '@/shared/types/post';
-import { GENERAL_SITE_DATA } from '@/data';
 
 interface PostsCategoryFilterProps {
   categories: string[];

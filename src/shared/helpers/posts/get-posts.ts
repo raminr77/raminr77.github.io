@@ -1,11 +1,11 @@
-import matter from 'gray-matter';
 import fs from 'fs';
+import matter from 'gray-matter';
 
 import { PERSONAL_DATA } from '@/data';
 
-import { filterPostsByKey, postSorter, searchPosts } from './utils';
 import type { PostFilters, PostMetadata } from '../../types/post';
 import { POST_FOLDER_PATH } from './constants';
+import { filterPostsByKey, postSorter, searchPosts } from './utils';
 
 export type Posts = {
   categories: string[];

@@ -7,13 +7,13 @@ import Link from 'next/link';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
-import { useDebounce } from '@/shared/hooks/use-debounce';
-import type { PostMetadata } from '@/shared/types/post';
-import { GTM_EVENTS, ROUTES } from '@/shared/constants';
-import { Icons, TextInput } from '@/shared/components';
-import { searchPosts } from '@/shared/services';
-import { animator } from '@/shared/helpers';
 import { GENERAL_SITE_DATA } from '@/data';
+import { Icons, TextInput } from '@/shared/components';
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
+import { animator } from '@/shared/helpers';
+import { useDebounce } from '@/shared/hooks/use-debounce';
+import { searchPosts } from '@/shared/services';
+import type { PostMetadata } from '@/shared/types/post';
 
 import { PostDate } from '../post-date';
 

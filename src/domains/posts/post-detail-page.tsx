@@ -1,24 +1,24 @@
 import React from 'react';
 
-import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import Script from 'next/script';
 
-import Markdown, { RuleType } from 'markdown-to-jsx';
 import { clsx } from 'clsx';
+import Markdown, { RuleType } from 'markdown-to-jsx';
 
+import { PERSONAL_DATA } from '@/data';
+import { ContentContainer } from '@/layout/components';
 import {
   BeforeAfterSlider,
   ClientCodeLoader,
   CodeBlock,
   PageHeader
 } from '@/shared/components';
-import { getPostContent } from '@/shared/helpers/posts/get-post-content';
-import type { Post, PostMetadata } from '@/shared/types/post';
-import { getPosts } from '@/shared/helpers/posts/get-posts';
-import { ContentContainer } from '@/layout/components';
 import { ROUTES } from '@/shared/constants';
-import { PERSONAL_DATA } from '@/data';
+import { getPostContent } from '@/shared/helpers/posts/get-post-content';
+import { getPosts } from '@/shared/helpers/posts/get-posts';
+import type { Post, PostMetadata } from '@/shared/types/post';
 
 import {
   BackToPostButton,

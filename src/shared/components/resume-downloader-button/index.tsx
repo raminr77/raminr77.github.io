@@ -3,8 +3,8 @@
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
-import { GTM_EVENTS } from '@/shared/constants';
 import { RESUME_FILE } from '@/data';
+import { GTM_EVENTS } from '@/shared/constants';
 
 import styles from './resume-downloader-button.module.scss';
 

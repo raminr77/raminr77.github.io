@@ -28,6 +28,9 @@ const config: NextConfig = {
   },
 
   experimental: {
+    // `typescript` resolves to the TS 6.0 API compat package (see package.json), not TS 7's
+    // own `tsc` binary, so the build-time type checker needs the classic compiler API path.
+    useTypeScriptCli: false,
     optimizePackageImports: [
       'require-in-the-middle',
       'import-in-the-middle',

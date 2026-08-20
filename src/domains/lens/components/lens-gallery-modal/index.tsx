@@ -5,16 +5,16 @@ import { createPortal } from 'react-dom';
 
 import Image from 'next/image';
 
-import { type Transition, motion, useReducedMotion } from 'motion/react';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
+import { type Transition, motion, useReducedMotion } from 'motion/react';
 
 import type { LensItem, LensSlideItem } from '@/data';
-import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
+import { GTM_EVENTS } from '@/shared/constants';
 
-import { useGalleryKeyboard } from '../../hooks/use-gallery-keyboard';
 import { getLensLayoutId } from '../../constants';
+import { useGalleryKeyboard } from '../../hooks/use-gallery-keyboard';
 
 const ZOOM_TRANSITION: Transition = { duration: 0.4, ease: [0.22, 1, 0.36, 1] };
 

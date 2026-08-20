@@ -7,13 +7,8 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "trailingComma": "none",
-  "sortingMethod": "lineLength",
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": [
-    "prettier-plugin-tailwindcss",
-    "@trivago/prettier-plugin-sort-imports",
-    "./node_modules/prettier-plugin-sort-imports/dist/index.js"
-  ],
+  "plugins": ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"],
   "importOrder": ["^react", "^next", "<THIRD_PARTY_MODULES>", "^@/", "^[./]"]
 }

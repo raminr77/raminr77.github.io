@@ -1,7 +1,7 @@
+import js from '@eslint/js';
 import nextPlugin from '@next/eslint-plugin-next';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
-import js from '@eslint/js';
 
 export default defineConfig(
   {

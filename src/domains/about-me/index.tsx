@@ -13,12 +13,12 @@ import {
   GENERAL_SITE_DATA,
   PERSONAL_DATA
 } from '@/data';
-import { ResumeDownloaderButton } from '@/shared/components';
 import { ContentContainer } from '@/layout/components';
+import { ResumeDownloaderButton } from '@/shared/components';
 import { animator } from '@/shared/helpers';
 
-import { RecommendationsBox } from './components';
 import styles from './about-me.module.scss';
+import { RecommendationsBox } from './components';
 import { renderContent } from './helper';
 
 const PixelCanvas = dynamic(

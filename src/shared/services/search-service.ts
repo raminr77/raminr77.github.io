@@ -1,6 +1,6 @@
 import { ENDPOINTS } from '@/shared/api/constants';
-import { PostMetadata } from '@/shared/types/post';
 import { notify } from '@/shared/helpers';
+import { PostMetadata } from '@/shared/types/post';
 
 type SearchPostsResponse = {
   success: boolean;

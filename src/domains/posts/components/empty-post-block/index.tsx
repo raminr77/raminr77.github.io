@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
+import { GENERAL_SITE_DATA } from '@/data';
 import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { GENERAL_SITE_DATA } from '@/data';
 
 interface EmptyPostBlockProps {
   hasFilter: boolean;

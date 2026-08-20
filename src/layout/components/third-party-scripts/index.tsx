@@ -7,8 +7,8 @@ import Script from 'next/script';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import { type CookiesModalStatus, getCookiesModalStatus } from '@/shared/helpers';
 import { COOKIES_MODAL_STATUS, ENV } from '@/shared/constants';
+import { type CookiesModalStatus, getCookiesModalStatus } from '@/shared/helpers';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
 import { GAPageView } from './ga-page-view';

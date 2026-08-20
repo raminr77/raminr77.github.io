@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
 
-import { getPosts } from '@/shared/helpers/posts/get-posts';
-import { ROUTES } from '@/shared/constants';
 import { PERSONAL_DATA } from '@/data';
+import { ROUTES } from '@/shared/constants';
+import { getPosts } from '@/shared/helpers/posts/get-posts';
 
 const SITE_URL = PERSONAL_DATA.url.replace(/\/$/, '');
 

@@ -9,8 +9,8 @@ import { clsx } from 'clsx';
 
 import { CONTACT_ME_DATA, GENERAL_SITE_DATA } from '@/data';
 import { ContentContainer } from '@/layout/components';
-import { ENV, GTM_EVENTS } from '@/shared/constants';
 import { PageHeader } from '@/shared/components';
+import { ENV, GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 
 import { ContactForm } from './components';

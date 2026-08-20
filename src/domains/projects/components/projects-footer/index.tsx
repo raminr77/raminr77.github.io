@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 
-import { GTM_EVENTS } from '@/shared/constants';
 import { PROJECTS_DATA } from '@/data';
+import { GTM_EVENTS } from '@/shared/constants';
 
 export function ProjectsFooter() {
   return (

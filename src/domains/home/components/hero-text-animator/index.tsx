@@ -7,8 +7,8 @@ import dynamic from 'next/dynamic';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-import { HERO_TEXT_CHARACTERS } from '@/domains/home/constants';
 import { PERSONAL_DATA } from '@/data';
+import { HERO_TEXT_CHARACTERS } from '@/domains/home/constants';
 
 import styles from './hero-text-animator.module.scss';
 

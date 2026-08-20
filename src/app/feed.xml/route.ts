@@ -1,5 +1,5 @@
-import { getPosts } from '@/shared/helpers/posts/get-posts';
 import { PERSONAL_DATA } from '@/data';
+import { getPosts } from '@/shared/helpers/posts/get-posts';
 
 const SITE_URL = PERSONAL_DATA.url.replace(/\/$/, '');
 const FEED_URL = `${SITE_URL}/feed.xml`;

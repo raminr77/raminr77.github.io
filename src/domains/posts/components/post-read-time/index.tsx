@@ -1,5 +1,5 @@
-import { readingTime } from '@/shared/helpers/posts/utils';
 import { Icons } from '@/shared/components';
+import { readingTime } from '@/shared/helpers/posts/utils';
 
 interface PostReadTimeProps {
   words: string;

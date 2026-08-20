@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 
-import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
-import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
+import { GTM_EVENTS } from '@/shared/constants';
+import { generateFilteredPostUrl } from '@/shared/helpers/posts/utils';
 
 export function PostCategory({
   category,

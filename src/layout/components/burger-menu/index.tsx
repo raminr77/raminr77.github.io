@@ -2,16 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
+import { PERSONAL_DATA } from '@/data';
+import { ToggleThemeButton } from '@/shared/components';
 import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { animator, pageTitleGenerator } from '@/shared/helpers';
-import { ToggleThemeButton } from '@/shared/components';
-import { PERSONAL_DATA } from '@/data';
 
 import { BurgerMenuToolsAnimation } from './burger-menu-tools-animation';
 import styles from './burger-menu.module.scss';

@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
-import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { BurgerMenu } from '@/layout/components/burger-menu';
 import { ToggleThemeButton } from '@/shared/components';
+import { GTM_EVENTS, MENU_ITEM_ROUTES, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 
 import styles from './header.module.scss';

@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 import { clsx } from 'clsx';
 
-import { TrackedAnchor } from '@/shared/components';
 import type { RecommendationItem } from '@/data';
+import { TrackedAnchor } from '@/shared/components';
 import { GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 

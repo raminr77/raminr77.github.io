@@ -1,14 +1,14 @@
 import { clsx } from 'clsx';
 
 import { PostTags } from '@/domains/posts/components/post-tags';
-import type { PostMetadata } from '@/shared/types/post';
-import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { TrackedLink } from '@/shared/components';
+import { GTM_EVENTS, ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
+import type { PostMetadata } from '@/shared/types/post';
 
 import { PostCategory } from '../post-category';
-import styles from './post-card.module.scss';
 import { PostDate } from '../post-date';
+import styles from './post-card.module.scss';
 
 const DESCRIPTION_LIMIT = 210;
 
