@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "7.5.0",
+  "version": "7.5.1",
   "private": true,
   "scripts": {
     "start": "next start",
@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.3.1",
-    "@next/third-parties": "^16.3.1",
-    "@sentry/nextjs": "^10.70.0",
+    "@next/bundle-analyzer": "^16.3.3",
+    "@next/third-parties": "^16.3.3",
+    "@sentry/nextjs": "^10.72.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
@@ -41,15 +41,15 @@
     "highlight.js": "^11.12.0",
     "highlightjs-copy": "^1.0.6",
     "markdown-to-jsx": "^9.10.2",
-    "motion": "^13.1.0",
-    "next": "^16.3.1",
-    "qs": "^6.15.3",
+    "motion": "^13.1.1",
+    "next": "^16.3.3",
+    "qs": "^6.16.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-google-recaptcha-v3": "^1.11.0",
-    "react-hook-form": "^7.85.0",
+    "react-hook-form": "^7.87.0",
     "react-toastify": "^11.1.0",
-    "web-vitals": "^6.1.1"
+    "web-vitals": "^6.2.1"
   },
   "lint-staged": {
     "**/*": [
@@ -60,40 +60,40 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.3.1",
+    "@next/eslint-plugin-next": "^16.3.3",
     "@playwright/test": "^1.62.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.5",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.6",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/jest": "^30.0.0",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.4.0",
     "@types/qs": "^6.15.1",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
+    "@types/react-dom": "^19.2.5",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@typescript/native": "npm:typescript@^7.0.2",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^10.8.1",
+    "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
-    "jest": "^30.4.2",
-    "jest-environment-jsdom": "^30.4.1",
+    "jest": "^30.5.0",
+    "jest-environment-jsdom": "^30.5.0",
     "lighthouse": "^13.4.1",
-    "lint-staged": "^17.3.0",
+    "lint-staged": "^17.4.1",
     "postcss": "^8.5.26",
     "prettier": "3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "sass": "^1.103.0",
-    "sharp": "^0.35.3",
+    "sass": "^1.103.1",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3",
     "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.67.0",
-    "webpack": "^5.109.2",
-    "webpack-bundle-analyzer": "^5.3.1"
+    "typescript-eslint": "^8.68.0",
+    "webpack": "^5.110.2",
+    "webpack-bundle-analyzer": "^5.3.2"
   },
   "browserslist": {
     "production": [
@@ -109,5 +109,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@11.22.0"
+  "packageManager": "pnpm@11.24.0"
 }
