@@ -3,6 +3,15 @@ allowBuilds:
   '@sentry/cli': true
   sharp: true
   unrs-resolver: true
+overrides:
+  # Transitive-only. Pinned to an exact patch version within the major line each
+  # dependent actually requests, so an open range can't dedupe across a major
+  # the dependent never asked for (e.g. gray-matter calls js-yaml's v3-only
+  # `safeLoad`/`safeDump`, removed in v4 — a v4 override would break post parsing).
+  # See `pnpm audit`.
+  brace-expansion@^5.0.5: '5.0.9'
+  fast-uri@^3.0.1: '3.1.6'
+  js-yaml@^3.13.1: '3.15.2'
 minimumReleaseAgeExclude:
   - '@sentry/browser-utils@10.67.0'
   - '@sentry/browser@10.67.0'
@@ -32,10 +41,12 @@ minimumReleaseAgeExclude:
   - lighthouse@13.4.1
   - postcss@8.5.21
   - prettier@3.9.6
-  - sass@1.101.3
+  - sass@1.103.0
   - typescript-eslint@8.65.0
   - enhanced-resolve@5.24.4
   - framer-motion@12.43.0
   - motion-dom@12.43.0
   - motion@12.43.0
-  - webpack@5.109.2
+  - webpack@5.109.2 || 5.110.2
+  - qs@6.16.0
+  - react-hook-form@7.87.0

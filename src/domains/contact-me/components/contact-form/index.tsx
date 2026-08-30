@@ -1,17 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Controller, useForm } from 'react-hook-form';
-import { useState } from 'react';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
 
-import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
-import { Button, TextInput } from '@/shared/components';
-import { sendEmail } from '@/shared/services';
 import { GENERAL_SITE_DATA } from '@/data';
+import { Button, TextInput } from '@/shared/components';
+import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
 import { notify } from '@/shared/helpers';
+import { sendEmail } from '@/shared/services';
 
 interface ContactMeForm {
   email: string;

@@ -48,8 +48,8 @@ npm install react-window
 The core component is `FixedSizeList`. You give it the container dimensions and item size, and it handles everything else:
 
 ```javascript
-import { FixedSizeList } from 'react-window';
 import React from 'react';
+import { FixedSizeList } from 'react-window';
 
 const Row = ({ index, style }) => <div style={style}>Item {index}</div>;
 

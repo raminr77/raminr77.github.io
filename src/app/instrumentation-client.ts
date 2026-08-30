@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/nextjs';
 
-import { initWebVitals } from '@/shared/helpers/performance';
 import { ENV } from '@/shared/constants';
+import { initWebVitals } from '@/shared/helpers/performance';
 
 const isProduction =
   process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';

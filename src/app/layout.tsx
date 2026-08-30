@@ -2,18 +2,18 @@ import { ToastContainer } from 'react-toastify';
 
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import Script from 'next/script';
 import Image from 'next/image';
+import Script from 'next/script';
 
 import 'animate.css';
 
+import { textFont, titleFont } from '@/app/fonts';
+import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
 import {
   ProgressBar,
   ServiceWorkerRegistrar,
   ThirdPartyScripts
 } from '@/layout/components';
-import { CONTACT_ME_DATA, PERSONAL_DATA } from '@/data';
-import { textFont, titleFont } from '@/app/fonts';
 import { ENV } from '@/shared/constants';
 
 import './globals.scss';

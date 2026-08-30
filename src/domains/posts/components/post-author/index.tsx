@@ -1,5 +1,5 @@
-import { Icons } from '@/shared/components';
 import { PERSONAL_DATA } from '@/data';
+import { Icons } from '@/shared/components';
 
 interface PostAuthorProps {
   author: string;

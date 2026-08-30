@@ -1,5 +1,5 @@
-import matter from 'gray-matter';
 import fs from 'fs';
+import matter from 'gray-matter';
 
 import type { PostMetadata } from '@/shared/types/post';
 

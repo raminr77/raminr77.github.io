@@ -1,5 +1,5 @@
-import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals';
 import * as Sentry from '@sentry/nextjs';
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals';
 import type { Metric } from 'web-vitals';
 
 export const WEB_VITALS_THRESHOLDS = {

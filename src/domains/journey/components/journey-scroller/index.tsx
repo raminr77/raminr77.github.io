@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { JourneyItem } from '@/data/journey';
 
-import { spawnParticles } from './spawn-particles';
 import { JourneyCard } from '../journey-card';
+import { spawnParticles } from './spawn-particles';
 
 interface JourneyScrollerProps {
   items: JourneyItem[];

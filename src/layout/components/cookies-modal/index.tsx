@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 
 import { clsx } from 'clsx';
 
+import { GENERAL_SITE_DATA } from '@/data';
+import { Button } from '@/shared/components';
+import { COOKIES_MODAL_STATUS } from '@/shared/constants';
 import {
   CookiesModalStatus,
   animator,
   getCookiesModalStatus,
   updateCookiesModalStatus
 } from '@/shared/helpers';
-import { COOKIES_MODAL_STATUS } from '@/shared/constants';
-import { Button } from '@/shared/components';
-import { GENERAL_SITE_DATA } from '@/data';
 
 import { COOKIES_STATUS_CHANGE } from '../../constants/custom-events';
 

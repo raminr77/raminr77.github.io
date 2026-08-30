@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 
-import { animator } from '@/shared/helpers';
 import { PERSONAL_DATA } from '@/data';
+import { animator } from '@/shared/helpers';
 
 import { MoreInformationButton } from './more-information-button';
 import styles from './summary.module.scss';

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 
-import { type RawSearchParams, firstSearchParam } from '@/shared/helpers/search-params';
-import { PAGE_SIZE, PageHeader, Pagination } from '@/shared/components';
 import { LENS_DATA, LENS_ITEMS, type LensItem } from '@/data';
 import { ContentContainer } from '@/layout/components';
+import { PAGE_SIZE, PageHeader, Pagination } from '@/shared/components';
 import { ROUTES } from '@/shared/constants';
+import { type RawSearchParams, firstSearchParam } from '@/shared/helpers/search-params';
 
 import { LensCard, LensEmptyBlock } from './components';
 

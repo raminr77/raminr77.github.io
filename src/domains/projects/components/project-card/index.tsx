@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 
-import { animator } from '@/shared/helpers';
 import type { ProjectItem } from '@/data';
+import { animator } from '@/shared/helpers';
 
 import { ProjectCardDemoLink } from './project-card-demo-link';
 

@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 import { sendGTMEvent } from '@next/third-parties/google';
 
-import { FEATURE_FLAGS, GTM_EVENTS, LOCAL_STORAGE_KEYS } from '@/shared/constants';
-import { Icons } from '@/shared/components/icons';
 import { GENERAL_SITE_DATA } from '@/data';
+import { Icons } from '@/shared/components/icons';
+import { FEATURE_FLAGS, GTM_EVENTS, LOCAL_STORAGE_KEYS } from '@/shared/constants';
 
 const THEMES = { light: 'light', dark: 'dark' } as const;
 export type Theme = keyof typeof THEMES;

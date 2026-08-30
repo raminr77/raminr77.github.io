@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react';
 
-import 'highlightjs-copy/dist/highlightjs-copy.min.css';
 import 'highlight.js/styles/github-dark.css';
+import 'highlightjs-copy/dist/highlightjs-copy.min.css';
 
 import { notify } from '@/shared/helpers';
 

@@ -1,8 +1,9 @@
 import Image from 'next/image';
+
 import { clsx } from 'clsx';
 
-import { Icons, PixelCanvas, TrackedAnchor } from '@/shared/components';
 import type { JourneyItem } from '@/data/journey';
+import { Icons, PixelCanvas, TrackedAnchor } from '@/shared/components';
 import { GTM_EVENTS } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
 

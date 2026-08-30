@@ -4,17 +4,17 @@ import { useState } from 'react';
 
 import Image from 'next/image';
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { clsx } from 'clsx';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
-import { GTM_EVENTS } from '@/shared/constants';
-import { useIsClient } from '@/shared/hooks';
-import { animator } from '@/shared/helpers';
 import type { LensItem } from '@/data';
+import { GTM_EVENTS } from '@/shared/constants';
+import { animator } from '@/shared/helpers';
+import { useIsClient } from '@/shared/hooks';
 
-import { LensGalleryModal } from '../lens-gallery-modal';
 import { getLensLayoutId } from '../../constants';
+import { LensGalleryModal } from '../lens-gallery-modal';
 
 interface LensCardProps {
   data: LensItem;

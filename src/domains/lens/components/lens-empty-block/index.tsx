@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 
-import { animator } from '@/shared/helpers';
 import { GENERAL_SITE_DATA } from '@/data';
+import { animator } from '@/shared/helpers';
 
 export function LensEmptyBlock() {
   const { emptyState } = GENERAL_SITE_DATA.lens;

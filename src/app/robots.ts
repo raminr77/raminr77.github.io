@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
-import { ENV } from '@/shared/constants';
 import { PERSONAL_DATA } from '@/data';
+import { ENV } from '@/shared/constants';
 
 const SITE_URL = PERSONAL_DATA.url.replace(/\/$/, '');
 

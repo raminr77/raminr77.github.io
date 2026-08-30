@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import { ContactMePage } from '@/domains/contact-me';
 import { PERSONAL_DATA } from '@/data';
+import { ContactMePage } from '@/domains/contact-me';
 
 export const metadata: Metadata = {
   title: {

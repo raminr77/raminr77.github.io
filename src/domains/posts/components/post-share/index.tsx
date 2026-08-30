@@ -2,8 +2,8 @@
 
 import { sendGTMEvent } from '@next/third-parties/google';
 
-import { GTM_EVENTS } from '@/shared/constants';
 import { Icons } from '@/shared/components';
+import { GTM_EVENTS } from '@/shared/constants';
 import { notify } from '@/shared/helpers';
 
 const COPY_SUCCESS_MESSAGE = 'Share link copied to clipboard!';

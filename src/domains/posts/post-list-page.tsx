@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 
 import { clsx } from 'clsx';
 
-import { type RawSearchParams, firstSearchParam } from '@/shared/helpers/search-params';
-import { PAGE_SIZE, PageHeader, Pagination } from '@/shared/components';
-import type { PostFilters, PostMetadata } from '@/shared/types/post';
-import { getPosts } from '@/shared/helpers/posts/get-posts';
+import { PERSONAL_DATA } from '@/data';
 import { ContentContainer } from '@/layout/components';
+import { PAGE_SIZE, PageHeader, Pagination } from '@/shared/components';
 import { ROUTES } from '@/shared/constants';
 import { animator } from '@/shared/helpers';
-import { PERSONAL_DATA } from '@/data';
+import { getPosts } from '@/shared/helpers/posts/get-posts';
+import { type RawSearchParams, firstSearchParam } from '@/shared/helpers/search-params';
+import type { PostFilters, PostMetadata } from '@/shared/types/post';
 
 import { EmptyPostBlock, PostCard, PostsCategoryFilter, PostsSearch } from './components';
 

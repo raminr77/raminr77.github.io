@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 import { PERSONAL_DATA } from '@/data';
+import { getPostContent } from '@/shared/helpers/posts/get-post-content';
 
 export const runtime = 'nodejs';
 export const alt = 'Blog post preview';

@@ -8,7 +8,7 @@ Personal portfolio for **Ramin Rezaei** at <https://raminrezaei.se>. Public sour
 
 - **Framework**: Next.js **16.x** (App Router, Turbopack for dev, Webpack for production via `next build`)
 - **UI**: React **19**, Tailwind CSS **4** (via `@tailwindcss/postcss`), SCSS modules
-- **Lang**: TypeScript **6**
+- **Lang**: TypeScript **7** (native compiler; see the dual-package note below)
 - **State / forms**: `react-hook-form`, no global store
 - **Animation**: `motion` (Framer) + `gsap` + `animate.css` (via `animator` helper)
 - **Markdown**: blog posts in `/posts/*.md` (gray-matter + markdown-to-jsx)
@@ -45,6 +45,16 @@ src/
 **Path alias**: `@/*` → `src/*` (see `tsconfig.json`).
 
 ## Critical Conventions
+
+### TypeScript 7 dual-package setup
+
+TypeScript 7 dropped the classic JS compiler API, only `tsc` ships. `typescript-eslint` still depends on that API and hard-blocks TS 7 (tracked upstream in [typescript-eslint#10940](https://github.com/typescript-eslint/typescript-eslint/issues/10940)). Until that lands, `package.json` runs both versions side by side, per [TypeScript's own migration guidance](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0):
+
+- `typescript` is aliased to `npm:@typescript/typescript6`: the 6.0 API compat shim, resolved by `require('typescript')` (ESLint, and anything else doing programmatic type info).
+- `@typescript/native` is aliased to `npm:typescript@^7.0.2`: the real TS 7 package, providing the `tsc` binary that `pnpm check-types` and `next build` actually run.
+- `next.config.ts` sets `experimental.useTypeScriptCli: false` so Next's build-time checker uses the classic API (present in the compat shim) instead of hunting for a `tsc` binary under the `typescript` name, which doesn't exist there.
+
+Don't "clean up" this alias pair by pointing `typescript` straight at 7.0.2: it will silently break `pnpm check-lint`, not by erroring during install, but by throwing at ESLint runtime.
 
 ### Server vs Client Components
 
