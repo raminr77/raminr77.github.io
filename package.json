@@ -83,7 +83,7 @@
     "lighthouse": "^13.5.0",
     "lint-staged": "^17.5.1",
     "postcss": "^8.5.28",
-    "prettier": "3.9.8",
+    "prettier": "3.9.9",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "sass": "^1.104.1",
     "sharp": "^0.35.4",
@@ -91,7 +91,7 @@
     "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.70.0",
+    "typescript-eslint": "^8.70.1",
     "webpack": "^5.111.1",
     "webpack-bundle-analyzer": "^5.4.0"
   },
