@@ -20,7 +20,6 @@ export function register(): void {
       dsn: ENV.SENTRY_DSN,
       tracesSampleRate: TRACES_SAMPLE_RATE,
       debug: false,
-      enableLogs: true,
       integrations: [
         Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] })
       ]
