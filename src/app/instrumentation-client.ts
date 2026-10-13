@@ -17,7 +17,6 @@ if (ENV.SENTRY_ENABLED) {
   Sentry.init({
     dsn: ENV.SENTRY_DSN,
     debug: false,
-    enableLogs: true,
     replaysOnErrorSampleRate: 1.0,
     tracesSampleRate: CLIENT_TRACES_SAMPLE_RATE,
     replaysSessionSampleRate: REPLAYS_SESSION_SAMPLE_RATE,

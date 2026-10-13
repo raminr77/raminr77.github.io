@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 
-import { withSentryConfig } from '@sentry/nextjs';
+import { withSentryConfig } from '@sentry/nextjs/config';
 import type { Configuration } from 'webpack';
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
