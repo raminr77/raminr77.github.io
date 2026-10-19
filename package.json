@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.4.0",
-    "@next/third-parties": "^16.4.0",
+    "@next/bundle-analyzer": "^16.4.2",
+    "@next/third-parties": "^16.4.2",
     "@sentry/nextjs": "^11.7.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
@@ -42,7 +42,7 @@
     "highlightjs-copy": "^1.0.6",
     "markdown-to-jsx": "^9.10.3",
     "motion": "^14.1.0",
-    "next": "^16.4.0",
+    "next": "^16.4.2",
     "qs": "^6.16.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
@@ -60,7 +60,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.4.0",
+    "@next/eslint-plugin-next": "^16.4.2",
     "@playwright/test": "^1.64.0",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
