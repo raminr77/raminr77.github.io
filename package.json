@@ -1,6 +1,6 @@
 {
   "name": "raminrezaei",
-  "version": "7.5.4",
+  "version": "7.5.5",
   "private": true,
   "scripts": {
     "start": "next start",
@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@next/bundle-analyzer": "^16.4.0",
-    "@next/third-parties": "^16.4.0",
-    "@sentry/nextjs": "^11.7.0",
+    "@next/bundle-analyzer": "^16.4.3",
+    "@next/third-parties": "^16.4.3",
+    "@sentry/nextjs": "^11.9.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
     "animate.css": "^4.1.1",
@@ -41,13 +41,13 @@
     "highlight.js": "^11.12.0",
     "highlightjs-copy": "^1.0.6",
     "markdown-to-jsx": "^9.10.3",
-    "motion": "^14.1.0",
-    "next": "^16.4.0",
-    "qs": "^6.16.0",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "motion": "^14.6.0",
+    "next": "^16.4.3",
+    "qs": "^6.16.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-google-recaptcha-v3": "^1.11.0",
-    "react-hook-form": "^7.90.0",
+    "react-hook-form": "^7.91.0",
     "react-toastify": "^11.1.0",
     "web-vitals": "^6.2.3"
   },
@@ -60,8 +60,8 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@next/eslint-plugin-next": "^16.4.0",
-    "@playwright/test": "^1.64.0",
+    "@next/eslint-plugin-next": "^16.4.3",
+    "@playwright/test": "^1.64.1",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
@@ -75,24 +75,24 @@
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@typescript/native": "npm:typescript@^7.0.2",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^10.12.0",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
     "lighthouse": "^13.5.0",
     "lint-staged": "^17.6.0",
-    "postcss": "^8.5.30",
+    "postcss": "^8.5.31",
     "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "sass": "^1.105.1",
+    "sass": "^1.106.1",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
-    "ts-jest": "^29.4.14",
+    "ts-jest": "^29.4.15",
     "ts-node": "^10.9.2",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.71.2",
-    "webpack": "^5.111.1",
+    "typescript-eslint": "^8.72.0",
+    "webpack": "^5.112.2",
     "webpack-bundle-analyzer": "^5.4.0"
   },
   "browserslist": {
@@ -109,5 +109,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@12.11.2"
+  "packageManager": "pnpm@12.15.0"
 }
