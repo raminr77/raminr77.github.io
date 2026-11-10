@@ -35,8 +35,9 @@ export const isValidGoogleReCaptcha = async ({
   }
 
   if (!response.success) {
-    notify.error({ message: response.message ?? DEFAULT_ERROR_MESSAGE });
-    throw new Error('We could not handle your request now!');
+    const message = response.message ?? DEFAULT_ERROR_MESSAGE;
+    notify.error({ message });
+    throw new Error(message);
   }
 
   return true;

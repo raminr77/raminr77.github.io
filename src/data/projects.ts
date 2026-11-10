@@ -25,6 +25,24 @@ export const PROJECTS_DATA: {
   footer: 'We can create a idea and develop the future for everyone',
   items: [
     {
+      id: 10,
+      isPrivate: true,
+      url: 'https://alamut.se',
+      role: 'Founder | Software Engineer',
+      title: 'Alamut',
+      stack: [
+        'JavaScript',
+        'TypeScript',
+        'Colyseus',
+        'Rapier',
+        'Three.js',
+        'Blender',
+        'React Three Fiber + Drei'
+      ],
+      description:
+        'A browser-based 3D multiplayer game built with React, TypeScript, Three.js, and Colyseus. The project features real-time multiplayer gameplay, physics-based interactions, smooth player movement, and an interactive 3D environment. It uses modern game development techniques such as client-side prediction, player interpolation, GPU instancing, and asset optimization to improve performance and provide a smooth gaming experience across different devices.'
+    },
+    {
       id: 9,
       url: null,
       isPrivate: true,

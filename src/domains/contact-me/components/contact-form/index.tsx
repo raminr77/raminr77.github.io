@@ -9,7 +9,11 @@ import { clsx } from 'clsx';
 
 import { GENERAL_SITE_DATA } from '@/data';
 import { Button, TextInput } from '@/shared/components';
-import { EMAIL_VALIDATION_REGEX, GTM_EVENTS } from '@/shared/constants';
+import {
+  EMAIL_VALIDATION_REGEX,
+  GTM_EVENTS,
+  RECAPTCHA_ACTIONS
+} from '@/shared/constants';
 import { notify } from '@/shared/helpers';
 import { sendEmail } from '@/shared/services';
 
@@ -50,7 +54,7 @@ export function ContactForm() {
     }
     setLoading(true);
     try {
-      const recaptchaToken = await executeRecaptcha('contact_form_submit');
+      const recaptchaToken = await executeRecaptcha(RECAPTCHA_ACTIONS.CONTACT_FORM);
 
       const emailResponse = await sendEmail({
         ...getValues(),

@@ -12,17 +12,23 @@ test('about me page loads at the correct URL', async ({ page }) => {
   await expect(page).toHaveURL(/\/about-me\/?$/);
 });
 
-test('resume download button is visible and has download attribute', async ({ page }) => {
+test('resume download button is visible', async ({ page }) => {
   // aria-label is "Download Software-Engineer-Ramin-Rezaei-CV.pdf", not "Download Resume"
-  const downloadLink = page.getByRole('link', { name: /download.*\.pdf/i });
-  await expect(downloadLink).toBeVisible();
-  await expect(downloadLink).toHaveAttribute('download');
+  await expect(page.getByRole('button', { name: /download.*\.pdf/i })).toBeVisible();
 });
 
-test('resume download link points to a PDF file', async ({ page }) => {
-  const downloadLink = page.getByRole('link', { name: /download.*\.pdf/i });
-  const href = await downloadLink.getAttribute('href');
-  expect(href).toMatch(/\.pdf$/i);
+test('resume button opens a modal that validates the email', async ({ page }) => {
+  await page.getByRole('button', { name: /download.*\.pdf/i }).click();
+
+  const modal = page.getByRole('dialog');
+  await expect(modal).toBeVisible();
+
+  await modal.getByTestId('resume-email-input').fill('not-an-email');
+  await modal.getByTestId('resume-submit-button').click();
+  await expect(modal.getByText(/email address is invalid/i)).toBeVisible();
+
+  await page.keyboard.press('Escape');
+  await expect(modal).toBeHidden();
 });
 
 test('about me page has a personal image', async ({ page }) => {

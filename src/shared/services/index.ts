@@ -1,3 +1,4 @@
 export * from './email-service';
 export * from './search-service';
 export * from './recaptcha-service';
+export * from './resume-service';

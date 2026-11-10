@@ -146,7 +146,7 @@ src/data/
 ├── contact-me.ts           Contact info and social links
 ├── lens.ts                 Photo gallery items
 ├── general.ts              Cross-page UI strings (form labels, modal copy, …)
-└── resume-file.ts          Resume PDF link
+└── resume-file.ts          Resume button label and file name
 ```
 
 ### `src/layout/`

@@ -81,7 +81,15 @@ Text that animates as if being decrypted. Two modes:
 
 `src/shared/components/resume-downloader-button/`
 
-Downloads the CV PDF (`/Software-Engineer-Ramin-Rezaei-CV.pdf`) and tracks the click via GTM.
+A button that opens `<ResumeRequestModal>` and tracks the click via GTM (`DOWNLOAD_RESUME`). The modal chunk is loaded with `next/dynamic` on first click, and exit animation goes through `AnimatePresence`.
+
+### ResumeRequestModal
+
+`src/shared/components/resume-request-modal/`
+
+Glass modal (portal into `document.body`, `motion` enter/exit, honors `prefers-reduced-motion`, closes on Escape or backdrop click). It asks for an email, validates it with `EMAIL_VALIDATION_REGEX`, then calls `requestResume()`. On success it shows the address, the download link from the backend, and starts the download with `downloadFile()`. Errors from the backend are shown inline.
+
+It owns its own `GoogleReCaptchaProvider`, so the reCAPTCHA script only loads once the modal is opened. Split into `index.tsx` (shell), `resume-request-form.tsx` and `resume-request-success.tsx`.
 
 ### PerformanceMonitor
 

@@ -10,6 +10,10 @@ export const GTM_EVENTS = {
   ADP_CALENDAR: { event: 'google-calendar-clicked', value: 'ADP' },
   GOOGLE_CALENDAR: { event: 'google-calendar-clicked', value: 'Google' },
   DOWNLOAD_RESUME: { event: 'download-resume-clicked', value: '' },
+  REQUEST_RESUME: (value: 'success' | 'error') => ({
+    event: 'request-resume-submitted',
+    value
+  }),
   CLOSE_SEARCH_MODAL: { event: 'close-search-modal-clicked', value: '' },
   CONTACT_LINK: (value: string) => ({ event: 'contact-link-clicked', value }),
   SUBMIT_POST_SEARCH: (value: string) => ({ event: 'submit-post-search', value }),

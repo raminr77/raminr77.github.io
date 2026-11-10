@@ -74,10 +74,13 @@ Slides have the same shape as the main item.
 ### `resume-file.ts`
 
 ```ts
-RESUME_FILE = { url: '/Software-Engineer-Ramin-Rezaei-CV.pdf', filename: '…' };
+RESUME_FILE = {
+  actionLabel: 'Download Resume',
+  fileName: 'Software-Engineer-Ramin-Rezaei-CV.pdf'
+};
 ```
 
-The PDF lives in `public/` and is cached for a year via `next.config.ts` headers.
+Labels only. The button no longer links to a static file: the PDF is emailed by the backend (see `requestResume`) and the download link comes from that response.
 
 ---
 
@@ -224,6 +227,10 @@ Named GTM event objects. All events go through `sendGTMEvent` from `@next/third-
 
 **Cookie gating:** GA and GTM scripts only load after the user accepts via `<CookiesModal>`. Events queued before that go to `window.dataLayer` but aren't forwarded until the scripts load.
 
+### reCAPTCHA actions (`recaptcha.ts`)
+
+`RECAPTCHA_ACTIONS` holds the action names passed to `executeRecaptcha` (`CONTACT_FORM`, `RESUME_REQUEST`). `/api/recaptcha-verify` accepts any of them, so a new form needs an entry here.
+
 ### Feature flags (`feature-flags.ts`)
 
 A small `FEATURE_FLAGS` object for guarding work-in-progress UI from production.
@@ -252,6 +259,7 @@ COOKIES_STATUS_CHANGE = 'cookies-status-change';
 ENDPOINTS = {
   verifyReCaptcha: '/api/recaptcha-verify',
   sendMessage: 'https://email-api.ramiin.se',
+  requestResume: 'https://email-api.ramiin.se/resume',
   googleVerifyReCaptcha: 'https://www.google.com/recaptcha/api/siteverify',
   searchPosts: (query: string) => `/api/posts/search?q=${encodeURIComponent(query)}`
 };

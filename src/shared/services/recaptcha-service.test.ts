@@ -30,7 +30,9 @@ describe('isValidGoogleReCaptcha', () => {
       json: () => Promise.resolve({ success: false, message: 'Invalid token' })
     });
 
-    await expect(isValidGoogleReCaptcha({ token: 'bad-token' })).rejects.toThrow();
+    await expect(isValidGoogleReCaptcha({ token: 'bad-token' })).rejects.toThrow(
+      'Invalid token'
+    );
     expect(jest.mocked(notify.error)).toHaveBeenCalledWith({ message: 'Invalid token' });
   });
 
