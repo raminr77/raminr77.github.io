@@ -80,17 +80,22 @@ CodeQL is **not** a committed workflow. It runs via GitHub's Default Setup (repo
 
 ## Dependabot
 
-`.github/dependabot.yml` groups updates by purpose so each PR is reviewable:
+`.github/dependabot.yml` is set up for security updates only. `open-pull-requests-limit: 0` switches off the version-update PRs, while security-update PRs still open against `dev`. Dependabot never merges on its own and no workflow here does either, so every PR gets a human review.
 
-| Group             | Packages                                                                                       | Cadence            | Target |
-| ----------------- | ---------------------------------------------------------------------------------------------- | ------------------ | ------ |
-| `next`            | `next`, `@next/*`, `eslint-config-next`                                                        | Weekly (Mon 06:00) | `dev`  |
-| `react`           | `react`, `react-dom`, `@types/react*`                                                          | Weekly             | `dev`  |
-| `sentry`          | `@sentry/*`                                                                                    | Weekly             | `dev`  |
-| `testing`         | `jest*`, `ts-jest`, `@testing-library/*`, `@playwright/test`, `playwright`                     | Weekly             | `dev`  |
-| `lint-and-format` | `eslint*`, `@eslint/*`, `typescript-eslint`, `prettier*`, `husky`, `lint-staged`, `@trivago/*` | Weekly             | `dev`  |
-| `types`           | `@types/*`                                                                                     | Weekly             | `dev`  |
-| `actions`         | All GitHub Actions                                                                             | Monthly            | `dev`  |
+`dependabot.yml` can't filter by severity. To get reports only for high and critical advisories, add an auto-triage rule under **Settings → Advanced Security → Dependabot rules** that dismisses low and medium alerts.
+
+### Transitive security fixes
+
+When Dependabot reports `security_update_not_possible`, the patched version is outside the range a parent package allows. Pin it with an override in `pnpm-workspace.yaml`, then run `pnpm install`, `pnpm check-all`, `jest --coverage --ci` and `pnpm build`. Overrides that cross a major version carry a comment explaining why (see `minimatch`), and should be removed once the parent packages catch up.
+
+----------------- | ---------------------------------------------------------------------------------------------- | ------------------ | ------ |
+| `next` | `next`, `@next/*`, `eslint-config-next` | Weekly (Mon 06:00) | `dev` |
+| `react` | `react`, `react-dom`, `@types/react*` | Weekly | `dev` |
+| `sentry` | `@sentry/*` | Weekly | `dev` |
+| `testing` | `jest*`, `ts-jest`, `@testing-library/*`, `@playwright/test`, `playwright` | Weekly | `dev` |
+| `lint-and-format` | `eslint*`, `@eslint/*`, `typescript-eslint`, `prettier*`, `husky`, `lint-staged`, `@trivago/*` | Weekly | `dev` |
+| `types` | `@types/*` | Weekly | `dev` |
+| `actions` | All GitHub Actions | Monthly | `dev` |
 
 Major bumps are filtered to manual review, only `minor` / `patch` flow through automatic grouping.
 
