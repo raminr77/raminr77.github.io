@@ -43,5 +43,5 @@ test('footer call-to-action link is visible', async ({ page }) => {
 });
 
 test('page has navigation', async ({ page }) => {
-  await expect(page.getByRole('navigation')).toBeVisible();
+  await expect(page.getByRole('navigation').first()).toBeVisible();
 });

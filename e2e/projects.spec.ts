@@ -51,5 +51,5 @@ test('project cards display stack technology badges', async ({ page }) => {
 });
 
 test('projects page has navigation', async ({ page }) => {
-  await expect(page.getByRole('navigation')).toBeVisible();
+  await expect(page.getByRole('navigation').first()).toBeVisible();
 });
