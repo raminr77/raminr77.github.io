@@ -10,7 +10,11 @@ jest.mock('@/shared/api/constants', () => ({
 }));
 
 jest.mock('@/shared/constants', () => ({
-  ENV: { GOOGLE_RECAPTCHA_SECRET_KEY: 'test-secret' }
+  ENV: { GOOGLE_RECAPTCHA_SECRET_KEY: 'test-secret' },
+  RECAPTCHA_ACTIONS: {
+    CONTACT_FORM: 'contact_form_submit',
+    RESUME_REQUEST: 'resume_request'
+  }
 }));
 
 beforeEach(() => {
@@ -76,6 +80,15 @@ describe('POST /api/recaptcha-verify', () => {
     expect(response.status).toBe(200);
     const json = (await response.json()) as { success: boolean };
     expect(json.success).toBe(true);
+  });
+
+  it('accepts the resume request action', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: () => Promise.resolve({ success: true, score: 0.9, action: 'resume_request' })
+    });
+
+    const response = await POST(buildRequest({ token: 'abc' }));
+    expect(response.status).toBe(200);
   });
 
   it('returns 500 on unexpected errors', async () => {

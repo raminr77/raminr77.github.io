@@ -8,7 +8,7 @@ test('main navigation works', async ({ page }) => {
   await page.goto('/');
 
   await expect(
-    page.getByRole('link', {
+    page.getByRole('button', {
       name: /download\s+Software-Engineer-Ramin-Rezaei-CV\.pdf/i
     })
   ).toBeVisible();

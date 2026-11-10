@@ -40,14 +40,13 @@ for (const { name, url } of NAV_LINKS) {
   });
 }
 
-test('desktop home page: resume download link is present', async ({ page }) => {
+test('desktop home page: resume download button is present', async ({ page }) => {
   await page.goto('/');
 
   // ResumeDownloaderButton is in the home page content, not inside <nav>
   // Its aria-label is "Download Software-Engineer-Ramin-Rezaei-CV.pdf"
-  const downloadLink = page.getByRole('link', { name: /download.*\.pdf/i });
-  await expect(downloadLink).toBeVisible();
-  await expect(downloadLink).toHaveAttribute('download');
+  const downloadButton = page.getByRole('button', { name: /download.*\.pdf/i });
+  await expect(downloadButton).toBeVisible();
 });
 
 test('desktop nav: theme toggle button is visible', async ({ page }) => {

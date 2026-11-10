@@ -116,13 +116,24 @@ Search uses a small route handler (`/api/posts/search`) that re-runs `getPosts()
 ## Contact form
 
 1. User fills in subject, email, and message (`react-hook-form` handles validation).
-2. `useGoogleReCaptcha().executeRecaptcha('contact_form_submit')` produces a token.
+2. `useGoogleReCaptcha().executeRecaptcha(RECAPTCHA_ACTIONS.CONTACT_FORM)` produces a token.
 3. The form calls `sendEmail()` (`src/shared/services/email-service.ts`). The service:
    - Verifies the token against `/api/recaptcha-verify` (project-local route).
    - Posts the form data to `https://email-api.ramiin.se` (a Cloudflare Worker maintained outside this repo).
 4. The user sees a toast notification (`notify.success` or `notify.error`).
 
-The `/api/recaptcha-verify` route additionally checks the score (`< 0.5` is rejected) and the action (`contact_form_submit`).
+The `/api/recaptcha-verify` route additionally checks the score (`< 0.5` is rejected) and the action (any value of `RECAPTCHA_ACTIONS`: `contact_form_submit`, `resume_request`).
+
+---
+
+## Resume request
+
+The resume button no longer links to a static PDF.
+
+1. Click opens `<ResumeRequestModal>` and the user enters an email (validated client-side).
+2. `executeRecaptcha(RECAPTCHA_ACTIONS.RESUME_REQUEST)` produces a token.
+3. `requestResume()` (`src/shared/services/resume-service.ts`) verifies it against `/api/recaptcha-verify`, then posts `{ email, recaptchaToken }` to `https://email-api.ramiin.se/resume`.
+4. The backend emails the resume and answers `{ success, message, downloadUrl }`. The modal shows the link and triggers the download. `downloadUrl` is ignored unless it is `http(s)`.
 
 ---
 

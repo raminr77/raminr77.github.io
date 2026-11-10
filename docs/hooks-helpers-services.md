@@ -100,6 +100,16 @@ notify.warning({ message });
 notify.success({ message });
 ```
 
+### `downloadFile`
+
+`src/shared/helpers/download-file.ts`
+
+Starts a download by clicking a temporary `<a download>` element.
+
+```ts
+function downloadFile(url: string, fileName: string): void;
+```
+
 ### `pageTitleGenerator`
 
 `src/shared/helpers/page-title-generator.ts`
@@ -239,6 +249,19 @@ async function sendEmail(data: {
 }): Promise<boolean>;
 ```
 
+### `requestResume`
+
+`src/shared/services/resume-service.ts`
+
+Verifies the reCAPTCHA token, then posts the email to `https://email-api.ramiin.se/resume`. Returns the backend message and download link. Throws with the backend message on failure (it does not toast; the modal shows the error inline). Drops a `downloadUrl` that is not `http(s)`.
+
+```ts
+async function requestResume(data: {
+  email: string;
+  recaptchaToken: string;
+}): Promise<{ message: string; downloadUrl: string | null }>;
+```
+
 ### `isValidGoogleReCaptcha`
 
 `src/shared/services/recaptcha-service.ts`
@@ -269,6 +292,7 @@ async function searchPosts(query: string): Promise<PostMetadata[]>;
 ENDPOINTS = {
   verifyReCaptcha: '/api/recaptcha-verify',
   sendMessage: 'https://email-api.ramiin.se',
+  requestResume: 'https://email-api.ramiin.se/resume',
   googleVerifyReCaptcha: 'https://www.google.com/recaptcha/api/siteverify',
   searchPosts: (query: string) => `/api/posts/search?q=${encodeURIComponent(query)}`
 };

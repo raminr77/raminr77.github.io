@@ -1,5 +1,7 @@
 import { ENDPOINTS } from '@/shared/api/constants';
-import { ENV } from '@/shared/constants';
+import { ENV, RECAPTCHA_ACTIONS } from '@/shared/constants';
+
+const ALLOWED_ACTIONS: ReadonlyArray<string> = Object.values(RECAPTCHA_ACTIONS);
 
 interface GoogleResponse {
   score?: number;
@@ -48,7 +50,7 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    if (googleResponse.action && googleResponse.action !== 'contact_form_submit') {
+    if (googleResponse.action && !ALLOWED_ACTIONS.includes(googleResponse.action)) {
       return Response.json(
         { success: false, details: googleResponse, message: 'Invalid reCAPTCHA action!' },
         { status: 400 }

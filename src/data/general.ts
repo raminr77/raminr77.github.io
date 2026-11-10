@@ -54,6 +54,32 @@ export const GENERAL_SITE_DATA = {
     },
     submitButton: 'Submit'
   },
+  resumeModal: {
+    title: 'Get my resume',
+    description: 'Enter your email address and I will send you my resume.',
+    closeTitle: 'Close',
+    closeAriaLabel: 'Close resume request',
+    email: {
+      label: 'Email',
+      placeholder: 'Enter your email address',
+      validation: {
+        pattern: 'Your email address is invalid!',
+        required: 'You must to enter your email address!'
+      }
+    },
+    submitButton: 'Send Resume',
+    errors: {
+      generic: 'We could not send the resume now. Please try again.',
+      recaptchaNotDetected: 'Error: reCAPTCHA not detected.'
+    },
+    success: {
+      title: 'Resume sent',
+      sentTo: 'I sent my resume to',
+      downloadHint: 'Your download should start by itself. If it did not, use this link:',
+      downloadLabel: 'Download Resume',
+      closeButton: 'Close'
+    }
+  },
   posts: {
     emptyState: {
       title: 'No posts found.',

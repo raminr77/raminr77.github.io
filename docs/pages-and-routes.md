@@ -171,12 +171,12 @@ Request body:
 
 Status codes:
 
-| Status | Meaning                                                           |
-| ------ | ----------------------------------------------------------------- |
-| 200    | Success, token valid, score ≥ 0.5, action = `contact_form_submit` |
-| 400    | Token missing, Google rejection, low score, or wrong action       |
-| 500    | Unexpected failure (e.g. JSON parse error, network error)         |
-| 503    | `GOOGLE_RECAPTCHA_SECRET_KEY` not configured on the server        |
+| Status | Meaning                                                          |
+| ------ | ---------------------------------------------------------------- |
+| 200    | Success, token valid, score ≥ 0.5, action in `RECAPTCHA_ACTIONS` |
+| 400    | Token missing, Google rejection, low score, or unknown action    |
+| 500    | Unexpected failure (e.g. JSON parse error, network error)        |
+| 503    | `GOOGLE_RECAPTCHA_SECRET_KEY` not configured on the server       |
 
 ### `GET | POST /api/react-sample`
 

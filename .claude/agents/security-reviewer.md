@@ -37,7 +37,7 @@ You are a web application security reviewer specializing in **Next.js App Router
 
 - Every `route.ts` validates input shape (no naked `request.json()` without type narrowing).
 - Errors return generic messages externally (don't leak stack traces / internal paths).
-- reCAPTCHA: server-side score check (`< 0.5` rejected), action match (`contact_form_submit`), token verified against Google's endpoint with the secret key.
+- reCAPTCHA: server-side score check (`< 0.5` rejected), action in `RECAPTCHA_ACTIONS` (`contact_form_submit`, `resume_request`), token verified against Google's endpoint with the secret key.
 - Fake demo route `react-sample/route.ts` accepts hardcoded `admin/admin`: confirm this is intentional (demo) and not deployed to a sensitive surface.
 
 ### Dependencies

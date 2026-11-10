@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { ResumeDownloaderButton } from './index';
 
@@ -8,7 +9,6 @@ jest.mock('@next/third-parties/google', () => ({
 
 jest.mock('@/data', () => ({
   RESUME_FILE: {
-    url: '/test-resume.pdf',
     fileName: 'test-resume.pdf',
     actionLabel: 'Download Resume'
   }
@@ -18,29 +18,37 @@ jest.mock('@/shared/constants', () => ({
   GTM_EVENTS: { DOWNLOAD_RESUME: 'download_resume' }
 }));
 
+jest.mock('@/shared/components/resume-request-modal', () => ({
+  ResumeRequestModal: ({ onClose }: { onClose: () => void }) => (
+    <div data-testid="resume-modal">
+      <button onClick={onClose}>close</button>
+    </div>
+  )
+}));
+
 describe('<ResumeDownloaderButton />', () => {
-  it('renders a link with the resume label', () => {
+  it('renders a button with the resume label', () => {
     render(<ResumeDownloaderButton />);
-    expect(screen.getByText('Download Resume')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /download/i })).toHaveTextContent(
+      'Download Resume'
+    );
   });
 
-  it('has the correct href', () => {
+  it('does not show the modal until it is clicked', () => {
     render(<ResumeDownloaderButton />);
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/test-resume.pdf');
+    expect(screen.queryByTestId('resume-modal')).not.toBeInTheDocument();
   });
 
-  it('has the download attribute with the correct filename', () => {
+  it('opens the modal on click', async () => {
     render(<ResumeDownloaderButton />);
-    expect(screen.getByRole('link')).toHaveAttribute('download', 'test-resume.pdf');
+    await userEvent.click(screen.getByRole('button', { name: /download/i }));
+    expect(await screen.findByTestId('resume-modal')).toBeInTheDocument();
   });
 
-  it('opens in a new tab', () => {
+  it('closes the modal when the modal asks to close', async () => {
     render(<ResumeDownloaderButton />);
-    expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
-  });
-
-  it('has an aria-label', () => {
-    render(<ResumeDownloaderButton />);
-    expect(screen.getByLabelText(/download/i)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: /download/i }));
+    await userEvent.click(await screen.findByText('close'));
+    expect(screen.queryByTestId('resume-modal')).not.toBeInTheDocument();
   });
 });
