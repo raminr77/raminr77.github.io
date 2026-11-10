@@ -12,9 +12,14 @@ jest.mock('@/shared/services', () => ({ requestResume: jest.fn() }));
 
 jest.mock('@/shared/helpers', () => ({ downloadFile: jest.fn() }));
 
+const mockExecuteRecaptcha = jest.fn();
+let mockIsRecaptchaLoaded = true;
+
 jest.mock('react-google-recaptcha-v3', () => ({
   GoogleReCaptchaProvider: ({ children }: { children: React.ReactNode }) => children,
-  useGoogleReCaptcha: () => ({ executeRecaptcha: jest.fn().mockResolvedValue('token') })
+  useGoogleReCaptcha: () => ({
+    executeRecaptcha: mockIsRecaptchaLoaded ? mockExecuteRecaptcha : undefined
+  })
 }));
 
 const DOWNLOAD_URL = 'https://cdn.test/cv.pdf';
@@ -22,6 +27,8 @@ const DOWNLOAD_URL = 'https://cdn.test/cv.pdf';
 describe('<ResumeRequestModal />', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockIsRecaptchaLoaded = true;
+    mockExecuteRecaptcha.mockResolvedValue('token');
   });
 
   it('shows an error for an invalid email and does not submit', async () => {
@@ -81,6 +88,14 @@ describe('<ResumeRequestModal />', () => {
       'Mailbox unavailable'
     );
     expect(downloadFile).not.toHaveBeenCalled();
+  });
+
+  it('explains that reCAPTCHA is unavailable and blocks submitting', () => {
+    mockIsRecaptchaLoaded = false;
+    render(<ResumeRequestModal onClose={jest.fn()} />);
+
+    expect(screen.getByTestId('resume-error')).toHaveTextContent(/could not be loaded/i);
+    expect(screen.getByTestId('resume-submit-button')).toBeDisabled();
   });
 
   it('closes on Escape and on backdrop click', async () => {

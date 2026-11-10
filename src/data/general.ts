@@ -70,7 +70,9 @@ export const GENERAL_SITE_DATA = {
     submitButton: 'Send Resume',
     errors: {
       generic: 'We could not send the resume now. Please try again.',
-      recaptchaNotDetected: 'Error: reCAPTCHA not detected.'
+      recaptchaNotDetected: 'reCAPTCHA is still loading. Please try again in a moment.',
+      recaptchaUnavailable:
+        'reCAPTCHA could not be loaded. Check your connection or disable any content blocker, then reopen this window.'
     },
     success: {
       title: 'Resume sent',

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useForm } from 'react-hook-form';
 
@@ -11,6 +11,7 @@ import { Button } from '@/shared/components/button';
 import { TextInput } from '@/shared/components/text-input';
 import {
   EMAIL_VALIDATION_REGEX,
+  ENV,
   GTM_EVENTS,
   RECAPTCHA_ACTIONS
 } from '@/shared/constants';
@@ -25,11 +26,14 @@ interface ResumeRequestFormValues {
   email: string;
 }
 
+const RECAPTCHA_LOAD_TIMEOUT_MS = 8000;
+
 export function ResumeRequestForm({ titleId, onSuccess }: ResumeRequestFormProps) {
   const { resumeModal } = GENERAL_SITE_DATA;
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasRecaptchaTimedOut, setHasRecaptchaTimedOut] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
@@ -40,6 +44,19 @@ export function ResumeRequestForm({ titleId, onSuccess }: ResumeRequestFormProps
     mode: 'onChange',
     defaultValues: { email: '' }
   });
+
+  const isRecaptchaReady = Boolean(executeRecaptcha);
+  const isRecaptchaUnavailable =
+    !isRecaptchaReady && (!ENV.GOOGLE_RECAPTCHA_SITE_KEY || hasRecaptchaTimedOut);
+
+  useEffect(() => {
+    if (isRecaptchaReady) return;
+    const timeoutId = window.setTimeout(
+      () => setHasRecaptchaTimedOut(true),
+      RECAPTCHA_LOAD_TIMEOUT_MS
+    );
+    return () => window.clearTimeout(timeoutId);
+  }, [isRecaptchaReady]);
 
   const onSubmit = async ({ email }: ResumeRequestFormValues) => {
     if (!executeRecaptcha) {
@@ -96,9 +113,11 @@ export function ResumeRequestForm({ titleId, onSuccess }: ResumeRequestFormProps
           })}
         />
 
-        {errorMessage && (
+        {(isRecaptchaUnavailable || errorMessage) && (
           <p role="alert" className="text-sm text-red-500" data-testid="resume-error">
-            {errorMessage}
+            {isRecaptchaUnavailable
+              ? resumeModal.errors.recaptchaUnavailable
+              : errorMessage}
           </p>
         )}
 
@@ -106,6 +125,7 @@ export function ResumeRequestForm({ titleId, onSuccess }: ResumeRequestFormProps
           <Button
             type="submit"
             loading={isLoading}
+            disabled={isRecaptchaUnavailable}
             testId="resume-submit-button"
             label={resumeModal.submitButton}
           />
