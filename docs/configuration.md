@@ -359,4 +359,4 @@ Mirrors the site-wide security headers from `next.config.ts` for the Vercel edge
 
 ## `.github/dependabot.yml`
 
-Weekly npm updates targeting `dev`, monthly GitHub Actions updates. Groups updates by purpose so one PR covers `next + @next/*`, another covers `react + react-dom + @types/*`, etc. See [deployment.md](./deployment.md).
+Security updates only, targeting `dev`. `open-pull-requests-limit: 0` turns off version-update PRs. Nothing is merged automatically. See [deployment.md](./deployment.md).

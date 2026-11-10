@@ -1,5 +1,16 @@
 version: 2
 
+# Security updates only.
+#
+# `open-pull-requests-limit: 0` switches off version-update PRs (the weekly "bump
+# everything" noise) but leaves Dependabot security updates running, as GitHub
+# documents. Dependabot never merges anything by itself, and no workflow in this
+# repo does either, so every PR needs a human review and merge.
+#
+# dependabot.yml has no severity filter. To report only high and critical advisories,
+# add an auto-triage rule under Settings > Advanced Security > Dependabot rules
+# that dismisses alerts with low and medium severity.
+
 updates:
   - package-ecosystem: 'npm'
     directory: '/'
@@ -9,84 +20,23 @@ updates:
       time: '06:00'
       timezone: 'Europe/Stockholm'
     target-branch: 'dev'
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0
     commit-message:
       prefix: 'chore(deps)'
       include: 'scope'
     labels:
       - 'dependencies'
-    versioning-strategy: 'increase'
-    groups:
-      next:
-        patterns:
-          - 'next'
-          - '@next/*'
-          - 'eslint-config-next'
-        update-types:
-          - 'minor'
-          - 'patch'
-      react:
-        patterns:
-          - 'react'
-          - 'react-dom'
-          - '@types/react'
-          - '@types/react-dom'
-        update-types:
-          - 'minor'
-          - 'patch'
-      sentry:
-        patterns:
-          - '@sentry/*'
-        update-types:
-          - 'minor'
-          - 'patch'
-      testing:
-        patterns:
-          - 'jest'
-          - 'jest-*'
-          - 'ts-jest'
-          - '@types/jest'
-          - '@testing-library/*'
-          - '@playwright/test'
-          - 'playwright'
-        update-types:
-          - 'minor'
-          - 'patch'
-      lint-and-format:
-        patterns:
-          - 'eslint'
-          - 'eslint-*'
-          - '@eslint/*'
-          - 'typescript-eslint'
-          - 'prettier'
-          - 'prettier-*'
-          - '@trivago/*'
-          - 'husky'
-          - 'lint-staged'
-        update-types:
-          - 'minor'
-          - 'patch'
-      types:
-        patterns:
-          - '@types/*'
-        update-types:
-          - 'minor'
-          - 'patch'
+      - 'security'
 
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
       interval: 'monthly'
     target-branch: 'dev'
+    open-pull-requests-limit: 0
     commit-message:
       prefix: 'chore(ci)'
     labels:
       - 'dependencies'
       - 'github-actions'
-    groups:
-      actions:
-        patterns:
-          - '*'
-        update-types:
-          - 'minor'
-          - 'patch'
+      - 'security'

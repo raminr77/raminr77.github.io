@@ -216,7 +216,7 @@ Run with `pnpm test:e2e`. Browsers install via `pnpm test:e2e:install`.
 
 ```text
 .github/
-├── dependabot.yml                  Weekly npm + monthly github-actions updates
+├── dependabot.yml                  Dependabot security updates only (no version bumps)
 └── workflows/
     ├── build.yml                   Production build + format check (push + PR)
     ├── tests.yml                   Jest (coverage) + Playwright (push + PR)
