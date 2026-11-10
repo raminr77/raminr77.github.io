@@ -28,25 +28,25 @@ minimumReleaseAgeExclude:
   - '@sentry/vercel-edge@10.67.0 || 11.7.0'
   - markdown-to-jsx@9.9.0
   - '@testing-library/jest-dom@7.0.0'
-  - '@typescript-eslint/eslint-plugin@8.65.0 || 8.71.2'
-  - '@typescript-eslint/parser@8.65.0 || 8.71.2'
-  - '@typescript-eslint/project-service@8.65.0 || 8.71.2'
-  - '@typescript-eslint/scope-manager@8.65.0 || 8.71.2'
-  - '@typescript-eslint/tsconfig-utils@8.65.0 || 8.71.2'
-  - '@typescript-eslint/type-utils@8.65.0 || 8.71.2'
-  - '@typescript-eslint/types@8.65.0 || 8.71.2'
-  - '@typescript-eslint/typescript-estree@8.65.0 || 8.71.2'
-  - '@typescript-eslint/utils@8.65.0 || 8.71.2'
-  - '@typescript-eslint/visitor-keys@8.65.0 || 8.71.2'
+  - '@typescript-eslint/eslint-plugin@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/parser@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/project-service@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/scope-manager@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/tsconfig-utils@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/type-utils@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/types@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/typescript-estree@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/utils@8.65.0 || 8.71.2 || 8.72.2'
+  - '@typescript-eslint/visitor-keys@8.65.0 || 8.71.2 || 8.72.2'
   - lighthouse@13.4.1
   - postcss@8.5.21 || 8.5.30
   - prettier@3.9.6
   - sass@1.103.0
-  - typescript-eslint@8.65.0 || 8.71.2
+  - typescript-eslint@8.65.0 || 8.71.2 || 8.72.2
   - enhanced-resolve@5.24.4
-  - framer-motion@12.43.0
-  - motion-dom@12.43.0
-  - motion@12.43.0
+  - framer-motion@12.43.0 || 14.11.1
+  - motion-dom@12.43.0 || 14.11.1
+  - motion@12.43.0 || 14.11.1
   - webpack@5.109.2 || 5.110.2
   - qs@6.16.0
   - react-hook-form@7.87.0
@@ -54,4 +54,17 @@ minimumReleaseAgeExclude:
   - '@sentry/cloudflare@11.7.0'
   - '@sentry/conventions@0.27.0'
   - '@sentry/server-runtime-injection@11.7.0'
-  - '@testing-library/user-event@14.6.8'
+  - '@testing-library/user-event@14.6.8 || 14.6.9'
+  - '@next/bundle-analyzer@16.4.6'
+  - '@next/env@16.4.6'
+  - '@next/eslint-plugin-next@16.4.6'
+  - '@next/swc-darwin-arm64@16.4.6'
+  - '@next/swc-darwin-x64@16.4.6'
+  - '@next/swc-linux-arm64-gnu@16.4.6'
+  - '@next/swc-linux-arm64-musl@16.4.6'
+  - '@next/swc-linux-x64-gnu@16.4.6'
+  - '@next/swc-linux-x64-musl@16.4.6'
+  - '@next/swc-win32-arm64-msvc@16.4.6'
+  - '@next/swc-win32-x64-msvc@16.4.6'
+  - '@next/third-parties@16.4.6'
+  - next@16.4.6
